@@ -16,9 +16,9 @@ namespace DanmissionManager.ViewModels
             this._input = String.Empty;
 
 
-            List<product> list = new List<product>();
+            List<Product> list = new List<Product>();
 
-            product product = new product();
+            Product product = new Product();
         }
 
         private string _buttonText;

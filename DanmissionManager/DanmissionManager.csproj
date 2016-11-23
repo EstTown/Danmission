@@ -77,8 +77,6 @@
     <Compile Include="DBTypes\ServerContext.cs" />
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
-    <Compile Include="DBTypes\standardprice.cs" />
-    <Compile Include="DBTypes\transaction.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />

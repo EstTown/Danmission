@@ -58,3 +58,8 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\Templ
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.g.resources
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\CreateProductView.g.cs
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView.g.cs
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\CreateProductView.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView.baml

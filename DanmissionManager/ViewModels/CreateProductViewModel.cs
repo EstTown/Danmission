@@ -10,7 +10,7 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel()
         {
-            product product = new product()
+            Product product = new Product()
             {
                 date = DateTime.Now,
                 desc = "Dett er et smart ur some kan..",
@@ -21,6 +21,6 @@ namespace DanmissionManager.ViewModels
             this.Product = product;
         }
 
-        public product Product { get; set; }
+        public Product Product { get; set; }
     }
 }
