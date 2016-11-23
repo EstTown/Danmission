@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConsoleManager.cs" />
     <Compile Include="DBTypes\category.cs" />
     <Compile Include="DBTypes\product.cs" />
     <Compile Include="DBTypes\ServerContext.cs" />

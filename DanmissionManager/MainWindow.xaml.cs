@@ -23,6 +23,7 @@ namespace DanmissionManager
         public MainWindow()
         {
             InitializeComponent();
+            ConsoleManager.Show();
         }
     }
 }
