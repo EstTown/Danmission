@@ -71,10 +71,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="DBTypes\category.cs" />
-    <Compile Include="DBTypes\product.cs" />
+    <Compile Include="ConsoleManager.cs" />
+    <Compile Include="DBTypes\Category.cs" />
+    <Compile Include="DBTypes\Product.cs" />
     <Compile Include="DBTypes\ServerContext.cs" />
+    <Compile Include="DBTypes\Standardprice.cs" />
+    <Compile Include="DBTypes\Transaction.cs" />
     <Compile Include="DBTypes\standardprice.cs" />
     <Compile Include="DBTypes\transaction.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

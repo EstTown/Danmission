@@ -12,34 +12,34 @@ namespace DanmissionManager
         {
         }
 
-        public virtual DbSet<category> categories { get; set; }
-        public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<standardprice> standardprices { get; set; }
-        public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Standardprice> Standardprices { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<category>()
+            modelBuilder.Entity<Category>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<category>()
+            modelBuilder.Entity<Category>()
                 .Property(e => e.subname)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<product>()
+            modelBuilder.Entity<Product>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<product>()
+            modelBuilder.Entity<Product>()
                 .Property(e => e.desc)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<standardprice>()
+            modelBuilder.Entity<Standardprice>()
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<transaction>()
+            modelBuilder.Entity<Transaction>()
                 .Property(e => e.date)
                 .IsUnicode(false);
         }

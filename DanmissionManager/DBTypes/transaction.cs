@@ -7,7 +7,7 @@ namespace DanmissionManager
     using System.Data.Entity.Spatial;
 
     [Table("data.transaction")]
-    public partial class transaction
+    public partial class Transaction
     {
         public int id { get; set; }
 

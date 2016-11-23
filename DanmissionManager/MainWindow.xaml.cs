@@ -23,6 +23,30 @@ namespace DanmissionManager
         public MainWindow()
         {
             InitializeComponent();
+            ConsoleManager.Show();
+
+
+            //Test - loading the product table to a list, and printing to console
+            /*
+            
+            */
+            using (var ctx = new ServerContext())
+            {
+                /*product a = new product();
+                a.name = "Tallerken";
+                a.price = 22;
+                a.isUnique = true;
+                a.category = 3;
+
+                ctx.products.Add(a);
+                ctx.SaveChanges();*/
+                List<Product> b = ctx.Products.ToList();
+                foreach (Product x in b)
+                {
+                    Console.WriteLine(x.name);
+                }
+            }
+
         }
     }
 }
