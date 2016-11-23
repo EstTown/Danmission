@@ -1,0 +1,2 @@
+C:\Users\esttown\Source\Repos\DanmissionManager\DanmissionManager\bin\Debug\DanmissionManager.exe.config
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\bin\Debug\DanmissionManager.exe.config
