@@ -22,6 +22,7 @@ namespace DanmissionManager.Views
         public TemplateView()
         {
             InitializeComponent();
+            ConsoleManager.Show();
         }
     }
 }
