@@ -30,6 +30,15 @@ namespace DanmissionManager
             /*
             using (var ctx = new ServerContext())
             {
+                product a = new product();
+                a.name = "Tallerken";
+                a.price = 22;
+                a.isUnique = true;
+                a.category = 3;
+
+                ctx.products.Add(a);
+                ctx.SaveChanges();
+
                 List<product> b = ctx.products.ToList();
                 foreach (product x in b)
                 {
@@ -37,6 +46,7 @@ namespace DanmissionManager
                 }
             }
             */
+
 
         }
     }
