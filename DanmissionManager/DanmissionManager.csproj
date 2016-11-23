@@ -71,11 +71,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="category.cs" />
-    <Compile Include="product.cs" />
-    <Compile Include="ServerContext.cs" />
-    <Compile Include="standardprice.cs" />
-    <Compile Include="transaction.cs" />
+    <Compile Include="DBTypes\category.cs" />
+    <Compile Include="DBTypes\product.cs" />
+    <Compile Include="DBTypes\ServerContext.cs" />
+    <Compile Include="DBTypes\standardprice.cs" />
+    <Compile Include="DBTypes\transaction.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
