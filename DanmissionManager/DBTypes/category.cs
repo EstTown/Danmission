@@ -7,7 +7,7 @@ namespace DanmissionManager
     using System.Data.Entity.Spatial;
 
     [Table("data.categories")]
-    public partial class category
+    public partial class Category
     {
         public int id { get; set; }
 
