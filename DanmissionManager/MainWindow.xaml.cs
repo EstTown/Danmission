@@ -24,6 +24,20 @@ namespace DanmissionManager
         {
             InitializeComponent();
             ConsoleManager.Show();
+
+
+            //Test - loading the product table to a list, and printing to console
+            /*
+            using (var ctx = new ServerContext())
+            {
+                List<product> b = ctx.products.ToList();
+                foreach (product x in b)
+                {
+                    Console.WriteLine(x.name);
+                }
+            }
+            */
+
         }
     }
 }
