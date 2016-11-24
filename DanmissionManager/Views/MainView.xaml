@@ -1,0 +1,121 @@
+﻿<Window x:Class="DanmissionManager.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+        mc:Ignorable="d"
+        Title="MainView" Height="591" Width="960" MinWidth="960" MinHeight="500" Background="WhiteSmoke">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <!--
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value ="#FF37BA5D"></Setter>
+            <Setter Property="BorderThickness" Value ="0,0,0,2.5"></Setter>
+            <Setter Property="BorderBrush" Value="BlueViolet"></Setter>
+            <Setter Property="Width" Value="121"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        -->
+
+        <!-- Styling of buttons-->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value ="#FF37BA5D"></Setter>
+            <Setter Property="BorderThickness" Value ="0,0,0,2.5"></Setter>
+            <Setter Property="BorderBrush" Value="BlueViolet"></Setter>
+            <Setter Property="Width" Value="121"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="BlueViolet" BorderThickness=".5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF2FA946"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid>
+
+        <Grid HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Stretch" Width="121" DataContext="TemplateView" Background="#FF37BA5D">
+
+            <Button x:Name="btn_addProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Height="80" Click="btn_addProduct_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Product-64.png" Height="48" Width="48" />
+                    <TextBlock>Registrer Produkt</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_findProduct" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_findProduct_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Search-64.png" Height="48" Width="48" />
+                    <TextBlock>Find Produkt</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_removeProduct" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_removeProduct_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Trash-64.png" Height="48" Width="48" />
+                    <TextBlock>Fjern Produkt</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_inventoryOverview" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_inventoryOverview_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Page-Overview-64.png" Height="48" Width="48" />
+                    <TextBlock>Inventar Overblik</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_categories" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_categories_Click" >
+                <StackPanel>
+                    <Image Source="/Resources/View-Details-64.png" Height="48" Width="48" />
+                    <TextBlock>Kategorier</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_statistics" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_statistics_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Pie-Chart-64.png" Height="48" Width="48" />
+                    <TextBlock>Statistik</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_settings" HorizontalAlignment="Left" Margin="0,480,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_settings_Click">
+                <StackPanel>
+                    <Image Source="/Resources/Settings-64.png" Height="48" Width="48" />
+                    <TextBlock>Indstillinger</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Frame x:Name="Main" Margin="126,0,-834,-1.333" Height="auto" NavigationUIVisibility="Hidden"/>
+
+        </Grid>
+
+        <!--Center Logo-->
+        <!--
+        <StackPanel Margin="0,0,0.0,0" HorizontalAlignment="Center" Width="auto" Height="auto" VerticalAlignment="Top">
+            <Image x:Name="image" Source="/Resources/danmission.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto" Margin="304,245,191.333,199.667" Width="auto"/>
+        </StackPanel>
+        -->
+    </Grid>
+</Window>

@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DanmissionManager.Pages;
 
-namespace DanmissionManager.Views
+namespace DanmissionManager.Pages
 {
     /// <summary>
-    /// Interaction logic for TemplateView.xaml
+    /// Interaction logic for logoPage.xaml
     /// </summary>
-    public partial class TemplateView : Window
+    public partial class logoPage : Page
     {
-        public TemplateView()
+        public logoPage()
         {
             InitializeComponent();
-            ConsoleManager.Show();
-
         }
     }
 }

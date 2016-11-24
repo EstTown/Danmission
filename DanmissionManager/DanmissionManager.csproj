@@ -78,6 +78,30 @@
     <Compile Include="DBTypes\ServerContext.cs" />
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
+    <Compile Include="Pages\addProductPage.xaml.cs">
+      <DependentUpon>addProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\categoriesPage.xaml.cs">
+      <DependentUpon>categoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\findProductPage.xaml.cs">
+      <DependentUpon>findProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\inventoryOverviewPage.xaml.cs">
+      <DependentUpon>inventoryOverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\logoPage.xaml.cs">
+      <DependentUpon>logoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\removeProductPage.xaml.cs">
+      <DependentUpon>removeProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\settingsPage.xaml.cs">
+      <DependentUpon>settingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\statisticsPage.xaml.cs">
+      <DependentUpon>statisticsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,9 +109,13 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="Views\CreateProductView.xaml.cs">
       <DependentUpon>CreateProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TemplateView.xaml.cs">
       <DependentUpon>TemplateView.xaml</DependentUpon>
@@ -104,7 +132,43 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\addProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\categoriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\findProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\inventoryOverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\logoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\removeProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\settingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\statisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,7 +199,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Product-64.png" />
@@ -182,6 +248,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Pie-Chart-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\danmission.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

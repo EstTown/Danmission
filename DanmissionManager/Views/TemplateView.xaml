@@ -20,7 +20,7 @@
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </Window.Resources>
-    
+
 
     <Grid>
 
@@ -73,7 +73,7 @@
                     <TextBlock>Indstillinger</TextBlock>
                 </StackPanel>
             </Button>
-            
+
         </Grid>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="137" Margin="382,136,0,0" TextWrapping="Wrap" Text="{Binding ButtonText}" VerticalAlignment="Top" Width="251"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="382,337,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
