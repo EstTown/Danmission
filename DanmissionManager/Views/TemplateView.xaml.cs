@@ -23,6 +23,7 @@ namespace DanmissionManager.Views
         {
             InitializeComponent();
             ConsoleManager.Show();
+            
         }
     }
 }
