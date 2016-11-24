@@ -40,6 +40,17 @@ namespace DanmissionManager
 
                 ctx.products.Add(a);
                 ctx.SaveChanges();*/
+
+                Product product = new Product()
+                {
+                    date = DateTime.Now,
+                    desc = "Dett er et smart ur some kan..",
+                    name = "Rolex Ur",
+                    price = 99.95
+                };
+                ctx.Products.Add(product);
+                ctx.SaveChanges();
+
                 List<Product> b = ctx.Products.ToList();
                 foreach (Product x in b)
                 {

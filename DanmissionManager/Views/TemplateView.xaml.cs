@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DanmissionManager.Pages;
 
 namespace DanmissionManager.Views
 {
@@ -23,10 +24,6 @@ namespace DanmissionManager.Views
         {
             InitializeComponent();
             ConsoleManager.Show();
-        }
-
-        private void SuperText_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
     }
