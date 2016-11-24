@@ -156,6 +156,33 @@
   <ItemGroup>
     <Resource Include="Resources\Statistics-64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Page-Overview-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Product-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Search-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Settings-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Statistics-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Trash-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\View Details-64_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pie-Chart-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pie-Chart-64_black.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

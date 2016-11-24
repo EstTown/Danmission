@@ -62,7 +62,7 @@
 
             <Button x:Name="button5" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" Width="121" Height="80">
                 <StackPanel>
-                    <Image Source="/Resources/Statistics-64.png" Height="48" Width="48" />
+                    <Image Source="/Resources/Pie-Chart-64.png" Height="48" Width="48" />
                     <TextBlock>Statistik</TextBlock>
                 </StackPanel>
             </Button>
