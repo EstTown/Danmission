@@ -62,3 +62,4 @@ C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\Templ
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\CreateProductView.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

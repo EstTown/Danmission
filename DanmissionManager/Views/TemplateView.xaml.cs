@@ -24,5 +24,10 @@ namespace DanmissionManager.Views
             InitializeComponent();
             ConsoleManager.Show();
         }
+
+        private void SuperText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

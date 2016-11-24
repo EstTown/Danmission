@@ -4,21 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+        xmlns:danmissionManager="clr-namespace:DanmissionManager"
         mc:Ignorable="d"
         Title="TemplateView" Height="540" Width="960" Background="WhiteSmoke">
     <Window.DataContext>
         <local:TemplateViewModel/>
     </Window.DataContext>
 
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Background" Value ="#FF37BA5D"></Setter>
-            <Setter Property="BorderThickness" Value ="0,0,0,2.5"></Setter>
+            <Setter Property="BorderThickness" Value ="0,0,0,0.5"></Setter>
             <Setter Property="BorderBrush" Value="BlueViolet"></Setter>
             <Setter Property="Width" Value="121"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+
+        <DataTemplate DataType="{x:Type danmissionManager:Product}">
+            <StackPanel>
+                <TextBlock Text ="{Binding category}"></TextBlock>
+                <TextBlock Text ="{Binding id}"></TextBlock>
+                <TextBlock Text ="{Binding date}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -32,9 +42,22 @@
                 <TextBlock TextWrapping="Wrap"> Rediger/fjern kategier</TextBlock>
             </Button>
         </Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="137" Margin="382,136,0,0" TextWrapping="Wrap" Text="{Binding ButtonText}" VerticalAlignment="Top" Width="251"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="382,337,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="137" Margin="195,40,0,0" TextWrapping="Wrap" Text="{Binding ButtonText}" VerticalAlignment="Top" Width="251"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="205,218,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="UpdateButton" Content="UpdateRandomProduct" Command="{Binding Path = UpdateCurrentProduct}"  HorizontalAlignment="Left" Margin="726,350,0,0" VerticalAlignment="Top" Width="158" Height="87"/>
+        <TextBox x:Name="Kategori" Text ="{Binding Product.category, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" FontSize="12" HorizontalAlignment="Left" Height="23" Margin="474,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" TextChanged="SuperText_TextChanged"/>
+        <TextBox x:Name="Date" Text ="{Binding Product.date, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="22" Margin="474,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="ID" Text ="{Binding Product.id, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="474,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="87" Margin="642,350,0,0" VerticalAlignment="Top" Width="79"/>
+
 
 
     </Grid>
+
 </Window>
+<!-- as you can see, comments are cancer in XAML 
+        CommandParameter="{Binding ElementName=SuperText, Path=Text}"
+        This line of code was originally connected to "UpdateButton" but I tried removing it 
+        and it seemed to change nothing, so.
+        -->
+    
