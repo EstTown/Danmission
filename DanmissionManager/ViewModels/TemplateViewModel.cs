@@ -8,7 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using DanmissionManager.Commands;
 using System.Drawing;
-using DanmissionManager.TESTCLASSSES;
+using DanmissionManager.TestClasses;
 using Color = System.Drawing.Color;
 
 namespace DanmissionManager.ViewModels
