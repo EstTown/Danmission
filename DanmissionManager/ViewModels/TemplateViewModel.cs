@@ -14,7 +14,7 @@ namespace DanmissionManager.ViewModels
         {
             this._buttonText = "ThisCameFromTheViewModel";
             this._input = String.Empty;
-
+            this.Product = null;
 
             List<Product> list = new List<Product>();
 
@@ -22,7 +22,6 @@ namespace DanmissionManager.ViewModels
         }
 
         private string _buttonText;
-
         public string ButtonText
         {
             get
@@ -35,8 +34,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("ButtonText");
             }
         }
-
-
         private string _input;
         public string Input
         {
@@ -47,8 +44,23 @@ namespace DanmissionManager.ViewModels
             set { _input = value; OnPropertyChanged("Input"); }
         }
         
+        //method get random prduct
+        private Product _product;
+        public Product Product
+        {
+            get { return _product; }
+            set
+            {
+                _product = value;
+                OnPropertyChanged("Product");
+            }
+        }
 
-
+        public Product GetRandomProduct()
+        {
+            Product product = new Product();
+            return product;
+        }
     }
 }
 
