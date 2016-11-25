@@ -51,9 +51,11 @@ namespace DanmissionManager.ViewModels
             using (var ctx = new ServerContext())
             {
 
-                List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
+                //List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
 
-                
+                //This is more dyniamic, although it runs smoothly, the initial query seems to lag, causing a small stutter
+                List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower())).ToList();
+
                 ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
 
                 

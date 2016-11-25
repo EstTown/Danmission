@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:si="Expression.Samples.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="findProductPage">
@@ -13,7 +15,7 @@
 
     <Grid>
 
-        <ListView Margin="10,73,328,118" Name="lvUsers" ItemsSource="{Binding Products}">
+        <ListView Margin="10,57,328,134" Name="lvUsers" ItemsSource="{Binding Products}">
 
             <ListView.View>
                 <GridView>
@@ -26,8 +28,18 @@
             </ListView.View>
 
         </ListView>
-        <Image x:Name="image" Source="/Resources/nazi.jpg" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,73,45,0" Width="250"/>
-        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" HorizontalAlignment="Left" Margin="545,23,0,0" VerticalAlignment="Top" Width="250"/>
-        <TextBox x:Name="txtbox_seach" Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="502"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,57,45,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
+        </Border>
+        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,23,45,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
+        <TextBox x:Name="txtbox_seach" Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,23,328,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="KeyUp">
+                    <i:InvokeCommandAction Command="{Binding Path = CommandGetProducts}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+
     </Grid>
 </Page>
