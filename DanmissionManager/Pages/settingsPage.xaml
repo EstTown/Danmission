@@ -8,8 +8,18 @@
       d:DesignHeight="600" d:DesignWidth="840"
       Title="settingsPage">
 
+
+
+
+
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="86,78,0,0" TextWrapping="Wrap" Text="Settings page" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="settings" Margin="77,148,437,-148" Height="600"/>
+
+
+
+
+
+
 
     </Grid>
 </Page>
