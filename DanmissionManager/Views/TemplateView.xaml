@@ -49,6 +49,30 @@
         <TextBox x:Name="Date" Text ="{Binding Product.date, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="22" Margin="474,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
         <TextBox x:Name="ID" Text ="{Binding Product.id, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="474,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
         <Image x:Name="image" Source="{Binding Product.ProductImage}" HorizontalAlignment="Left" Height="87" Margin="642,350,0,0" VerticalAlignment="Top" Width="79"/>
+        <Grid HorizontalAlignment="Left" Height="282" Margin="530,10,0,0" VerticalAlignment="Top" Width="414">
+            <StackPanel HorizontalAlignment = "Left">
+                <ItemsControl ItemsSource = "{Binding Path = Products}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackPanel Orientation = "Horizontal">
+                                <TextBox Text = "{Binding Path = id, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/>
+
+                                <TextBox Text = "{Binding Path = category, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/>
+
+                                <TextBlock Text = "{Binding Path = date, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+        
 
 
     </Grid>
