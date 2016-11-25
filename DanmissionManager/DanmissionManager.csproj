@@ -112,6 +112,7 @@
     <Compile Include="TestClasses\Product2.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\FindProductViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="Views\CreateProductView.xaml.cs">

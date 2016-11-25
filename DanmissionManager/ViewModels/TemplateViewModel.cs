@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -31,16 +32,30 @@ namespace DanmissionManager.ViewModels
             this.Product = product;
         }
 
+        private ObservableCollection<Product> _products;
+
+        public ObservableCollection<Product> Products
+        {
+            get
+            {
+                return _products;
+            }
+            set
+            {
+                _products = value;
+                OnPropertyChanged("Products");
+            }
+        }
+
+
+        public RelayCommand2 UpdateCurrentProduct { get; set; }
         private void UpdateProduct()
         {
-            Random rdn = new Random();
-
-            Product2 product = new Product2();
-            product.category = rdn.Next(1, 100);
-            product.date = DateTime.Now;
-            product.id = rdn.Next(1000, 10000);
-
-            this.Product = product;
+            using (var ctx = new ServerContext())
+            {
+                ObservableCollection<Product> collection = new ObservableCollection<Product>(ctx.Products.ToList());
+                this.Products = collection;
+            }
         }
 
 
@@ -85,7 +100,7 @@ namespace DanmissionManager.ViewModels
             //
         }
         
-        public RelayCommand2 UpdateCurrentProduct { get; set; }
+        
         
 
 
