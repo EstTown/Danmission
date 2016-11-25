@@ -9,7 +9,14 @@
       Title="findProductPage">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="120,129,0,0" TextWrapping="Wrap" Text="Find product" VerticalAlignment="Top"/>
-
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="511" Margin="10,52,0,0" VerticalAlignment="Top" Width="670">
+            <ListView x:Name="listView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
     </Grid>
 </Page>

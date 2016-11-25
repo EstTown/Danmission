@@ -10,7 +10,7 @@ namespace DanmissionManager.ViewModels
     {
         public MainViewModel()
         {
-
+            
         }
     }
 }
