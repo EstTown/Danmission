@@ -12,6 +12,8 @@ namespace DanmissionManager.ViewModels
     {
         public FindProductViewModel()
         {
+
+            this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
         }
 
@@ -20,10 +22,7 @@ namespace DanmissionManager.ViewModels
 
         public string SearchParameter
         {
-            get
-            {
-                return _searchParameter;
-            }
+            get { return _searchParameter; }
             set
             {
                 _searchParameter = value;
@@ -31,10 +30,17 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        //search function
+        private Collection<Product> _products;
 
-
-        private Collection<Product> Products { get; set; }
+        public Collection<Product> Products
+        {
+            get { return _products; }
+            set
+            {
+                _products = value;
+                OnPropertyChanged("Products");
+            }
+        }
 
         //property that will contain the command/method and executes it
         //does not need a backing field
@@ -44,11 +50,18 @@ namespace DanmissionManager.ViewModels
         {
             using (var ctx = new ServerContext())
             {
-                ObservableCollection<Product> collection = new ObservableCollection<Product>(ctx.Products.ToList());
+
+                List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
+
+                
+                ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
+
+                
                 this.Products = collection;
             }
-            
+
         }
 
     }
 }
+

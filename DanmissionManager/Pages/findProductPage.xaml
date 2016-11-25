@@ -12,18 +12,22 @@
     </Page.DataContext>
 
     <Grid>
-        <ListView Margin="10,73,328,118" Name="lvUsers">
+
+        <ListView Margin="10,73,328,118" Name="lvUsers" ItemsSource="{Binding Products}">
+
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Kategori" Width="50" DisplayMemberBinding="{Binding Age}" />
-                    <GridViewColumn Header="Pris" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Kategori" Width="50" DisplayMemberBinding="{Binding category}" />
+                    <GridViewColumn Header="Pris" Width="150" DisplayMemberBinding="{Binding price}" />
                 </GridView>
+
             </ListView.View>
+
         </ListView>
         <Image x:Name="image" Source="/Resources/nazi.jpg" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,73,45,0" Width="250"/>
-        <Button x:Name="btn_search" Content="Søg" HorizontalAlignment="Left" Margin="545,23,0,0" VerticalAlignment="Top" Width="250"/>
-        <TextBox x:Name="txtbox_seach" HorizontalAlignment="Left" Height="23" Margin="10,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="502"/>
+        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" HorizontalAlignment="Left" Margin="545,23,0,0" VerticalAlignment="Top" Width="250"/>
+        <TextBox x:Name="txtbox_seach" Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="502"/>
     </Grid>
 </Page>
