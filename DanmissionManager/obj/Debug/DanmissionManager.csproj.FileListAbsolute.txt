@@ -97,3 +97,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\remov
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\settingsPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\statisticsPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\MainView.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
