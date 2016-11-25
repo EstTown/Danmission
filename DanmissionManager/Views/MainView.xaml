@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainView" Height="591" Width="960" MinWidth="960" MinHeight="500" Background="WhiteSmoke">
+        Title="MainView" Height="600" Width="960" MinWidth="960" MinHeight="600" Background="WhiteSmoke">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -107,9 +107,10 @@
                 </StackPanel>
             </Button>
 
-            <Frame x:Name="Main" Margin="126,0,-834,-1.333" Height="auto" NavigationUIVisibility="Hidden"/>
 
         </Grid>
+
+        <Frame x:Name="Main" Margin="126,0,10,-1" NavigationUIVisibility="Hidden" Height="auto" Width="auto"/>
 
         <!--Center Logo-->
         <!--

@@ -5,11 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DanmissionManager.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="600" d:DesignWidth="840"
       Title="addProductPage">
-
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="95,123,0,0" TextWrapping="Wrap" Text="Add product" VerticalAlignment="Top"/>
-
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="100" VerticalAlignment="Bottom"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="52,70,118,127"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,118,10" HorizontalAlignment="Right" Width="100" Height="100" VerticalAlignment="Bottom"/>
     </Grid>
+
+
+
 </Page>

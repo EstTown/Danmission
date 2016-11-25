@@ -5,13 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DanmissionManager.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="570" d:DesignWidth="1116"
+      d:DesignHeight="600" d:DesignWidth="840"
       Title="logoPage">
 
-    <Grid Margin="0,0,10,10">
-        <!--Center Logo-->
-        <StackPanel Margin="0,0,0.0,0" HorizontalAlignment="Center" Width="auto" Height="auto" VerticalAlignment="Top">
-            <Image x:Name="image" Source="/Resources/danmission.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto" Margin="304,245,191.333,199.667" Width="auto"/>
-        </StackPanel>
-    </Grid>
+
+    <Image x:Name="image" Source="/Resources/danmission.png" Margin="0,0,0,0" Height="90" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+
 </Page>
