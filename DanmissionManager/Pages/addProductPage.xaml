@@ -3,16 +3,42 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DanmissionManager.Pages"
+      xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="addProductPage">
+    <Page.DataContext>
+        <local:CreateProductViewModel/>
+    </Page.DataContext>
+
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="100" VerticalAlignment="Bottom"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="52,70,118,127"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,118,10" HorizontalAlignment="Right" Width="100" Height="100" VerticalAlignment="Bottom"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
+        </Border>
+        <Button x:Name="btn_ChooseImage" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
+
+        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+
+        <Grid Margin="10,55,267,10">
+            <Label x:Name="label_name" Content="Produkt navn:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox" Height="22" Margin="98,14,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+            <Label x:Name="label_description" Content="Beskrivelse:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+            <Label x:Name="label_price" Content="Sæt pris:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
+
+            <ComboBox x:Name="comboBox_price" Margin="98,85,10,0" VerticalAlignment="Top">
+                <ComboBoxItem>Sæt anden pris...</ComboBoxItem>
+            </ComboBox>
+
+
+            <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,124,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="btn_addProduct" Content="Tilføj produkt" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
+
+
+
     </Grid>
-
-
-
 </Page>

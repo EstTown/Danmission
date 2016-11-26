@@ -110,7 +110,7 @@
 
         </Grid>
 
-        <Frame x:Name="Main" Margin="126,0,10,-1" NavigationUIVisibility="Hidden" Height="auto" Width="auto"/>
+        <Frame x:Name="Main" Margin="121,0,0,0" NavigationUIVisibility="Hidden" Height="auto" Width="auto"/>
 
         <!--Center Logo-->
         <!--

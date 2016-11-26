@@ -2,16 +2,31 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DanmissionManager.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="IP" Type="System.String" Scope="Application">
+    <Setting Name="IP1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="USER" Type="System.String" Scope="Application">
+    <Setting Name="USER" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PASSWORD" Type="System.String" Scope="Application">
+    <Setting Name="PASSWORD" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SCHEMA" Type="System.String" Scope="Application">
+    <Setting Name="SCHEMA" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IP3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IP4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IPPORT" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

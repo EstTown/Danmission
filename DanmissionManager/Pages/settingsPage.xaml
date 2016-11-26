@@ -3,21 +3,50 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DanmissionManager.Pages"
+      xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+      xmlns:properties="clr-namespace:DanmissionManager.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="settingsPage">
-
-
-
-
+    <Page.DataContext>
+        <local:SettingsViewModel/>
+    </Page.DataContext>
 
     <Grid>
-        <Label x:Name="label" Content="settings" Margin="77,148,437,-148" Height="600"/>
 
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
+        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Indstillinger" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
+        <Grid Margin="10,55,17,10">
+            <Label x:Name="label_name" Content="Sprog:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0"/>
+            <GroupBox x:Name="groupBox_database" Header="Database" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Height="153" Width="307">
+                <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="297" Margin="0,0,-2,0">
+                    <TextBox x:Name="textBox_ip1" HorizontalAlignment="Left" Height="19" Margin="66,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IP1, Mode=TwoWay}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                    <TextBox x:Name="textBox_ip2" HorizontalAlignment="Left" Height="19" Margin="112,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IP2, Mode=TwoWay}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                    <TextBox x:Name="textBox_ip3" HorizontalAlignment="Left" Height="19" Margin="158,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IP3, Mode=TwoWay}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                    <TextBox x:Name="textBox_ip4" HorizontalAlignment="Left" Height="19" Margin="204,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IP4, Mode=TwoWay}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                    <TextBox x:Name="textBox_ip_port" HorizontalAlignment="Left" Height="19" Margin="250,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IPPORT, Mode=TwoWay}" VerticalAlignment="Top" Width="40" MaxLength="4"/>
+                    <Label x:Name="label_dot" Content=" . " HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_dot_Copy" Content=" . " HorizontalAlignment="Left" Margin="139,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_dot_Copy1" Content=" . " HorizontalAlignment="Left" Margin="185,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_collon" Content=" : " HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top"/>
+                    
+                    <Label Content="IP:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,10,0,0"/>
+                    <Label Content="Bruger:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,41,0,0"/>
+                    <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>
+                    <Label Content="Schema:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,103,0,0"/>
+                    <TextBox x:Name="textBox_user" HorizontalAlignment="Left" Height="19" Margin="66,48,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=USER, Mode=TwoWay}" VerticalAlignment="Top" Width="224"/>
+                    <TextBox x:Name="textBox_password" HorizontalAlignment="Left" Height="19" Margin="66,79,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=PASSWORD, Mode=TwoWay}" VerticalAlignment="Top" Width="224"/>
+                    <TextBox x:Name="textBox_schema" HorizontalAlignment="Left" Height="19" Margin="66,110,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=SCHEMA, Mode=TwoWay}" VerticalAlignment="Top" Width="224"/>
+
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
 
 
 

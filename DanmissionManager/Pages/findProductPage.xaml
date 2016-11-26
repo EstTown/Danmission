@@ -32,8 +32,8 @@
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,106,37,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
         </Border>
-        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,78,37,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
-        <TextBox x:Name="txtbox_seach"  Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,78,328,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,63,37,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
+        <TextBox x:Name="txtbox_seach"  Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,63,328,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="txtbox_seach_KeyDown">
             <!--
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="KeyUp">
@@ -42,7 +42,7 @@
             </i:Interaction.Triggers>
             -->
         </TextBox>
-        <Label x:Name="label" FontSize="35" FontFamily="Verdana" Content="Søg produktkatalog" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="793" Height="63"/>
+        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Find produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
     </Grid>
 </Page>

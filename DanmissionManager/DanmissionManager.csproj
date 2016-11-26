@@ -117,6 +117,7 @@
     <Compile Include="ViewModels\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\FindProductViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="Views\CreateProductView.xaml.cs">
       <DependentUpon>CreateProductView.xaml</DependentUpon>
