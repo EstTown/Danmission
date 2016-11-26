@@ -14,7 +14,7 @@
     <Setting Name="SCHEMA" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
+    <Setting Name="LANGUAGE" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IP2" Type="System.String" Scope="User">

@@ -21,7 +21,11 @@
         <Grid Margin="10,55,17,10">
             <Label x:Name="label_name" Content="Sprog:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0"/>
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=LANGUAGE, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0">
+                <ComboBoxItem IsSelected="True">Dansk</ComboBoxItem>
+                <ComboBoxItem>English</ComboBoxItem>
+            </ComboBox>
+            
             <GroupBox x:Name="groupBox_database" Header="Database" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Height="153" Width="307">
                 <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="297" Margin="0,0,-2,0">
                     <TextBox x:Name="textBox_ip1" HorizontalAlignment="Left" Height="19" Margin="66,14,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=IP1, Mode=TwoWay}" VerticalAlignment="Top" Width="27" MaxLength="3"/>

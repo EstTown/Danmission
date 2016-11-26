@@ -74,12 +74,12 @@ namespace DanmissionManager.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Language {
+        public string LANGUAGE {
             get {
-                return ((string)(this["Language"]));
+                return ((string)(this["LANGUAGE"]));
             }
             set {
-                this["Language"] = value;
+                this["LANGUAGE"] = value;
             }
         }
         
