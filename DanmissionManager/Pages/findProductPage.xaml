@@ -15,7 +15,7 @@
 
     <Grid>
 
-        <ListView Margin="10,57,328,134" Name="lvUsers" ItemsSource="{Binding Products}">
+        <ListView Margin="10,106,328,10" Name="lvUsers" ItemsSource="{Binding Products}">
 
             <ListView.View>
                 <GridView>
@@ -29,12 +29,12 @@
 
         </ListView>
 
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,57,45,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,106,37,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
         </Border>
-        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,23,45,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
-        <TextBox x:Name="txtbox_seach" Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,23,328,0" TextWrapping="Wrap" VerticalAlignment="Top">
-           <!--
+        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,78,37,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
+        <TextBox x:Name="txtbox_seach"  Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,78,328,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <!--
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="KeyUp">
                     <i:InvokeCommandAction Command="{Binding Path = CommandGetProducts}"/>
@@ -42,6 +42,7 @@
             </i:Interaction.Triggers>
             -->
         </TextBox>
+        <Label x:Name="label" FontSize="35" FontFamily="Verdana" Content="Søg produktkatalog" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="793" Height="63"/>
 
     </Grid>
 </Page>

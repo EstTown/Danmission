@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainView" Height="600" Width="960" MinWidth="960" MinHeight="600" Background="WhiteSmoke">
+        Title="MainView" Height="600" Width="960" MinWidth="960" MinHeight="600" Background="WhiteSmoke" KeyDown="Window_KeyDown">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>

@@ -26,6 +26,18 @@ namespace DanmissionManager.Pages
             InitializeComponent();
         }
 
+        //When 'Enter' is pressed in searchbox, the "search" command is executed
+        private void OnKeyDownHandler(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (btn_search.Command != null)
+                {
+                    btn_search.Command.Execute(null);
+                }
+            }
+
+        }
 
     }
 }

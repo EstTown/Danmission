@@ -24,8 +24,13 @@ namespace DanmissionManager.Views
         public MainView()
         {
             InitializeComponent();
+            this._Fullscreen = false;
             Main.Content = new logoPage();
+
+            ConsoleManager.Show();
         }
+
+        private bool _Fullscreen { get; set; }
 
         private void btn_addProduct_Click(object sender, RoutedEventArgs e)
         {
@@ -60,6 +65,36 @@ namespace DanmissionManager.Views
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new settingsPage();
+        }
+
+        //Functionallity for fullscreen-toggle
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F11)
+            {
+                if (_Fullscreen == false)
+                {
+                    WindowStyle = WindowStyle.None;
+                    WindowState = WindowState.Maximized;
+                    ResizeMode = ResizeMode.NoResize;
+                }
+
+                if (_Fullscreen == true)
+                {
+                    WindowStyle = WindowStyle.SingleBorderWindow;
+                    WindowState = WindowState.Normal;
+                    ResizeMode = ResizeMode.CanResize;
+                }
+
+                _Fullscreen = !_Fullscreen;
+            }
+
+            if (e.Key == Key.Escape)
+            {
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanResize;
+            }
         }
 
     }
