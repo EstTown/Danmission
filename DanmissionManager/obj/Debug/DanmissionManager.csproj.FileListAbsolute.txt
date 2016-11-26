@@ -146,7 +146,6 @@ C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\Danmission
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
-C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\bin\Debug\de\System.Windows.Interactivity.resources.dll
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\bin\Debug\en\System.Windows.Interactivity.resources.dll
