@@ -16,7 +16,7 @@ namespace DanmissionManager.TestClasses
         }
         public DateTime date { get; set; }
         public int id { get; set; }
-        public Bitmap ProductImage { get; set; }
+        public BitmapImage ProductImage { get; set; }
         public int category { get; set; }
 
     }

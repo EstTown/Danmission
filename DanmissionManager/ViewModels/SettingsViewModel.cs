@@ -8,5 +8,6 @@ namespace DanmissionManager.ViewModels
 {
     class SettingsViewModel : BaseViewModel
     {
+
     }
 }

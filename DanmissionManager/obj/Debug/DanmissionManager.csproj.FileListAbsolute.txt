@@ -157,3 +157,15 @@ C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\Danmission
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
 C:\Users\Frederik\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

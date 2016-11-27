@@ -72,7 +72,8 @@
                 </ItemsControl>
             </StackPanel>
         </Grid>
-        
+        <Image x:Name="image1" Source="{Binding Product.ProductImage}" HorizontalAlignment="Left" Height="140" Margin="245,350,0,0" VerticalAlignment="Top" Width="140"/>
+
 
 
     </Grid>

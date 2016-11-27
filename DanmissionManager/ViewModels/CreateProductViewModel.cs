@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DanmissionManager.ViewModels
 {
-    class CreateProductViewModel
+    class CreateProductViewModel : BaseViewModel
     {
         public CreateProductViewModel()
         {

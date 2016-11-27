@@ -9,6 +9,8 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using DanmissionManager.Commands;
 using System.Drawing;
+using System.IO;
+using System.Windows.Media.Imaging;
 using DanmissionManager.TestClasses;
 using Color = System.Drawing.Color;
 
@@ -28,7 +30,7 @@ namespace DanmissionManager.ViewModels
             product.date = new DateTime(2015, 4, 22);
             product.id = 111111;
             product.category = 2;
-            product.ProductImage = GenerateRandomImage();
+            product.ProductImage = BitmapToImageSource(GenerateRandomImage());
             this.Product = product;
         }
 
@@ -94,20 +96,12 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Product");
             }
         }
-
-        public void GetRandomProduct()
-        {
-            //
-        }
         
         
-        
-
-
-        //make method for generating random image
+        //method for generating random image
         private Bitmap GenerateRandomImage()
         {
-            const int a = 40;
+            const int a = 140;
             Bitmap bitmap = new Bitmap(a, a);
 
             Random rdn = new Random();
@@ -120,6 +114,22 @@ namespace DanmissionManager.ViewModels
                 }
             }
             return bitmap;
+        }
+        //converts bitmaps to bitmapimages. Bitmaps cannot be used in wpf, but bitmapimages can.
+        private BitmapImage BitmapToImageSource(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+
+                return bitmapimage;
+            }
         }
     }
 }

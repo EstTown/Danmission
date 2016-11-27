@@ -15,11 +15,9 @@ namespace DanmissionManager.ViewModels
 
             this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
+
         }
-
-
         private string _searchParameter;
-
         public string SearchParameter
         {
             get { return _searchParameter; }
@@ -29,9 +27,7 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("SearchParameter");
             }
         }
-
         private Collection<Product> _products;
-
         public Collection<Product> Products
         {
             get { return _products; }
@@ -41,7 +37,33 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Products");
             }
         }
+        //property that handles what happens when a product from the list gets selected,
+        //after which addional information will be shown
+        public RelayCommand2 CommandSelectProduct { get; set; }
 
+        public void ProductSelected() //not used right now
+        {
+            
+        }
+
+        public bool CanShowExtraInfo() //not used right now
+        {
+            return true;
+        }
+
+        private Product _selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct;}
+            set
+            {
+                _selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+                CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
+            }
+        }
+        
         //property that will contain the command/method and executes it
         //does not need a backing field
         public RelayCommand2 CommandGetProducts { get; set; }
@@ -53,7 +75,7 @@ namespace DanmissionManager.ViewModels
                 //List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
 
                 //This is more dyniamic, although it runs smoothly, the initial query seems to lag, causing a small stutter
-                //This takes into account: name, id and price
+                //This takes into account: name, id and price, but delivers awful search results...
                 List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower())   ||   
                     (x.id.ToString()).Contains(SearchParameter.ToLower())   ||
                     (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
