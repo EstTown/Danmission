@@ -29,7 +29,7 @@
 
         </ListView>
 
-        <ListBox Margin="517,106,10,10">
+        <ListBox Margin="0,106,10,10" HorizontalAlignment="Right" Width="313">
             <TextBox x:Name="textBox" Height="43" TextWrapping="Wrap" Text="{Binding SelectedProduct.name}" Width="147"/>
 
         </ListBox>
@@ -38,7 +38,7 @@
             <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
         </Border>
         -->
-        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,63,37,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="252"/>
+        <Button x:Name="btn_search" Content="Søg" Command ="{Binding Path = CommandGetProducts}" Margin="0,63,10,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="313"/>
         <TextBox x:Name="txtbox_seach"  Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="10,63,328,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="txtbox_seach_KeyDown">
             <!--
             <i:Interaction.Triggers>
