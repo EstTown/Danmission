@@ -20,16 +20,21 @@
 
         <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
-        <Grid Margin="10,55,267,10">
+        <Grid Margin="15,55,262,10">
             <Label x:Name="label_name" Content="Produkt navn:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox" Height="22" Margin="98,14,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox" Text="{Binding Product.name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="98,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
             <Label x:Name="label_description" Content="Beskrivelse:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
 
-            <Label x:Name="label_price" Content="Sæt pris:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label" Content="Vælg kategori:" HorizontalAlignment="Right" Margin="0,89,461,0" VerticalAlignment="Top" Width="92"/>
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding SelectedCategory, Mode=OneWayToSource}" DisplayMemberPath="name" SelectedValuePath="name" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
+                
+            </ComboBox>
 
-            <ComboBox x:Name="comboBox_price" Margin="98,85,10,0" VerticalAlignment="Top">
+            <Label x:Name="label_price" Content="Sæt pris:" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top"/>
+
+            <ComboBox x:Name="comboBox_price" Margin="98,171,10,0" VerticalAlignment="Top">
                 <ComboBoxItem>Sæt anden pris...</ComboBoxItem>
             </ComboBox>
 
@@ -37,7 +42,8 @@
                  Text="{Binding Path=StandardPrice, Mode=TwoWay}"
                  TextWrapping="Wrap"
                  Height="24"
-                 VerticalAlignment="Top" Margin="98,144,264,0">
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Right" Margin="0,211,264,300">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="IsEnabled"
@@ -54,7 +60,8 @@
             </TextBox>
 
 
-            <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,124,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,250,0,0" VerticalAlignment="Top"/>
+            
         </Grid>
         <Button x:Name="btn_addProduct" Content="Tilføj produkt" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
 

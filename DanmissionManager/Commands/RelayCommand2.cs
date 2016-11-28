@@ -44,10 +44,6 @@ namespace DanmissionManager.Commands
             return false;
         }
 		
-      // Beware - should use weak references if command instance lifetime 
-      //   is longer than lifetime of UI objects that get hooked up to command
-
-      // Prism commands solve this in their implementation public event 
         public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)

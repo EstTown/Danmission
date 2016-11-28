@@ -69,7 +69,7 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedProduct = value;
                 OnPropertyChanged("SelectedProduct");
-                CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
+                //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
         }
         
