@@ -33,6 +33,28 @@
                 <ComboBoxItem>Sæt anden pris...</ComboBoxItem>
             </ComboBox>
 
+            <TextBox x:Name="txtbox_price" 
+                 Text="{Binding Path=StandardPrice, Mode=TwoWay}"
+                 TextWrapping="Wrap"
+                 Width="201"
+                 Height="24"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Right" Margin="0,144,264,367">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled"
+                         Value="False" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedStandardPrice}"
+                                 Value="Sæt anden pris...">
+                                <Setter Property="IsEnabled"
+                               Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
 
             <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,124,0,0" VerticalAlignment="Top"/>
         </Grid>
