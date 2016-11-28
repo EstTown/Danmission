@@ -19,6 +19,7 @@ namespace DanmissionManager.ViewModels
             this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
 
+
         }
         private string _searchParameter;
         public string SearchParameter
@@ -39,6 +40,11 @@ namespace DanmissionManager.ViewModels
                 _products = value;
                 OnPropertyChanged("Products");
             }
+        }
+
+        public void SortCollectionCategory()
+        {
+            
         }
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
