@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DanmissionManager.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Overall -->
+    <system:String x:Key="windowTitle">ProgrammetsNavn</system:String>
+    <system:String x:Key="registerProduct">Registrer Produkt</system:String>
+    <system:String x:Key="findProduct">Find Produkt</system:String>
+    <system:String x:Key="removeProduct">Fjern Product</system:String>
+    <system:String x:Key="inventoryOverview">Inventar Overblik</system:String>
+    <system:String x:Key="categories">Kategorier</system:String>
+    <system:String x:Key="statistics">Statistik</system:String>
+    <system:String x:Key="options">Indstillinger</system:String>
+
+    <!-- Default Page -->
+    <system:String x:Key="fullScreenView">Fuldskærmsvisning (F11)</system:String>
+
+    <!-- Register Product Page -->
+    <!-- Find Product Page -->
+    <!-- Remove Product Page -->
+    <!-- Inventory Overview Page -->
+    <!-- Categories Page -->
+    <!-- Statistics Page -->
+    <!-- Options Page -->
+
+</ResourceDictionary>
