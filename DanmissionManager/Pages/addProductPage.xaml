@@ -43,7 +43,7 @@
                  TextWrapping="Wrap"
                  Height="24"
                  VerticalAlignment="Center"
-                 HorizontalAlignment="Right" Margin="0,211,264,300">
+                 HorizontalAlignment="Right" Margin="0,210,167,301" Width="178">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="IsEnabled"
