@@ -30,7 +30,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GUICOLOR" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#FF37BA5D</Value>
     </Setting>
   </Settings>
 </SettingsFile>
