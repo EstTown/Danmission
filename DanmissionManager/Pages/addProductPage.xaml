@@ -28,7 +28,7 @@
             <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
 
             <Label x:Name="label" Content="Vælg kategori:" HorizontalAlignment="Right" Margin="0,89,461,0" VerticalAlignment="Top" Width="92"/>
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding SelectedCategory, Mode=OneWayToSource}" DisplayMemberPath="name" SelectedValuePath="name" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding SelectedCategory, Mode=OneWayToSource}" DisplayMemberPath="subname" SelectedValuePath="subname" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
                 
             </ComboBox>
 

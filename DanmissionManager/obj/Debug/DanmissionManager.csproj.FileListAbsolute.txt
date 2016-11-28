@@ -168,7 +168,6 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ko\System.W
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\bin\Debug\de\System.Windows.Interactivity.resources.dll
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\bin\Debug\en\System.Windows.Interactivity.resources.dll
