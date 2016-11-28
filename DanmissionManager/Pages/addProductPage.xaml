@@ -28,7 +28,7 @@
             <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
 
             <Label x:Name="label" Content="Vælg kategori:" HorizontalAlignment="Right" Margin="0,89,461,0" VerticalAlignment="Top" Width="92"/>
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding SelectedCategory, Mode=OneWayToSource}" DisplayMemberPath="subname" SelectedValuePath="subname" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding Path = SelectedCategory, Mode=OneWaytoSource, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="subname" SelectedValuePath="{Binding Categories}" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
                 
             </ComboBox>
 
@@ -63,7 +63,7 @@
             <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,250,0,0" VerticalAlignment="Top"/>
             
         </Grid>
-        <Button x:Name="btn_addProduct" Content="Tilføj produkt" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
+        <Button x:Name="btn_addProduct" Content="Tilføj produkt" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
 
 
 
