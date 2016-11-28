@@ -15,7 +15,6 @@ namespace DanmissionManager
         [StringLength(45)]
         public string name { get; set; }
 
-        [Column("standardprice")]
-        public double standardprice1 { get; set; }
+        public double standardprice { get; set; }
     }
 }

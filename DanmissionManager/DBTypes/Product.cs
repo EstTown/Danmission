@@ -32,6 +32,8 @@ namespace DanmissionManager
         [Column(TypeName = "mediumblob")]
         public byte[] image { get; set; }
 
+        public DateTime? expiredate { get; set; }
+
         [NotMapped]
         public BitmapImage productImage { get; set; }
     }

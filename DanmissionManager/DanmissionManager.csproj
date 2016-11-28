@@ -79,6 +79,8 @@
     <Compile Include="Commands\RelayCommand2.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="DBTypes\Category.cs" />
+    <Compile Include="DBTypes\Storesection.cs" />
+    <Compile Include="DBTypes\Voucher.cs" />
     <Compile Include="DBTypes\Product.cs" />
     <Compile Include="DBTypes\ServerContext.cs" />
     <Compile Include="DBTypes\Standardprice.cs" />
