@@ -1,4 +1,4 @@
-namespace DanmissionManager
+namespace DanmissionManager.DBTypes.NewFolder1
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,13 @@ namespace DanmissionManager
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("data.transactions")]
-    public partial class Transaction
+    [Table("data.storesection")]
+    public partial class Storesection
     {
         public int id { get; set; }
 
-        [Required]
-        [StringLength(45)]
-        public string date { get; set; }
+        public double? space { get; set; }
+
+        public int? category { get; set; }
     }
 }
