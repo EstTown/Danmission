@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DanmissionManager.Commands;
 
 namespace DanmissionManager.ViewModels
 {
@@ -15,6 +16,9 @@ namespace DanmissionManager.ViewModels
             this.Product = new Product();
             this.Product.name = string.Empty;
             
+            //command for adding a product to the server
+            RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
+            this.CommandAddProduct = commandAddProduct;
             
             //get all categories from server
             using (var ctx = new ServerContext())
@@ -31,6 +35,7 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedCategory = value;
                 OnPropertyChanged("SelectedCategory");
+                Console.WriteLine(SelectedCategory.name);
             }
         }
 
@@ -71,5 +76,28 @@ namespace DanmissionManager.ViewModels
 
             }
         }
+
+
+        public RelayCommand2 CommandAddProduct { get; set; }
+
+        public void AddProduct()
+        {
+            Product product = new Product();
+            product.date = DateTime.Now;
+            product.name = this.Product.name;
+            product.category = 5;
+            product.isUnique = true;
+            product.price = 50;
+            product.desc = this.Product.desc;
+
+            
+            using (var ctx = new ServerContext())
+            {
+                ctx.Products.Add(product);
+                ctx.SaveChanges();
+            }
+            
+        }
+
     }
 }
