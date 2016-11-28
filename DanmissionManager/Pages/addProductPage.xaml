@@ -41,7 +41,6 @@
             <TextBox x:Name="txtbox_price" 
                  Text="{Binding Path=StandardPrice, Mode=TwoWay}"
                  TextWrapping="Wrap"
-                 Width="201"
                  Height="24"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right" Margin="0,211,264,300">

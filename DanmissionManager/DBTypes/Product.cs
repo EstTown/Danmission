@@ -5,6 +5,8 @@ namespace DanmissionManager
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Drawing;
+    using System.Windows.Media.Imaging;
 
     [Table("data.products")]
     public partial class Product
@@ -26,5 +28,11 @@ namespace DanmissionManager
         public bool isUnique { get; set; }
 
         public int category { get; set; }
+
+        [Column(TypeName = "mediumblob")]
+        public byte[] image { get; set; }
+
+        [NotMapped]
+        public BitmapImage productImage { get; set; }
     }
 }

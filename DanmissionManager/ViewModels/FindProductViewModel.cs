@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanmissionManager.Commands;
+using System.IO;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace DanmissionManager.ViewModels
 {
@@ -85,14 +88,41 @@ namespace DanmissionManager.ViewModels
                 List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower())   ||   
                     (x.id.ToString()).Contains(SearchParameter.ToLower())   ||
                     (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
-                
+
+                foreach (Product x in list)
+                {
+                    if (x.image != null && x.image.Length > 0)
+                    {
+                        x.productImage = ImageFromBuffer(x.image);
+                    }
+                }
+
+
                 ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
 
                 this.Products = collection;
              }
-
-
         }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+        public BitmapImage ImageFromBuffer(Byte[] bytes)
+        {
+            MemoryStream stream = new MemoryStream(bytes);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
+            return image;
+        }
+
+
+
 
     }
 }
