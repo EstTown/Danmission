@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="settingsPage">
@@ -13,10 +14,11 @@
     </Page.DataContext>
 
     <Grid>
+        <xctk:ColorPicker Name="ClrPcker_Background" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=OneWayToSource}"></xctk:ColorPicker>
 
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
-        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Indstillinger" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Indstillinger" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <Grid Margin="10,55,17,10">
             <Label x:Name="label_name" Content="Sprog:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

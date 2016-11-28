@@ -130,5 +130,17 @@ namespace DanmissionManager.Properties {
                 this["IPPORT"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GUICOLOR {
+            get {
+                return ((string)(this["GUICOLOR"]));
+            }
+            set {
+                this["GUICOLOR"] = value;
+            }
+        }
     }
 }
