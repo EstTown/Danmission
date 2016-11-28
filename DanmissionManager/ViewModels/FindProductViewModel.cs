@@ -66,7 +66,7 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedProduct = value;
                 OnPropertyChanged("SelectedProduct");
-                CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
+                //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
         }
         
@@ -85,9 +85,7 @@ namespace DanmissionManager.ViewModels
                 List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower())   ||   
                     (x.id.ToString()).Contains(SearchParameter.ToLower())   ||
                     (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
-
-
-
+                
                 ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
 
                 this.Products = collection;

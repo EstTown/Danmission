@@ -24,5 +24,6 @@ namespace DanmissionManager.Pages
         {
             InitializeComponent();
         }
+        
     }
 }
