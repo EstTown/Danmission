@@ -15,7 +15,7 @@
 
     <Grid>
 
-        <ListView Margin="10,106,328,10" Name="lvUsers" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
+        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
 
             <ListView.View>
                 <GridView>
@@ -28,12 +28,11 @@
             </ListView.View>
         </ListView>
 
-        <Border BorderBrush="Black" BorderThickness=".25" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">
+        <Border BorderBrush="Black" BorderThickness=".05" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">
             <Grid>
                 <Rectangle Fill="#FFE9EEF1" HorizontalAlignment="Left" Height="198" Stroke="Black" VerticalAlignment="Top" Width="311"/>
-                <Image x:Name="image" Source="/Resources/placeholder.png" Margin="62,10,63,10" Width="auto" Height="auto"/>
+                <Image Source="{Binding SelectedProduct.productImage}" Margin="5,5,5,5" Width="auto" Height="auto"/>
             </Grid>
-
         </Border>
 
         <!--

@@ -36,10 +36,8 @@
             <TextBox x:Name="txtbox_price" 
                  Text="{Binding Path=StandardPrice, Mode=TwoWay}"
                  TextWrapping="Wrap"
-                 Width="201"
                  Height="24"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Right" Margin="0,144,264,367">
+                 VerticalAlignment="Top" Margin="98,144,264,0">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="IsEnabled"
