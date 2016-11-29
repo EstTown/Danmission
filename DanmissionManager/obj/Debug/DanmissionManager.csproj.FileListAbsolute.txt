@@ -267,3 +267,4 @@ C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\Da
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.EN-GB.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

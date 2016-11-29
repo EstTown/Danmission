@@ -26,27 +26,25 @@
                 <ComboBoxItem IsSelected="True">Dansk</ComboBoxItem>
                 <ComboBoxItem>English</ComboBoxItem>
             </ComboBox>
-            <Expander x:Name="expander" Header="Advancerede indstillinger" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="330">
+            <Expander x:Name="expander" Header="Advancerede indstillinger" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="275">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox x:Name="groupBox_database_Copy" Header="Database" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="307">
+                    <GroupBox x:Name="groupBox_database_Copy" Header="Database" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="249">
                         <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="297" Margin="0,0,-2,0">
                             <TextBox x:Name="textBox_ip5" HorizontalAlignment="Left" Height="19" Margin="66,14,0,0" TextWrapping="Wrap" Text="{Binding IP1, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
                             <TextBox x:Name="textBox_ip6" HorizontalAlignment="Left" Height="19" Margin="112,14,0,0" TextWrapping="Wrap" Text="{Binding IP2, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
                             <TextBox x:Name="textBox_ip7" HorizontalAlignment="Left" Height="19" Margin="158,14,0,0" TextWrapping="Wrap" Text="{Binding IP3, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
                             <TextBox x:Name="textBox_ip8" HorizontalAlignment="Left" Height="19" Margin="204,14,0,0" TextWrapping="Wrap" Text="{Binding IP4, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
-                            <TextBox x:Name="textBox_ip_port1" HorizontalAlignment="Left" Height="19" Margin="250,14,0,0" TextWrapping="Wrap" Text="{Binding IPPORT, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="40" MaxLength="4"/>
                             <Label x:Name="label_dot1" Content=" . " HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top"/>
                             <Label x:Name="label_dot_Copy2" Content=" . " HorizontalAlignment="Left" Margin="139,10,0,0" VerticalAlignment="Top"/>
                             <Label x:Name="label_dot_Copy3" Content=" . " HorizontalAlignment="Left" Margin="185,10,0,0" VerticalAlignment="Top"/>
-                            <Label x:Name="label_collon1" Content=" : " HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top"/>
 
                             <Label Content="IP:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,10,0,0"/>
                             <Label Content="Bruger:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,41,0,0"/>
                             <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>
                             <Label Content="Schema:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,103,0,0"/>
-                            <TextBox x:Name="textBox_user1" HorizontalAlignment="Left" Height="19" Margin="66,48,0,0" TextWrapping="Wrap" Text="{Binding USER, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="224"/>
-                            <TextBox x:Name="textBox_password1" HorizontalAlignment="Left" Height="19" Margin="66,79,0,0" TextWrapping="Wrap" Text="{Binding PASSWORD, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="224"/>
-                            <TextBox x:Name="textBox_schema1" HorizontalAlignment="Left" Height="19" Margin="66,110,0,0" TextWrapping="Wrap" Text="{Binding SCHEMA, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="224"/>
+                            <TextBox x:Name="textBox_user1" HorizontalAlignment="Left" Height="19" Margin="66,48,0,0" TextWrapping="Wrap" Text="{Binding USER, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
+                            <TextBox x:Name="textBox_password1" HorizontalAlignment="Left" Height="19" Margin="66,79,0,0" TextWrapping="Wrap" Text="{Binding PASSWORD, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
+                            <TextBox x:Name="textBox_schema1" HorizontalAlignment="Left" Height="19" Margin="66,110,0,0" TextWrapping="Wrap" Text="{Binding SCHEMA, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
 
                         </Grid>
 

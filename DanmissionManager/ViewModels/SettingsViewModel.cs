@@ -23,7 +23,7 @@ namespace DanmissionManager.ViewModels
                 }
             }
         }
-
+        
         private void SetLanguageDictionary(int value)
         {
             // First, make it work. Then, make it look up information dynamically on different computers. Find program path and then work in that way?
