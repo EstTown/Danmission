@@ -16,7 +16,7 @@
 
     <Grid>
 
-        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
+        <ListView Margin="10,106,328,10" Name="lvProducts" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
 
             <ListView.View>
                 <GridView>
@@ -27,6 +27,7 @@
                 </GridView>
 
             </ListView.View>
+            <ListBox x:Name="listBox" Height="100" Width="100"/>
         </ListView>
 
         <Border BorderBrush="Black" BorderThickness=".05" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">

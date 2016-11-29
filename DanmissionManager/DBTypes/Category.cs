@@ -14,8 +14,5 @@ namespace DanmissionManager
         [Required]
         [StringLength(45)]
         public string name { get; set; }
-
-        [StringLength(45)]
-        public string subname { get; set; }
     }
 }

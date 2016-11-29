@@ -16,5 +16,9 @@ namespace DanmissionManager
         public string name { get; set; }
 
         public double standardprice { get; set; }
+
+        [Required]
+        [StringLength(45)]
+        public string CorrespondingCategoryString { get; set; }
     }
 }

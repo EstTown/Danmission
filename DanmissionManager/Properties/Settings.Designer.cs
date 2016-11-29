@@ -25,7 +25,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("172")]
         public string IP1 {
             get {
                 return ((string)(this["IP1"]));
@@ -37,7 +37,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string USER {
             get {
                 return ((string)(this["USER"]));
@@ -49,7 +49,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Baesystems2016")]
         public string PASSWORD {
             get {
                 return ((string)(this["PASSWORD"]));
@@ -61,7 +61,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data")]
         public string SCHEMA {
             get {
                 return ((string)(this["SCHEMA"]));
@@ -73,7 +73,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dansk")]
         public string LANGUAGE {
             get {
                 return ((string)(this["LANGUAGE"]));
@@ -85,7 +85,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
         public string IP2 {
             get {
                 return ((string)(this["IP2"]));
@@ -97,7 +97,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("11")]
         public string IP3 {
             get {
                 return ((string)(this["IP3"]));
@@ -109,7 +109,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("109")]
         public string IP4 {
             get {
                 return ((string)(this["IP4"]));
@@ -121,7 +121,7 @@ namespace DanmissionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
         public string IPPORT {
             get {
                 return ((string)(this["IPPORT"]));
