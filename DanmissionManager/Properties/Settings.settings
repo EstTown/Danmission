@@ -3,31 +3,31 @@
   <Profiles />
   <Settings>
     <Setting Name="IP1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">172</Value>
     </Setting>
     <Setting Name="USER" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">admin</Value>
     </Setting>
     <Setting Name="PASSWORD" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Baesystems2016</Value>
     </Setting>
     <Setting Name="SCHEMA" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">data</Value>
     </Setting>
     <Setting Name="LANGUAGE" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Dansk</Value>
     </Setting>
     <Setting Name="IP2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="IP3" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">11</Value>
     </Setting>
     <Setting Name="IP4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">109</Value>
     </Setting>
     <Setting Name="IPPORT" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">3306</Value>
     </Setting>
     <Setting Name="GUICOLOR" Type="System.String" Scope="User">
       <Value Profile="(Default)">#FF37BA5D</Value>

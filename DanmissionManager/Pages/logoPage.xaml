@@ -9,7 +9,7 @@
       Title="logoPage">
 
     <Grid>
-        <Label x:Name="label_fullscreen" Content="Fuldskærmsvisning (F11)" Margin="0,0,10,10" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="140"/>
+        <Label x:Name="label_fullscreen" Content="{DynamicResource fullScreenView}" Margin="0,0,10,10" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="140"/>
         <Image x:Name="image" Source="/Resources/danmission.png" Margin="0,0,0,0" Height="90" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 

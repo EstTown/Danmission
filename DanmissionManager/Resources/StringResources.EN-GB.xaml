@@ -18,10 +18,31 @@
 
     <!-- Register Product Page -->
     <!-- Find Product Page -->
+    <system:String x:Key="FPSearch">Search</system:String>
+    <system:String x:Key="FPID">ID</system:String>
+    <system:String x:Key="FPName">Name</system:String>
+    <system:String x:Key="FPCategory">Category</system:String>
+    <system:String x:Key="FPPrice">Price</system:String>
+    <system:String x:Key="FPProductInfo">Product Information</system:String>
+    <system:String x:Key="FPAddedDate">Added Date</system:String>
+    <system:String x:Key="FPDescription">Description</system:String>
+    <system:String x:Key="FPRemoveProduct">Remove Product</system:String>
+    <system:String x:Key="FPSave">Save</system:String>
+    
     <!-- Remove Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
     <!-- Statistics Page -->
     <!-- Options Page -->
+    <system:String x:Key="OLanguage">Language</system:String>
+    <system:String x:Key="OColorScheme">Color Scheme</system:String>
+    <system:String x:Key="OResetColor">Reset</system:String>
+    <system:String x:Key="OAdvancedOptions">Advanced Options</system:String>
+    <system:String x:Key="ODatabase">Database</system:String>
+    <system:String x:Key="OIPAddress">IP Address</system:String>
+    <system:String x:Key="OUser">User Name</system:String>
+    <system:String x:Key="OPassword">Password</system:String>
+    <system:String x:Key="OScheme">Scheme</system:String>
+    <system:String x:Key="OSaveChanges">Save Changes</system:String>
 
 </ResourceDictionary>

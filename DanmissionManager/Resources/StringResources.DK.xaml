@@ -18,10 +18,31 @@
 
     <!-- Register Product Page -->
     <!-- Find Product Page -->
+    <system:String x:Key="FPSearch">Søg</system:String>
+    <system:String x:Key="FPID">ID</system:String>
+    <system:String x:Key="FPName">Navn</system:String>
+    <system:String x:Key="FPCategory">Kategori</system:String>
+    <system:String x:Key="FPPrice">Pris</system:String>
+    <system:String x:Key="FPProductInfo">Produktinformation</system:String>
+    <system:String x:Key="FPAddedDate">Dato Tilføjet</system:String>
+    <system:String x:Key="FPDescription">Beskrivelse</system:String>
+    <system:String x:Key="FPRemoveProduct">Fjern Produkt</system:String>
+    <system:String x:Key="FPSave">Gem</system:String>
+
     <!-- Remove Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
     <!-- Statistics Page -->
     <!-- Options Page -->
-
+    <system:String x:Key="OLanguage">Sprog</system:String>
+    <system:String x:Key="OColorScheme">Tema</system:String>
+    <system:String x:Key="OResetColor">Reset</system:String>
+    <system:String x:Key="OAdvancedOptions">Avancerede Indstillinger</system:String>
+    <system:String x:Key="ODatabase">Database</system:String>
+    <system:String x:Key="OIPAddress">IP Addresse</system:String>
+    <system:String x:Key="OUser">Brugernavn</system:String>
+    <system:String x:Key="OPassword">Password</system:String>
+    <system:String x:Key="OScheme">Schema</system:String>
+    <system:String x:Key="OSaveChanges">Gem ændringer</system:String>
+    
 </ResourceDictionary>

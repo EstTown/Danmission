@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainView" Height="600" Width="960" MinWidth="960" MinHeight="600" Background="WhiteSmoke" KeyDown="Window_KeyDown">
+        Title="{DynamicResource windowTitle}" Height="600" Width="960" MinWidth="960" MinHeight="600" Background="WhiteSmoke" KeyDown="Window_KeyDown">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -63,49 +63,49 @@
             <Button x:Name="btn_addProduct" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Height="80" Click="btn_addProduct_Click">
                 <StackPanel>
                     <Image Source="/Resources/Product-64.png" Height="48" Width="48" />
-                    <TextBlock>Registrer Produkt</TextBlock>
+                    <TextBlock Text="{DynamicResource registerProduct}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_findProduct" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_findProduct_Click">
                 <StackPanel>
                     <Image Source="/Resources/Search-64.png" Height="48" Width="48" />
-                    <TextBlock>Find Produkt</TextBlock>
+                    <TextBlock Text="{DynamicResource findProduct}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_removeProduct" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_removeProduct_Click">
                 <StackPanel>
                     <Image Source="/Resources/Trash-64.png" Height="48" Width="48" />
-                    <TextBlock>Fjern Produkt</TextBlock>
+                    <TextBlock Text="{DynamicResource removeProduct}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_inventoryOverview" HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_inventoryOverview_Click">
                 <StackPanel>
                     <Image Source="/Resources/Page-Overview-64.png" Height="48" Width="48" />
-                    <TextBlock>Inventar Overblik</TextBlock>
+                    <TextBlock Text="{DynamicResource inventoryOverview}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_categories" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_categories_Click" >
                 <StackPanel>
                     <Image Source="/Resources/View-Details-64.png" Height="48" Width="48" />
-                    <TextBlock>Kategorier</TextBlock>
+                    <TextBlock Text="{DynamicResource categories}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_statistics" HorizontalAlignment="Left" Margin="0,400,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_statistics_Click">
                 <StackPanel>
                     <Image Source="/Resources/Pie-Chart-64.png" Height="48" Width="48" />
-                    <TextBlock>Statistik</TextBlock>
+                    <TextBlock Text="{DynamicResource statistics}" />
                 </StackPanel>
             </Button>
 
             <Button x:Name="btn_settings" HorizontalAlignment="Left" Margin="0,480,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_settings_Click">
                 <StackPanel>
                     <Image Source="/Resources/Settings-64.png" Height="48" Width="48" />
-                    <TextBlock>Indstillinger</TextBlock>
+                    <TextBlock Text="{DynamicResource options}" />
                 </StackPanel>
             </Button>
 
