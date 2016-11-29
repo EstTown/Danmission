@@ -23,5 +23,13 @@
     <!-- Categories Page -->
     <!-- Statistics Page -->
     <!-- Options Page -->
+    <system:String x:Key="optionsLanguage">Sprog</system:String>
+    <system:String x:Key="optionsColorScheme">Tema</system:String>
+    <system:String x:Key="optionsAdvancedOptions">Avancerede Indstillinger</system:String>
+    <system:String x:Key="optionsDatabase">Database</system:String>
+    <system:String x:Key="optionsIPAddress">IP Addresse</system:String>
+    <system:String x:Key="optionsUser">Brugernavn</system:String>
+    <system:String x:Key="optionsPassword">Password</system:String>
+    <system:String x:Key="optionsScheme">Schema</system:String>
 
 </ResourceDictionary>

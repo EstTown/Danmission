@@ -22,10 +22,8 @@
         <Grid Margin="10,55,17,10">
             <Label x:Name="label_name" Content="Sprog:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Source={x:Static properties:Settings.Default}, Path=LANGUAGE, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0">
-                <ComboBoxItem IsSelected="True">Dansk</ComboBoxItem>
-                <ComboBoxItem>English</ComboBoxItem>
-            </ComboBox>
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0" />
+
             <Expander x:Name="expander" Header="Advancerede indstillinger" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="330">
                 <Grid Background="#FFE5E5E5">
                     <GroupBox x:Name="groupBox_database_Copy" Header="Database" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="307">
