@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-        <xctk:ColorPicker Name="ClrPcker_Background" Height="50" Width="120" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=OneWayToSource}" Margin="492,55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
+        <xctk:ColorPicker Name="ClrPcker_Background" Height="auto" Width="120" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="493,67,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
         <Label x:Name="label_colorpicker" Content="Tema:" HorizontalAlignment="Left" Margin="447,65,0,0" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Indstillinger" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>

@@ -2,7 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:properties="clr-namespace:DanmissionManager.Properties"
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
@@ -18,7 +19,7 @@
         </Border>
         <Button x:Name="btn_ChooseImage" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
-        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <Grid Margin="15,55,262,10">
             <Label x:Name="label_name" Content="Produkt navn:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
