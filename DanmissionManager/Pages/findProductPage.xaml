@@ -27,7 +27,6 @@
                 </GridView>
 
             </ListView.View>
-            <ListBox x:Name="listBox" Height="100" Width="100"/>
         </ListView>
 
         <Border BorderBrush="Black" BorderThickness=".05" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">
