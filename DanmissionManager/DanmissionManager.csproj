@@ -118,7 +118,6 @@
     <Compile Include="DBTypes\ServerContext.cs" />
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
-    <Compile Include="Interfaces\IProductFilter.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
       <DependentUpon>addProductPage.xaml</DependentUpon>
     </Compile>

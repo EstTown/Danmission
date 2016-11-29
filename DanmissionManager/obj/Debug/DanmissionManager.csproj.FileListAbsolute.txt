@@ -351,3 +351,4 @@ C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\Da
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
