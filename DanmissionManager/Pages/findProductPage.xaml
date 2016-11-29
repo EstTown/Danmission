@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:properties="clr-namespace:DanmissionManager.Properties"
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:si="Expression.Samples.Interactivity"
@@ -81,7 +82,7 @@
             </i:Interaction.Triggers>
             -->
         </TextBox>
-        <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Find produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Find produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
 
     </Grid>
