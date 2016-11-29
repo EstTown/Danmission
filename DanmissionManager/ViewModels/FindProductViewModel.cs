@@ -8,6 +8,7 @@ using DanmissionManager.Commands;
 using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace DanmissionManager.ViewModels
 {
@@ -79,29 +80,37 @@ namespace DanmissionManager.ViewModels
         //method get products
         public void GetProductsFromDatabase()
         {
-            using (var ctx = new ServerContext())
+            try
             {
-                //List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
-
-                //This is more dyniamic, although it runs smoothly, the initial query seems to lag, causing a small stutter
-                //This takes into account: name, id and price, but delivers awful search results...
-                List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower())   ||   
-                    (x.id.ToString()).Contains(SearchParameter.ToLower())   ||
-                    (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
-
-                foreach (Product x in list)
+                using (var ctx = new ServerContext())
                 {
-                    if (x.image != null && x.image.Length > 0)
+                    //List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
+
+                    //This is more dyniamic, although it runs smoothly, the initial query seems to lag, causing a small stutter
+                    //This takes into account: name, id and price, but delivers awful search results...
+                    List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower()) ||
+                        (x.id.ToString()).Contains(SearchParameter.ToLower()) ||
+                        (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
+
+                    foreach (Product x in list)
                     {
-                        x.productImage = ImageFromBuffer(x.image);
+                        if (x.image != null && x.image.Length > 0)
+                        {
+                            x.productImage = ImageFromBuffer(x.image);
+                        }
                     }
+
+
+                    ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
+
+                    this.Products = collection;
                 }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
 
-
-                ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
-
-                this.Products = collection;
-             }
         }
 
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
