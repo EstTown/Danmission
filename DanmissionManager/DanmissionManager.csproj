@@ -104,6 +104,8 @@
     <Compile Include="Commands\RelayCommand2.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="DBTypes\Category.cs" />
+    <Compile Include="DBTypes\SoldProduct.cs" />
+    <Compile Include="DBTypes\SubCategory.cs" />
     <Compile Include="DBTypes\Storesection.cs" />
     <Compile Include="DBTypes\Voucher.cs" />
     <Compile Include="DBTypes\Product.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
     <Compile Include="Interfaces\IProductFilter.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
       <DependentUpon>addProductPage.xaml</DependentUpon>
     </Compile>
@@ -298,6 +301,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBTypes\NewFolder1\" />
+    <Folder Include="RunAgainFolder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

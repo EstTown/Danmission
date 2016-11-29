@@ -266,3 +266,21 @@ C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\Da
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.EN-GB.baml

@@ -20,15 +20,15 @@
 
         <Label x:Name="label_title" Background="#FF37BA5D" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
-        <Grid Margin="15,55,262,10">
+        <Grid Margin="16,55,261,10">
             <Label x:Name="label_name" Content="Produkt navn:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="textBox" Text="{Binding Product.name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="22" Margin="98,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
             <Label x:Name="label_description" Content="Beskrivelse:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="textBox_Copy" Height="22" Margin="98,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
 
-            <Label x:Name="label" Content="Vælg kategori:" HorizontalAlignment="Right" Margin="0,89,461,0" VerticalAlignment="Top" Width="92"/>
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding Path = SelectedCategory, Mode=OneWaytoSource, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="subname" SelectedValuePath="{Binding Categories}" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
+            <Label x:Name="label_choosecategory" Content="Vælg kategori:" HorizontalAlignment="Right" Margin="0,89,461,0" VerticalAlignment="Top" Width="92"/>
+            <ComboBox x:Name="comboBox_category" ItemsSource="{Binding Path = Categories}" SelectedValue="{Binding Path = SelectedCategory, Mode=OneWaytoSource, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedValuePath="{Binding Categories}" HorizontalAlignment="Left" Margin="98,92,0,0" VerticalAlignment="Top" Width="455">
                 
             </ComboBox>
 
@@ -61,7 +61,9 @@
 
 
             <CheckBox x:Name="checkBox_isUnique" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="98,250,0,0" VerticalAlignment="Top"/>
-            
+            <TextBlock x:Name="textBlockChooseCategory" HorizontalAlignment="Left" Margin="17,119,0,0" TextWrapping="Wrap" Text="Vælg underkategori" VerticalAlignment="Top" Width="76" Height="35"/>
+            <ComboBox x:Name="comboBox1SubCategory" ItemsSource="{Binding Path=Categories}" DisplayMemberPath="subname" HorizontalAlignment="Left" Margin="98,132,0,0" VerticalAlignment="Top" Width="455"/>
+
         </Grid>
         <Button x:Name="btn_addProduct" Content="Tilføj produkt" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
 

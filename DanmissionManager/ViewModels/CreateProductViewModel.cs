@@ -23,7 +23,7 @@ namespace DanmissionManager.ViewModels
             //get all categories from server
             using (var ctx = new ServerContext())
             {
-                ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Categories.ToList());
+                ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
                 this.Categories = categories;
             }
         }
