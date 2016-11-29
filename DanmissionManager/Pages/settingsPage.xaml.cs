@@ -25,15 +25,16 @@ namespace DanmissionManager.Pages
             InitializeComponent();
         }
 
-        private void btn_saveColor_Click(object sender, RoutedEventArgs e)
+        private void btn_save_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Save();
-            MessageBox.Show("Gemt", "Dine ændringer er blevet gemt.");
+            MessageBox.Show("Dine ændringer er blevet gemt.", "Gemt!");
         }
 
         private void btn_reset_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.GUICOLOR = "#FF37BA5D";
         }
+
     }
 }

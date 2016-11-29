@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-        <xctk:ColorPicker Name="ClrPcker_Background" Height="19" Width="233" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="92,111,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
+        <xctk:ColorPicker Name="ClrPcker_Background" Height="20" Width="234" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="92,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
         <Label x:Name="label_colorpicker" Content="Tema:" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Indstillinger" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
@@ -55,8 +55,8 @@
                     </GroupBox>
                 </Grid>
             </Expander>
-            <Button x:Name="btn_saveColor" Content="Save" HorizontalAlignment="Left" Margin="321,55,0,0" VerticalAlignment="Top" Width="75" Click="btn_saveColor_Click"/>
-            <Button x:Name="btn_reset" Content="Reset" HorizontalAlignment="Left" Margin="401,55,0,0" VerticalAlignment="Top" Width="75" Click="btn_reset_Click"/>
+            <Button x:Name="btn_save" Content="Gem ændringer" Margin="0,0,10,10" Click="btn_save_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="147"/>
+            <Button x:Name="btn_reset" Content="Reset" Margin="320,55,0,0" Click="btn_reset_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63"/>
 
         </Grid>
 
