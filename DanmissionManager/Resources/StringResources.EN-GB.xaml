@@ -23,5 +23,14 @@
     <!-- Categories Page -->
     <!-- Statistics Page -->
     <!-- Options Page -->
+    <system:String x:Key="optionsLanguage">Language</system:String>
+    <system:String x:Key="optionsColorScheme">Color Scheme</system:String>
+    <system:String x:Key="optionsAdvancedOptions">Advanced Options</system:String>
+    <system:String x:Key="optionsDatabase">Database</system:String>
+    <system:String x:Key="optionsIPAddress">IP Address</system:String>
+    <system:String x:Key="optionsUser">User Name</system:String>
+    <system:String x:Key="optionsPassword">Password</system:String>
+    <system:String x:Key="optionsScheme">Scheme</system:String>
+
 
 </ResourceDictionary>
