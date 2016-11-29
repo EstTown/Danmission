@@ -266,3 +266,5 @@ C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\Da
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Google Drive\University\Projects\P-3\Programming\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.EN-GB.baml
