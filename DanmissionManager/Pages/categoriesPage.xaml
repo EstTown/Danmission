@@ -4,19 +4,32 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
-      xmlns:local="clr-namespace:DanmissionManager.Pages"
+      xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="categoriesPage">
+    <Page.DataContext>
+        <local:CategoriesViewModel/>
+    </Page.DataContext>
 
     <Grid Height="600" VerticalAlignment="Top">
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Kategorier" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <GroupBox x:Name="groupBox_Categories" Header="Kategorier" Margin="10,55,435,10">
             <Grid>
-                <ListBox x:Name="listBox_Categories" Margin="10,10,12.667,31.333"/>
+                <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=Category}" Margin="10,10,12.667,31.333">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="{Binding name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                </ListBox>
                 <Button x:Name="button_CategoriesRemove" Content="Fjern" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="button_CategoriesAdd" Content="Tilføj" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="button_fetch" Content="Fetch"  Command ="{Binding Path = CommandGetCategories}" Margin="10,487,0,6" HorizontalAlignment="Left" Width="76"/>
             </Grid>
         </GroupBox>
 
