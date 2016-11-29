@@ -50,6 +50,7 @@
     <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -113,7 +114,6 @@
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
     <Compile Include="Interfaces\IProductFilter.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
       <DependentUpon>addProductPage.xaml</DependentUpon>
     </Compile>
@@ -302,10 +302,7 @@
   <ItemGroup>
     <Resource Include="Resources\placeholder.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DBTypes\NewFolder1\" />
-    <Folder Include="RunAgainFolder\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
