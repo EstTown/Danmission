@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using DanmissionManager.Commands;
+using DanmissionManager.DBTypes.NewFolder1;
 
 namespace DanmissionManager.ViewModels
 {
@@ -20,11 +22,28 @@ namespace DanmissionManager.ViewModels
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
             this.CommandAddProduct = commandAddProduct;
             
-            //get all categories from server
+            //get all categories from database
             using (var ctx = new ServerContext())
             {
                 ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
                 this.Categories = categories;
+            }
+            //get all subcategories from database
+            using (var ctx = new ServerContext())
+            {
+                ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
+                this.AllSubCategories = allsubcategories;
+            }
+        }
+
+        private Standardprice _selectedSubCategory;
+        public Standardprice SelectedSubCategory
+        {
+            get { return _selectedSubCategory; }
+            set
+            {
+                _selectedSubCategory = value;
+                OnPropertyChanged("SelectedSubCategory");
             }
         }
         private Category _selectedCategory;
@@ -35,9 +54,26 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedCategory = value;
                 OnPropertyChanged("SelectedCategory");
-                Console.WriteLine(SelectedCategory.name);
+
+                //run method that changes subcategories collection, based on selectedcategory
+                ChangeCollection();
+                
+
             }
         }
+        private ObservableCollection<Standardprice> AllSubCategories { get; }
+
+        private ObservableCollection<Standardprice> _subCategories;
+
+        public ObservableCollection<Standardprice> SubCategories
+        {
+            get { return _subCategories;}
+            set
+            {
+                _subCategories = value; 
+                OnPropertyChanged("SubCategories");
+            }
+        }  
 
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
@@ -76,8 +112,6 @@ namespace DanmissionManager.ViewModels
 
             }
         }
-
-
         public RelayCommand2 CommandAddProduct { get; set; }
 
         public void AddProduct()
@@ -97,6 +131,18 @@ namespace DanmissionManager.ViewModels
                 ctx.SaveChanges();
             }
             
+        }
+
+        private void ChangeCollection()
+        {
+            
+            List<Standardprice> list = new List<Standardprice>();
+            list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
+
+            
+            ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
+            this.SubCategories = collection;
+
         }
 
     }
