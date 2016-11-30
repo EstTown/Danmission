@@ -24,7 +24,7 @@
                 </Style>
             </chartingToolkit:Chart.PlotAreaStyle>
             <chartingToolkit:PieSeries DependentValuePath="Value"
-            IndependentValuePath="Key" ItemsSource="{Binding PieChart}"
+            IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
         <ComboBox x:Name="comboBox" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
@@ -33,7 +33,7 @@
         <Custom:DatePicker HorizontalAlignment="Left" Margin="295,110,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateFrom" Content="Dato fra:" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateTo" Content="Til:" HorizontalAlignment="Left" Margin="243,110,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="generateStatsButton" Content="Vis statistik" Command="{Binding Path = displayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button x:Name="generateStatsButton" Content="Vis statistik" Command="{Binding Path = CommandDisplayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
         <Button x:Name="exportPdfButton" Content="Pdf" HorizontalAlignment="Left" Margin="120,202,0,0" VerticalAlignment="Top" Width="102"/>
         <Button x:Name="exportExcelButton" Content="Excel" HorizontalAlignment="Left" Margin="295,202,0,0" VerticalAlignment="Top" Width="101"/>
         <Label x:Name="exportLabel" Content="Eksporter til:" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top"/>

@@ -16,10 +16,12 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
-            this.displayChart = new RelayCommand2(showChart);
+            RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChart);
+            this.CommandDisplayChart = commandDisplayChart;
+
         }
 
-        private void showChart()
+        private void ShowChart()
         {
             List<KeyValuePair<string, int>> MyValue = new List<KeyValuePair<string, int>>();
             MyValue.Add(new KeyValuePair<string, int>("Administration", 20));
@@ -31,8 +33,19 @@ namespace DanmissionManager.ViewModels
             PieChart = MyValue;
         }
 
-        public List<KeyValuePair<string, int>> PieChart { get; set; }
-
-        public RelayCommand2 displayChart { get; set; }
+        private List<KeyValuePair<string, int>> _pieChart;
+        public List<KeyValuePair<string, int>> PieChart
+        {
+            get
+            {
+                return _pieChart;
+            }
+            set
+            {
+                _pieChart = value;
+                OnPropertyChanged("PieChart");
+            }
+        }
+        public RelayCommand2 CommandDisplayChart { get; set; }
     }
 }
