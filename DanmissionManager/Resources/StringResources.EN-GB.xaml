@@ -17,6 +17,16 @@
     <system:String x:Key="fullScreenView">Full Screen View (F11)</system:String>
 
     <!-- Register Product Page -->
+    <system:String x:Key="RPProductName">Product Name:</system:String>
+    <system:String x:Key="RPDescription">Description:</system:String>
+    <system:String x:Key="RPCategory">Category:</system:String>
+    <system:String x:Key="RPSubcategory">Select subcategory:</system:String>
+    <system:String x:Key="RPSetPrice">Set Price:</system:String>
+    <system:String x:Key="RPStandardPrice">Standard Price:</system:String>
+    <system:String x:Key="RPUniqueProduct">The product is unique</system:String>
+    <system:String x:Key="RPSelectPicture">Select Picture</system:String>
+    <system:String x:Key="RPAddProduct">Add Product</system:String>
+
     <!-- Find Product Page -->
     <system:String x:Key="FPSearch">Search</system:String>
     <system:String x:Key="FPID">ID</system:String>
@@ -32,6 +42,12 @@
     <!-- Checkout Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
+    <system:String x:Key="CCategories">Categories</system:String>
+    <system:String x:Key="CSubcategories">Subcategories</system:String>
+    <system:String x:Key="CFetch">Fetch</system:String>
+    <system:String x:Key="CRemoveCategory">Remove</system:String>
+    <system:String x:Key="CAddCategory">Add</system:String>
+
     <!-- Statistics Page -->
     <!-- Options Page -->
     <system:String x:Key="OLanguage">Language</system:String>

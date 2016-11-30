@@ -17,6 +17,16 @@
     <system:String x:Key="fullScreenView">Fuldskærmsvisning (F11)</system:String>
 
     <!-- Register Product Page -->
+    <system:String x:Key="RPProductName">Produktnavn:</system:String>
+    <system:String x:Key="RPDescription">Beskrivelse:</system:String>
+    <system:String x:Key="RPCategory">Kategori:</system:String>
+    <system:String x:Key="RPSubcategory">Vælg underkategori:</system:String>
+    <system:String x:Key="RPSetPrice">Sæt pris:</system:String>
+    <system:String x:Key="RPStandardPrice">Standardpris:</system:String>
+    <system:String x:Key="RPUniqueProduct">Produktet er unikt</system:String>
+    <system:String x:Key="RPSelectPicture">Vælg billede</system:String>
+    <system:String x:Key="RPAddProduct">Tilføj Produkt</system:String>
+
     <!-- Find Product Page -->
     <system:String x:Key="FPSearch">Søg</system:String>
     <system:String x:Key="FPID">ID</system:String>
@@ -32,6 +42,12 @@
     <!-- Checkout Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
+    <system:String x:Key="CCategories">Kategorier</system:String>
+    <system:String x:Key="CSubcategories">Underkategorier</system:String>
+    <system:String x:Key="CFetch">Hent</system:String>
+    <system:String x:Key="CRemoveCategory">Fjern</system:String>
+    <system:String x:Key="CAddCategory">Tilføj</system:String>
+
     <!-- Statistics Page -->
     <!-- Options Page -->
     <system:String x:Key="OLanguage">Sprog</system:String>

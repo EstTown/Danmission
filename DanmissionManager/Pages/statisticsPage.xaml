@@ -16,7 +16,7 @@
     </Page.DataContext>
 
     <Grid>
-        <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="Statistik" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="{DynamicResource statistics}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
         <chartingToolkit:Chart  x:Name="PieChart" Title="" BorderThickness="0" Margin="110,227,10,10">
             <chartingToolkit:Chart.PlotAreaStyle>
                 <Style TargetType="{x:Type Grid}">
