@@ -16,8 +16,7 @@
 
     <Grid>
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Statistik" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
-        <chartingToolkit:Chart  x:Name="PieChart" Title="Statistik" Width="506"
-            VerticalAlignment="Top" Margin="170,146,0,0" Height="365" HorizontalAlignment="Left">
+        <chartingToolkit:Chart  x:Name="PieChart" Title="Statistik" Margin="0,0,164,89" HorizontalAlignment="Right" Width="506" Height="365" VerticalAlignment="Bottom">
             <chartingToolkit:PieSeries DependentValuePath="Value"
             IndependentValuePath="Key" ItemsSource="{Binding Path=PieChart}"
             IsSelectionEnabled="True" />
@@ -27,6 +26,7 @@
                 </Style>
             </chartingToolkit:Chart.PlotAreaStyle>
         </chartingToolkit:Chart>
+        <DatePicker HorizontalAlignment="Left" Margin="91,146,0,0" VerticalAlignment="Top"/>
         <!--<Button x:Name="button" Content="Button" Command="{Binding Path = command}" HorizontalAlignment="Left" Margin="259,133,0,0" VerticalAlignment="Top" Width="75"/>
         -->
     </Grid>
