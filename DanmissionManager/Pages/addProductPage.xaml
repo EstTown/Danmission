@@ -17,23 +17,22 @@
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image x:Name="image" Source="{Binding Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="250" Height="250"/>
         </Border>
-        
-        <Button x:Name="btn_ChooseImage" Command ="{Binding Path = CommandGetImage}" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="btn_ChooseImage" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
-        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="Registrer produkt" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource registerProduct}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <Grid Margin="16,55,261,10">
-            <Label x:Name="label_name" Content="Produkt navn:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_name" Content="{DynamicResource RPProductName}" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="textBox" Text="{Binding Product.name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="25" Margin="133,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
-            <Label x:Name="label_description" Content="Beskrivelse:" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_description" Content="{DynamicResource RPDescription}" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="textBox_Copy" Height="25" Margin="133,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
 
-            <Label x:Name="label_choosecategory" Content="Vælg kategori:" Margin="17,88,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="92"/>
+            <Label x:Name="label_choosecategory" Content="{DynamicResource RPCategory}" Margin="17,88,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="92"/>
             <ComboBox x:Name="comboBox_category" ItemsSource="{Binding Path = Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="133,92,10,0" VerticalAlignment="Top"/>
 
-            <Label x:Name="label_price" Content="Sæt pris:" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TextBox_setPrice" Text="{Binding Product.price, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="169" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="label_price" Content="{DynamicResource RPSetPrice}" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TextBox_setPrice" Text="{Binding Product.price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="169" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <!--
             <TextBox x:Name="txtbox_price" 
@@ -53,14 +52,14 @@
             </TextBox>
 -->
 
-            <CheckBox x:Name="checkBox_isUnique" IsChecked="True" Content="Produktet er unikt" HorizontalAlignment="Left" Margin="437,216,0,0" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlockChooseSubCategory" HorizontalAlignment="Left" Margin="22,131,0,0" TextWrapping="Wrap" Text="Vælg underkategori:" VerticalAlignment="Top" Width="111" Height="23"/>
+            <CheckBox x:Name="checkBox_isUnique" IsChecked="True" Content="{DynamicResource RPUniqueProduct}" HorizontalAlignment="Left" Margin="437,216,0,0" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlockChooseSubCategory" HorizontalAlignment="Left" Margin="22,131,0,0" TextWrapping="Wrap" Text="{DynamicResource RPSubcategory}" VerticalAlignment="Top" Width="111" Height="23"/>
             <ComboBox x:Name="comboBox1SubCategory" ItemsSource="{Binding Path = SubCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" DisplayMemberPath="name" SelectedItem="{Binding SelectedSubCategory, Mode=TwoWay}" Margin="133,132,10,0" VerticalAlignment="Top"/>
-            <Label x:Name="label" Content="Typisk pris" Margin="320,167,166,0" VerticalAlignment="Top"/>
+            <Label x:Name="label" Content="{DynamicResource RPStandardPrice}" Margin="320,167,166,0" VerticalAlignment="Top"/>
             <TextBox x:Name="typiskPris" Height="25" Margin="402,168,10,0" TextWrapping="Wrap" Text="{Binding SelectedSubCategory.standardprice, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
 
         </Grid>
-        <Button x:Name="btn_addProduct" Content="Tilføj produkt" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
+        <Button x:Name="btn_addProduct" Content="{DynamicResource RPAddProduct}" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
 
 
 

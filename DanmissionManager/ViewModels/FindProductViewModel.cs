@@ -16,11 +16,10 @@ namespace DanmissionManager.ViewModels
     {
         public FindProductViewModel()
         {
-
             this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
-
-
+            this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct);
+            this.CommandRemoveSelectedProduct = new RelayCommand2(RemoveSelectedProduct);
         }
         private string _searchParameter;
         public string SearchParameter
@@ -74,6 +73,53 @@ namespace DanmissionManager.ViewModels
             }
         }
         
+
+
+        public RelayCommand2 CommandSaveChanges { get; set; }
+        //method that saves changes to selectedproduct
+        private void SaveChangesToSelectedProduct()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                    Product product = productlist.First();
+                    product.category = SelectedProduct.category;
+                    product.desc = SelectedProduct.desc;
+                    product.price = SelectedProduct.price;
+                    ctx.SaveChanges();
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+        }
+        public RelayCommand2 CommandRemoveSelectedProduct { get; set; }
+        public void RemoveSelectedProduct()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    
+                    List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                    Product product = productlist.First();
+                    
+
+                    ctx.Products.Remove(product);
+
+                    ctx.SaveChanges();
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+            //also remove product from current obserablecollection
+            this.Products.Remove(SelectedProduct);
+        }
         //property that will contain the command/method and executes it
         //does not need a backing field
         public RelayCommand2 CommandGetProducts { get; set; }
@@ -91,8 +137,6 @@ namespace DanmissionManager.ViewModels
                     List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower()) ||
                         (x.id.ToString()).Contains(SearchParameter.ToLower()) ||
                         (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
-
-                    
                     foreach (Product x in list)
                     {
                         if (x.image != null && x.image.Length > 0)
@@ -100,29 +144,21 @@ namespace DanmissionManager.ViewModels
                             x.productImage = ImageFromBuffer(x.image);
                         }
                     }
-
-
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
-
                     this.Products = collection;
-
-                    
                 }
             }
             catch (System.Data.DataException)
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
-
         }
-
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
         }
-
         public BitmapImage ImageFromBuffer(Byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);
@@ -132,10 +168,6 @@ namespace DanmissionManager.ViewModels
             image.EndInit();
             return image;
         }
-
-
-
-
     }
 }
 
