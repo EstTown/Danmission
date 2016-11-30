@@ -374,3 +374,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\S
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\App.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

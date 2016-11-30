@@ -52,7 +52,7 @@
             </TextBox>
 -->
 
-            <CheckBox x:Name="checkBox_isUnique" IsChecked="True" Content="{DynamicResource RPUniqueProduct}" HorizontalAlignment="Left" Margin="437,216,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}"  HorizontalAlignment="Left" Margin="437,216,0,0" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlockChooseSubCategory" HorizontalAlignment="Left" Margin="22,131,0,0" TextWrapping="Wrap" Text="{DynamicResource RPSubcategory}" VerticalAlignment="Top" Width="111" Height="23"/>
             <ComboBox x:Name="comboBox1SubCategory" ItemsSource="{Binding Path = SubCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" DisplayMemberPath="name" SelectedItem="{Binding SelectedSubCategory, Mode=TwoWay}" Margin="133,132,10,0" VerticalAlignment="Top"/>
             <Label x:Name="label" Content="{DynamicResource RPStandardPrice}" Margin="320,167,166,0" VerticalAlignment="Top"/>

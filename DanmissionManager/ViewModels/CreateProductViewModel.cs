@@ -41,6 +41,7 @@ namespace DanmissionManager.ViewModels
                 ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
                 this.AllSubCategories = allsubcategories;
             }
+            this.Product.price = 0.0;
         }
 
         private Standardprice _selectedSubCategory;
@@ -126,12 +127,18 @@ namespace DanmissionManager.ViewModels
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
-            product.category = 5;
-            product.isUnique = true;
-            product.price = 50;
+            product.category = this.SelectedSubCategory.id;
+            product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
-            product.image = imageToByteArray(Image);
-
+            product.image = this.imageToByteArray(Image);
+            if (this.Product.price.Equals(0.0) == true)
+            {
+                product.price = this.SelectedSubCategory.standardprice;
+            }
+            else
+            {
+                product.price = this.Product.price;
+            }
             
             using (var ctx = new ServerContext())
             {
