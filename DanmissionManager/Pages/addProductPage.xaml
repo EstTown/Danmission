@@ -15,9 +15,9 @@
     <Grid>
 
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Image x:Name="image" Source="/Resources/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="250"/>
+            <Image x:Name="image" Source="{Binding Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="250" Height="250"/>
         </Border>
-        <Button x:Name="btn_ChooseImage" Content="{DynamicResource RPSelectPicture}" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="btn_ChooseImage" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource registerProduct}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 

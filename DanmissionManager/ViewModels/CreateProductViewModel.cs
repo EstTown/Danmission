@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using DanmissionManager.Commands;
 using DanmissionManager.DBTypes.NewFolder1;
+using System.Windows.Media.Imaging;
+using System.Drawing;
+using System.IO;
 
 namespace DanmissionManager.ViewModels
 {
@@ -21,6 +24,10 @@ namespace DanmissionManager.ViewModels
             //command for adding a product to the server
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
             this.CommandAddProduct = commandAddProduct;
+
+            //Command for getting image from user, via dialog
+            RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
+            this.CommandGetImage = commandGetImage;
             
             //get all categories from database
             using (var ctx = new ServerContext())
@@ -34,8 +41,6 @@ namespace DanmissionManager.ViewModels
                 ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
                 this.AllSubCategories = allsubcategories;
             }
-            double d = 0;
-            this.Product.price = d;
         }
 
         private Standardprice _selectedSubCategory;
@@ -57,8 +62,10 @@ namespace DanmissionManager.ViewModels
                 _selectedCategory = value;
                 OnPropertyChanged("SelectedCategory");
 
-                //method that changes subcategories collection, based on selectedcategory
+                //run method that changes subcategories collection, based on selectedcategory
                 ChangeCollection();
+                
+
             }
         }
         private ObservableCollection<Standardprice> AllSubCategories { get; }
@@ -109,6 +116,7 @@ namespace DanmissionManager.ViewModels
             {
                 _product = value;
                 OnPropertyChanged("Product");
+
             }
         }
         public RelayCommand2 CommandAddProduct { get; set; }
@@ -118,40 +126,21 @@ namespace DanmissionManager.ViewModels
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
-            product.category = this.SelectedSubCategory.id;
-            product.isUnique = this.Product.isUnique;
+            product.category = 5;
+            product.isUnique = true;
+            product.price = 50;
             product.desc = this.Product.desc;
-            double d = 0;
-            if (this.Product.price.Equals(d) == true)
-            {
-                Product.price = this.SelectedSubCategory.standardprice;
-            }
-            else
-            {
-                product.price = this.Product.price;
-            }
+            product.image = imageToByteArray(Image);
+
             
             using (var ctx = new ServerContext())
             {
                 ctx.Products.Add(product);
                 ctx.SaveChanges();
             }
-
-
             
         }
-        //checkbox
-        private bool _isChecked;
-        public bool IsChecked
-        {
-            get { return _isChecked; }
-            set
-            {
-                _isChecked = value;
-                OnPropertyChanged("IsChecked");
-                Console.WriteLine(IsChecked);
-            }
-        }
+
         private void ChangeCollection()
         {
             
@@ -162,6 +151,63 @@ namespace DanmissionManager.ViewModels
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.SubCategories = collection;
 
+        }
+
+
+        public BitmapImage Image {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
+        private BitmapImage _image { get; set; }
+        public RelayCommand2 CommandGetImage { get; set; }
+
+        public void GetImage()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.Title = "Open Image";
+            dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
+
+            if (dlg.ShowDialog() == true)
+            {
+                var uri = new Uri(dlg.FileName);
+                Image = new BitmapImage(uri);
+            }
+            
+        }
+
+        BitmapImage BitmapToImageSource(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+
+                return bitmapimage;
+            }
+        }
+
+        public byte[] imageToByteArray(BitmapImage bitmapImage)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
 
     }
