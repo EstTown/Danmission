@@ -133,8 +133,8 @@
     <Compile Include="Pages\logoPage.xaml.cs">
       <DependentUpon>logoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\removeProductPage.xaml.cs">
-      <DependentUpon>removeProductPage.xaml</DependentUpon>
+    <Compile Include="Pages\checkoutPage.xaml.cs">
+      <DependentUpon>checkoutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\settingsPage.xaml.cs">
       <DependentUpon>settingsPage.xaml</DependentUpon>
@@ -150,6 +150,7 @@
     <Compile Include="TestClasses\Product2.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\CreateProductViewModel.cs" />
     <Compile Include="ViewModels\FindProductViewModel.cs" />
     <Compile Include="ViewModels\IStatisticsViewModel.cs" />
@@ -198,7 +199,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\removeProductPage.xaml">
+    <Page Include="Pages\checkoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="danmissionicon200x200.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Checkout-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Checkout-64_black.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

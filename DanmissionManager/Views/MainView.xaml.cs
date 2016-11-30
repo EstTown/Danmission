@@ -44,7 +44,7 @@ namespace DanmissionManager.Views
 
         private void btn_removeProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new removeProductPage();
+            Main.Content = new checkoutPage();
         }
 
         private void btn_inventoryOverview_Click(object sender, RoutedEventArgs e)

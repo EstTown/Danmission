@@ -18,9 +18,9 @@ namespace DanmissionManager.Pages
     /// <summary>
     /// Interaction logic for removeProductPage.xaml
     /// </summary>
-    public partial class removeProductPage : Page
+    public partial class checkoutPage : Page
     {
-        public removeProductPage()
+        public checkoutPage()
         {
             InitializeComponent();
         }
