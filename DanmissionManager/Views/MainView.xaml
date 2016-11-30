@@ -77,7 +77,7 @@
             <Button x:Name="btn_removeProduct" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" Width="121" Height="80" Click="btn_removeProduct_Click">
                 <StackPanel>
                     <Image Source="/Resources/Checkout-64.png" Height="48" Width="48" />
-                    <TextBlock Text="{DynamicResource removeProduct}" />
+                    <TextBlock Text="{DynamicResource checkoutProduct}" />
                 </StackPanel>
             </Button>
 
