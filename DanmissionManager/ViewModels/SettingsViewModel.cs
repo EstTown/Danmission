@@ -13,14 +13,29 @@ namespace DanmissionManager.ViewModels
     {
         public SettingsViewModel()
         {
+            SetupLanguages();
+
+            if (FirstInstantiation())
+            {
+                _selectedItem = Languages.First();
+            }
+        }
+
+        private bool FirstInstantiation()
+        {
+            return _selectedItem == string.Empty;
+        }
+
+        private void SetupLanguages()
+        {
             List<string> languages = new List<string>
             {
                 "Dansk",
                 "English"
             };
             _languages = new ObservableCollection<string>(languages);
-            SelectedItem = Languages.First();
         }
+
         private ObservableCollection<string> _languages;
         public ObservableCollection<string> Languages
         {
@@ -28,11 +43,11 @@ namespace DanmissionManager.ViewModels
             set { _languages = value; OnPropertyChanged("Language"); }
         }
 
-        private string selectedItem = string.Empty;
+        private static string _selectedItem = string.Empty;
         public string SelectedItem
         {
-            get { return selectedItem; }
-            set { selectedItem = value; setProgramLanguage(value); OnPropertyChanged("SelectedItem"); }
+            get { return _selectedItem; }
+            set { _selectedItem = value; setProgramLanguage(value); OnPropertyChanged("SelectedItem"); }
         }
 
         public void setProgramLanguage(string LanguageName)
