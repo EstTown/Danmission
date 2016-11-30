@@ -28,15 +28,15 @@
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
         <ComboBox x:Name="comboBox" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
-        <Label x:Name="statLabel" Content="Statistik type:" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="statLabel" Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
         <Custom:DatePicker HorizontalAlignment="Left" Margin="120,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
         <Custom:DatePicker HorizontalAlignment="Left" Margin="295,110,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dateFrom" Content="Dato fra:" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dateTo" Content="Til:" HorizontalAlignment="Left" Margin="243,110,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="generateStatsButton" Content="Vis statistik" Command="{Binding Path = CommandDisplayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
-        <Button x:Name="exportPdfButton" Content="Pdf" HorizontalAlignment="Left" Margin="120,202,0,0" VerticalAlignment="Top" Width="102"/>
-        <Button x:Name="exportExcelButton" Content="Excel" HorizontalAlignment="Left" Margin="295,202,0,0" VerticalAlignment="Top" Width="101"/>
-        <Label x:Name="exportLabel" Content="Eksporter til:" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="243,110,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button x:Name="exportPdfButton" Content="{DynamicResource SPDF}" HorizontalAlignment="Left" Margin="120,202,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="exportExcelButton" Content="{DynamicResource SExcel}" HorizontalAlignment="Left" Margin="295,202,0,0" VerticalAlignment="Top" Width="101"/>
+        <Label x:Name="exportLabel" Content="{DynamicResource SExportTo}" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top"/>
         <!--<Button x:Name="button" Content="Button" Command="{Binding Path = command}" HorizontalAlignment="Left" Margin="259,133,0,0" VerticalAlignment="Top" Width="75"/>
         -->
     </Grid>

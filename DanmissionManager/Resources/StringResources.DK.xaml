@@ -49,6 +49,14 @@
     <system:String x:Key="CAddCategory">Tilføj</system:String>
 
     <!-- Statistics Page -->
+    <system:String x:Key="SStatisticsType">Statistiktype:</system:String>
+    <system:String x:Key="SDateFrom">Fra dato:</system:String>
+    <system:String x:Key="SDateTo">Til dato:</system:String>
+    <system:String x:Key="SViewStatistics">Vis statistik</system:String>
+    <system:String x:Key="SExportTo">Exporter til:</system:String>
+    <system:String x:Key="SPDF">PDF</system:String>
+    <system:String x:Key="SExcel">Excel</system:String>
+
     <!-- Options Page -->
     <system:String x:Key="OLanguage">Sprog</system:String>
     <system:String x:Key="OColorScheme">Tema</system:String>
