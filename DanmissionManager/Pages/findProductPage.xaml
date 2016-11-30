@@ -16,7 +16,7 @@
 
     <Grid>
 
-        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Path=Products, Mode=TwoWay}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
+        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Path=Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
 
             <ListView.View>
                 <GridView>

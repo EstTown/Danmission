@@ -105,6 +105,8 @@ namespace DanmissionManager.ViewModels
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
 
                     this.Products = collection;
+
+                    
                 }
             }
             catch (System.Data.DataException)
