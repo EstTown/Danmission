@@ -84,6 +84,7 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\categ
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\findProductPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\inventoryOverviewPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\logoPage.g.cs
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\removeProductPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\settingsPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\statisticsPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\MainView.g.cs
@@ -92,6 +93,7 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\categ
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\findProductPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\inventoryOverviewPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\logoPage.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\removeProductPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\settingsPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\statisticsPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\MainView.baml
@@ -348,7 +350,7 @@ C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\Vi
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.g.resources
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
-C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\system.windows.controls.datavisualization.toolkit.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\WPFToolkit.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Xceed.Wpf.AvalonDock.dll
@@ -372,6 +374,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\Xce
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\App.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.en-GB.baml
-C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.g.cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.g.cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.baml
+C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\App.baml

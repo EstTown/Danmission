@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\
+C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\obj\Debug\
 DanmissionManager
 none
 false
 DEBUG;TRACE
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\App.xaml
-14-267513924
+C:\Users\Palle Thillemann\Source\Repos\Danmission\DanmissionManager\App.xaml
+142085560948
 
-421376190749
-37-8400149
-MainWindow.xaml;Pages\addProductPage.xaml;Pages\categoriesPage.xaml;Pages\findProductPage.xaml;Pages\inventoryOverviewPage.xaml;Pages\logoPage.xaml;Pages\checkoutPage.xaml;Pages\settingsPage.xaml;Pages\statisticsPage.xaml;Resources\StringResources.DK.xaml;Resources\StringResources.en-GB.xaml;Views\CreateProductView.xaml;Views\MainView.xaml;Views\TemplateView.xaml;
+421659254323
+37-1184179545
+MainWindow.xaml;Pages\addProductPage.xaml;Pages\categoriesPage.xaml;Pages\findProductPage.xaml;Pages\inventoryOverviewPage.xaml;Pages\logoPage.xaml;Pages\removeProductPage.xaml;Pages\settingsPage.xaml;Pages\statisticsPage.xaml;Resources\StringResources.DK.xaml;Resources\StringResources.en-GB.xaml;Views\CreateProductView.xaml;Views\MainView.xaml;Views\TemplateView.xaml;
 
-False
+True
 
