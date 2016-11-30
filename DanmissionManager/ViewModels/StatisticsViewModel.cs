@@ -1,10 +1,14 @@
-﻿using DanmissionManager.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls.DataVisualization.Charting;
+using DanmissionManager.Commands;
+using System.IO;
+using System.Drawing;
+using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace DanmissionManager.ViewModels
 {
@@ -12,9 +16,7 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
-            showChart();
-            //this.command = new RelayCommand2(showChart);
-            //this.command = command;
+            this.displayChart = new RelayCommand2(showChart);
         }
 
         private void showChart()
@@ -31,6 +33,6 @@ namespace DanmissionManager.ViewModels
 
         public List<KeyValuePair<string, int>> PieChart { get; set; }
 
-        public RelayCommand2 command { get; set; }
+        public RelayCommand2 displayChart { get; set; }
     }
 }
