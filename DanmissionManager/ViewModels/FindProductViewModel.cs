@@ -32,8 +32,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("SearchParameter");
             }
         }
-        private Collection<Product> _products;
-        public Collection<Product> Products
+        private ObservableCollection<Product> _products;
+        public ObservableCollection<Product> Products
         {
             get { return _products; }
             set
@@ -92,6 +92,7 @@ namespace DanmissionManager.ViewModels
                         (x.id.ToString()).Contains(SearchParameter.ToLower()) ||
                         (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
 
+                    
                     foreach (Product x in list)
                     {
                         if (x.image != null && x.image.Length > 0)
@@ -104,6 +105,8 @@ namespace DanmissionManager.ViewModels
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
 
                     this.Products = collection;
+
+                    
                 }
             }
             catch (System.Data.DataException)

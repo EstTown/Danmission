@@ -7,7 +7,7 @@ namespace DanmissionManager
     using System.Data.Entity.Spatial;
 
     [Table("data.standardprices")]
-    public partial class Standardprice
+    public partial class Standardprice 
     {
         public int id { get; set; }
 
@@ -20,5 +20,6 @@ namespace DanmissionManager
         [Required]
         [StringLength(45)]
         public string CorrespondingCategoryString { get; set; }
+        public int Parent_id { get; set; }
     }
 }
