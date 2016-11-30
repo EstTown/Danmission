@@ -11,7 +11,6 @@ using DanmissionManager.Commands;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
-using DanmissionManager.TestClasses;
 using Color = System.Drawing.Color;
 
 namespace DanmissionManager.ViewModels
@@ -26,11 +25,11 @@ namespace DanmissionManager.ViewModels
 
             this.UpdateCurrentProduct = new RelayCommand2(UpdateProduct);
             
-            Product2 product = new Product2();
+            Product product = new Product();
             product.date = new DateTime(2015, 4, 22);
             product.id = 111111;
             product.category = 2;
-            product.ProductImage = BitmapToImageSource(GenerateRandomImage());
+            product.productImage = BitmapToImageSource(GenerateRandomImage());
             this.Product = product;
         }
 
@@ -86,8 +85,8 @@ namespace DanmissionManager.ViewModels
         }
         
         //method get random prduct
-        private Product2 _product;
-        public Product2 Product
+        private Product _product;
+        public Product Product
         {
             get { return _product; }
             set
