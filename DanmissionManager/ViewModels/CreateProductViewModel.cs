@@ -34,6 +34,8 @@ namespace DanmissionManager.ViewModels
                 ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
                 this.AllSubCategories = allsubcategories;
             }
+            double d = 0;
+            this.Product.price = d;
         }
 
         private Standardprice _selectedSubCategory;
@@ -55,10 +57,8 @@ namespace DanmissionManager.ViewModels
                 _selectedCategory = value;
                 OnPropertyChanged("SelectedCategory");
 
-                //run method that changes subcategories collection, based on selectedcategory
+                //method that changes subcategories collection, based on selectedcategory
                 ChangeCollection();
-                
-
             }
         }
         private ObservableCollection<Standardprice> AllSubCategories { get; }
@@ -109,7 +109,6 @@ namespace DanmissionManager.ViewModels
             {
                 _product = value;
                 OnPropertyChanged("Product");
-
             }
         }
         public RelayCommand2 CommandAddProduct { get; set; }
@@ -119,20 +118,40 @@ namespace DanmissionManager.ViewModels
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
-            product.category = 5;
-            product.isUnique = true;
-            product.price = 50;
+            product.category = this.SelectedSubCategory.id;
+            product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
-
+            double d = 0;
+            if (this.Product.price.Equals(d) == true)
+            {
+                Product.price = this.SelectedSubCategory.standardprice;
+            }
+            else
+            {
+                product.price = this.Product.price;
+            }
             
             using (var ctx = new ServerContext())
             {
                 ctx.Products.Add(product);
                 ctx.SaveChanges();
             }
+
+
             
         }
-
+        //checkbox
+        private bool _isChecked;
+        public bool IsChecked
+        {
+            get { return _isChecked; }
+            set
+            {
+                _isChecked = value;
+                OnPropertyChanged("IsChecked");
+                Console.WriteLine(IsChecked);
+            }
+        }
         private void ChangeCollection()
         {
             

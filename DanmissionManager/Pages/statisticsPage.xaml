@@ -4,9 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
-      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
-      x:Class="DanmissionManager.Pages.statisticsPage"
+      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+      xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
+      x:Class="DanmissionManager.Pages.statisticsPage"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="statisticsPage">
@@ -15,18 +16,27 @@
     </Page.DataContext>
 
     <Grid>
-        <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource statistics}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
-        <chartingToolkit:Chart  x:Name="PieChart" Title="{DynamicResource statistics}" Margin="0,0,164,89" HorizontalAlignment="Right" Width="506" Height="365" VerticalAlignment="Bottom">
-            <chartingToolkit:PieSeries DependentValuePath="Value"
-            IndependentValuePath="Key" ItemsSource="{Binding Path=PieChart}"
-            IsSelectionEnabled="True" />
+        <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="{DynamicResource statistics}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <chartingToolkit:Chart  x:Name="PieChart" Title="" BorderThickness="0" Margin="110,227,10,10">
             <chartingToolkit:Chart.PlotAreaStyle>
-                <Style TargetType="Grid">
+                <Style TargetType="{x:Type Grid}">
                     <Setter Property="Background" Value="#f5f5f5" />
                 </Style>
             </chartingToolkit:Chart.PlotAreaStyle>
+            <chartingToolkit:PieSeries DependentValuePath="Value"
+            IndependentValuePath="Key" ItemsSource="{Binding PieChart}"
+            IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
-        <DatePicker HorizontalAlignment="Left" Margin="91,146,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBox" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
+        <Label x:Name="statLabel" Content="Statistik type:" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
+        <Custom:DatePicker HorizontalAlignment="Left" Margin="120,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
+        <Custom:DatePicker HorizontalAlignment="Left" Margin="295,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateFrom" Content="Dato fra:" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateTo" Content="Til:" HorizontalAlignment="Left" Margin="243,110,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="generateStatsButton" Content="Vis statistik" Command="{Binding Path = displayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button x:Name="exportPdfButton" Content="Pdf" HorizontalAlignment="Left" Margin="120,202,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="exportExcelButton" Content="Excel" HorizontalAlignment="Left" Margin="295,202,0,0" VerticalAlignment="Top" Width="101"/>
+        <Label x:Name="exportLabel" Content="Eksporter til:" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top"/>
         <!--<Button x:Name="button" Content="Button" Command="{Binding Path = command}" HorizontalAlignment="Left" Margin="259,133,0,0" VerticalAlignment="Top" Width="75"/>
         -->
     </Grid>

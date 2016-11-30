@@ -32,7 +32,7 @@
             <ComboBox x:Name="comboBox_category" ItemsSource="{Binding Path = Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="133,92,10,0" VerticalAlignment="Top"/>
 
             <Label x:Name="label_price" Content="{DynamicResource RPSetPrice}" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TextBox_setPrice" Text="{Binding Product.price, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="169" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TextBox_setPrice" Text="{Binding Product.price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="169" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <!--
             <TextBox x:Name="txtbox_price" 
