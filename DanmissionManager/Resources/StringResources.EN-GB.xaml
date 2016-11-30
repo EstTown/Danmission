@@ -7,7 +7,7 @@
     <system:String x:Key="windowTitle">NameOfProgram</system:String>
     <system:String x:Key="registerProduct">Register Product</system:String>
     <system:String x:Key="findProduct">Find Product</system:String>
-    <system:String x:Key="removeProduct">Remove Product</system:String>
+    <system:String x:Key="checkoutProduct">Checkout</system:String>
     <system:String x:Key="inventoryOverview">Inventory Overview</system:String>
     <system:String x:Key="categories">Categories</system:String>
     <system:String x:Key="statistics">Statistics</system:String>
@@ -29,7 +29,7 @@
     <system:String x:Key="FPRemoveProduct">Remove Product</system:String>
     <system:String x:Key="FPSave">Save</system:String>
     
-    <!-- Remove Product Page -->
+    <!-- Checkout Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
     <!-- Statistics Page -->

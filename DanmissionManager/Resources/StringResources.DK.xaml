@@ -7,7 +7,7 @@
     <system:String x:Key="windowTitle">ProgrammetsNavn</system:String>
     <system:String x:Key="registerProduct">Registrer Produkt</system:String>
     <system:String x:Key="findProduct">Find Produkt</system:String>
-    <system:String x:Key="removeProduct">Fjern Product</system:String>
+    <system:String x:Key="checkoutProduct">Sælg</system:String>
     <system:String x:Key="inventoryOverview">Inventar Overblik</system:String>
     <system:String x:Key="categories">Kategorier</system:String>
     <system:String x:Key="statistics">Statistik</system:String>
@@ -29,7 +29,7 @@
     <system:String x:Key="FPRemoveProduct">Fjern Produkt</system:String>
     <system:String x:Key="FPSave">Gem</system:String>
 
-    <!-- Remove Product Page -->
+    <!-- Checkout Product Page -->
     <!-- Inventory Overview Page -->
     <!-- Categories Page -->
     <!-- Statistics Page -->
