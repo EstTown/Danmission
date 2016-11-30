@@ -375,3 +375,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\Xce
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\App.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.DK.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.en-GB.baml
+C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.g.cs
