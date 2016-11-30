@@ -24,7 +24,7 @@
                 </Style>
             </chartingToolkit:Chart.PlotAreaStyle>
             <chartingToolkit:PieSeries DependentValuePath="Value"
-            IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
         <ComboBox x:Name="comboBox" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
