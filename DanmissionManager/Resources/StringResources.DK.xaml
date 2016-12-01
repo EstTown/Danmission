@@ -41,6 +41,12 @@
 
     <!-- Checkout Product Page -->
     <!-- Inventory Overview Page -->
+    <system:String x:Key="IOUnique">Unikke Produkter</system:String>
+    <system:String x:Key="IONotUnique">Ikke-unikke Produkter</system:String>
+    <system:String x:Key="IOExpired">Udløbede Produkter</system:String>
+    <system:String x:Key="IOTransactions">Transaktioner</system:String>
+    <system:String x:Key="IOSold">Solgte Produkter</system:String>
+
     <!-- Categories Page -->
     <system:String x:Key="CCategories">Kategorier</system:String>
     <system:String x:Key="CSubcategories">Underkategorier</system:String>

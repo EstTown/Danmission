@@ -14,16 +14,20 @@ namespace DanmissionManager.ViewModels
         public SettingsViewModel()
         {
             SetupLanguages();
-
-            if (FirstInstantiation())
-            {
-                _selectedItem = Languages.First();
-            }
+            SelectLanguage();
         }
 
-        private bool FirstInstantiation()
+        private void SelectLanguage()
         {
-            return _selectedItem == string.Empty;
+            try
+            {
+                SelectedItem = Properties.Settings.Default.LANGUAGE;
+                // Try if the language in the application settings is valid.
+            }
+            catch (Exception)
+            {
+                SelectedItem = Languages.First();
+            }
         }
 
         private void SetupLanguages()
@@ -47,7 +51,12 @@ namespace DanmissionManager.ViewModels
         public string SelectedItem
         {
             get { return _selectedItem; }
-            set { _selectedItem = value; setProgramLanguage(value); OnPropertyChanged("SelectedItem"); }
+            set { setProgramLanguage(value); _selectedItem = value; SaveLanguageInSettings(value); OnPropertyChanged("SelectedItem"); }
+        }
+
+        private void SaveLanguageInSettings(string language)
+        {
+            Properties.Settings.Default.LANGUAGE = language;
         }
 
         public void setProgramLanguage(string LanguageName)

@@ -13,9 +13,12 @@ namespace DanmissionManager.ViewModels
         public MainViewModel()
         {
             ConsoleManager.Show();
+            LoadSettings();
         }
 
-        
-
+        private void LoadSettings()
+        {
+            new SettingsViewModel();
+        }
     }
 }
