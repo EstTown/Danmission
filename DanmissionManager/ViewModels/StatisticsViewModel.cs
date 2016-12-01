@@ -16,10 +16,23 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
+            /*Combobox*/
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
             this.Statistics = statistics;
-            RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChart);
+
+            RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartItems);
             this.CommandDisplayChart = commandDisplayChart;
+        }
+
+        private string _selectedString;
+        public string selectedString
+        {
+            get { return _selectedString; }
+            set
+            {
+                _selectedString = value;
+            }
+                
         }
 
         private ObservableCollection<string> _statistics;
@@ -33,16 +46,36 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private void ShowChart()
+        private void ShowChartItems()
         {
-            List<KeyValuePair<string, int>> MyValue = new List<KeyValuePair<string, int>>();
-            MyValue.Add(new KeyValuePair<string, int>("Administration", 20));
-            MyValue.Add(new KeyValuePair<string, int>("Management", 36));
-            MyValue.Add(new KeyValuePair<string, int>("Development", 89));
-            MyValue.Add(new KeyValuePair<string, int>("Support", 270));
-            MyValue.Add(new KeyValuePair<string, int>("Sales", 140));
+            List<KeyValuePair<string, int>> ItemsValue = new List<KeyValuePair<string, int>>();
+            ItemsValue.Add(new KeyValuePair<string, int>("Herretøj", 140));
+            ItemsValue.Add(new KeyValuePair<string, int>("Dametøj", 360));
+            ItemsValue.Add(new KeyValuePair<string, int>("Smykker", 89));
+            ItemsValue.Add(new KeyValuePair<string, int>("Køkken", 80));
+            ItemsValue.Add(new KeyValuePair<string, int>("Boger", 100));
 
-            PieChart = MyValue;
+            PieChart = ItemsValue;
+        }
+
+        private void ShowChartSales()
+        {
+            List<KeyValuePair<string, int>> SalesValue = new List<KeyValuePair<string, int>>();
+            SalesValue.Add(new KeyValuePair<string, int>("Herretøj", 120));
+            SalesValue.Add(new KeyValuePair<string, int>("Dametøj", 90));
+            SalesValue.Add(new KeyValuePair<string, int>("Smykker", 70));
+            SalesValue.Add(new KeyValuePair<string, int>("Køkken", 20));
+            SalesValue.Add(new KeyValuePair<string, int>("Boger", 30));
+        }
+
+        private void ShowChartExpired()
+        {
+            List<KeyValuePair<string, int>> ExpiredValue = new List<KeyValuePair<string, int>>();
+            ExpiredValue.Add(new KeyValuePair<string, int>("Herretøj", 20));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Dametøj", 10));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Smykker", 30));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Køkken", 5));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Boger", 20));
         }
 
         private List<KeyValuePair<string, int>> _pieChart;
