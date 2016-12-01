@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using DanmissionManager.Commands;
-using DanmissionManager.DBTypes.NewFolder1;
 using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.IO;
