@@ -16,9 +16,21 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
+            ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
+            this.Statistics = statistics;
             RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChart);
             this.CommandDisplayChart = commandDisplayChart;
+        }
 
+        private ObservableCollection<string> _statistics;
+        public ObservableCollection<string> Statistics
+        {
+            get { return _statistics; }
+            set
+            {
+                _statistics = value;
+                OnPropertyChanged("Statistics");
+            }
         }
 
         private void ShowChart()
@@ -47,5 +59,16 @@ namespace DanmissionManager.ViewModels
             }
         }
         public RelayCommand2 CommandDisplayChart { get; set; }
+
+        private List<string> statCombobox()
+        {
+            List<string> data = new List<string>();
+
+            data.Add("Inventar");
+            data.Add("Salg");
+            data.Add("Udgået");
+
+            return data;
+        }
     }
 }
