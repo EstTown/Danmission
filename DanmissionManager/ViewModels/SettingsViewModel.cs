@@ -19,16 +19,19 @@ namespace DanmissionManager.ViewModels
             // Hvad sker der hvis Properties.Settings.... er String.Empty?
             // Ændre combobox til OneWayToSource eller TwoWay
 
-            SelectedItem = Properties.Settings.Default.LANGUAGE;
-            if (NoLanguageSelected())
+            SelectLanguage();
+        }
+
+        private void SelectLanguage()
+        {
+            try
+            {
+                SelectedItem = Properties.Settings.Default.LANGUAGE;
+            }
+            catch (Exception)
             {
                 SelectedItem = Languages.First();
             }
-        }
-
-        private bool NoLanguageSelected()
-        {
-            return _selectedItem == string.Empty;
         }
 
         private void SetupLanguages()
