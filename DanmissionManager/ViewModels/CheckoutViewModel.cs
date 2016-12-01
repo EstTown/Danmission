@@ -18,6 +18,7 @@ namespace DanmissionManager.ViewModels
             this.SearchParameter = string.Empty;
             this.CommandGetProductByID = new RelayCommand2(CommandGetProductByIDFromDatabase);
             this.CommandAddToBasket = new RelayCommand2(CommandAddSelectedToBasket);
+            this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
 
             ProductsInBasket = new ObservableCollection<Product>();
         }
@@ -108,6 +109,13 @@ namespace DanmissionManager.ViewModels
                 ProductsInBasket.Add(Product);
                 this.TotalPrice = ProductsInBasket.Sum(x => x.price).ToString();
             }
+        }
+
+        public RelayCommand2 CommandClearBasket { get; set; }
+        public void CommandClearAllProductsFromBasket()
+        {
+            ProductsInBasket.Clear();
+            this.TotalPrice = "0";
         }
 
         public BitmapImage ImageFromBuffer(Byte[] bytes)

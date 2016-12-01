@@ -29,7 +29,7 @@
                 <Button x:Name="button_complete" Content="Gennemfør" HorizontalAlignment="Left" Margin="182,0,0,9.667" Width="109" Height="20" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_price" Content="Total: " Margin="10,0,250.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_totalprice" Content="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,204.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
-                <Button x:Name="button_cancel" Content="Anuller" HorizontalAlignment="Left" Margin="10,0,0,9.667" Width="70" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_clear" Content="Clear basket" Command="{Binding Path=CommandClearBasket}" HorizontalAlignment="Left" Margin="10,0,0,9.667" Width="70" Height="20" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox_searchForId" Header="Søg efter ID" Margin="10,55,328,0" VerticalAlignment="Top" Height="112">
