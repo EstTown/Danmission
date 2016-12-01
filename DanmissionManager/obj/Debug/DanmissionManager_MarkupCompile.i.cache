@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\App.xaml
 14-267513924
 
-41-1593509616
+42-1766961645
 37-8400149
 MainWindow.xaml;Pages\addProductPage.xaml;Pages\categoriesPage.xaml;Pages\findProductPage.xaml;Pages\inventoryOverviewPage.xaml;Pages\logoPage.xaml;Pages\checkoutPage.xaml;Pages\settingsPage.xaml;Pages\statisticsPage.xaml;Resources\StringResources.DK.xaml;Resources\StringResources.en-GB.xaml;Views\CreateProductView.xaml;Views\MainView.xaml;Views\TemplateView.xaml;
 
-False
+True
 
