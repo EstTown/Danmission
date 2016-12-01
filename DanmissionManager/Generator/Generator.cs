@@ -12,14 +12,14 @@ namespace DanmissionManager
     {
         public Generator()
         {
-            Hydrator<Product> _customerHydrator = new Hydrator<Product>().WithInteger(x => x.id, 1, 100)
+            Hydrator<Product> _customerHydrator = new Hydrator<Product>()
                 .With(x => x.name, new ProductGenerator())
                 .WithInteger(x => x.category, 1, 50);
             IList<Product> customerlist = _customerHydrator.GetList(20);
 
             foreach (Product x in customerlist)
             {
-                Console.WriteLine(x.id + "        " + x.name);
+                Console.WriteLine(x.category + "        " + x.name);
             }
         }
 
