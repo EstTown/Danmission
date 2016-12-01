@@ -14,11 +14,6 @@ namespace DanmissionManager.ViewModels
         public SettingsViewModel()
         {
             SetupLanguages();
-
-            // Check om der står noget om standardselectionting i comboboksen?!!?!?
-            // Hvad sker der hvis Properties.Settings.... er String.Empty?
-            // Ændre combobox til OneWayToSource eller TwoWay
-
             SelectLanguage();
         }
 
@@ -27,6 +22,7 @@ namespace DanmissionManager.ViewModels
             try
             {
                 SelectedItem = Properties.Settings.Default.LANGUAGE;
+                // Try if the language in the application settings is valid.
             }
             catch (Exception)
             {
@@ -55,13 +51,12 @@ namespace DanmissionManager.ViewModels
         public string SelectedItem
         {
             get { return _selectedItem; }
-            set { setProgramLanguage(value); _selectedItem = value; SaveSelectedLanguage(value); OnPropertyChanged("SelectedItem"); }
+            set { setProgramLanguage(value); _selectedItem = value; SaveLanguageInSettings(value); OnPropertyChanged("SelectedItem"); }
         }
 
-        private void SaveSelectedLanguage(string language)
+        private void SaveLanguageInSettings(string language)
         {
             Properties.Settings.Default.LANGUAGE = language;
-            Properties.Settings.Default.Save();
         }
 
         public void setProgramLanguage(string LanguageName)
