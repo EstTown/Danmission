@@ -24,8 +24,8 @@
 
             <ComboBox x:Name="comboBox" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="127,14,0,0" />
 
-            <Expander x:Name="expander" Header="{DynamicResource OAdvancedOptions}" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="330">
-                <Grid Background="#FFE5E5E5">
+            <Expander x:Name="expander" Header="{DynamicResource OAdvancedOptions}" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="295">
+                <Grid Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" Height="auto">
                     <GroupBox x:Name="groupBox_database_Copy" Header="{DynamicResource ODatabase}" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="268">
                         <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="297" Margin="0,0,-2,0">
                             <TextBox x:Name="textBox_ip5" HorizontalAlignment="Left" Height="19" Margin="83,14,0,0" TextWrapping="Wrap" Text="{Binding IP1, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
