@@ -13,13 +13,15 @@ namespace DanmissionManager.ViewModels
     {
         public CategoriesViewModel()
         {
+            //instantiate member variables
             this.CreatedCategory = new Category();
             this.CreatedStandardprice = new Standardprice();
             
             this.CommandGetCategories = new RelayCommand2(GetCategoriesFromDatabase);
             this.CommandAddCategory = new RelayCommand2(AddCategory);
             this.CommandAddSubCategory = new RelayCommand2(AddSubCategory);
-            
+            this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
+            this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
         }
         public RelayCommand2 CommandGetCategories { get; set; }
         public void GetCategoriesFromDatabase()
@@ -54,6 +56,33 @@ namespace DanmissionManager.ViewModels
             using (var ctx = new ServerContext())
             {
                 ctx.Standardprices.Add(this.CreatedStandardprice);
+                ctx.SaveChanges();
+            }
+        }
+        public RelayCommand2 CommandRemoveCategory { get; set; }
+
+        private void RemoveCategory()
+        {
+            using (var ctx = new ServerContext())
+            {
+                List<Category> categoryList = ctx.Category.Where(x => x.id.CompareTo(SelectedCategory.id) == 0).ToList();
+                Category category = categoryList.First();
+
+                ctx.Category.Remove(category);
+                ctx.SaveChanges();
+                //probably also remove all subcategories..
+            }
+        }
+        public RelayCommand2 CommandRemoveSubCategory { get; set; }
+
+        private void RemoveSubCategory()
+        {
+            using (var ctx = new ServerContext())
+            {
+                List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.id.CompareTo(SelectedSubCategory.id) == 0).ToList();
+                Standardprice subCategory = subCategoryList.First();
+                
+                ctx.Standardprices.Remove(subCategory);
                 ctx.SaveChanges();
             }
         }
@@ -162,6 +191,7 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedSubCategory = value;
                 OnPropertyChanged("SelectedSubCategory");
+                Console.WriteLine("somethingsometing");
             }
         }
     }

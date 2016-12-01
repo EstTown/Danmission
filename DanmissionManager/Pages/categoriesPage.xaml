@@ -27,7 +27,7 @@
                     </ListBox.ItemTemplate>
 
                 </ListBox>
-                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding Path = CommandRemoveCategory}"  Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="button_CategoriesAdd" Content="{DynamicResource CAddCategory}" Command="{Binding Path = CommandAddCategory}" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="button_fetch" Content="{DynamicResource CFetch}"  Command ="{Binding Path = CommandGetCategories}" Margin="10,0,0,6.333" HorizontalAlignment="Left" Width="76" Height="18" VerticalAlignment="Bottom"/>
                 <Label x:Name="label" Content="Ny hovedkategori:" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="125"/>
@@ -43,8 +43,8 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="363*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="listBox_Subcategories" SelectedItem="{Binding SelectedSubCategory, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" ItemsSource="{Binding Path = ShownSubCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name"  Margin="10,10,12.4,237.6" Grid.ColumnSpan="2"/>
-                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+                <ListBox x:Name="listBox_Subcategories" SelectedItem="{Binding SelectedSubCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Path = ShownSubCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name"  Margin="10,10,12.4,237.6" Grid.ColumnSpan="2"/>
+                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding CommandRemoveSubCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
                 <Button x:Name="button_SubcategoriesAdd" Content="{DynamicResource CAddCategory}" Command ="{Binding Path=CommandAddSubCategory}"  Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
                 <Label x:Name="label3" Content="Ny underkategori" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
                 <Label x:Name="label4" Content="Angiv tilhørende hovedkategori" Grid.Column="1" HorizontalAlignment="Left" Margin="102,264,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
