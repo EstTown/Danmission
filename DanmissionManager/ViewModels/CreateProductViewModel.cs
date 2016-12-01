@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using DanmissionManager.Commands;
-using DanmissionManager.DBTypes.NewFolder1;
 using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.IO;
@@ -30,31 +29,13 @@ namespace DanmissionManager.ViewModels
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
 
-            //get all categories from database
+            //get all categories and subcategories from database
             try
             {
                 using (var ctx = new ServerContext())
                 {
                     ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
                     this.Categories = categories;
-                }
-            }
-            catch (System.Data.DataException)
-            {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
-            }
-
-            //get all subcategories from database
-            using (var ctx = new ServerContext())
-            {
-                ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
-                this.AllSubCategories = allsubcategories;
-            }
-            
-            try
-            {
-                using (var ctx = new ServerContext())
-                {
                     ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
                     this.AllSubCategories = allsubcategories;
                 }
@@ -63,10 +44,7 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
-
-            this.Product.price = 0.0;
         }
-
         private Standardprice _selectedSubCategory;
         public Standardprice SelectedSubCategory
         {
@@ -88,8 +66,6 @@ namespace DanmissionManager.ViewModels
 
                 //run method that changes subcategories collection, based on selectedcategory
                 ChangeCollection();
-                
-
             }
         }
         private ObservableCollection<Standardprice> AllSubCategories { get; }
