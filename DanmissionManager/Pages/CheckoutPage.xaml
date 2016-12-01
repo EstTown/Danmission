@@ -17,7 +17,7 @@
 
         <GroupBox x:Name="groupBox" Header="Kurv" HorizontalAlignment="Right" Margin="0,55,10,10" Width="313">
             <Grid>
-                <ListView Margin="0,10,-1.667,194.667" x:Name="lvProducts_Copy" ItemsSource="{Binding Products, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
+                <ListView Margin="0,10,-1.667,194.667" x:Name="lvBasket" ItemsSource="{Binding ProductsInBasket, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
@@ -28,13 +28,13 @@
                 </ListView>
                 <Button x:Name="button_complete" Content="Gennemfør" HorizontalAlignment="Left" Margin="182,0,0,9.667" Width="109" Height="20" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_price" Content="Total: " Margin="10,0,250.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
-                <Label x:Name="label_totalprice" Content="" Margin="56,0,204.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
+                <Label x:Name="label_totalprice" Content="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,204.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
                 <Button x:Name="button_cancel" Content="Anuller" HorizontalAlignment="Left" Margin="10,0,0,9.667" Width="70" Height="20" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox_searchForId" Header="Søg efter ID" Margin="10,55,328,0" VerticalAlignment="Top" Height="112">
             <Grid>
-                <Button x:Name="btn_search" Content="{DynamicResource FPSearch}" Command ="{Binding CommandGetProducts}" Margin="0,64,10,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130"/>
+                <Button x:Name="btn_search" Content="{DynamicResource FPSearch}" Command ="{Binding CommandGetProductByID}" Margin="0,64,10,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130"/>
                 <TextBox x:Name="txtbox_seach" FontSize="30" Text="{Binding SearchParameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="49" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
@@ -47,28 +47,28 @@
                 <Border BorderBrush="Black" BorderThickness=".05" Margin="0,2,-189,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="103" Width="172">
                     <Grid>
                         <Rectangle Fill="#FFE9EEF1" HorizontalAlignment="Left" Height="103" VerticalAlignment="Top" Width="172" Margin="0,0,0,-0.333"/>
-                        <Image Source="{Binding SelectedProduct.productImage}" Margin="5,5,5,5" Width="auto" Height="auto"/>
+                        <Image Source="{Binding Product.productImage}" Margin="5,5,5,5" Width="auto" Height="auto"/>
                     </Grid>
                 </Border>
 
-                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding SelectedProduct.desc, Mode=TwoWay}" Margin="95,110,-189,57"/>
+                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Product.desc}" Margin="95,110,-189,57"/>
 
                 <Label x:Name="label_SelectedName" Content="{DynamicResource FPName}" Margin="0,2,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedName" TextWrapping="NoWrap" Text="{Binding SelectedProduct.name, Mode=TwoWay}" Margin="95,6,0,0" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedName" TextWrapping="NoWrap" Text="{Binding Product.name}" Margin="95,6,0,0" Height="auto" VerticalAlignment="Top"/>
 
                 <Label x:Name="label_SelectedPrice" Content="{DynamicResource FPPrice}" Margin="0,28,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedPrice" TextWrapping="NoWrap" Text="{Binding SelectedProduct.price, Mode=TwoWay}" Margin="95,32,0,0" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedPrice" TextWrapping="NoWrap" Text="{Binding Product.price}" Margin="95,32,0,0" Height="auto" VerticalAlignment="Top"/>
 
                 <Label x:Name="label_SelectedDateAdded" Width="auto" Content="{DynamicResource FPAddedDate}" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedDateAdded" TextWrapping="NoWrap" Text="{Binding SelectedProduct.date}" Margin="95,58,0,0" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedDateAdded" TextWrapping="NoWrap" Text="{Binding Product.date}" Margin="95,58,0,0" Height="auto" VerticalAlignment="Top"/>
 
                 <Label x:Name="label_SelectedDescription" Content="{DynamicResource FPDescription}" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top"/>
 
 
                 <Label x:Name="label_SelectedCategory" Width="auto" Content="{DynamicResource FPCategory}" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedCategory" TextWrapping="NoWrap" Text="{Binding SelectedProduct.category, Mode=TwoWay}" Margin="95,84,0,0" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedCategory" TextWrapping="NoWrap" Text="{Binding Product.category}" Margin="95,84,0,0" Height="auto" VerticalAlignment="Top"/>
 
-                <Button x:Name="btn_AddToBasket" Content="Tilføj" Command="{Binding Path=CommandSaveChanges}" Margin="0,0,-189,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="btn_AddToBasket" Content="Tilføj" Command="{Binding Path=CommandAddToBasket}" Margin="0,0,-189,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
 
             </Grid>
         </GroupBox>
