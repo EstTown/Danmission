@@ -31,7 +31,7 @@
 
         <Border BorderBrush="Black" BorderThickness=".05" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">
             <Grid>
-                <Rectangle Fill="#FFE9EEF1" HorizontalAlignment="Left" Height="198" Stroke="Black" VerticalAlignment="Top" Width="311"/>
+                <Rectangle Fill="#FFE9EEF1" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="311"/>
                 <Image Source="{Binding SelectedProduct.productImage}" Margin="5,5,5,5" Width="auto" Height="auto"/>
             </Grid>
         </Border>
