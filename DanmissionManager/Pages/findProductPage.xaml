@@ -36,12 +36,6 @@
             </Grid>
         </Border>
 
-        <!--
-        <ListBox Margin="0,319,10,10" HorizontalAlignment="Right" Width="313">
-            <TextBox x:Name="textBox_SelectedName" Height="43" TextWrapping="Wrap" Text="{Binding SelectedProduct.name}" Width="147"/>
-        </ListBox>
-        -->
-
         <GroupBox x:Name="groupBox_productInfo" Header="{DynamicResource FPProductInfo}" Margin="0,311,10,10" HorizontalAlignment="Right" Width="313">
             <Grid>
                 <Label x:Name="label_SelectedName" Content="{DynamicResource FPName}" Margin="10,2,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>

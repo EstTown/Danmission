@@ -10,6 +10,7 @@ using DanmissionManager.DBTypes.NewFolder1;
 using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.IO;
+using System.Windows;
 
 namespace DanmissionManager.ViewModels
 {
@@ -28,19 +29,35 @@ namespace DanmissionManager.ViewModels
             //Command for getting image from user, via dialog
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
-            
+
             //get all categories from database
-            using (var ctx = new ServerContext())
+            try
             {
-                ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
-                this.Categories = categories;
+                using (var ctx = new ServerContext())
+                {
+                    ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
+                    this.Categories = categories;
+                }
             }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+
             //get all subcategories from database
-            using (var ctx = new ServerContext())
+            try
             {
-                ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
-                this.AllSubCategories = allsubcategories;
+                using (var ctx = new ServerContext())
+                {
+                    ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
+                    this.AllSubCategories = allsubcategories;
+                }
             }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+
             this.Product.price = 0.0;
         }
 
