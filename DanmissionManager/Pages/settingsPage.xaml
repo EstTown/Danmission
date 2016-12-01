@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-        <xctk:ColorPicker Name="ClrPcker_Background" Height="20" Width="234" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="92,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
+        <xctk:ColorPicker Name="ClrPcker_Background" Height="20" Width="236" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="137,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
         <Label x:Name="label_colorpicker" Content="{DynamicResource OColorScheme}" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource options}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
@@ -22,27 +22,27 @@
         <Grid Margin="10,55,17,10">
             <Label x:Name="label_name" Content="{DynamicResource OLanguage}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-            <ComboBox x:Name="comboBox" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="81,14,0,0" />
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="127,14,0,0" />
 
             <Expander x:Name="expander" Header="{DynamicResource OAdvancedOptions}" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Height="188" Width="330">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox x:Name="groupBox_database_Copy" Header="{DynamicResource ODatabase}" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="249">
+                    <GroupBox x:Name="groupBox_database_Copy" Header="{DynamicResource ODatabase}" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Height="153" Width="268">
                         <Grid HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="297" Margin="0,0,-2,0">
-                            <TextBox x:Name="textBox_ip5" HorizontalAlignment="Left" Height="19" Margin="66,14,0,0" TextWrapping="Wrap" Text="{Binding IP1, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
-                            <TextBox x:Name="textBox_ip6" HorizontalAlignment="Left" Height="19" Margin="112,14,0,0" TextWrapping="Wrap" Text="{Binding IP2, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
-                            <TextBox x:Name="textBox_ip7" HorizontalAlignment="Left" Height="19" Margin="158,14,0,0" TextWrapping="Wrap" Text="{Binding IP3, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
-                            <TextBox x:Name="textBox_ip8" HorizontalAlignment="Left" Height="19" Margin="204,14,0,0" TextWrapping="Wrap" Text="{Binding IP4, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
-                            <Label x:Name="label_dot1" Content=" . " HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top"/>
-                            <Label x:Name="label_dot_Copy2" Content=" . " HorizontalAlignment="Left" Margin="139,10,0,0" VerticalAlignment="Top"/>
-                            <Label x:Name="label_dot_Copy3" Content=" . " HorizontalAlignment="Left" Margin="185,10,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="textBox_ip5" HorizontalAlignment="Left" Height="19" Margin="83,14,0,0" TextWrapping="Wrap" Text="{Binding IP1, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                            <TextBox x:Name="textBox_ip6" HorizontalAlignment="Left" Height="19" Margin="129,14,0,0" TextWrapping="Wrap" Text="{Binding IP2, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                            <TextBox x:Name="textBox_ip7" HorizontalAlignment="Left" Height="19" Margin="175,14,0,0" TextWrapping="Wrap" Text="{Binding IP3, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                            <TextBox x:Name="textBox_ip8" HorizontalAlignment="Left" Height="19" Margin="221,14,0,0" TextWrapping="Wrap" Text="{Binding IP4, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="27" MaxLength="3"/>
+                            <Label x:Name="label_dot1" Content=" . " HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label_dot_Copy2" Content=" . " HorizontalAlignment="Left" Margin="156,10,0,0" VerticalAlignment="Top"/>
+                            <Label x:Name="label_dot_Copy3" Content=" . " HorizontalAlignment="Left" Margin="202,10,0,0" VerticalAlignment="Top"/>
 
                             <Label Content="{DynamicResource OIPAddress}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,10,0,0"/>
                             <Label Content="{DynamicResource OUser}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,41,0,0"/>
                             <Label Content="{DynamicResource OPassword}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,72,0,0"/>
                             <Label Content="{DynamicResource OScheme}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,103,0,0"/>
-                            <TextBox x:Name="textBox_user1" HorizontalAlignment="Left" Height="19" Margin="66,48,0,0" TextWrapping="Wrap" Text="{Binding USER, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
-                            <TextBox x:Name="textBox_password1" HorizontalAlignment="Left" Height="19" Margin="66,79,0,0" TextWrapping="Wrap" Text="{Binding PASSWORD, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
-                            <TextBox x:Name="textBox_schema1" HorizontalAlignment="Left" Height="19" Margin="66,110,0,0" TextWrapping="Wrap" Text="{Binding SCHEMA, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
+                            <TextBox x:Name="textBox_user1" HorizontalAlignment="Left" Height="19" Margin="83,45,0,0" TextWrapping="Wrap" Text="{Binding USER, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
+                            <TextBox x:Name="textBox_password1" HorizontalAlignment="Left" Height="19" Margin="83,76,0,0" TextWrapping="Wrap" Text="{Binding PASSWORD, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
+                            <TextBox x:Name="textBox_schema1" HorizontalAlignment="Left" Height="19" Margin="83,107,0,0" TextWrapping="Wrap" Text="{Binding SCHEMA, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="165"/>
 
                         </Grid>
 
@@ -52,7 +52,7 @@
                 </Grid>
             </Expander>
             <Button x:Name="btn_save" Content="{DynamicResource OSaveChanges}" Margin="0,0,10,10" Click="btn_save_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="147"/>
-            <Button x:Name="btn_reset" Content="{DynamicResource OResetColor}" Margin="320,55,0,0" Click="btn_reset_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63"/>
+            <Button x:Name="btn_reset" Content="{DynamicResource OResetColor}" Margin="375,56,0,0" Click="btn_reset_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63"/>
 
         </Grid>
 
