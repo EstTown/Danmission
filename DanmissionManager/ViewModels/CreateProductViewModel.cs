@@ -20,7 +20,7 @@ namespace DanmissionManager.ViewModels
             this.ProductName = string.Empty;
             this.Product = new Product();
             this.Product.name = string.Empty;
-            
+            this.Product.price = 0.0;
             //command for adding a product to the server
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
             this.CommandAddProduct = commandAddProduct;
@@ -41,7 +41,7 @@ namespace DanmissionManager.ViewModels
                 ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
                 this.AllSubCategories = allsubcategories;
             }
-            this.Product.price = 0.0;
+            
         }
 
         private Standardprice _selectedSubCategory;
@@ -72,7 +72,6 @@ namespace DanmissionManager.ViewModels
         private ObservableCollection<Standardprice> AllSubCategories { get; }
 
         private ObservableCollection<Standardprice> _subCategories;
-
         public ObservableCollection<Standardprice> SubCategories
         {
             get { return _subCategories;}
@@ -81,8 +80,7 @@ namespace DanmissionManager.ViewModels
                 _subCategories = value; 
                 OnPropertyChanged("SubCategories");
             }
-        }  
-
+        }
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
         {
@@ -124,6 +122,7 @@ namespace DanmissionManager.ViewModels
 
         public void AddProduct()
         {
+            Console.WriteLine(this.Product.desc);
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
