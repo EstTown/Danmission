@@ -1,4 +1,4 @@
-using DanmissionManager.DBTypes.NewFolder1;
+using DanmissionManager;
 
 namespace DanmissionManager
 {
