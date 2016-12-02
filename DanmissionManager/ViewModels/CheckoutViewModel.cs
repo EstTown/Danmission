@@ -152,15 +152,28 @@ namespace DanmissionManager.ViewModels
 
                     //Commit transaction
                     ctx.Transaction.Add(trans);
+                    ctx.SaveChanges();
                     transId = trans.id;
 
                     //Thrown all the stuffz away!
                     foreach (SoldProduct x in soldList)
                     {
                         x.transactionid = transId;
-                        Console.WriteLine("Adding products");
                     }
                     ctx.Soldproducts.AddRange(soldList);
+
+                    //Remove from inventory
+                    foreach (Product x in ProductsInBasket)
+                    {
+                        foreach (Product y in ctx.Products.ToList())
+                        {
+                            if (x.id == y.id)
+                            {
+                                ctx.Products.Remove(y);
+                            }
+                        }
+                    }
+
                     ctx.SaveChanges();
 
                     notifyUserAboutCompletedPurchase(transId, transSum);
@@ -176,7 +189,7 @@ namespace DanmissionManager.ViewModels
 
         private void notifyUserAboutCompletedPurchase(int transid, double sum)
         {
-            MessageBox.Show("Tranaction ID: " + transid + "/nSum: " + sum ,"Purchase completed");
+            MessageBox.Show("Tranaction ID: " + transid + "\nSum: " + sum ,"Purchase completed");
         }
 
         public BitmapImage ImageFromBuffer(Byte[] bytes)
