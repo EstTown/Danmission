@@ -24,7 +24,7 @@ namespace DanmissionManager.Models
             List<Transaction> list = new List<Transaction>();
             using (var ctx = new ServerContext())
             {
-                list = ctx.Transactions.Where(predicate).ToList();
+                list = ctx.Transaction.Where(predicate).ToList();
             }
             return list;
         }

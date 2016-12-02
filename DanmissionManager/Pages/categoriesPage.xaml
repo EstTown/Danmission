@@ -21,7 +21,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,2">
-                                <TextBlock Text="{Binding name}" />
+                                <TextBlock Text="{Binding FullName}" />
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

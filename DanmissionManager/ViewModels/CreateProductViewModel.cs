@@ -121,11 +121,11 @@ namespace DanmissionManager.ViewModels
 
         public void AddProduct()
         {
-            Console.WriteLine(this.Product.desc);
+
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
-            product.category = this.SelectedSubCategory.id;
+            product.category = this.SelectedCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
             if (product.image != null)
