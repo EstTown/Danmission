@@ -20,23 +20,52 @@ namespace DanmissionManager.ViewModels
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
             this.Statistics = statistics;
 
-            RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartItems);
+            RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
-        }
 
-        private string _selectedString;
-        public string selectedString
+            //get all categories and soldproducts
+            using(var ctx = new ServerContext())
+            {
+                this.AllCategories = new List<Category>(ctx.Category.ToList());
+                this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+            }
+        }
+        
+        public List<SoldProduct> AllSoldProducts { get; set; }  
+
+        private List<Category> _allCategories;
+        public List<Category> AllCategories
         {
-            get { return _selectedString; }
+            get { return _allCategories; }
             set
             {
-                _selectedString = value;
+                _allCategories = value;
+                OnPropertyChanged("Allcategories");
+            }
+        }
+
+        private void CalculateSum()
+        {
+            foreach (Category category in AllCategories)
+            {
+                category.Sum = AllSoldProducts.Where(x => x.id.CompareTo(category.id) == 0).Sum(x => x.price);
+            }
+        }  
+
+        private string _selectedChart;
+        public string SelectedChart
+        {
+            get { return _selectedChart; }
+            set
+            {
+                _selectedChart = value;
+                OnPropertyChanged("SelectedChart");
             }
                 
         }
-
         private void ChangeChart()
         {
+            /*
             if (Statistics.ToString() == "Inventar")
             {
                 RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartItems);
@@ -51,6 +80,22 @@ namespace DanmissionManager.ViewModels
             {
                 RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartExpired);
                 this.CommandDisplayChart = commandDisplayChart;
+            }
+            */
+
+            switch (this.SelectedChart)
+            {
+                case "Inventar":
+                    ShowChartItems();
+                    break;
+                case "Salg":
+                    ShowChartSales();
+                    break;
+                case "Udgået":
+                    ShowChartExpired();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -67,14 +112,21 @@ namespace DanmissionManager.ViewModels
 
         private void ShowChartItems()
         {
+            CalculateSum();
+            List<KeyValuePair<string, double>> itemValue = new List<KeyValuePair<string, double>>();
+            foreach (Category category in this.AllCategories)
+            {
+                itemValue.Add(new KeyValuePair<string, double>(category.name, category.Sum));
+            }
+            /*
             List<KeyValuePair<string, int>> ItemsValue = new List<KeyValuePair<string, int>>();
             ItemsValue.Add(new KeyValuePair<string, int>("Herretøj", 140));
             ItemsValue.Add(new KeyValuePair<string, int>("Dametøj", 360));
             ItemsValue.Add(new KeyValuePair<string, int>("Smykker", 89));
             ItemsValue.Add(new KeyValuePair<string, int>("Køkken", 80));
             ItemsValue.Add(new KeyValuePair<string, int>("Boger", 100));
-
-            PieChart = ItemsValue;
+            */
+            PieChart = itemValue;
         }
 
         private void ShowChartSales()
@@ -85,6 +137,8 @@ namespace DanmissionManager.ViewModels
             SalesValue.Add(new KeyValuePair<string, int>("Smykker", 70));
             SalesValue.Add(new KeyValuePair<string, int>("Køkken", 20));
             SalesValue.Add(new KeyValuePair<string, int>("Boger", 30));
+
+            //PieChart = SalesValue;
         }
 
         private void ShowChartExpired()
@@ -95,10 +149,12 @@ namespace DanmissionManager.ViewModels
             ExpiredValue.Add(new KeyValuePair<string, int>("Smykker", 30));
             ExpiredValue.Add(new KeyValuePair<string, int>("Køkken", 5));
             ExpiredValue.Add(new KeyValuePair<string, int>("Boger", 20));
+
+            //PieChart = ExpiredValue;
         }
 
-        private List<KeyValuePair<string, int>> _pieChart;
-        public List<KeyValuePair<string, int>> PieChart
+        private List<KeyValuePair<string, double>> _pieChart;
+        public List<KeyValuePair<string, double>> PieChart
         {
             get
             {

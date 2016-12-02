@@ -15,10 +15,6 @@ namespace DanmissionManager.ViewModels
         {
             ConsoleManager.Show();
             LoadSettings();
-
-            //Generator a = new Generator();
-            
-
         }
 
         private void LoadSettings()
