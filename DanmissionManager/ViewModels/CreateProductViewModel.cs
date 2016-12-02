@@ -128,7 +128,7 @@ namespace DanmissionManager.ViewModels
             product.category = this.SelectedCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
-            if (product.image != null)
+            if (Image != null)
             {
                 product.image = this.imageToByteArray(Image);
             }
