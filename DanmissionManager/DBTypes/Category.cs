@@ -16,6 +16,6 @@ namespace DanmissionManager
         public string name { get; set; }
 
         [NotMapped]
-        public double Sum { get; set; }
+        public int Sum { get; set; }
     }
 }

@@ -30,7 +30,6 @@ namespace DanmissionManager.ViewModels
                 this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
             }
         }
-        
         public List<SoldProduct> AllSoldProducts { get; set; }  
 
         private List<Category> _allCategories;
@@ -46,12 +45,41 @@ namespace DanmissionManager.ViewModels
 
         private void CalculateSum()
         {
-            foreach (Category category in AllCategories)
+            
+            for (int i = 0; i < this.AllCategories.Count; i++)
             {
-                category.Sum = AllSoldProducts.Where(x => x.id.CompareTo(category.id) == 0).Sum(x => x.price);
-            }
-        }  
+                List<SoldProduct> list = new List<SoldProduct>();
+                list = AllSoldProducts.Where(x => x.category.CompareTo(AllCategories[i].id) == 0).ToList();
 
+                AllSoldProducts.Where(x => x.category.CompareTo(AllCategories[i].id) == 0).Sum(x => (int)x.price);
+
+                this.AllCategories[i].Sum = list.Sum(y => (int) y.price);
+            }
+            
+            
+            
+            /*
+                list = AllSoldProducts.Where(x => x.id.CompareTo(category.id) == 0).ToList();
+                category.Sum = (int)list.Sum(y => y.price);
+
+                int a = AllSoldProducts.Where(x => x.id.CompareTo(AllCategories[i].id) == 0).Sum(x => (int)x.price);
+                */
+                //category.Sum = (int)AllSoldProducts.Sum(x => x.price);
+
+            }
+            /*
+            {
+                category.Sum = AllSoldProducts.Where(x => x.id.CompareTo(category.id) == 0).Sum(y => (int)y.price);
+                
+                
+                
+                list = AllSoldProducts.Where(x => x.id.CompareTo(category.id) == 0).ToList();
+                category.Sum = (int)list.Sum(y => y.price);
+                
+                category.Sum = (int)AllSoldProducts.Sum(x => x.price);
+                Console.WriteLine(category.Sum);
+            }
+            */
         private string _selectedChart;
         public string SelectedChart
         {
@@ -65,24 +93,6 @@ namespace DanmissionManager.ViewModels
         }
         private void ChangeChart()
         {
-            /*
-            if (Statistics.ToString() == "Inventar")
-            {
-                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartItems);
-                this.CommandDisplayChart = commandDisplayChart;
-            }
-            else if (Statistics.ToString() == "Salg")
-            {
-                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartSales);
-                this.CommandDisplayChart = commandDisplayChart;
-            }
-            else
-            {
-                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartExpired);
-                this.CommandDisplayChart = commandDisplayChart;
-            }
-            */
-
             switch (this.SelectedChart)
             {
                 case "Inventar":
@@ -113,10 +123,11 @@ namespace DanmissionManager.ViewModels
         private void ShowChartItems()
         {
             CalculateSum();
-            List<KeyValuePair<string, double>> itemValue = new List<KeyValuePair<string, double>>();
+            
+            List<KeyValuePair<string, int>> itemValue = new List<KeyValuePair<string, int>>();
             foreach (Category category in this.AllCategories)
             {
-                itemValue.Add(new KeyValuePair<string, double>(category.name, category.Sum));
+                itemValue.Add(new KeyValuePair<string, int>(category.name, category.Sum));
             }
             /*
             List<KeyValuePair<string, int>> ItemsValue = new List<KeyValuePair<string, int>>();
@@ -153,8 +164,8 @@ namespace DanmissionManager.ViewModels
             //PieChart = ExpiredValue;
         }
 
-        private List<KeyValuePair<string, double>> _pieChart;
-        public List<KeyValuePair<string, double>> PieChart
+        private List<KeyValuePair<string, int>> _pieChart;
+        public List<KeyValuePair<string, int>> PieChart
         {
             get
             {

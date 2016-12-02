@@ -138,9 +138,9 @@ namespace DanmissionManager.ViewModels
                 tmp.desc = x.desc;
                 tmp.isUnique = x.isUnique;
                 tmp.image = x.image;
+                tmp.category = x.category;
                 soldList.Add(tmp);
             }
-
             try
             {
                 using (var ctx = new ServerContext())
