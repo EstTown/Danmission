@@ -23,6 +23,7 @@ namespace DanmissionManager.ViewModels
             this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
             this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
         }
+
         public RelayCommand2 CommandGetCategories { get; set; }
         public void GetCategoriesFromDatabase()
         {
@@ -88,7 +89,6 @@ namespace DanmissionManager.ViewModels
         }
 
         private ObservableCollection<Standardprice> _shownSubCategories;
-
         public ObservableCollection<Standardprice> ShownSubCategories
         {
             get { return _shownSubCategories; }
@@ -122,6 +122,42 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("AllCategories");
             }
         }
+
+        private ObservableCollection<Category> _shownCategories;
+        public ObservableCollection<Category> ShownCategories
+        {
+            get { return _shownCategories; }
+            set
+            {
+                _shownCategories = value;
+                OnPropertyChanged("ShownCategories");
+            }
+        }
+
+        private string _subCategorySearchParameter;
+        public string SubCategorySearchParameter
+        {
+            get { return _subCategorySearchParameter; }
+            set { _subCategorySearchParameter = value; UpdateShownSubCategories(SubCategorySearchParameter); OnPropertyChanged("SubCategorySearchParameter"); }
+        }
+
+        private string _categorySearchParameter;
+        public string CategorySearchParameter
+        {
+            get { return _categorySearchParameter; }
+            set { _categorySearchParameter = value; UpdateShownCategories(CategorySearchParameter); OnPropertyChanged("CategorySearchParameter"); }
+        }
+
+        private void UpdateShownSubCategories(string subCategorySearchParameter)
+        {
+            ShownSubCategories = new ObservableCollection<Standardprice>(AllSubCategories.Where(x => x.name.Contains(subCategorySearchParameter)));
+        }
+
+        private void UpdateShownCategories(string categorySearchParameter)
+        {
+            ShownCategories = new ObservableCollection<Category>(AllCategories.Where(x => x.name.Contains(categorySearchParameter)));
+        }
+
         //properties for containing the newly created category and subcategory
         private Category _createdCategory;
         public Category CreatedCategory
