@@ -17,5 +17,16 @@ namespace DanmissionManager
 
         [NotMapped]
         public int Sum { get; set; }
+
+        public override string ToString()
+        {
+            return this.name + " " + "(" + this.id + ")";
+        }
+
+        [NotMapped]
+        public string FullName
+        {
+            get { return this.ToString(); }
+        }
     }
 }
