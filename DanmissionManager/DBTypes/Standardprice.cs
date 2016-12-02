@@ -20,6 +20,7 @@ namespace DanmissionManager
         [Required]
         [StringLength(45)]
         public string CorrespondingCategoryString { get; set; }
+
         public int Parent_id { get; set; }
     }
 }

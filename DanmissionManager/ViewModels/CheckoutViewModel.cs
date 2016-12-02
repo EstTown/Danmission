@@ -19,6 +19,8 @@ namespace DanmissionManager.ViewModels
             this.CommandGetProductByID = new RelayCommand2(CommandGetProductByIDFromDatabase);
             this.CommandAddToBasket = new RelayCommand2(CommandAddSelectedToBasket);
             this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
+            this.CommandComplete = new RelayCommand2(CommandCompletePurchase);
+
 
             ProductsInBasket = new ObservableCollection<Product>();
         }
@@ -116,6 +118,61 @@ namespace DanmissionManager.ViewModels
         {
             ProductsInBasket.Clear();
             this.TotalPrice = "0";
+        }
+
+        public RelayCommand2 CommandComplete { get; set; }
+        public void CommandCompletePurchase()
+        {
+            int transId = 0;
+            double transSum = 0;
+            //Make transaction
+
+            //Move products to soldproducts
+            List<SoldProduct> soldList = new List<SoldProduct>();
+            foreach (Product x in ProductsInBasket)
+            {
+                SoldProduct tmp = new SoldProduct();
+                tmp.name = x.name;
+                tmp.id = x.id;
+                tmp.image = x.image;
+                tmp.price = x.price;
+                tmp.isUnique = x.isUnique;
+                soldList.Add(tmp);
+            }
+
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    //Date and id is assigned serverside.
+                    Transaction trans = new Transaction();
+                    trans.sum = this.ProductsInBasket.Sum(x => x.price);
+                    transSum = trans.sum;
+
+                    //Commit transaction
+                    ctx.Transaction.Add(trans);
+                    transId = trans.id;
+
+                    //Thrown all the stuffz away!
+                    foreach (SoldProduct x in soldList)
+                    {
+                        x.transactionid = transId;
+                        ctx.Soldproducts.Add(x);
+                        Console.WriteLine("Adding products");
+                    }
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+
+            notifyUserAboutCompletedPurchase(transId, transSum);
+        }
+
+        private void notifyUserAboutCompletedPurchase(int transid, double sum)
+        {
+            MessageBox.Show("Tranaction ID: " + transid + "/nSum: " + sum ,"Purchase completed");
         }
 
         public BitmapImage ImageFromBuffer(Byte[] bytes)

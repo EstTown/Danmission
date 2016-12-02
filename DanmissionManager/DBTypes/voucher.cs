@@ -15,5 +15,7 @@ namespace DanmissionManager
         public DateTime? date { get; set; }
 
         public int amount { get; set; }
+
+        public int returntransactionid { get; set; }
     }
 }

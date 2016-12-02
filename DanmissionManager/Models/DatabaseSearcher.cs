@@ -9,7 +9,7 @@ namespace DanmissionManager.Models
 {
     public class DatabaseSearcher : DatabaseConnector
     {
-        public List<Product> SearchProducts(Expression<Func<Product, bool>> predicate)
+        public List<Product> FindProducts(Expression<Func<Product, bool>> predicate)
         {
             List<Product> list = new List<Product>();
             using (var ctx = new ServerContext())
@@ -19,22 +19,22 @@ namespace DanmissionManager.Models
             return list;
         }
 
-        //private List<Product> SearchSoldProducts(Expression<Func<Product, bool>> predicate)
-        //{
-        //    List<Product> list = new List<Product>();
-        //    using (var ctx = new ServerContext())
-        //    {
-        //        list = ctx.Soldproducts.Where(predicate).ToList();
-        //    }
-        //    return list;
-        //}
-
-        public List<Transaction> SearchTransactions(Expression<Func<Transaction, bool>> predicate)
+        public List<Transaction> FindTransactions(Expression<Func<Transaction, bool>> predicate)
         {
             List<Transaction> list = new List<Transaction>();
             using (var ctx = new ServerContext())
             {
-                list = ctx.Transactions.Where(predicate).ToList();
+                list = ctx.Transaction.Where(predicate).ToList();
+            }
+            return list;
+        }
+
+        internal List<SoldProduct> FindSoldProducts(Expression<Func<SoldProduct, bool>> predicate)
+        {
+            List<SoldProduct> list = new List<SoldProduct>();
+            using (var ctx = new ServerContext())
+            {
+                list = ctx.Soldproducts.Where(predicate).ToList();
             }
             return list;
         }
