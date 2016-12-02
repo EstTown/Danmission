@@ -14,14 +14,56 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="auto" Margin="278,93,0,0" VerticalAlignment="Top" Width="300">
-            <Button Height="45" Content="{DynamicResource IOUnique}"></Button >
-            <Button Height="45" Content="{DynamicResource IONotUnique}"></Button>
-            <Button Height="45" Content="{DynamicResource IOExpired}"></Button>
-            <Button Height="45" Content="{DynamicResource IOTransactions}"></Button>
-            <Button Height="45" Content="{DynamicResource IOSold}"></Button>
+            <Button x:Name="label13" Height="45">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOUnique}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=UniqueProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IONotUnique}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=NonUniqueProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOExpired}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=ExpiredProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOTransactions}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=Transactions.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOSold}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=SoldProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
         </StackPanel>
-
-
-
     </Grid>
 </Page>

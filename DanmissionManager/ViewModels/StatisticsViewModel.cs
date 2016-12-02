@@ -35,6 +35,25 @@ namespace DanmissionManager.ViewModels
                 
         }
 
+        private void ChangeChart()
+        {
+            if (Statistics.ToString() == "Inventar")
+            {
+                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartItems);
+                this.CommandDisplayChart = commandDisplayChart;
+            }
+            else if (Statistics.ToString() == "Salg")
+            {
+                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartSales);
+                this.CommandDisplayChart = commandDisplayChart;
+            }
+            else
+            {
+                RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChartExpired);
+                this.CommandDisplayChart = commandDisplayChart;
+            }
+        }
+
         private ObservableCollection<string> _statistics;
         public ObservableCollection<string> Statistics
         {
