@@ -132,11 +132,12 @@ namespace DanmissionManager.ViewModels
             foreach (Product x in ProductsInBasket)
             {
                 SoldProduct tmp = new SoldProduct();
+                tmp.previousid = x.id;
                 tmp.name = x.name;
-                tmp.id = x.id;
-                tmp.image = x.image;
                 tmp.price = x.price;
+                tmp.desc = x.desc;
                 tmp.isUnique = x.isUnique;
+                tmp.image = x.image;
                 soldList.Add(tmp);
             }
 
@@ -157,9 +158,12 @@ namespace DanmissionManager.ViewModels
                     foreach (SoldProduct x in soldList)
                     {
                         x.transactionid = transId;
-                        ctx.Soldproducts.Add(x);
                         Console.WriteLine("Adding products");
                     }
+                    ctx.Soldproducts.AddRange(soldList);
+                    ctx.SaveChanges();
+
+                    notifyUserAboutCompletedPurchase(transId, transSum);
                 }
             }
             catch (System.Data.DataException)
@@ -167,7 +171,7 @@ namespace DanmissionManager.ViewModels
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
 
-            notifyUserAboutCompletedPurchase(transId, transSum);
+            
         }
 
         private void notifyUserAboutCompletedPurchase(int transid, double sum)
