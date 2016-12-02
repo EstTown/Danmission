@@ -136,6 +136,7 @@ namespace DanmissionManager.ViewModels
                 tmp.name = x.name;
                 tmp.price = x.price;
                 tmp.desc = x.desc;
+                tmp.date = DateTime.Now;
                 tmp.isUnique = x.isUnique;
                 tmp.image = x.image;
                 tmp.category = x.category;
@@ -148,21 +149,38 @@ namespace DanmissionManager.ViewModels
                     //Date and id is assigned serverside.
                     Transaction trans = new Transaction();
                     trans.sum = this.ProductsInBasket.Sum(x => x.price);
+                    trans.date = DateTime.Now;
                     transSum = trans.sum;
 
                     //Commit transaction
                     ctx.Transaction.Add(trans);
+                    ctx.SaveChanges();
                     transId = trans.id;
 
                     //Thrown all the stuffz away!
                     foreach (SoldProduct x in soldList)
                     {
                         x.transactionid = transId;
-                        Console.WriteLine("Adding products");
                     }
                     ctx.Soldproducts.AddRange(soldList);
-                    ctx.SaveChanges();
 
+                    //Remove from inventory
+                    foreach (Product x in ProductsInBasket)
+                    {
+                        foreach (Product y in ctx.Products.ToList())
+                        {
+                            if (x.id == y.id)
+                            {
+                                if (x.isUnique == true)
+                                {
+                                    ctx.Products.Remove(y);
+                                }
+                            }
+                        }
+                    }
+
+                    ctx.SaveChanges();
+                    CommandClearAllProductsFromBasket();
                     notifyUserAboutCompletedPurchase(transId, transSum);
                 }
             }
@@ -176,7 +194,7 @@ namespace DanmissionManager.ViewModels
 
         private void notifyUserAboutCompletedPurchase(int transid, double sum)
         {
-            MessageBox.Show("Tranaction ID: " + transid + "/nSum: " + sum ,"Purchase completed");
+            MessageBox.Show("Tranaction ID: " + transid + "\nSum: " + sum ,"Purchase completed");
         }
 
         public BitmapImage ImageFromBuffer(Byte[] bytes)
