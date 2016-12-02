@@ -181,7 +181,7 @@ namespace DanmissionManager.ViewModels
                     }
 
                     ctx.SaveChanges();
-
+                    CommandClearAllProductsFromBasket();
                     notifyUserAboutCompletedPurchase(transId, transSum);
                 }
             }
