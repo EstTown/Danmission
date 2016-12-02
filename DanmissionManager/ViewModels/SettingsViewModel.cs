@@ -26,7 +26,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (Exception)
             {
-                SelectedItem = Languages.First();
+                SelectedItem = Languages.FirstOrDefault();
             }
         }
 
