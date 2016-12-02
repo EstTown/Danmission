@@ -16,22 +16,26 @@
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource categories}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <GroupBox x:Name="groupBox_Categories" Header="{DynamicResource CCategories}" Margin="10,55,435,45">
-                <Grid>
-                    <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=Category}" Margin="10,10,12.667,31.333">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,2">
-                                    <TextBlock Text="{Binding name}" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
+            <Grid>
+                <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=AllCategories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="10,10,12.4,237.6">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="{Binding FullName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
 
-                    </ListBox>
-                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
-                <Button x:Name="button_CategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                </ListBox>
+                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding Path = CommandRemoveCategory}"  Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="button_CategoriesAdd" Content="{DynamicResource CAddCategory}" Command="{Binding Path = CommandAddCategory}" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="button_fetch" Content="{DynamicResource CFetch}"  Command ="{Binding Path = CommandGetCategories}" Margin="10,0,0,6.333" HorizontalAlignment="Left" Width="76" Height="18" VerticalAlignment="Bottom"/>
-                </Grid>
-            </GroupBox>
+                <Label x:Name="label" Content="Ny hovedkategori:" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="125"/>
+                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="216,324,0,0" TextWrapping="Wrap" Text="{Binding CreatedCategory.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="label1" Content="Navn på ny kategori" HorizontalAlignment="Left" Margin="9,324,0,0" VerticalAlignment="Top" Width="126"/>
+                <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="28,361,0,0" VerticalAlignment="Top" Width="77"/>
+            </Grid>
+        </GroupBox>
 
         <GroupBox x:Name="groupBox_Subcategories" Header="{DynamicResource CSubcategories}" Margin="0,55,27,45" HorizontalAlignment="Right" Width="395">
             <Grid>
@@ -39,9 +43,16 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="363*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="listBox_Subcategories" Margin="10,10,12.667,31.333" Grid.ColumnSpan="2"/>
-                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
-                <Button x:Name="button_SubcategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+                <ListBox x:Name="listBox_Subcategories" SelectedItem="{Binding SelectedSubCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Path = ShownSubCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name"  Margin="10,10,12.4,237.6" Grid.ColumnSpan="2"/>
+                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding CommandRemoveSubCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+                <Button x:Name="button_SubcategoriesAdd" Content="{DynamicResource CAddCategory}" Command ="{Binding Path=CommandAddSubCategory}"  Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
+                <Label x:Name="label3" Content="Ny underkategori" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
+                <Label x:Name="label4" Content="Angiv tilhørende hovedkategori" Grid.Column="1" HorizontalAlignment="Left" Margin="102,264,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
+                <ComboBox x:Name="comboBox" SelectedItem="{Binding SelectedNewCategory, Mode=TwoWay}" ItemsSource="{Binding Path = AllCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name" Grid.Column="1" HorizontalAlignment="Left" Margin="283,264,0,0" VerticalAlignment="Top" Width="79"/>
+                <Label x:Name="label5" Content="Navn på ny kategori" Grid.Column="1" HorizontalAlignment="Left" Margin="0,342,0,0" VerticalAlignment="Top" Width="121"/>
+                <TextBox x:Name="textBox2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="196,342,0,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="textBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="199,397,0,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.standardprice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="117"/>
+                <Label x:Name="label6" Content="Angiv typisk pris for denne kategori" HorizontalAlignment="Left" Margin="0,397,0,0" VerticalAlignment="Top" Width="195" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
 

@@ -16,23 +16,116 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
-            RelayCommand2 commandDisplayChart = new RelayCommand2(ShowChart);
+            /*Combobox*/
+            ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
+            this.Statistics = statistics;
+
+            RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
 
+            //get all categories and soldproducts
+            using(var ctx = new ServerContext())
+            {
+                this.AllCategories = new List<Category>(ctx.Category.ToList());
+                this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+            }
         }
-
-        private void ShowChart()
+        public List<SoldProduct> AllSoldProducts { get; set; }
+        private List<Category> _allCategories;
+        public List<Category> AllCategories
         {
-            List<KeyValuePair<string, int>> MyValue = new List<KeyValuePair<string, int>>();
-            MyValue.Add(new KeyValuePair<string, int>("Administration", 20));
-            MyValue.Add(new KeyValuePair<string, int>("Management", 36));
-            MyValue.Add(new KeyValuePair<string, int>("Development", 89));
-            MyValue.Add(new KeyValuePair<string, int>("Support", 270));
-            MyValue.Add(new KeyValuePair<string, int>("Sales", 140));
-
-            PieChart = MyValue;
+            get { return _allCategories; }
+            set
+            {
+                _allCategories = value;
+                OnPropertyChanged("Allcategories");
+            }
         }
+        private void CalculateSum()
+        {
 
+            for (int i = 0; i < this.AllCategories.Count; i++)
+            {
+                List<SoldProduct> list = new List<SoldProduct>();
+                list = AllSoldProducts.Where(x => x.category.CompareTo(AllCategories[i].id) == 0).ToList();
+
+                AllSoldProducts.Where(x => x.category.CompareTo(AllCategories[i].id) == 0).Sum(x => (int) x.price);
+
+                this.AllCategories[i].Sum = list.Sum(y => (int) y.price);
+            }
+        }
+        private string _selectedChart;
+        public string SelectedChart
+        {
+            get { return _selectedChart; }
+            set
+            {
+                _selectedChart = value;
+                OnPropertyChanged("SelectedChart");
+            }
+        }
+        private void ChangeChart()
+        {
+            switch (this.SelectedChart)
+            {
+                case "Inventar":
+                    ShowChartItems();
+                    break;
+                case "Salg":
+                    ShowChartSales();
+                    break;
+                case "Udgået":
+                    ShowChartExpired();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private ObservableCollection<string> _statistics;
+        public ObservableCollection<string> Statistics
+        {
+            get { return _statistics; }
+            set
+            {
+                _statistics = value;
+                OnPropertyChanged("Statistics");
+            }
+        }
+        private void ShowChartItems()
+        {
+            CalculateSum();
+            List<KeyValuePair<string, int>> itemValue = new List<KeyValuePair<string, int>>();
+            foreach (Category category in this.AllCategories)
+            {
+                if (category.Sum != 0)
+                {
+                    itemValue.Add(new KeyValuePair<string, int>(category.name, category.Sum));
+                }
+            }
+            PieChart = itemValue;
+        }
+        private void ShowChartSales()
+        {
+            List<KeyValuePair<string, int>> SalesValue = new List<KeyValuePair<string, int>>();
+            SalesValue.Add(new KeyValuePair<string, int>("Herretøj", 120));
+            SalesValue.Add(new KeyValuePair<string, int>("Dametøj", 90));
+            SalesValue.Add(new KeyValuePair<string, int>("Smykker", 70));
+            SalesValue.Add(new KeyValuePair<string, int>("Køkken", 20));
+            SalesValue.Add(new KeyValuePair<string, int>("Boger", 30));
+
+            PieChart = SalesValue;
+        }
+        private void ShowChartExpired()
+        {
+            List<KeyValuePair<string, int>> ExpiredValue = new List<KeyValuePair<string, int>>();
+            ExpiredValue.Add(new KeyValuePair<string, int>("Herretøj", 20));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Dametøj", 10));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Smykker", 30));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Køkken", 5));
+            ExpiredValue.Add(new KeyValuePair<string, int>("Boger", 20));
+
+            PieChart = ExpiredValue;
+        }
         private List<KeyValuePair<string, int>> _pieChart;
         public List<KeyValuePair<string, int>> PieChart
         {
@@ -47,5 +140,15 @@ namespace DanmissionManager.ViewModels
             }
         }
         public RelayCommand2 CommandDisplayChart { get; set; }
+        private List<string> statCombobox()
+        {
+            List<string> data = new List<string>();
+
+            data.Add("Inventar");
+            data.Add("Salg");
+            data.Add("Udgået");
+
+            return data;
+        }
     }
 }

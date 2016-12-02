@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foundation.ObjectHydrator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,12 @@ namespace DanmissionManager.ViewModels
         public MainViewModel()
         {
             ConsoleManager.Show();
+            LoadSettings();
         }
 
-        
-
+        private void LoadSettings()
+        {
+            new SettingsViewModel();
+        }
     }
 }

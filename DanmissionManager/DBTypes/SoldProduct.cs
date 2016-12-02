@@ -1,4 +1,4 @@
-namespace DanmissionManager.DBTypes.NewFolder1
+namespace DanmissionManager
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace DanmissionManager.DBTypes.NewFolder1
     [Table("data.soldproducts")]
     public partial class SoldProduct
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public int id { get; set; }
 
         [Required]
@@ -32,5 +32,7 @@ namespace DanmissionManager.DBTypes.NewFolder1
         public byte[] image { get; set; }
 
         public int transactionid { get; set; }
+
+        public int previousid { get; set; }
     }
 }

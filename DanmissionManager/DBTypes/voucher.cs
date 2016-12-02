@@ -1,4 +1,4 @@
-namespace DanmissionManager.DBTypes.NewFolder1
+namespace DanmissionManager
 {
     using System;
     using System.Collections.Generic;
@@ -15,5 +15,7 @@ namespace DanmissionManager.DBTypes.NewFolder1
         public DateTime? date { get; set; }
 
         public int amount { get; set; }
+
+        public int returntransactionid { get; set; }
     }
 }

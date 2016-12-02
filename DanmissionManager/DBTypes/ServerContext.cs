@@ -1,4 +1,4 @@
-using DanmissionManager.DBTypes.NewFolder1;
+using DanmissionManager;
 
 namespace DanmissionManager
 {
@@ -13,14 +13,13 @@ namespace DanmissionManager
             : base("name=ServerContext")
         {
         }
-
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SoldProduct> Soldproducts { get; set; }
         public virtual DbSet<Standardprice> Standardprices { get; set; }
         public virtual DbSet<Storesection> Storesection { get; set; }
         public virtual DbSet<SubCategory> Subcategories { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Voucher> Voucher { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -59,10 +58,6 @@ namespace DanmissionManager
 
             modelBuilder.Entity<SubCategory>()
                 .Property(e => e.subcategory)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Transaction>()
-                .Property(e => e.date)
                 .IsUnicode(false);
         }
     }

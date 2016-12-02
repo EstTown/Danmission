@@ -4,13 +4,79 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
-      xmlns:local="clr-namespace:DanmissionManager.Pages"
+      xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="840"
       Title="inventoryOverviewPage">
+    <Page.DataContext>
+        <local:InventoryOverviewViewModel/>
+    </Page.DataContext>
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="82,90,0,0" TextWrapping="Wrap" Text="Inventory overview page" VerticalAlignment="Top"/>
+        <StackPanel HorizontalAlignment="Left" Height="auto" Margin="25,115,0,0" VerticalAlignment="Top" Width="200">
+            <Button x:Name="label13" Height="45" Command="{Binding CommandFindUniqueProducts}">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOUnique}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=UniqueProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45" HorizontalAlignment="Left" Width="200" Command="{Binding CommandFindNonUniqueProducts}">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IONotUnique}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=NonUniqueProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45" Command="{Binding CommandFindExpiredProducts}">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOExpired}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=ExpiredProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45" Command="{Binding CommandFindTransactions}">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOTransactions}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=Transactions.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Height="45" Command="{Binding CommandFindSoldProducts}">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{DynamicResource IOSold}"/>
+                        <Run> (</Run>
+                        <Run Text="{Binding Path=SoldProducts.Count, Mode=OneWay}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <ListView Margin="250,50,25,50" Name="lvProducts" ItemsSource="{Binding Path=SearchParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="{DynamicResource FPName}" Width="150" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="{DynamicResource FPCategory}" Width="150" DisplayMemberBinding="{Binding category}" />
+                    <GridViewColumn Header="{DynamicResource FPPrice}" Width="50" DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="{DynamicResource FPAddedDate}" Width="150" DisplayMemberBinding="{Binding date}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Page>

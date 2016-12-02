@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using DanmissionManager.Commands;
-using DanmissionManager.DBTypes.NewFolder1;
 using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.IO;
+using System.Windows;
 
 namespace DanmissionManager.ViewModels
 {
@@ -20,7 +20,7 @@ namespace DanmissionManager.ViewModels
             this.ProductName = string.Empty;
             this.Product = new Product();
             this.Product.name = string.Empty;
-            
+            this.Product.price = 0.0;
             //command for adding a product to the server
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
             this.CommandAddProduct = commandAddProduct;
@@ -28,22 +28,23 @@ namespace DanmissionManager.ViewModels
             //Command for getting image from user, via dialog
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
-            
-            //get all categories from database
-            using (var ctx = new ServerContext())
-            {
-                ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
-                this.Categories = categories;
-            }
-            //get all subcategories from database
-            using (var ctx = new ServerContext())
-            {
-                ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
-                this.AllSubCategories = allsubcategories;
-            }
-            this.Product.price = 0.0;
-        }
 
+            //get all categories and subcategories from database
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
+                    this.Categories = categories;
+                    ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
+                    this.AllSubCategories = allsubcategories;
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+        }
         private Standardprice _selectedSubCategory;
         public Standardprice SelectedSubCategory
         {
@@ -65,14 +66,11 @@ namespace DanmissionManager.ViewModels
 
                 //run method that changes subcategories collection, based on selectedcategory
                 ChangeCollection();
-                
-
             }
         }
         private ObservableCollection<Standardprice> AllSubCategories { get; }
 
         private ObservableCollection<Standardprice> _subCategories;
-
         public ObservableCollection<Standardprice> SubCategories
         {
             get { return _subCategories;}
@@ -81,8 +79,7 @@ namespace DanmissionManager.ViewModels
                 _subCategories = value; 
                 OnPropertyChanged("SubCategories");
             }
-        }  
-
+        }
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
         {
@@ -124,13 +121,17 @@ namespace DanmissionManager.ViewModels
 
         public void AddProduct()
         {
+
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
-            product.category = this.SelectedSubCategory.id;
+            product.category = this.SelectedCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
-            product.image = this.imageToByteArray(Image);
+            if (Image != null)
+            {
+                product.image = this.imageToByteArray(Image);
+            }
             if (this.Product.price.Equals(0.0) == true)
             {
                 product.price = this.SelectedSubCategory.standardprice;
@@ -144,6 +145,7 @@ namespace DanmissionManager.ViewModels
             {
                 ctx.Products.Add(product);
                 ctx.SaveChanges();
+                MessageBox.Show("Assigned ID: " + product.id, "Success!");
             }
             
         }
