@@ -136,8 +136,10 @@ namespace DanmissionManager.ViewModels
                 tmp.name = x.name;
                 tmp.price = x.price;
                 tmp.desc = x.desc;
+                tmp.date = DateTime.Now;
                 tmp.isUnique = x.isUnique;
                 tmp.image = x.image;
+                tmp.category = x.category;
                 soldList.Add(tmp);
             }
 
@@ -148,6 +150,7 @@ namespace DanmissionManager.ViewModels
                     //Date and id is assigned serverside.
                     Transaction trans = new Transaction();
                     trans.sum = this.ProductsInBasket.Sum(x => x.price);
+                    trans.date = DateTime.Now;
                     transSum = trans.sum;
 
                     //Commit transaction
@@ -169,7 +172,10 @@ namespace DanmissionManager.ViewModels
                         {
                             if (x.id == y.id)
                             {
-                                ctx.Products.Remove(y);
+                                if (x.isUnique == true)
+                                {
+                                    ctx.Products.Remove(y);
+                                }
                             }
                         }
                     }
