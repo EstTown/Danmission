@@ -128,7 +128,10 @@ namespace DanmissionManager.ViewModels
             product.category = this.SelectedSubCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
-            product.image = this.imageToByteArray(Image);
+            if (product.image != null)
+            {
+                product.image = this.imageToByteArray(Image);
+            }
             if (this.Product.price.Equals(0.0) == true)
             {
                 product.price = this.SelectedSubCategory.standardprice;
@@ -142,6 +145,7 @@ namespace DanmissionManager.ViewModels
             {
                 ctx.Products.Add(product);
                 ctx.SaveChanges();
+                MessageBox.Show("Assigned ID: " + product.id, "Success!");
             }
             
         }
