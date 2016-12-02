@@ -70,7 +70,24 @@ namespace DanmissionManager.ViewModels
 
                 ctx.Category.Remove(category);
                 ctx.SaveChanges();
-                //probably also remove all subcategories..
+                //probably also remove all subcategories..by using the barbrady method
+                Barbrady();
+            }
+        }
+        private void Barbrady()
+        {
+            using (var ctx = new ServerContext())
+            {
+                List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.Parent_id.CompareTo(SelectedCategory.id) == 0).ToList();
+
+                //kill the child categories
+                foreach (Standardprice subcategory in subCategoryList)
+                {
+                    Standardprice tmp = new Standardprice();
+                    tmp = subcategory;
+                    ctx.Standardprices.Remove(tmp);
+                    ctx.SaveChanges();
+                }
             }
         }
         public RelayCommand2 CommandRemoveSubCategory { get; set; }
