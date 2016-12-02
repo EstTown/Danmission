@@ -11,8 +11,9 @@ namespace DanmissionManager
     {
         public int id { get; set; }
 
-        [Required]
-        [StringLength(45)]
-        public string date { get; set; }
+        [Column(TypeName = "timestamp")]
+        public DateTime? date { get; set; }
+
+        public double sum { get; set; }
     }
 }
