@@ -1,4 +1,5 @@
-﻿using DanmissionManager.Models;
+﻿using DanmissionManager.Commands;
+using DanmissionManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +26,12 @@ namespace DanmissionManager.ViewModels
             SplitProducts(Products);
             Transactions = new ObservableCollection<Transaction>(FindAllTransactions());
             SoldProducts = new ObservableCollection<SoldProduct>(FindAllSoldProducts());
+
+            this.CommandFindUniqueProducts = new RelayCommand2(() => SortBySearchParameter(1));
+            this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
+            this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
+            this.CommandFindTransactions = new RelayCommand2(() => SortBySearchParameter(4));
+            this.CommandFindSoldProducts = new RelayCommand2(() => SortBySearchParameter(5));
         }
 
         private DatabaseSearcher _databaseSearcher;
@@ -71,6 +78,33 @@ namespace DanmissionManager.ViewModels
         {
             get { return _soldProducts; }
             set { _soldProducts = value; OnPropertyChanged("SoldProducts"); }
+        }
+
+        private ObservableCollection<Product> _searchParameter;
+        public ObservableCollection<Product> SearchParameter
+        {
+            get { return _searchParameter; }
+            set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
+        }
+
+        public RelayCommand2 CommandFindUniqueProducts { get; private set; }
+        public RelayCommand2 CommandFindNonUniqueProducts { get; private set; }
+        public RelayCommand2 CommandFindExpiredProducts { get; private set; }
+        public RelayCommand2 CommandFindTransactions { get; private set; }
+        public RelayCommand2 CommandFindSoldProducts { get; private set; }
+
+        private void SortBySearchParameter(int searchParameter)
+        {
+            switch (searchParameter)
+            {
+                case 1: SearchParameter = UniqueProducts; break;
+                case 2: SearchParameter = NonUniqueProducts; break;
+                case 3: SearchParameter = ExpiredProducts; break;
+                case 4:
+                case 5: 
+                default: SearchParameter = null;
+                    break;
+            }
         }
 
         public List<Product> FindAllProducts()
