@@ -27,7 +27,7 @@
             IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
-        <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedStatistic, Mode=TwoWay}" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
+        <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedChart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="120,68,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="276"/>
         <Label x:Name="statLabel" Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
         <Custom:DatePicker HorizontalAlignment="Left" Margin="120,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
         <Custom:DatePicker HorizontalAlignment="Left" Margin="295,110,0,0" VerticalAlignment="Top"/>
