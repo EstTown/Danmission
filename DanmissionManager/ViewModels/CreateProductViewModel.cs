@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Data;
 
 namespace DanmissionManager.ViewModels
 {
@@ -19,6 +20,7 @@ namespace DanmissionManager.ViewModels
         {
             this.Product = new Product();
             this.Product.price = 0.0;
+            this.Product.isUnique = true;
 
             //command for adding a product to the server
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
@@ -123,6 +125,10 @@ namespace DanmissionManager.ViewModels
             product.category = this.SelectedCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
+            if (product.isUnique == false)
+            {
+                product.quantity = this.AmountOfProducts;
+            }
             product.expiredate = product.date.Value.AddDays(this.Weeks*7);
             if (Image != null)
             {
@@ -153,6 +159,18 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Weeks");
             }
         }
+
+        private int _amountOfProducts;
+        public int AmountOfProducts
+        {
+            get { return _amountOfProducts; }
+            set
+            {
+                _amountOfProducts = value;
+                OnPropertyChanged("AmountOfProducts");
+            }
+        }
+
         private void ChangeCollection()
         {
             List<Standardprice> list = new List<Standardprice>();
@@ -213,5 +231,6 @@ namespace DanmissionManager.ViewModels
             }
             return data;
         }
+
     }
 }

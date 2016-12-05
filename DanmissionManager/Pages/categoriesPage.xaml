@@ -17,7 +17,7 @@
 
         <GroupBox x:Name="groupBox_Categories" Header="{DynamicResource CCategories}" Margin="10,55,435,45">
             <Grid>
-                <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=AllCategories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="10,10,12.4,237.6">
+                <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=AllCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="10,10,12.4,237.6">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,2">

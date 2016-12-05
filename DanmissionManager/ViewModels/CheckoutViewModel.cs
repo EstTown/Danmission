@@ -175,6 +175,10 @@ namespace DanmissionManager.ViewModels
                                 {
                                     ctx.Products.Remove(y);
                                 }
+                                if (x.isUnique == false)
+                                {
+                                    y.quantity--;
+                                }
                             }
                         }
                     }

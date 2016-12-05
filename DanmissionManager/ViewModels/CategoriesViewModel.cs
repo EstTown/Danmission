@@ -22,6 +22,8 @@ namespace DanmissionManager.ViewModels
             this.CommandAddSubCategory = new RelayCommand2(AddSubCategory);
             this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
             this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
+
+            GetCategoriesFromDatabase();
         }
         public RelayCommand2 CommandGetCategories { get; set; }
         public void GetCategoriesFromDatabase()
@@ -47,6 +49,8 @@ namespace DanmissionManager.ViewModels
                 ctx.Category.Add(this.CreatedCategory);
                 ctx.SaveChanges();
             }
+            this.AllCategories.Add(CreatedCategory);
+            this.CreatedCategory = new Category();
         }
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
@@ -60,6 +64,9 @@ namespace DanmissionManager.ViewModels
                 ctx.Standardprices.Add(this.CreatedStandardprice);
                 ctx.SaveChanges();
             }
+            this.AllSubCategories.Add(CreatedStandardprice);
+            this.ShownSubCategories.Add(CreatedStandardprice);
+            this.CreatedStandardprice = new Standardprice();
         }
         public RelayCommand2 CommandRemoveCategory { get; set; }
 
@@ -75,6 +82,8 @@ namespace DanmissionManager.ViewModels
                 //probably also remove all subcategories..by using the barbrady method
                 Barbrady();
             }
+            this.AllCategories.Remove(this.SelectedCategory);
+            this.ShownSubCategories = new ObservableCollection<Standardprice>();
         }
         private void Barbrady()
         {
@@ -93,7 +102,6 @@ namespace DanmissionManager.ViewModels
             }
         }
         public RelayCommand2 CommandRemoveSubCategory { get; set; }
-
         private void RemoveSubCategory()
         {
             using (var ctx = new ServerContext())
@@ -104,6 +112,8 @@ namespace DanmissionManager.ViewModels
                 ctx.Standardprices.Remove(subCategory);
                 ctx.SaveChanges();
             }
+            this.AllSubCategories.Remove(this.SelectedSubCategory);
+            this.ShownSubCategories.Remove(this.SelectedSubCategory);
         }
 
         private ObservableCollection<Standardprice> _shownSubCategories;
@@ -210,7 +220,6 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedSubCategory = value;
                 OnPropertyChanged("SelectedSubCategory");
-                Console.WriteLine("somethingsometing");
             }
         }
     }
