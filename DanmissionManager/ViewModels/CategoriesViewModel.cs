@@ -51,8 +51,10 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
-            this.CreatedStandardprice.Parent_id = SelectedNewCategory.id;
-            this.CreatedStandardprice.CorrespondingCategoryString = SelectedNewCategory.name;
+            //this.CreatedStandardprice.Parent_id = SelectedNewCategory.id;
+            //this.CreatedStandardprice.CorrespondingCategoryString = SelectedNewCategory.name;
+            this.CreatedStandardprice.Parent_id = SelectedCategory.id;
+            this.CreatedStandardprice.CorrespondingCategoryString = SelectedCategory.name;
             using (var ctx = new ServerContext())
             {
                 ctx.Standardprices.Add(this.CreatedStandardprice);
