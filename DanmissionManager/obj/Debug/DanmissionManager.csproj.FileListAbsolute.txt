@@ -376,3 +376,7 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\check
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Foundation.ObjectHydrator.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Foundation.ObjectHydrator.pdb
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
+C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\bin\Debug\DanmissionManager.exe.config
+C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
+C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
