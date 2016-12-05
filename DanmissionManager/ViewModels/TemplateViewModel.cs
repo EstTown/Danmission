@@ -58,9 +58,6 @@ namespace DanmissionManager.ViewModels
                 this.Products = collection;
             }
         }
-
-
-
         private string _buttonText;
         public string ButtonText
         {
@@ -95,8 +92,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Product");
             }
         }
-        
-        
         //method for generating random image
         private Bitmap GenerateRandomImage()
         {
