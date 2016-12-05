@@ -41,7 +41,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Products");
             }
         }
-
         public void SortCollectionCategory()
         {
             
@@ -49,19 +48,8 @@ namespace DanmissionManager.ViewModels
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
         public RelayCommand2 CommandSelectProduct { get; set; }
-
-        public void ProductSelected() //not used right now
-        {
-            
-        }
-
-        public bool CanShowExtraInfo() //not used right now
-        {
-            return true;
-        }
-
+        
         private Product _selectedProduct;
-
         public Product SelectedProduct
         {
             get { return _selectedProduct;}
@@ -72,9 +60,6 @@ namespace DanmissionManager.ViewModels
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
         }
-        
-
-
         public RelayCommand2 CommandSaveChanges { get; set; }
         //method that saves changes to selectedproduct
         private void SaveChangesToSelectedProduct()
@@ -84,10 +69,13 @@ namespace DanmissionManager.ViewModels
                 using (var ctx = new ServerContext())
                 {
                     List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
-                    Product product = productlist.First();
-                    product.category = SelectedProduct.category;
-                    product.desc = SelectedProduct.desc;
-                    product.price = SelectedProduct.price;
+                    Product product = new Product();
+                    product = productlist.First();
+                    product.category = this.SelectedProduct.category;
+                    product.desc = this.SelectedProduct.desc;
+                    product.price = this.SelectedProduct.price;
+                    product.name = this.SelectedProduct.name;
+                    
                     ctx.SaveChanges();
                 }
             }
@@ -153,7 +141,7 @@ namespace DanmissionManager.ViewModels
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
         }
-        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
