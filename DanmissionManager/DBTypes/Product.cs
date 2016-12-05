@@ -27,6 +27,8 @@ namespace DanmissionManager
 
         public bool isUnique { get; set; }
 
+        public int? quantity { get; set; }
+
         public int category { get; set; }
 
         [Column(TypeName = "mediumblob")]
