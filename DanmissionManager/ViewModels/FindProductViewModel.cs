@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using DanmissionManager.Converters;
 
 namespace DanmissionManager.ViewModels
 {
