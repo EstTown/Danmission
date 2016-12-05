@@ -17,18 +17,15 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel()
         {
-            this.ProductName = string.Empty;
             this.Product = new Product();
-            this.Product.name = string.Empty;
             this.Product.price = 0.0;
+
             //command for adding a product to the server
             RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
             this.CommandAddProduct = commandAddProduct;
-
             //Command for getting image from user, via dialog
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
-
             //get all categories and subcategories from database
             try
             {
@@ -118,16 +115,15 @@ namespace DanmissionManager.ViewModels
             }
         }
         public RelayCommand2 CommandAddProduct { get; set; }
-
         public void AddProduct()
         {
-
             Product product = new Product();
             product.date = DateTime.Now;
             product.name = this.Product.name;
             product.category = this.SelectedCategory.id;
             product.isUnique = this.Product.isUnique;
             product.desc = this.Product.desc;
+            product.expiredate = product.date.Value.AddDays(this.Weeks*7);
             if (Image != null)
             {
                 product.image = this.imageToByteArray(Image);
@@ -140,29 +136,31 @@ namespace DanmissionManager.ViewModels
             {
                 product.price = this.Product.price;
             }
-            
             using (var ctx = new ServerContext())
             {
                 ctx.Products.Add(product);
                 ctx.SaveChanges();
                 MessageBox.Show("Assigned ID: " + product.id, "Success!");
             }
-            
         }
-
+        private int _weeks;
+        public int Weeks
+        {
+            get { return _weeks; }
+            set
+            {
+                _weeks = value;
+                OnPropertyChanged("Weeks");
+            }
+        }
         private void ChangeCollection()
         {
-            
             List<Standardprice> list = new List<Standardprice>();
             list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
-
-            
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.SubCategories = collection;
 
         }
-
-
         public BitmapImage Image {
             get { return _image; }
             set
@@ -171,10 +169,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Image");
             }
         }
-
         private BitmapImage _image { get; set; }
         public RelayCommand2 CommandGetImage { get; set; }
-
         public void GetImage()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -189,7 +185,6 @@ namespace DanmissionManager.ViewModels
             }
             
         }
-
         BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
@@ -218,6 +213,5 @@ namespace DanmissionManager.ViewModels
             }
             return data;
         }
-
     }
 }
