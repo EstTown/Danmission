@@ -79,7 +79,10 @@ namespace DanmissionManager.ViewModels
                     product.desc = SelectedProduct.desc;
                     product.price = SelectedProduct.price;
                     product.name = this.SelectedProduct.name;
-                    product.image = ImageToByteArray(Image);
+                    if (SelectedProduct.productImage != null)
+                    {
+                        product.image = ImageToByteArray(Image);
+                    }
                     product.quantity = SelectedProduct.quantity;
                     ctx.SaveChanges();
                 }
