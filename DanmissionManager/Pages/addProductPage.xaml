@@ -52,11 +52,13 @@
             </TextBox>
 -->
 
-            <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="402,216,10,0" VerticalAlignment="Top" Width="auto" Height="19"/>
+            <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="402,217,10,0" VerticalAlignment="Top" Width="auto" Height="19"/>
             <TextBlock x:Name="textBlockChooseSubCategory" HorizontalAlignment="Left" Margin="22,131,0,0" TextWrapping="Wrap" Text="{DynamicResource RPSubcategory}" VerticalAlignment="Top" Width="111" Height="23"/>
             <ComboBox x:Name="comboBox1SubCategory" ItemsSource="{Binding Path = SubCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" DisplayMemberPath="name" SelectedItem="{Binding SelectedSubCategory, Mode=TwoWay}" Margin="133,132,10,0" VerticalAlignment="Top"/>
             <Label x:Name="label" Content="{DynamicResource RPStandardPrice}" Margin="320,167,166,0" VerticalAlignment="Top"/>
             <TextBox x:Name="typiskPris" Height="25" Margin="402,168,10,0" TextWrapping="Wrap" Text="{Binding SelectedSubCategory.standardprice, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+            <Label x:Name="label1" Content="Udløber:" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.364,0.68"/>
+            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="133,217,0,0" TextWrapping="Wrap" Text="{Binding Weeks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="169"/>
 
         </Grid>
         <Button x:Name="btn_addProduct" Content="{DynamicResource RPAddProduct}" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
