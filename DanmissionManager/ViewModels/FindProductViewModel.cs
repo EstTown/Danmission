@@ -175,15 +175,18 @@ namespace DanmissionManager.ViewModels
 
         public void GetImage()
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.Title = "Open Image";
-            dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
-
-            if (dlg.ShowDialog() == true)
+            if (SelectedProduct != null)
             {
-                var uri = new Uri(dlg.FileName);
-                Image = new BitmapImage(uri);
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                dlg.Title = "Open Image";
+                dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
+
+                if (dlg.ShowDialog() == true)
+                {
+                    var uri = new Uri(dlg.FileName);
+                    Image = new BitmapImage(uri);
+                }
             }
         }
 

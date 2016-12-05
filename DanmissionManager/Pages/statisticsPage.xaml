@@ -9,7 +9,7 @@
       xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
       x:Class="DanmissionManager.Pages.statisticsPage"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="statisticsPage">
     <Page.DataContext>
         <local:StatisticsViewModel/>
