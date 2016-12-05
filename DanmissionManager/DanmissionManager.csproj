@@ -113,6 +113,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommand2.cs" />
     <Compile Include="ConsoleManager.cs" />
+    <Compile Include="Converters\BitmapResizer.cs" />
     <Compile Include="Converters\BoolInverter.cs" />
     <Compile Include="DBTypes\Category.cs" />
     <Compile Include="DBTypes\SoldProduct.cs" />

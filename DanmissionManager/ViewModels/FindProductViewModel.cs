@@ -80,6 +80,7 @@ namespace DanmissionManager.ViewModels
                     }
                     product.quantity = SelectedProduct.quantity;
                     ctx.SaveChanges();
+                    MessageBox.Show("Dine ændringer er blevet gemt.","Tillykke");
                 }
             }
             catch (System.Data.DataException)
@@ -137,6 +138,11 @@ namespace DanmissionManager.ViewModels
                     }
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
                     this.Products = collection;
+
+                    if (this.Products.Count == 0)
+                    {
+                        MessageBox.Show("Din søgning gav ingen resultater.","Desværre");
+                    }
                 }
             }
             catch (System.Data.DataException)
@@ -185,7 +191,8 @@ namespace DanmissionManager.ViewModels
                 if (dlg.ShowDialog() == true)
                 {
                     var uri = new Uri(dlg.FileName);
-                    Image = new BitmapImage(uri);
+                    //Resizes image, due to performance concerns
+                    Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
                 }
             }
         }
