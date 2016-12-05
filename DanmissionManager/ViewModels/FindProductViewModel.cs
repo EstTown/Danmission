@@ -20,6 +20,10 @@ namespace DanmissionManager.ViewModels
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
             this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct);
             this.CommandRemoveSelectedProduct = new RelayCommand2(RemoveSelectedProduct);
+
+            //Command for getting image from user, via dialog
+            RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
+            this.CommandGetImage = commandGetImage;
         }
         private string _searchParameter;
         public string SearchParameter
@@ -56,6 +60,7 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _selectedProduct = value;
+                this.Image = SelectedProduct.productImage;
                 OnPropertyChanged("SelectedProduct");
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
@@ -69,13 +74,11 @@ namespace DanmissionManager.ViewModels
                 using (var ctx = new ServerContext())
                 {
                     List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
-                    Product product = new Product();
-                    product = productlist.First();
-                    product.category = this.SelectedProduct.category;
-                    product.desc = this.SelectedProduct.desc;
-                    product.price = this.SelectedProduct.price;
-                    product.name = this.SelectedProduct.name;
-                    
+                    Product product = productlist.First();
+                    product.category = SelectedProduct.category;
+                    product.desc = SelectedProduct.desc;
+                    product.price = SelectedProduct.price;
+                    product.image = ImageToByteArray(Image);
                     ctx.SaveChanges();
                 }
             }
@@ -155,6 +158,46 @@ namespace DanmissionManager.ViewModels
             image.StreamSource = stream;
             image.EndInit();
             return image;
+        }
+
+        public BitmapImage Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
+        private BitmapImage _image { get; set; }
+        public RelayCommand2 CommandGetImage { get; set; }
+
+        public void GetImage()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.Title = "Open Image";
+            dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
+
+            if (dlg.ShowDialog() == true)
+            {
+                var uri = new Uri(dlg.FileName);
+                Image = new BitmapImage(uri);
+            }
+        }
+
+        public byte[] ImageToByteArray(BitmapImage bitmapImage)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
     }
 }
