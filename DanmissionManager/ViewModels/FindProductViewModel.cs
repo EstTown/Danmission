@@ -45,13 +45,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Products");
             }
         }
-        public void SortCollectionCategory()
-        {
-            
-        }
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
-        public RelayCommand2 CommandSelectProduct { get; set; }
         
         private Product _selectedProduct;
         public Product SelectedProduct
@@ -113,7 +108,7 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
-            //also remove product from current obserablecollection
+            //also remove product from current observablecollection
             this.Products.Remove(SelectedProduct);
         }
         //property that will contain the command/method and executes it
