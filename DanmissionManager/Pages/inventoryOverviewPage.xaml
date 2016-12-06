@@ -6,7 +6,7 @@
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="inventoryOverviewPage">
     <Page.DataContext>
         <local:InventoryOverviewViewModel/>

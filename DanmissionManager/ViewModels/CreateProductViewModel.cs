@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows;
 using System.Windows.Data;
+using DanmissionManager.Converters;
 
 namespace DanmissionManager.ViewModels
 {
@@ -199,10 +200,11 @@ namespace DanmissionManager.ViewModels
             if (dlg.ShowDialog() == true)
             {
                 var uri = new Uri(dlg.FileName);
-                Image = new BitmapImage(uri);
+                //Resizes image, due to performance concerns
+                Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
             }
-            
         }
+
         BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())

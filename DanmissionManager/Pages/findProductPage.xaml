@@ -9,7 +9,7 @@
       xmlns:converter="clr-namespace:DanmissionManager.Converters"
       xmlns:si="Expression.Samples.Interactivity"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="findProductPage">
     <Page.DataContext>
         <local:FindProductViewModel/>

@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using DanmissionManager.Converters;
 
 namespace DanmissionManager.ViewModels
 {
@@ -73,9 +74,13 @@ namespace DanmissionManager.ViewModels
                     product.desc = SelectedProduct.desc;
                     product.price = SelectedProduct.price;
                     product.name = this.SelectedProduct.name;
-                    product.image = ImageToByteArray(Image);
+                    if (Image != null)
+                    {
+                        product.image = ImageToByteArray(Image);
+                    }
                     product.quantity = SelectedProduct.quantity;
                     ctx.SaveChanges();
+                    MessageBox.Show("Dine ændringer er blevet gemt.","Tillykke");
                 }
             }
             catch (System.Data.DataException)
@@ -129,6 +134,11 @@ namespace DanmissionManager.ViewModels
                     }
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
                     this.Products = collection;
+
+                    if (this.Products.Count == 0)
+                    {
+                        MessageBox.Show("Din søgning gav ingen resultater.","Desværre");
+                    }
                 }
             }
             catch (System.Data.DataException)
@@ -164,15 +174,19 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandGetImage { get; set; }
         public void GetImage()
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.Title = "Open Image";
-            dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
-
-            if (dlg.ShowDialog() == true)
+            if (SelectedProduct != null)
             {
-                var uri = new Uri(dlg.FileName);
-                Image = new BitmapImage(uri);
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                dlg.Title = "Open Image";
+                dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
+
+                if (dlg.ShowDialog() == true)
+                {
+                    var uri = new Uri(dlg.FileName);
+                    //Resizes image, due to performance concerns
+                    Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
+                }
             }
         }
         public byte[] ImageToByteArray(BitmapImage bitmapImage)

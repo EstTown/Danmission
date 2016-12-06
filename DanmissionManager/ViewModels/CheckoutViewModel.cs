@@ -21,7 +21,6 @@ namespace DanmissionManager.ViewModels
             this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
             this.CommandComplete = new RelayCommand2(CommandCompletePurchase);
 
-
             ProductsInBasket = new ObservableCollection<Product>();
         }
 
@@ -92,6 +91,7 @@ namespace DanmissionManager.ViewModels
                     else
                     {
                         MessageBox.Show("Produktet kunne ikke findes!", "Error!");
+                        this.SearchParameter = string.Empty;
                     }
                     
                 }

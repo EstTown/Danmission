@@ -7,14 +7,14 @@
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="settingsPage">
     <Page.DataContext>
         <local:SettingsViewModel/>
     </Page.DataContext>
 
     <Grid>
-        <xctk:ColorPicker Name="ClrPcker_Background" Height="20" Width="236" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="137,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></xctk:ColorPicker>
+        <xctk:ColorPicker Name="ClrPcker_Background" AvailableColorsSortingMode="HueSaturationBrightness"  Height="20" Width="236" SelectedColor="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR, Mode=TwoWay}" Margin="137,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ColorMode="ColorCanvas"></xctk:ColorPicker>
         <Label x:Name="label_colorpicker" Content="{DynamicResource OColorScheme}" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource options}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
