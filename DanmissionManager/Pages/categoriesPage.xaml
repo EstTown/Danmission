@@ -13,6 +13,9 @@
     </Page.DataContext>
 
     <Grid Height="600" VerticalAlignment="Top">
+
+    <Popup Margin="10,10,0,13" Name="Popup1" HorizontalAlignment="Left"   
+    VerticalAlignment="Top" Width="194" Height="200" />
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource categories}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
         <GroupBox x:Name="groupBox_Categories" Header="{DynamicResource CCategories}" Margin="10,55,435,45">
