@@ -23,14 +23,14 @@
                     <Setter Property="Background" Value="#f5f5f5" />
                 </Style>
             </chartingToolkit:Chart.PlotAreaStyle>
-            <chartingToolkit:PieSeries DependentValuePath="Value"
+            <chartingToolkit:PieSeries DependentValuePath="Value" BorderThickness="0" BorderBrush="Transparent"
             IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
         <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedChart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="120,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="24"/>
-        <Label x:Name="statLabel" Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
-        <Custom:DatePicker HorizontalAlignment="Left" Margin="386,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
-        <Custom:DatePicker HorizontalAlignment="Left" Margin="550,66,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="statLabel"  Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
+        <Custom:DatePicker x:Name="datePickerFrom" SelectedDate="{Binding dateFrom}" HorizontalAlignment="Left" Margin="386,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
+        <Custom:DatePicker x:Name="datePickerTo" SelectedDate="{Binding dateTo}" HorizontalAlignment="Left" Margin="550,66,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="325,64,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="492,64,0,0" VerticalAlignment="Top"/>
         <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" Margin="680,66,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="120"/>
