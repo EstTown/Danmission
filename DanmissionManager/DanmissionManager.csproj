@@ -157,7 +157,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TestViewModels\TestBaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
@@ -167,15 +166,17 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
-    <Compile Include="TestViewModels\TemplateViewModel.cs" />
+    <Compile Include="Views\AddCategoryWindow.xaml.cs">
+      <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSubCategoryWindow.xaml.cs">
+      <DependentUpon>AddSubCategoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateProductView.xaml.cs">
       <DependentUpon>CreateProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TemplateView.xaml.cs">
-      <DependentUpon>TemplateView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -229,15 +230,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddSubCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TemplateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

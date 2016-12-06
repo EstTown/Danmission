@@ -41,7 +41,10 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
+            ShownCategories = AllCategories;
+            ShownSubCategories = AllSubCategories;
         }
+
         public RelayCommand2 CommandAddCategory { get; set; }
         public void AddCategory()
         {
@@ -50,9 +53,10 @@ namespace DanmissionManager.ViewModels
                 ctx.Category.Add(this.CreatedCategory);
                 ctx.SaveChanges();
             }
-            this.AllCategories.Add(CreatedCategory);
+            GetCategoriesFromDatabase();
             this.CreatedCategory = new Category();
         }
+
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
@@ -65,12 +69,12 @@ namespace DanmissionManager.ViewModels
                 ctx.Standardprices.Add(this.CreatedStandardprice);
                 ctx.SaveChanges();
             }
-            this.AllSubCategories.Add(CreatedStandardprice);
-            this.ShownSubCategories.Add(CreatedStandardprice);
+            //this.AllSubCategories.Add(CreatedStandardprice);
+            //this.ShownSubCategories.Add(CreatedStandardprice);
             this.CreatedStandardprice = new Standardprice();
         }
-        public RelayCommand2 CommandRemoveCategory { get; set; }
 
+        public RelayCommand2 CommandRemoveCategory { get; set; }
         private void RemoveCategory()
         {
             using (var ctx = new ServerContext())
@@ -102,6 +106,7 @@ namespace DanmissionManager.ViewModels
                 }
             }
         }
+
         public RelayCommand2 CommandRemoveSubCategory { get; set; }
         private void RemoveSubCategory()
         {
@@ -163,14 +168,14 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private string _subCategorySearchParameter;
+        private string _subCategorySearchParameter = string.Empty;
         public string SubCategorySearchParameter
         {
             get { return _subCategorySearchParameter; }
             set { _subCategorySearchParameter = value; UpdateShownSubCategories(SubCategorySearchParameter); OnPropertyChanged("SubCategorySearchParameter"); }
         }
 
-        private string _categorySearchParameter;
+        private string _categorySearchParameter = string.Empty;
         public string CategorySearchParameter
         {
             get { return _categorySearchParameter; }
@@ -191,10 +196,7 @@ namespace DanmissionManager.ViewModels
         private Category _createdCategory;
         public Category CreatedCategory
         {
-            get
-            {
-                return _createdCategory;
-            }
+            get { return _createdCategory; }
             set
             {
                 _createdCategory = value;
