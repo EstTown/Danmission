@@ -17,8 +17,6 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
-            _databaseSearcher = new DatabaseSearcher();
-            Products = new ObservableCollection<Product>(FindAllProducts());
             /*Combobox*/
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
             this.Statistics = statistics;
@@ -31,9 +29,13 @@ namespace DanmissionManager.ViewModels
             {
                 this.AllCategories = new List<Category>(ctx.Category.ToList());
                 this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+                this.AllProducts = new List<Product>(ctx.Products.ToList());
             }
         }
+
         public List<SoldProduct> AllSoldProducts { get; set; }
+        public List<Product> AllProducts { get; set; }
+
         private List<Category> _allCategories;
         public List<Category> AllCategories
         {
@@ -74,8 +76,11 @@ namespace DanmissionManager.ViewModels
                 case "Solgt for per kategori":
                     ShowChartSales();
                     break;
-                case "Elementer solgt per kategori":
+                case "Produkter solgt per kategori":
                     ShowChartItems();
+                    break;
+                case "Produkter per kategori":
+                    ShowChartInventory();
                     break;
                 default:
                     break;
@@ -105,19 +110,6 @@ namespace DanmissionManager.ViewModels
             PieChart = salesValue;
         }
 
-        private ObservableCollection<Product> _products;
-        public ObservableCollection<Product> Products
-        {
-            get { return _products; }
-            set { _products = value; OnPropertyChanged("Products"); }
-        }
-
-        private DatabaseSearcher _databaseSearcher;
-        public List<Product> FindAllProducts()
-        {
-            return _databaseSearcher.FindProducts(x => true);
-        }
-
         private void ShowChartItems()
         {
             CalculateSum();
@@ -127,7 +119,7 @@ namespace DanmissionManager.ViewModels
                 int numberOfProducts = 0;
                 if (category.Sum != 0)
                 {
-                    foreach (Product product in Products)
+                    foreach (SoldProduct product in AllSoldProducts)
                     {
                         if (category.id == product.category)
                         {
@@ -144,6 +136,23 @@ namespace DanmissionManager.ViewModels
         private void ShowChartInventory()
         {
             List<KeyValuePair<string, int>> inventoryValue = new List<KeyValuePair<string, int>>();
+            foreach (Category category in AllCategories)
+            {
+                int numberOfProducts = 0;
+                foreach (Product product in AllProducts)
+                {
+                    if(category.id == product.category)
+                    {
+                        numberOfProducts++;
+                    }
+                }
+                if (numberOfProducts != 0)
+                {
+                    inventoryValue.Add(new KeyValuePair<string, int>(category.name, numberOfProducts));
+                }
+            }
+
+            PieChart = inventoryValue;
         }
 
         private List<KeyValuePair<string, int>> _pieChart;
@@ -165,7 +174,8 @@ namespace DanmissionManager.ViewModels
             List<string> data = new List<string>();
 
             data.Add("Solgt for per kategori");
-            data.Add("Elementer solgt per kategori");
+            data.Add("Produkter solgt per kategori");
+            data.Add("Produkter per kategori");
 
             return data;
         }

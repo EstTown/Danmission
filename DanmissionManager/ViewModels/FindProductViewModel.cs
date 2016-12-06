@@ -25,6 +25,7 @@ namespace DanmissionManager.ViewModels
             //Command for getting image from user, via dialog
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
+            SelectedProduct = null;
         }
         private string _searchParameter;
         public string SearchParameter
@@ -48,7 +49,6 @@ namespace DanmissionManager.ViewModels
         }
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
-        
         private Product _selectedProduct;
         public Product SelectedProduct
         {
@@ -56,7 +56,10 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _selectedProduct = value;
-                this.Image = SelectedProduct.productImage;
+                if (SelectedProduct != null)
+                {
+                    this.Image = SelectedProduct.productImage;
+                }
                 OnPropertyChanged("SelectedProduct");
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
@@ -96,13 +99,9 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
-                    
                     List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
                     Product product = productlist.First();
-                    
-
                     ctx.Products.Remove(product);
-
                     ctx.SaveChanges();
                 }
             }
@@ -166,7 +165,6 @@ namespace DanmissionManager.ViewModels
             image.EndInit();
             return image;
         }
-
         public BitmapImage Image
         {
             get { return _image; }
@@ -176,10 +174,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Image");
             }
         }
-
         private BitmapImage _image { get; set; }
         public RelayCommand2 CommandGetImage { get; set; }
-
         public void GetImage()
         {
             if (SelectedProduct != null)
@@ -197,7 +193,6 @@ namespace DanmissionManager.ViewModels
                 }
             }
         }
-
         public byte[] ImageToByteArray(BitmapImage bitmapImage)
         {
             byte[] data;

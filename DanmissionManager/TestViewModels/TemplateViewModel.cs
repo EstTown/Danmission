@@ -11,9 +11,10 @@ using DanmissionManager.Commands;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
+using DanmissionManager.ViewModels;
 using Color = System.Drawing.Color;
 
-namespace DanmissionManager.ViewModels
+namespace DanmissionManager.TestViewModels
 {
     class TemplateViewModel : BaseViewModel
     {
