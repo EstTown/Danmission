@@ -25,6 +25,7 @@ namespace DanmissionManager.ViewModels
             //Command for getting image from user, via dialog
             RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
             this.CommandGetImage = commandGetImage;
+            SelectedProduct = null;
         }
         private string _searchParameter;
         public string SearchParameter
@@ -55,7 +56,10 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _selectedProduct = value;
-                this.Image = SelectedProduct.productImage;
+                if (SelectedProduct != null)
+                {
+                    this.Image = SelectedProduct.productImage;
+                }
                 OnPropertyChanged("SelectedProduct");
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
