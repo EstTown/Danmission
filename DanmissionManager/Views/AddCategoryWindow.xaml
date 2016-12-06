@@ -6,16 +6,16 @@
         xmlns:properties="clr-namespace:DanmissionManager.Properties"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
-        Title="{DynamicResource CAddNewCategory}" Height="150" Width="300">
+        Title="{DynamicResource CAddNewCategory}" Height="150" ResizeMode="NoResize" Width="300">
     <Window.DataContext>
         <local:CategoriesViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <Button x:Name="button" Content="{DynamicResource CApplyNewCategory}" Command="{Binding Path = CommandAddCategory}" HorizontalAlignment="Left" Margin="183,92,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="133,41,0,0" TextWrapping="Wrap" Text="{Binding CreatedCategory.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="label1" Content="{DynamicResource CNewCategoryName}" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="118"/>
-        <Button x:Name="button1" Content="{DynamicResource CAbortAddNewCategory}" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="100" Click="button1_Click"/>
+        <Button x:Name="button" Content="{DynamicResource CApplyNewCategory}" Command="{Binding Path = CommandAddCategory}" Margin="0,0,9,7" Click="button_Click" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBox" Height="23" Margin="133,26,9,0" TextWrapping="Wrap" Text="{Binding CreatedCategory.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="{DynamicResource CNewCategoryName}" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="118"/>
+        <Button x:Name="button1" Content="{DynamicResource CAbortAddNewCategory}" HorizontalAlignment="Left" Margin="10,0,0,7" Width="100" Click="button1_Click" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
