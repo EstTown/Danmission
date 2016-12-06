@@ -18,7 +18,7 @@
     VerticalAlignment="Top" Width="194" Height="200" />
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource categories}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
-        <GroupBox x:Name="groupBox_Categories" Header="{DynamicResource CCategories}" Margin="10,55,435,45">
+        <GroupBox x:Name="groupBox_Categories" Header="{DynamicResource CCategories}" Margin="20,55,435,45">
             <Grid>
                 <ListBox x:Name="listBox_Categories"  ItemsSource="{Binding Path=ShownCategories, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="25,10,25.2,31.6">
                     <ListBox.ItemTemplate>
@@ -29,23 +29,23 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding Path = CommandRemoveCategory}"  Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
-                <Button x:Name="button_CategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="0,0,11.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="button_CategoriesAdd_Click"/>
-                <Button x:Name="button_fetch" Content="{DynamicResource CFetch}" Command ="{Binding Path = CommandGetCategories}" Margin="10,0,0,6.333" HorizontalAlignment="Left" Width="76" Height="18" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_CategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding Path = CommandRemoveCategory}"  Margin="0,0,104.8,6.6" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="button_CategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="0,0,24.8,6.6" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="button_CategoriesAdd_Click"/>
+                <Button x:Name="button_fetch" Content="{DynamicResource CFetch}" Command ="{Binding Path = CommandGetCategories}" Margin="25,0,0,8.6" HorizontalAlignment="Left" Width="76" Height="18" VerticalAlignment="Bottom"/>
                 <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="28,361,0,0" VerticalAlignment="Top" Width="77"/>
                 <!--  <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="50,25,0,0" TextWrapping="Wrap" Text="{Binding CategorySearchParameter}" VerticalAlignment="Top" Width="293"/>-->
             </Grid>
         </GroupBox>
 
-        <GroupBox x:Name="groupBox_Subcategories" Header="{DynamicResource CSubcategories}" Margin="0,55,27,45" HorizontalAlignment="Right" Width="395">
+        <GroupBox x:Name="groupBox_Subcategories" Header="{DynamicResource CSubcategories}" Margin="0,55,20,45" HorizontalAlignment="Right" Width="395">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
                     <ColumnDefinition Width="363*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="listBox_Subcategories" SelectedItem="{Binding SelectedSubCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Path = ShownSubCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name"  Margin="25,10,25.4,31.6" Grid.Column="1"/>
-                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding CommandRemoveSubCategory}" Margin="0,0,91.667,6.333" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Column="1"/>
-                <Button x:Name="button_SubcategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="296,451,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Grid.Column="1" Click="button_SubcategoriesAdd_Click"/>
+                <ListBox x:Name="listBox_Subcategories" SelectedItem="{Binding SelectedSubCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Path = ShownSubCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="name"  Margin="25,10,25.4,31.6" Grid.Column="1"/>
+                <Button x:Name="button_SubcategoriesRemove" Content="{DynamicResource CRemoveCategory}" Command="{Binding CommandRemoveSubCategory}" Margin="0,0,105.4,6.6" HorizontalAlignment="Right" Width="75" Grid.Column="1" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_SubcategoriesAdd" Content="{DynamicResource CAddCategory}" Margin="0,0,25.4,6.6" HorizontalAlignment="Right" Width="75" Grid.Column="1" Click="button_SubcategoriesAdd_Click" Height="20" VerticalAlignment="Bottom"/>
                 <!--<Label x:Name="label4" Content="Angiv tilhørende hovedkategori" Grid.Column="1" HorizontalAlignment="Left" Margin="102,264,0,0" VerticalAlignment="Top" Width="176" Height="26"/>
                 <ComboBox x:Name="comboBox" SelectedItem="{Binding SelectedNewCategory, Mode=TwoWay}" ItemsSource="{Binding Path = AllCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" DisplayMemberPath="name" Grid.Column="1" HorizontalAlignment="Left" Margin="283,264,0,0" VerticalAlignment="Top" Width="79"/>
                 -->
