@@ -121,7 +121,7 @@ namespace DanmissionManager.ViewModels
                 {
                     foreach (SoldProduct product in AllSoldProducts)
                     {
-                        if (category.id == product.category)
+                        if (category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
                         {
                             numberOfProducts++;
                         }
@@ -168,6 +168,7 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("PieChart");
             }
         }
+
         public RelayCommand2 CommandDisplayChart { get; set; }
         private List<string> statCombobox()
         {
@@ -178,6 +179,34 @@ namespace DanmissionManager.ViewModels
             data.Add("Produkter per kategori");
 
             return data;
+        }
+
+        private DateTime _dateFrom;
+        public DateTime dateFrom
+        {
+            get
+            {
+                return _dateFrom;
+            }
+            set
+            {
+                _dateFrom = value;
+                OnPropertyChanged("dateFrom");
+            }
+        }
+
+        private DateTime _dateTo;
+        public DateTime dateTo
+        {
+            get
+            {
+                return _dateTo;
+            }
+            set
+            {
+                _dateTo = value;
+                OnPropertyChanged("dateTo");
+            }
         }
     }
 }
