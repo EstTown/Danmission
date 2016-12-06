@@ -47,7 +47,6 @@ namespace DanmissionManager.ViewModels
         }
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
-        
         private Product _selectedProduct;
         public Product SelectedProduct
         {
@@ -91,13 +90,9 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
-                    
                     List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
                     Product product = productlist.First();
-                    
-
                     ctx.Products.Remove(product);
-
                     ctx.SaveChanges();
                 }
             }
@@ -156,7 +151,6 @@ namespace DanmissionManager.ViewModels
             image.EndInit();
             return image;
         }
-
         public BitmapImage Image
         {
             get { return _image; }
@@ -166,10 +160,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Image");
             }
         }
-
         private BitmapImage _image { get; set; }
         public RelayCommand2 CommandGetImage { get; set; }
-
         public void GetImage()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -183,7 +175,6 @@ namespace DanmissionManager.ViewModels
                 Image = new BitmapImage(uri);
             }
         }
-
         public byte[] ImageToByteArray(BitmapImage bitmapImage)
         {
             byte[] data;
