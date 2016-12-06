@@ -157,6 +157,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestViewModels\TestBaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
@@ -166,7 +167,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
-    <Compile Include="ViewModels\TemplateViewModel.cs" />
+    <Compile Include="TestViewModels\TemplateViewModel.cs" />
     <Compile Include="Views\CreateProductView.xaml.cs">
       <DependentUpon>CreateProductView.xaml</DependentUpon>
     </Compile>
