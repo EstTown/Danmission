@@ -117,15 +117,15 @@ namespace DanmissionManager.ViewModels
             foreach (Category category in this.AllCategories)
             {
                 int numberOfProducts = 0;
-                if (category.Sum != 0)
+                foreach (SoldProduct product in AllSoldProducts)
                 {
-                    foreach (SoldProduct product in AllSoldProducts)
+                    if (category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
                     {
-                        if (category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
-                        {
-                            numberOfProducts++;
-                        }
+                        numberOfProducts++;
                     }
+                }
+                if (numberOfProducts != 0)
+                {
                     itemsValue.Add(new KeyValuePair<string, int>(category.name, numberOfProducts));
                 }
             }
@@ -141,7 +141,7 @@ namespace DanmissionManager.ViewModels
                 int numberOfProducts = 0;
                 foreach (Product product in AllProducts)
                 {
-                    if(category.id == product.category)
+                    if(category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
                     {
                         numberOfProducts++;
                     }
