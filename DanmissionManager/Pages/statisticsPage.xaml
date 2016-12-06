@@ -9,7 +9,7 @@
       xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
       x:Class="DanmissionManager.Pages.statisticsPage"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="statisticsPage">
     <Page.DataContext>
         <local:StatisticsViewModel/>
@@ -34,9 +34,6 @@
         <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="243,110,0,0" VerticalAlignment="Top"/>
         <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" HorizontalAlignment="Left" Margin="120,156,0,0" VerticalAlignment="Top" Width="276"/>
-        <Button x:Name="exportPdfButton" Content="{DynamicResource SPDF}" HorizontalAlignment="Left" Margin="120,202,0,0" VerticalAlignment="Top" Width="102"/>
-        <Button x:Name="exportExcelButton" Content="{DynamicResource SExcel}" HorizontalAlignment="Left" Margin="295,202,0,0" VerticalAlignment="Top" Width="101"/>
-        <Label x:Name="exportLabel" Content="{DynamicResource SExportTo}" HorizontalAlignment="Left" Margin="34,197,0,0" VerticalAlignment="Top"/>
         <!--<Button x:Name="button" Content="Button" Command="{Binding Path = command}" HorizontalAlignment="Left" Margin="259,133,0,0" VerticalAlignment="Top" Width="75"/>
         -->
     </Grid>

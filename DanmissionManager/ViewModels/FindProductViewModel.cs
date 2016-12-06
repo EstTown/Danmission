@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using DanmissionManager.Converters;
 
 namespace DanmissionManager.ViewModels
 {
@@ -20,6 +21,10 @@ namespace DanmissionManager.ViewModels
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
             this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct);
             this.CommandRemoveSelectedProduct = new RelayCommand2(RemoveSelectedProduct);
+
+            //Command for getting image from user, via dialog
+            RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
+            this.CommandGetImage = commandGetImage;
         }
         private string _searchParameter;
         public string SearchParameter
@@ -41,40 +46,21 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Products");
             }
         }
-
-        public void SortCollectionCategory()
-        {
-            
-        }
         //property that handles what happens when a product from the list gets selected,
         //after which addional information will be shown
-        public RelayCommand2 CommandSelectProduct { get; set; }
-
-        public void ProductSelected() //not used right now
-        {
-            
-        }
-
-        public bool CanShowExtraInfo() //not used right now
-        {
-            return true;
-        }
-
+        
         private Product _selectedProduct;
-
         public Product SelectedProduct
         {
             get { return _selectedProduct;}
             set
             {
                 _selectedProduct = value;
+                this.Image = SelectedProduct.productImage;
                 OnPropertyChanged("SelectedProduct");
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
         }
-        
-
-
         public RelayCommand2 CommandSaveChanges { get; set; }
         //method that saves changes to selectedproduct
         private void SaveChangesToSelectedProduct()
@@ -88,7 +74,14 @@ namespace DanmissionManager.ViewModels
                     product.category = SelectedProduct.category;
                     product.desc = SelectedProduct.desc;
                     product.price = SelectedProduct.price;
+                    product.name = this.SelectedProduct.name;
+                    if (Image != null)
+                    {
+                        product.image = ImageToByteArray(Image);
+                    }
+                    product.quantity = SelectedProduct.quantity;
                     ctx.SaveChanges();
+                    MessageBox.Show("Dine ændringer er blevet gemt.","Tillykke");
                 }
             }
             catch (System.Data.DataException)
@@ -117,7 +110,7 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
-            //also remove product from current obserablecollection
+            //also remove product from current observablecollection
             this.Products.Remove(SelectedProduct);
         }
         //property that will contain the command/method and executes it
@@ -146,6 +139,11 @@ namespace DanmissionManager.ViewModels
                     }
                     ObservableCollection<Product> collection = new ObservableCollection<Product>(list);
                     this.Products = collection;
+
+                    if (this.Products.Count == 0)
+                    {
+                        MessageBox.Show("Din søgning gav ingen resultater.","Desværre");
+                    }
                 }
             }
             catch (System.Data.DataException)
@@ -153,7 +151,7 @@ namespace DanmissionManager.ViewModels
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
         }
-        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
@@ -167,6 +165,50 @@ namespace DanmissionManager.ViewModels
             image.StreamSource = stream;
             image.EndInit();
             return image;
+        }
+
+        public BitmapImage Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
+        private BitmapImage _image { get; set; }
+        public RelayCommand2 CommandGetImage { get; set; }
+
+        public void GetImage()
+        {
+            if (SelectedProduct != null)
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                dlg.Title = "Open Image";
+                dlg.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
+
+                if (dlg.ShowDialog() == true)
+                {
+                    var uri = new Uri(dlg.FileName);
+                    //Resizes image, due to performance concerns
+                    Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
+                }
+            }
+        }
+
+        public byte[] ImageToByteArray(BitmapImage bitmapImage)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
     }
 }

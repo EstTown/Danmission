@@ -6,17 +6,21 @@
       xmlns:properties="clr-namespace:DanmissionManager.Properties"
       xmlns:local="clr-namespace:DanmissionManager.ViewModels"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:converter="clr-namespace:DanmissionManager.Converters"
       xmlns:si="Expression.Samples.Interactivity"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="840"
+      d:DesignHeight="700" d:DesignWidth="865"
       Title="findProductPage">
     <Page.DataContext>
         <local:FindProductViewModel/>
     </Page.DataContext>
+    <Page.Resources>
+        <converter:BoolInverter x:Key="oppositeConverter"/>
+    </Page.Resources>
 
     <Grid>
 
-        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Path=Products, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+        <ListView Margin="10,106,328,10" Name="lvProducts" ItemsSource="{Binding Path=Products, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}">
 
             <ListView.View>
                 <GridView>
@@ -32,11 +36,11 @@
         <Border BorderBrush="Black" BorderThickness=".05" Margin="0,106,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="200" Width="313">
             <Grid>
                 <Rectangle Fill="#FFE9EEF1" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="311"/>
-                <Image Source="{Binding SelectedProduct.productImage}" Margin="5,5,5,5" Width="auto" Height="auto"/>
+                <Image Source="{Binding Image}" Margin="5,5,5,5" Width="auto" Height="auto"/>
             </Grid>
         </Border>
 
-        <GroupBox x:Name="groupBox_productInfo" Header="{DynamicResource FPProductInfo}" Margin="0,311,10,10" HorizontalAlignment="Right" Width="313">
+        <GroupBox x:Name="groupBox_productInfo" Header="{DynamicResource FPProductInfo}" Margin="0,331,10,10" HorizontalAlignment="Right" Width="313">
             <Grid>
                 <Label x:Name="label_SelectedName" Content="{DynamicResource FPName}" Margin="10,2,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBox_SelectedName" TextWrapping="NoWrap" Text="{Binding SelectedProduct.name, Mode=TwoWay}" Margin="0,6,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
@@ -45,16 +49,19 @@
                 <TextBox x:Name="textBox_SelectedPrice" TextWrapping="NoWrap" Text="{Binding SelectedProduct.price, Mode=TwoWay}" Margin="0,32,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
 
                 <Label x:Name="label_SelectedDateAdded" Width="auto" Content="{DynamicResource FPAddedDate}" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedDateAdded" TextWrapping="NoWrap" Text="{Binding SelectedProduct.date}" Margin="0,58,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedDateAdded" TextWrapping="NoWrap" Text="{Binding SelectedProduct.date}" Margin="0,58,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top" IsEnabled="false"/>
 
-                <Label x:Name="label_SelectedDescription" Content="{DynamicResource FPDescription}" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding SelectedProduct.desc, Mode=TwoWay}" Margin="0,110,0,77" HorizontalAlignment="Right" Width="200"/>
+                <Label x:Name="label_SelectedDescription" Content="{DynamicResource FPDescription}" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding SelectedProduct.desc, Mode=TwoWay}" Margin="0,142,0.667,43" HorizontalAlignment="Right" Width="200"/>
 
                 <Label x:Name="label_SelectedCategory" Width="auto" Content="{DynamicResource FPCategory}" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBox_SelectedCategory" TextWrapping="NoWrap" Text="{Binding SelectedProduct.category, Mode=TwoWay}" Margin="0,84,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
 
                 <Button x:Name="btn_SelectedSave" Content="{DynamicResource FPSave}" Command="{Binding Path=CommandSaveChanges}" Margin="0,0,10,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
                 <Button x:Name="btn_SelectedSave_Copy" Content="{DynamicResource FPRemoveProduct}" Command ="{Binding Path=CommandRemoveSelectedProduct}" Margin="10,0,0,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
+
+                <Label x:Name="label_SelectedQuantity" IsEnabled="{Binding SelectedProduct.isUnique, Converter={StaticResource oppositeConverter}, Mode=OneWay}" Width="auto" Content="Antal tilbage" HorizontalAlignment="Left" Margin="11,108,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedQuantity" IsEnabled="{Binding SelectedProduct.isUnique, Converter={StaticResource oppositeConverter}, Mode=OneWay}" TextWrapping="NoWrap" Text="{Binding SelectedProduct.quantity, Mode=TwoWay}" Margin="0,112,0.333,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
 
             </Grid>
         </GroupBox>
@@ -77,6 +84,7 @@
             -->
         </TextBox>
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource findProduct}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
+        <Button x:Name="btn_ChooseImage" Command="{Binding CommandGetImage}" Content="Vælg billede" Margin="0,306,39,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
 
     </Grid>

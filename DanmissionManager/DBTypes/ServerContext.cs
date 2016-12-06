@@ -13,7 +13,6 @@ namespace DanmissionManager
             : base("name=ServerContext")
         {
         }
-
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SoldProduct> Soldproducts { get; set; }
