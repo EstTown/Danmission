@@ -17,8 +17,6 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel()
         {
-            _databaseSearcher = new DatabaseSearcher();
-            Products = new ObservableCollection<Product>(FindAllProducts());
             /*Combobox*/
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
             this.Statistics = statistics;
@@ -105,19 +103,6 @@ namespace DanmissionManager.ViewModels
             PieChart = salesValue;
         }
 
-        private ObservableCollection<Product> _products;
-        public ObservableCollection<Product> Products
-        {
-            get { return _products; }
-            set { _products = value; OnPropertyChanged("Products"); }
-        }
-
-        private DatabaseSearcher _databaseSearcher;
-        public List<Product> FindAllProducts()
-        {
-            return _databaseSearcher.FindProducts(x => true);
-        }
-
         private void ShowChartItems()
         {
             CalculateSum();
@@ -127,7 +112,7 @@ namespace DanmissionManager.ViewModels
                 int numberOfProducts = 0;
                 if (category.Sum != 0)
                 {
-                    foreach (Product product in Products)
+                    foreach (SoldProduct product in AllSoldProducts)
                     {
                         if (category.id == product.category)
                         {
