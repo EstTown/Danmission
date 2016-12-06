@@ -16,11 +16,11 @@ using Color = System.Drawing.Color;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TemplateViewModel : BaseViewModel
+    class TemplateViewModel : TestBaseViewModel
     {
         public TemplateViewModel()
         {
-            this._buttonText = "ThisCameFromTheViewModel";
+
             this._input = String.Empty;
             this.Product = null;
 
@@ -48,8 +48,7 @@ namespace DanmissionManager.TestViewModels
                 OnPropertyChanged("Products");
             }
         }
-
-
+        
         public RelayCommand2 UpdateCurrentProduct { get; set; }
         private void UpdateProduct()
         {
@@ -59,17 +58,21 @@ namespace DanmissionManager.TestViewModels
                 this.Products = collection;
             }
         }
-        private string _buttonText;
-        public string ButtonText
+        private string _name;
+        public string Name
         {
             get
             {
-                return _buttonText;
+                return _name;
             }
             set
             {
-                _buttonText = value;
+                _name = value;
                 OnPropertyChanged("ButtonText");
+                if (IsNamevalid(value) && _name!= value)
+                {
+                    _name = value;
+                }
             }
         }
         private string _input;

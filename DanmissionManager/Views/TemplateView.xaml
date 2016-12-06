@@ -22,7 +22,15 @@
             <Setter Property="Width" Value="121"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
-
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <DataTemplate DataType="{x:Type danmissionManager:Product}">
             <StackPanel>
                 <TextBlock Text ="{Binding category}"></TextBlock>
@@ -43,7 +51,7 @@
                 <TextBlock TextWrapping="Wrap"> Rediger/fjern kategier</TextBlock>
             </Button>
         </Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="137" Margin="172,40,0,0" TextWrapping="Wrap" Text="{Binding ButtonText}" VerticalAlignment="Top" Width="251" />
+        <TextBox x:Name="textBox"  HorizontalAlignment="Left" Height="137" Margin="172,40,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="251" />
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="205,218,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="UpdateButton" Content="UpdateRandomProduct" Command="{Binding Path = UpdateCurrentProduct}"  HorizontalAlignment="Left" Margin="726,350,0,0" VerticalAlignment="Top" Width="158" Height="87"/>
         <TextBox x:Name="Kategori" Text ="{Binding Product.category, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" FontSize="12" HorizontalAlignment="Left" Height="23" Margin="474,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>

@@ -379,3 +379,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\Foundation.
 C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\bin\Debug\DanmissionManager.exe.config
 C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
 C:\Users\Ruben\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
