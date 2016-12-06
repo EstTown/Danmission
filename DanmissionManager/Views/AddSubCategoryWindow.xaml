@@ -6,17 +6,17 @@
         xmlns:properties="clr-namespace:DanmissionManager.Properties"
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
-        Title="Add New Subcategory" Height="191.379" Width="300">
+        Title="{DynamicResource CAddNewSubCategory}" Height="191.379" Width="300">
     <Window.DataContext>
         <local:CategoriesViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <Button x:Name="button" Content="OK" Command="{Binding Path = CommandAddSubCategory}" HorizontalAlignment="Left" Margin="184,132,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
+        <Button x:Name="button" Content="{DynamicResource CApplyNewSubCategory}" Command="{Binding Path = CommandAddSubCategory}" HorizontalAlignment="Left" Margin="184,132,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="133,41,0,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="label1" Content="Subcategory Name:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label x:Name="label1" Content="{DynamicResource CNewSubCategoryName}" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="118"/>
         <Button x:Name="button1" Content="Abort" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="100" Click="button1_Click"/>
-        <Label x:Name="label6" Content="Standard price:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label x:Name="label6" Content="{DynamicResource CNewStandardPrice}" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="133,73,0,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.standardprice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="150"/>
 
     </Grid>
