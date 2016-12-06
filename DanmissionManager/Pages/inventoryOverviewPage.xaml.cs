@@ -24,5 +24,10 @@ namespace DanmissionManager.Pages
         {
             InitializeComponent();
         }
+
+        private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
