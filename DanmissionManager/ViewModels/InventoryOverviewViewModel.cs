@@ -86,12 +86,15 @@ namespace DanmissionManager.ViewModels
             get { return _searchParameter; }
             set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
+        // Rename to SortedProducts ?
 
         public RelayCommand2 CommandFindUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindNonUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindExpiredProducts { get; private set; }
         public RelayCommand2 CommandFindTransactions { get; private set; }
         public RelayCommand2 CommandFindSoldProducts { get; private set; }
+
+        // Just remove FindTransactions and FindSoldProducts and bind the properties directly to the hidden/shown tables
 
         private void SortBySearchParameter(int searchParameter)
         {

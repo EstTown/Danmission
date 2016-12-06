@@ -23,6 +23,7 @@ namespace DanmissionManager.Pages
         public categoriesPage()
         {
             InitializeComponent();
+            Popup1.IsOpen = true;
         }
     }
 }
