@@ -53,6 +53,15 @@
     <system:String x:Key="CFetch">Hent</system:String>
     <system:String x:Key="CRemoveCategory">Fjern</system:String>
     <system:String x:Key="CAddCategory">Tilføj</system:String>
+    <system:String x:Key="CAddNewCategory">Tilføj ny kategori</system:String>
+    <system:String x:Key="CNewCategoryName">Navn:</system:String>
+    <system:String x:Key="CAbortAddNewCategory">Afbryd</system:String>
+    <system:String x:Key="CApplyNewCategory">OK</system:String>
+    <system:String x:Key="CAddNewSubCategory">Tilføj ny underkategori</system:String>
+    <system:String x:Key="CNewSubCategoryName">Navn:</system:String>
+    <system:String x:Key="CAbortAddNewSubCategory">Afbryd</system:String>
+    <system:String x:Key="CApplyNewSubCategory">OK</system:String>
+    <system:String x:Key="CNewStandardPrice">Standardpris:</system:String>
 
     <!-- Statistics Page -->
     <system:String x:Key="SStatisticsType">Statistiktype:</system:String>
