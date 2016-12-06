@@ -54,6 +54,15 @@
     <system:String x:Key="CFetch">Fetch</system:String>
     <system:String x:Key="CRemoveCategory">Remove</system:String>
     <system:String x:Key="CAddCategory">Add</system:String>
+    <system:String x:Key="CAddNewCategory">Add new category</system:String>
+    <system:String x:Key="CNewCategoryName">Name:</system:String>
+    <system:String x:Key="CAbortAddNewCategory">Cancel</system:String>
+    <system:String x:Key="CApplyNewCategory">OK</system:String>
+    <system:String x:Key="CAddNewSubCategory">Add new subcategory</system:String>
+    <system:String x:Key="CNewSubCategoryName">Name:</system:String>
+    <system:String x:Key="CAbortAddNewSubCategory">Cancel</system:String>
+    <system:String x:Key="CApplyNewSubCategory">OK</system:String>
+    <system:String x:Key="CNewStandardPrice">Standard price:</system:String>
 
     <!-- Statistics Page -->
     <system:String x:Key="SStatisticsType">Statistics Type:</system:String>

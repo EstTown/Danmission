@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DanmissionManager.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,18 @@ namespace DanmissionManager.Pages
         public categoriesPage()
         {
             InitializeComponent();
-            Popup1.IsOpen = true;
+        }
+
+        private void button_CategoriesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddCategoryWindow popup = new AddCategoryWindow(this.DataContext);
+            popup.ShowDialog();
+        }
+
+        private void button_SubcategoriesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddSubCategoryWindow popup = new AddSubCategoryWindow(this.DataContext);
+            popup.ShowDialog();
         }
     }
 }

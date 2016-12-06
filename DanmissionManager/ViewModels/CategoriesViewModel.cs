@@ -41,7 +41,10 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
+            ShownCategories = AllCategories;
+            ShownSubCategories = AllSubCategories;
         }
+
         public RelayCommand2 CommandAddCategory { get; set; }
         public void AddCategory()
         {
@@ -50,9 +53,10 @@ namespace DanmissionManager.ViewModels
                 ctx.Category.Add(this.CreatedCategory);
                 ctx.SaveChanges();
             }
-            this.AllCategories.Add(CreatedCategory);
+            AllCategories.Add(CreatedCategory);
             this.CreatedCategory = new Category();
         }
+
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
@@ -69,8 +73,8 @@ namespace DanmissionManager.ViewModels
             this.ShownSubCategories.Add(CreatedStandardprice);
             this.CreatedStandardprice = new Standardprice();
         }
-        public RelayCommand2 CommandRemoveCategory { get; set; }
 
+        public RelayCommand2 CommandRemoveCategory { get; set; }
         private void RemoveCategory()
         {
             using (var ctx = new ServerContext())
@@ -80,13 +84,12 @@ namespace DanmissionManager.ViewModels
 
                 ctx.Category.Remove(category);
                 ctx.SaveChanges();
-                //probably also remove all subcategories..by using the barbrady method
-                Barbrady();
+                RemoveChildCategories();
             }
             this.AllCategories.Remove(this.SelectedCategory);
             this.ShownSubCategories = new ObservableCollection<Standardprice>();
         }
-        private void Barbrady()
+        private void RemoveChildCategories()
         {
             using (var ctx = new ServerContext())
             {
@@ -102,6 +105,7 @@ namespace DanmissionManager.ViewModels
                 }
             }
         }
+
         public RelayCommand2 CommandRemoveSubCategory { get; set; }
         private void RemoveSubCategory()
         {
@@ -163,38 +167,35 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private string _subCategorySearchParameter;
-        public string SubCategorySearchParameter
-        {
-            get { return _subCategorySearchParameter; }
-            set { _subCategorySearchParameter = value; UpdateShownSubCategories(SubCategorySearchParameter); OnPropertyChanged("SubCategorySearchParameter"); }
-        }
+        //private string _subCategorySearchParameter = string.Empty;
+        //public string SubCategorySearchParameter
+        //{
+        //    get { return _subCategorySearchParameter; }
+        //    set { _subCategorySearchParameter = value; UpdateShownSubCategories(SubCategorySearchParameter); OnPropertyChanged("SubCategorySearchParameter"); }
+        //}
 
-        private string _categorySearchParameter;
-        public string CategorySearchParameter
-        {
-            get { return _categorySearchParameter; }
-            set { _categorySearchParameter = value; UpdateShownCategories(CategorySearchParameter); OnPropertyChanged("CategorySearchParameter"); }
-        }
+        //private string _categorySearchParameter = string.Empty;
+        //public string CategorySearchParameter
+        //{
+        //    get { return _categorySearchParameter; }
+        //    set { _categorySearchParameter = value; UpdateShownCategories(CategorySearchParameter); OnPropertyChanged("CategorySearchParameter"); }
+        //}
 
-        private void UpdateShownSubCategories(string subCategorySearchParameter)
-        {
-            ShownSubCategories = new ObservableCollection<Standardprice>(AllSubCategories.Where(x => x.name.Contains(subCategorySearchParameter)));
-        }
+        //private void UpdateShownSubCategories(string subCategorySearchParameter)
+        //{
+        //    ShownSubCategories = new ObservableCollection<Standardprice>(AllSubCategories.Where(x => x.name.Contains(subCategorySearchParameter)));
+        //}
 
-        private void UpdateShownCategories(string categorySearchParameter)
-        {
-            ShownCategories = new ObservableCollection<Category>(AllCategories.Where(x => x.name.Contains(categorySearchParameter)));
-        }
+        //private void UpdateShownCategories(string categorySearchParameter)
+        //{
+        //    ShownCategories = new ObservableCollection<Category>(AllCategories.Where(x => x.name.Contains(categorySearchParameter)));
+        //}
 
         //properties for containing the newly created category and subcategory
         private Category _createdCategory;
         public Category CreatedCategory
         {
-            get
-            {
-                return _createdCategory;
-            }
+            get { return _createdCategory; }
             set
             {
                 _createdCategory = value;
@@ -234,16 +235,18 @@ namespace DanmissionManager.ViewModels
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.ShownSubCategories = collection;
         }
-        private Category _selectedNewCategory;
-        public Category SelectedNewCategory
-        {
-            get { return _selectedNewCategory; }
-            set
-            {
-                _selectedNewCategory = value;
-                OnPropertyChanged("SelectedNewCategory");
-            }
-        }
+
+        //private Category _selectedNewCategory;
+        //public Category SelectedNewCategory
+        //{
+        //    get { return _selectedNewCategory; }
+        //    set
+        //    {
+        //        _selectedNewCategory = value;
+        //        OnPropertyChanged("SelectedNewCategory");
+        //    }
+        //}
+
         //property for selected sub category item
         private Standardprice _selectedSubCategory;
         public Standardprice SelectedSubCategory

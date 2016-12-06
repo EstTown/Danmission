@@ -29,9 +29,13 @@ namespace DanmissionManager.ViewModels
             {
                 this.AllCategories = new List<Category>(ctx.Category.ToList());
                 this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+                this.AllProducts = new List<Product>(ctx.Products.ToList());
             }
         }
+
         public List<SoldProduct> AllSoldProducts { get; set; }
+        public List<Product> AllProducts { get; set; }
+
         private List<Category> _allCategories;
         public List<Category> AllCategories
         {
@@ -72,8 +76,11 @@ namespace DanmissionManager.ViewModels
                 case "Solgt for per kategori":
                     ShowChartSales();
                     break;
-                case "Elementer solgt per kategori":
+                case "Produkter solgt per kategori":
                     ShowChartItems();
+                    break;
+                case "Produkter per kategori":
+                    ShowChartInventory();
                     break;
                 default:
                     break;
@@ -114,7 +121,7 @@ namespace DanmissionManager.ViewModels
                 {
                     foreach (SoldProduct product in AllSoldProducts)
                     {
-                        if (category.id == product.category)
+                        if (category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
                         {
                             numberOfProducts++;
                         }
@@ -129,6 +136,23 @@ namespace DanmissionManager.ViewModels
         private void ShowChartInventory()
         {
             List<KeyValuePair<string, int>> inventoryValue = new List<KeyValuePair<string, int>>();
+            foreach (Category category in AllCategories)
+            {
+                int numberOfProducts = 0;
+                foreach (Product product in AllProducts)
+                {
+                    if(category.id == product.category)
+                    {
+                        numberOfProducts++;
+                    }
+                }
+                if (numberOfProducts != 0)
+                {
+                    inventoryValue.Add(new KeyValuePair<string, int>(category.name, numberOfProducts));
+                }
+            }
+
+            PieChart = inventoryValue;
         }
 
         private List<KeyValuePair<string, int>> _pieChart;
@@ -144,15 +168,45 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("PieChart");
             }
         }
+
         public RelayCommand2 CommandDisplayChart { get; set; }
         private List<string> statCombobox()
         {
             List<string> data = new List<string>();
 
             data.Add("Solgt for per kategori");
-            data.Add("Elementer solgt per kategori");
+            data.Add("Produkter solgt per kategori");
+            data.Add("Produkter per kategori");
 
             return data;
+        }
+
+        private DateTime _dateFrom;
+        public DateTime dateFrom
+        {
+            get
+            {
+                return _dateFrom;
+            }
+            set
+            {
+                _dateFrom = value;
+                OnPropertyChanged("dateFrom");
+            }
+        }
+
+        private DateTime _dateTo;
+        public DateTime dateTo
+        {
+            get
+            {
+                return _dateTo;
+            }
+            set
+            {
+                _dateTo = value;
+                OnPropertyChanged("dateTo");
+            }
         }
     }
 }
