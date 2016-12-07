@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DanmissionManager.ViewModels"
+        xmlns:local="clr-namespace:DanmissionManager.TestViewModels"
         xmlns:danmissionManager="clr-namespace:DanmissionManager"
         xmlns:testViewModels="clr-namespace:DanmissionManager.TestViewModels"
         mc:Ignorable="d"
         Title="TemplateView" Height="540" Width="960" Background="WhiteSmoke">
     <Window.DataContext>
-        <testViewModels:TemplateViewModel/>
+        <local:TemplateViewModel></local:TemplateViewModel>
     </Window.DataContext>
 
 
