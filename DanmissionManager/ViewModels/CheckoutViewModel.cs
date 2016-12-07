@@ -23,7 +23,6 @@ namespace DanmissionManager.ViewModels
 
             ProductsInBasket = new ObservableCollection<Product>();
         }
-
         private string _searchParameter;
         public string SearchParameter
         {
@@ -34,7 +33,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("SearchParameter");
             }
         }
-
         private double _totalPrice;
         public string TotalPrice
         {
@@ -45,7 +43,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
-
         private ObservableCollection<Product> _productsInBasket;
         public ObservableCollection<Product> ProductsInBasket
         {
@@ -56,7 +53,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("ProductInBasket");
             }
         }
-
         private Product _product;
         public Product Product
         {
@@ -67,8 +63,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Product");
             }
         }
-
-        //does not need a backing field
         public RelayCommand2 CommandGetProductByID { get; set; }
         //method get products
         public void CommandGetProductByIDFromDatabase()
@@ -93,16 +87,13 @@ namespace DanmissionManager.ViewModels
                         MessageBox.Show("Produktet kunne ikke findes!", "Error!");
                         this.SearchParameter = string.Empty;
                     }
-                    
                 }
-
             }
             catch (System.Data.DataException)
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
         }
-
         public RelayCommand2 CommandAddToBasket { get; set; }
         public void CommandAddSelectedToBasket()
         {
@@ -112,14 +103,12 @@ namespace DanmissionManager.ViewModels
                 this.TotalPrice = ProductsInBasket.Sum(x => x.price).ToString();
             }
         }
-
         public RelayCommand2 CommandClearBasket { get; set; }
         public void CommandClearAllProductsFromBasket()
         {
             ProductsInBasket.Clear();
             this.TotalPrice = "0";
         }
-
         public RelayCommand2 CommandComplete { get; set; }
         public void CommandCompletePurchase()
         {
@@ -175,14 +164,17 @@ namespace DanmissionManager.ViewModels
                                 {
                                     ctx.Products.Remove(y);
                                 }
-                                if (x.isUnique == false)
+                                else if (y.quantity <= 1)
+                                {
+                                    ctx.Products.Remove(y);
+                                }
+                                else
                                 {
                                     y.quantity--;
                                 }
                             }
                         }
                     }
-
                     ctx.SaveChanges();
                     CommandClearAllProductsFromBasket();
                     notifyUserAboutCompletedPurchase(transId, transSum);
@@ -192,15 +184,11 @@ namespace DanmissionManager.ViewModels
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
-
-            
         }
-
         private void notifyUserAboutCompletedPurchase(int transid, double sum)
         {
             MessageBox.Show("Tranaction ID: " + transid + "\nSum: " + sum ,"Purchase completed");
         }
-
         public BitmapImage ImageFromBuffer(Byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);

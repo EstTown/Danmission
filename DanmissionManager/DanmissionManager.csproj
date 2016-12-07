@@ -125,7 +125,6 @@
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
     <Compile Include="Generator\Generator.cs" />
-    <Compile Include="Generator\ProductGenerator.cs" />
     <Compile Include="Models\DatabaseConnector.cs" />
     <Compile Include="Models\DatabaseSearcher.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
@@ -157,6 +156,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Simulator\Interfaces\IProductGenerator.cs" />
+    <Compile Include="Simulator\Interfaces\ISimulator.cs" />
+    <Compile Include="Simulator\Interfaces\ITransactionGenerator.cs" />
+    <Compile Include="Simulator\Interfaces\IVoucherGenerator.cs" />
+    <Compile Include="Simulator\ProductGenerator.cs" />
+    <Compile Include="Simulator\Simulator.cs" />
+    <Compile Include="Simulator\TransactionGenerator.cs" />
+    <Compile Include="Simulator\VoucherGenerator.cs" />
     <Compile Include="TestViewModels\TemplateViewModel.cs" />
     <Compile Include="TestViewModels\TestBaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -179,6 +186,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateView2.xaml.cs">
+      <DependentUpon>TemplateView2.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -248,9 +258,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\TemplateView2.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

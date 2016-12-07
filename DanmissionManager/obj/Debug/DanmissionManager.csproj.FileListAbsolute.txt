@@ -381,5 +381,6 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCa
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.baml
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView.g.cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.g.cs
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
