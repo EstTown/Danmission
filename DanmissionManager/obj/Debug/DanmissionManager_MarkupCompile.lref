@@ -1,4 +1,4 @@
-﻿
+﻿C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\App.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\MainWindow.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Pages\addProductPage.xaml;;
@@ -11,6 +11,8 @@ FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Pages\settingsPage.x
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Pages\statisticsPage.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Resources\StringResources.DK.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Resources\StringResources.en-GB.xaml;;
+FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Views\AddCategoryWindow.xaml;;
+FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Views\AddSubCategoryWindow.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Views\CreateProductView.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Views\MainView.xaml;;
 FC:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\Views\TemplateView.xaml;;

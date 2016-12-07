@@ -1,0 +1,73 @@
+﻿<Window x:Class="DanmissionManager.Views.TemplateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DanmissionManager.TestViewModels"
+        xmlns:danmissionManager="clr-namespace:DanmissionManager"
+        xmlns:testViewModels="clr-namespace:DanmissionManager.TestViewModels"
+        mc:Ignorable="d"
+        Title="TemplateView" Height="540" Width="960" Background="WhiteSmoke">
+    <Window.DataContext>
+        <local:TemplateViewModel></local:TemplateViewModel>
+    </Window.DataContext>
+
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value ="#FF37BA5D"></Setter>
+            <Setter Property="BorderThickness" Value ="0,0,0,0.5"></Setter>
+            <Setter Property="BorderBrush" Value="BlueViolet"></Setter>
+            <Setter Property="Width" Value="121"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate DataType="{x:Type danmissionManager:Product}">
+            <StackPanel>
+                <TextBlock Text ="{Binding category}"></TextBlock>
+                <TextBlock Text ="{Binding id}"></TextBlock>
+                <TextBlock Text ="{Binding date}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid HorizontalAlignment="Left" Height="510" VerticalAlignment="Top" Width="121" DataContext="TemplateView" Background="#FF37BA5D">
+            <Button x:Name="button" Content="Registrer Produkt"  HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="121" Height="80"/>
+            <Button x:Name="button1" Content="Find Produkt" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" Width="121" Height="97"/>
+            <Button x:Name="button2" Content="Fjern Produkt" HorizontalAlignment="Left" Margin="0,197,0,0" VerticalAlignment="Top" Width="121" Height="89"/>
+            <Button x:Name="button3" Content="Inventar Overblik" HorizontalAlignment="Left" Margin="0,291,0,0" VerticalAlignment="Top" Width="121" Height="92"/>
+            <Button x:Name="button4" HorizontalAlignment="Left" Margin="0,388,0,0" VerticalAlignment="Top" Height="96" >
+                <TextBlock TextWrapping="Wrap"> Rediger/fjern kategier</TextBlock>
+            </Button>
+        </Grid>
+        <TextBox x:Name="textBox"  HorizontalAlignment="Left" Height="137" Margin="172,40,0,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top" Width="251" />
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="205,218,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="UpdateButton" Content="UpdateRandomProduct" Command="{Binding Path = UpdateCurrentProduct}"  HorizontalAlignment="Left" Margin="726,350,0,0" VerticalAlignment="Top" Width="158" Height="87"/>
+        <TextBox x:Name="Kategori" Text ="{Binding Product.category, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" FontSize="12" HorizontalAlignment="Left" Height="23" Margin="474,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="Date" Text ="{Binding Product.date, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="22" Margin="474,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="ID" Text ="{Binding Product.id, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="474,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <Image x:Name="image" Source="{Binding Product.ProductImage}" HorizontalAlignment="Left" Height="87" Margin="642,350,0,0" VerticalAlignment="Top" Width="79"/>
+        <Image x:Name="image1" Source="{Binding Product.ProductImage}" HorizontalAlignment="Left" Height="140" Margin="245,350,0,0" VerticalAlignment="Top" Width="140"/>
+
+
+
+    </Grid>
+
+</Window>
+<!-- as you can see, comments are cancer in XAML 
+        CommandParameter="{Binding ElementName=SuperText, Path=Text}"
+        This line of code was originally connected to "UpdateButton" but I tried removing it 
+        and it seemed to change nothing, so.
+        -->
+    
