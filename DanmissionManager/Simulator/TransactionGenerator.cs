@@ -31,9 +31,9 @@ namespace DanmissionManager.Simulator
                 for (int j = 0; j < rdn.Next(1,5); j++)
                 {
                     transaction.sum += AllProducts[rdn.Next(AllProducts.Count - 1)].price;
-                    transaction.date = DateTime.Now;
-
+                    //should do something about the products that are contained within the transaction
                 }
+                transaction.date = DateTime.Now.Subtract(timespan);
             }
 
 
