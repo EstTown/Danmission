@@ -110,7 +110,7 @@ namespace DanmissionManager.ViewModels
                         amountPerCategory += (int)product.price;
                     }
                 }
-                if (category.Sum != 0)
+                if (amountPerCategory != 0)
                 {
                     salesValue.Add(new KeyValuePair<string, int>(category.name, amountPerCategory));
                 }
