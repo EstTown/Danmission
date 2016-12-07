@@ -51,6 +51,7 @@ namespace DanmissionManager.TestViewModels
             if (value.Contains(" "))
             {
                 AddError("Name", NAME_ERROR, false);
+                isValid = false;
             }
             else
             {

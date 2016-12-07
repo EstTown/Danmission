@@ -102,9 +102,17 @@ namespace DanmissionManager.ViewModels
             List<KeyValuePair<string, int>> salesValue = new List<KeyValuePair<string, int>>();
             foreach (Category category in this.AllCategories)
             {
-                if (category.Sum != 0)
+                int amountPerCategory = 0;
+                foreach(SoldProduct product in AllSoldProducts)
                 {
-                    salesValue.Add(new KeyValuePair<string, int>(category.name, category.Sum));
+                    if(product.date >= dateFrom && product.date <= dateTo && category.id == product.category)
+                    {
+                        amountPerCategory += (int)product.price;
+                    }
+                }
+                if (amountPerCategory != 0)
+                {
+                    salesValue.Add(new KeyValuePair<string, int>(category.name, amountPerCategory));
                 }
             }
             PieChart = salesValue;

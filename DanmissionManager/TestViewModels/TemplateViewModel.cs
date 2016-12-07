@@ -13,6 +13,7 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using DanmissionManager.ViewModels;
 using Color = System.Drawing.Color;
+using DanmissionManager.Simulator;
 
 namespace DanmissionManager.TestViewModels
 {
@@ -20,7 +21,6 @@ namespace DanmissionManager.TestViewModels
     {
         public TemplateViewModel()
         {
-
             this._input = String.Empty;
             this.Product = null;
 
@@ -30,12 +30,11 @@ namespace DanmissionManager.TestViewModels
             product.date = new DateTime(2015, 4, 22);
             product.id = 111111;
             product.category = 2;
-            product.productImage = BitmapToImageSource(GenerateRandomImage());
+            
             this.Product = product;
+            
         }
-
         private ObservableCollection<Product> _products;
-
         public ObservableCollection<Product> Products
         {
             get
@@ -48,14 +47,14 @@ namespace DanmissionManager.TestViewModels
                 OnPropertyChanged("Products");
             }
         }
-        
         public RelayCommand2 UpdateCurrentProduct { get; set; }
         private void UpdateProduct()
         {
-            using (var ctx = new ServerContext())
+            ProductGenerator prodgen = new ProductGenerator(100, 100);
+            List<Product> list = new List<Product>(prodgen.GenerateProducts());
+            foreach (Product product in list)
             {
-                ObservableCollection<Product> collection = new ObservableCollection<Product>(ctx.Products.ToList());
-                this.Products = collection;
+                Console.WriteLine(product.name+"           "+product.date+"         "+product.expiredate);
             }
         }
         private string _name;
