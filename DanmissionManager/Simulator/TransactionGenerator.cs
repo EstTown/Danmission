@@ -30,10 +30,27 @@ namespace DanmissionManager.Simulator
 
                 for (int j = 0; j < rdn.Next(1,5); j++)
                 {
-                    transaction.sum += AllProducts[rdn.Next(AllProducts.Count - 1)].price;
+                    //made the int to make sure no duplicates get used
+                    int next = rdn.Next(AllProducts.Count - 1);
+                    transaction.sum += AllProducts[next].price;
+
+                    if (AllProducts[next].isUnique == true)
+                    {
+                        AllProducts.Remove(AllProducts[next]);
+                    }
+                    else if (AllProducts[next].quantity <= 1)
+                    {
+                        AllProducts.Remove(AllProducts[next]);
+                    }
+                    else
+                    {
+                        AllProducts[next].quantity--;
+                    }
+                    
                     //should do something about the products that are contained within the transaction
                 }
                 transaction.date = DateTime.Now.Subtract(timespan);
+                list.Add(transaction);
             }
 
 
