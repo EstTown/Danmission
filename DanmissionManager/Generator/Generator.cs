@@ -11,7 +11,8 @@ namespace DanmissionManager
     class Generator
     {
         public Generator()
-        {
+        {   
+            /*
             Hydrator<Product> _customerHydrator = new Hydrator<Product>()
                 .With(x => x.name, new ProductGenerator())
                 .WithInteger(x => x.category, 1, 50);
@@ -21,9 +22,7 @@ namespace DanmissionManager
             {
                 Console.WriteLine(x.category + "        " + x.name);
             }
+            */
         }
-
-
-
     }
 }

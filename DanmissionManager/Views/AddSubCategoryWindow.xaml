@@ -15,7 +15,7 @@
         <Button x:Name="button" Content="{DynamicResource CApplyNewSubCategory}" Command="{Binding Path = CommandAddSubCategory}" Margin="0,0,10,10" Click="button_Click" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
         <TextBox x:Name="textBox" Height="23" Margin="0,19,8,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"/>
         <Label x:Name="label1" Content="{DynamicResource CNewSubCategoryName}" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="118"/>
-        <Button x:Name="button1" Content="Abort" HorizontalAlignment="Left" Margin="10,0,0,10" Width="100" Click="button1_Click" Height="22" VerticalAlignment="Bottom"/>
+        <Button x:Name="button1" Content="{DynamicResource CAbortAddNewSubCategory}" HorizontalAlignment="Left" Margin="10,0,0,10" Width="100" Click="button1_Click" Height="22" VerticalAlignment="Bottom"/>
         <Label x:Name="label6" Content="{DynamicResource CNewStandardPrice}" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="textBox3" Height="23" Margin="0,56,8,0" TextWrapping="Wrap" Text="{Binding CreatedStandardprice.standardprice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"/>
 

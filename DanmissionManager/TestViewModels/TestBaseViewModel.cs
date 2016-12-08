@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+    public class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         #region implementation of INotifyPropertyChanged
 
@@ -51,6 +51,7 @@ namespace DanmissionManager.TestViewModels
             if (value.Contains(" "))
             {
                 AddError("Name", NAME_ERROR, false);
+                isValid = false;
             }
             else
             {

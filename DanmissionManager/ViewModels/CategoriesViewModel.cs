@@ -42,7 +42,7 @@ namespace DanmissionManager.ViewModels
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
             ShownCategories = AllCategories;
-            ShownSubCategories = AllSubCategories;
+            ShownSubCategories = new ObservableCollection<Standardprice>();
         }
 
         public RelayCommand2 CommandAddCategory { get; set; }

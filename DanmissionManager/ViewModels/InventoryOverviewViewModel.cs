@@ -30,8 +30,6 @@ namespace DanmissionManager.ViewModels
             this.CommandFindUniqueProducts = new RelayCommand2(() => SortBySearchParameter(1));
             this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
             this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
-            this.CommandFindTransactions = new RelayCommand2(() => SortBySearchParameter(4));
-            this.CommandFindSoldProducts = new RelayCommand2(() => SortBySearchParameter(5));
         }
 
         private DatabaseSearcher _databaseSearcher;
@@ -91,8 +89,6 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandFindUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindNonUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindExpiredProducts { get; private set; }
-        public RelayCommand2 CommandFindTransactions { get; private set; }
-        public RelayCommand2 CommandFindSoldProducts { get; private set; }
 
         // Just remove FindTransactions and FindSoldProducts and bind the properties directly to the hidden/shown tables
 
@@ -103,8 +99,6 @@ namespace DanmissionManager.ViewModels
                 case 1: SearchParameter = UniqueProducts; break;
                 case 2: SearchParameter = NonUniqueProducts; break;
                 case 3: SearchParameter = ExpiredProducts; break;
-                case 4:
-                case 5: 
                 default: SearchParameter = null;
                     break;
             }
@@ -121,6 +115,8 @@ namespace DanmissionManager.ViewModels
             NonUniqueProducts = new ObservableCollection<Product>(productList.Where(x => !x.isUnique));
             ExpiredProducts = new ObservableCollection<Product>(productList.Where(expiredProductsPredicate));
         }
+
+        
 
         private bool expiredProductsPredicate(Product product)
         {

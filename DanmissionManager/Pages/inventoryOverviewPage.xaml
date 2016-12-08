@@ -15,8 +15,8 @@
     <Grid>
         <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="{DynamicResource inventoryOverview}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="auto" Margin="10,70,0,0" VerticalAlignment="Top" Width="auto">
-            <Button x:Name="label13" Height="45" Width="auto" Command="{Binding CommandFindUniqueProducts}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="auto" Margin="10,70,0,0" VerticalAlignment="Top" Width="800">
+            <Button x:Name="label13" Height="45" HorizontalAlignment="Center" Width="160" Command="{Binding CommandFindUniqueProducts}" Click="UniqueProducts_Click">
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{DynamicResource IOUnique}"/>
@@ -26,10 +26,10 @@
                     </TextBlock>
                 </Button.Content>
             </Button>
-            <Button Height="45" HorizontalAlignment="Left" Width="auto" Command="{Binding CommandFindNonUniqueProducts}">
+            <Button Height="45" HorizontalAlignment="Center" Width="160" Command="{Binding CommandFindNonUniqueProducts}" Click="NotUniqueProducts_Click">
                 <TextBlock TextWrapping="Wrap"><Run Text="{DynamicResource IONotUnique}"/><Run Text=" "/><Run Text="("/><Run Text=" "/><Run Text="{Binding NonUniqueProducts.Count, Mode=OneWay}"/><Run Text=" "/><Run Text=")"/></TextBlock>
             </Button>
-            <Button Height="45" Command="{Binding CommandFindExpiredProducts}">
+            <Button Height="45" HorizontalAlignment="Center" Width="160" Command="{Binding CommandFindExpiredProducts}" Click="ExpiredProducts_Click">
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{DynamicResource IOExpired}"/>
@@ -39,7 +39,7 @@
                     </TextBlock>
                 </Button.Content>
             </Button>
-            <Button Height="45" Width="auto" Command="{Binding CommandFindTransactions}">
+            <Button Height="45" HorizontalAlignment="Center" Width="160" Command="{Binding Transactions}" Click="Transactions_Click">
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{DynamicResource IOTransactions}"/>
@@ -49,7 +49,7 @@
                     </TextBlock>
                 </Button.Content>
             </Button>
-            <Button Height="45" Width="auto" Command="{Binding CommandFindSoldProducts}">
+            <Button Height="45" HorizontalAlignment="Center" Width="160" Command="{Binding SoldProducts}" Click="SoldProducts_Click">
                 <Button.Content>
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="{DynamicResource IOSold}"/>
@@ -61,7 +61,32 @@
             </Button>
         </StackPanel>
 
-        <ListView Margin="10,120,12,15" Name="lvProducts" ItemsSource="{Binding Path=SearchParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}" SelectionChanged="lvProducts_SelectionChanged">
+
+
+             <ListView Margin="10,120,12,15" Name="TransActions" ItemsSource="{Binding Path=Transactions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="{DynamicResource IOTransDate}" Width="150" DisplayMemberBinding="{Binding date}" />
+                    <GridViewColumn Header="{DynamicResource IOSum }" Width="150" DisplayMemberBinding="{Binding sum}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+             <ListView Margin="10,120,12,15" Name="SoldProducts" ItemsSource="{Binding Path=SoldProducts, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="{DynamicResource IOTransID }" Width="150" DisplayMemberBinding="{Binding transactionid}" />
+                    <GridViewColumn Header="{DynamicResource FPName}" Width="150" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="{DynamicResource FPPrice }" Width="150" DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="{DynamicResource IODateSold }" Width="150" DisplayMemberBinding="{Binding date}" />
+       
+                </GridView>
+            </ListView.View>
+        </ListView> 
+
+        <ListView Margin="10,120,12,15" Name="lvProducts" ItemsSource="{Binding Path=SearchParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
@@ -72,6 +97,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
 </Page>
