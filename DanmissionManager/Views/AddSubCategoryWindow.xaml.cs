@@ -23,6 +23,9 @@ namespace DanmissionManager.Views
         {
             InitializeComponent();
             DataContext = dataContext;
+
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
