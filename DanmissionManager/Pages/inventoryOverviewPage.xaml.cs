@@ -20,14 +20,46 @@ namespace DanmissionManager.Pages
     /// </summary>
     public partial class inventoryOverviewPage : Page
     {
+
         public inventoryOverviewPage()
         {
             InitializeComponent();
         }
 
-        private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UniqueProducts_Click(object sender, RoutedEventArgs e)
         {
-
+            lvProducts.Visibility = Visibility.Visible;
+            TransActions.Visibility = Visibility.Collapsed;
+            SoldProducts.Visibility = Visibility.Collapsed;
         }
+
+        private void NotUniqueProducts_Click(object sender, RoutedEventArgs e)
+        {
+            lvProducts.Visibility = Visibility.Visible;
+            TransActions.Visibility = Visibility.Collapsed;
+            SoldProducts.Visibility = Visibility.Collapsed;
+        }
+
+        private void ExpiredProducts_Click(object sender, RoutedEventArgs e)
+        {
+            lvProducts.Visibility = Visibility.Visible;
+            TransActions.Visibility = Visibility.Collapsed;
+            SoldProducts.Visibility = Visibility.Collapsed;
+        }
+
+        private void Transactions_Click(object sender, RoutedEventArgs e)
+        {
+            lvProducts.Visibility = Visibility.Collapsed;
+            TransActions.Visibility = Visibility.Visible;
+            SoldProducts.Visibility = Visibility.Collapsed;
+        }
+
+        private void SoldProducts_Click(object sender, RoutedEventArgs e)
+        {
+            lvProducts.Visibility = Visibility.Collapsed;
+            TransActions.Visibility = Visibility.Collapsed;
+            SoldProducts.Visibility = Visibility.Visible;
+        }
+
     }
 }

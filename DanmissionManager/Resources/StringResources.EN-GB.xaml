@@ -46,6 +46,10 @@
     <system:String x:Key="IOExpired">Expired Products</system:String>
     <system:String x:Key="IOTransactions">Transactions</system:String>
     <system:String x:Key="IOSold">Sold Products</system:String>
+    <system:String x:Key="IOSum">Amount</system:String>
+    <system:String x:Key="IODateSold">Date Sold</system:String>
+    <system:String x:Key="IOTransID">Transaction ID</system:String>
+    <system:String x:Key="IOTransDate">Transaction Date</system:String>
 
 
     <!-- Categories Page -->
