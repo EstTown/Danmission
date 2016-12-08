@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+    public class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         #region implementation of INotifyPropertyChanged
 

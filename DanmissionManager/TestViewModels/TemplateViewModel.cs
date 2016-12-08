@@ -17,7 +17,7 @@ using DanmissionManager.Simulator;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TemplateViewModel : TestBaseViewModel
+    public class TemplateViewModel : TestBaseViewModel
     {
         public TemplateViewModel()
         {
