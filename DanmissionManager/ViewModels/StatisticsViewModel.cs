@@ -24,6 +24,12 @@ namespace DanmissionManager.ViewModels
             RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
 
+
+            TimeSpan timespan = new TimeSpan(30, 0, 0, 0);
+
+            this.dateFrom = DateTime.Now - timespan;
+            this.dateTo = DateTime.Now;
+
             //get all categories and soldproducts
             using(var ctx = new ServerContext())
             {
