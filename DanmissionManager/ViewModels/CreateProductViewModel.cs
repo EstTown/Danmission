@@ -19,17 +19,16 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel()
         {
-            this.Product = new Product();
-            this.Product.price = 0.0;
-            this.Product.isUnique = true;
+            this.Product = new Product() {isUnique = true, price = 0.0};
+            
+            this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
+            this.CommandGetImage = new RelayCommand2(GetImage);
 
-            //command for adding a product to the server
-            RelayCommand2 commandAddProduct = new RelayCommand2(AddProduct);
-            this.CommandAddProduct = commandAddProduct;
-            //Command for getting image from user, via dialog
-            RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
-            this.CommandGetImage = commandGetImage;
             //get all categories and subcategories from database
+            GetFromDatabase();
+        }
+        public void GetFromDatabase()
+        {
             try
             {
                 using (var ctx = new ServerContext())
@@ -49,88 +48,56 @@ namespace DanmissionManager.ViewModels
         public Standardprice SelectedSubCategory
         {
             get { return _selectedSubCategory; }
-            set
-            {
-                _selectedSubCategory = value;
-                OnPropertyChanged("SelectedSubCategory");
-            }
+            set {_selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory");}
         }
         private Category _selectedCategory;
         public Category SelectedCategory
         {
             get { return _selectedCategory; }
-            set
-            {
-                _selectedCategory = value;
-                OnPropertyChanged("SelectedCategory");
-
+            set {_selectedCategory = value; OnPropertyChanged("SelectedCategory");
                 //run method that changes subcategories collection, based on selectedcategory
-                ChangeCollection();
-            }
+                ChangeCollection();}
         }
-        private ObservableCollection<Standardprice> AllSubCategories { get; }
+        private ObservableCollection<Standardprice> AllSubCategories { get; set; }
 
         private ObservableCollection<Standardprice> _subCategories;
         public ObservableCollection<Standardprice> SubCategories
         {
             get { return _subCategories;}
-            set
-            {
-                _subCategories = value; 
-                OnPropertyChanged("SubCategories");
-            }
+            set {_subCategories = value; OnPropertyChanged("SubCategories");}
         }
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
         {
             get { return _categories; }
-            set
-            {
-                _categories = value;
-                OnPropertyChanged("Categories");
-            }
+            set{_categories = value; OnPropertyChanged("Categories");}
         }
         private string _productName;
         public string ProductName
         {
-            get
-            {
-                return _productName;
-            }
-            set
-            {
-                _productName = value;
-                OnPropertyChanged("ProductName");
-            }
+            get {return _productName;}
+            set {_productName = value; OnPropertyChanged("ProductName");}
         }
         private Product _product;
         public Product Product
         {
-            get
-            {
-                return _product;
-            }
-            set
-            {
-                _product = value;
-                OnPropertyChanged("Product");
-
-            }
+            get {return _product;}
+            set {_product = value; OnPropertyChanged("Product");}
         }
         public RelayCommand2 CommandAddProduct { get; set; }
         public void AddProduct()
         {
-            Product product = new Product();
-            product.date = DateTime.Now;
-            product.name = this.Product.name;
-            product.category = this.SelectedCategory.id;
-            product.isUnique = this.Product.isUnique;
-            product.desc = this.Product.desc;
+            Product product = new Product(this.Product.name, this.SelectedSubCategory.id, this.Product.isUnique, this.Product.desc);
+            
             if (product.isUnique == false)
             {
                 product.quantity = this.AmountOfProducts;
             }
-            product.expiredate = product.date.Value.AddDays(this.Weeks*7);
+            else
+            {
+                product.expiredate = product.date.Value.AddDays(this.Weeks * 7);
+            }
+            
             if (Image != null)
             {
                 product.image = this.imageToByteArray(Image);
@@ -143,50 +110,46 @@ namespace DanmissionManager.ViewModels
             {
                 product.price = this.Product.price;
             }
-            using (var ctx = new ServerContext())
+            try
             {
-                ctx.Products.Add(product);
-                ctx.SaveChanges();
-                MessageBox.Show("Assigned ID: " + product.id, "Success!");
+                using (var ctx = new ServerContext())
+                {
+                    ctx.Products.Add(product);
+                    ctx.SaveChanges();
+                    MessageBox.Show("Assigned ID: " + product.id, "Success!");
+                }
             }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+        }
+        public bool CanExecuteAddProduct()
+        {
+            return false;
         }
         private int _weeks;
         public int Weeks
         {
             get { return _weeks; }
-            set
-            {
-                _weeks = value;
-                OnPropertyChanged("Weeks");
-            }
+            set {_weeks = value; OnPropertyChanged("Weeks");}
         }
-
         private int _amountOfProducts;
         public int AmountOfProducts
         {
             get { return _amountOfProducts; }
-            set
-            {
-                _amountOfProducts = value;
-                OnPropertyChanged("AmountOfProducts");
-            }
+            set {_amountOfProducts = value; OnPropertyChanged("AmountOfProducts");}
         }
-
         private void ChangeCollection()
         {
             List<Standardprice> list = new List<Standardprice>();
             list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
-            ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
-            this.SubCategories = collection;
-
+            this.SubCategories = new ObservableCollection<Standardprice>(list);
         }
-        public BitmapImage Image {
+        public BitmapImage Image
+        {
             get { return _image; }
-            set
-            {
-                _image = value;
-                OnPropertyChanged("Image");
-            }
+            set {_image = value; OnPropertyChanged("Image");}
         }
         private BitmapImage _image { get; set; }
         public RelayCommand2 CommandGetImage { get; set; }
@@ -204,7 +167,6 @@ namespace DanmissionManager.ViewModels
                 Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
             }
         }
-
         BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
@@ -233,6 +195,5 @@ namespace DanmissionManager.ViewModels
             }
             return data;
         }
-
     }
 }

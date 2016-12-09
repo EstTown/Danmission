@@ -8,6 +8,6 @@ namespace DanmissionManager.Simulator.Interfaces
 {
     interface ITransactionGenerator
     {
-        List<Transaction> GenerateTransactions();
+        void GenerateTransactions();
     }
 }

@@ -38,15 +38,5 @@ namespace DanmissionManager.Models
             }
             return list;
         }
-
-        public List<Product> GetAllProducts()
-        {
-            List<Product> list = new List<Product>();
-            using (var ctx = new ServerContext())
-            {
-                list = ctx.Products.ToList();
-            }
-            return list;
-        } 
     }
 }

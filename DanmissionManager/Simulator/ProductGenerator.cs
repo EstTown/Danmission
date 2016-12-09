@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,9 @@ namespace DanmissionManager.Simulator
     class ProductGenerator : IProductGenerator
     {
         //purpose is to generate products and put them on the server
-        public ProductGenerator(int amount, int days)
+        public ProductGenerator(int amountOfProducts, int days)
         {
-            this.AmountOfProducts = amount;
+            this.AmountOfProducts = amountOfProducts;
             this.Days = days;
             //need all categories and sub categories from the server
             using (var ctx = new ServerContext())
@@ -42,7 +44,7 @@ namespace DanmissionManager.Simulator
                 int next = rdn.Next(0, AllSubCategories.Count);
                 product.price = AllSubCategories[next].standardprice;
                 product.name = AllSubCategories[next].name;
-                product.isUnique = Convert.ToBoolean(rdn.Next(0, 1));
+                product.isUnique = Convert.ToBoolean(rdn.Next(0, 2));
 
                 product.date = DateTime.Now.Subtract(timespan);
                 product.expiredate = product.date.Value.AddDays(7*6);
@@ -53,6 +55,25 @@ namespace DanmissionManager.Simulator
                 list.Add(product);
             }
             return list;
+        }
+
+        public void SaveProducts(List<Product> productlist)
+        {
+            using (var ctx = new ServerContext())
+            {
+                ctx.Products.AddRange(productlist);
+                ctx.SaveChanges();
+            }
+        }
+
+        public void RemoveProducts(int id)
+        {
+            using (var ctx = new ServerContext())
+            {
+                List<Product> list = new List<Product>(ctx.Products.Where(x => x.id > id));
+                ctx.Products.RemoveRange(list);
+                ctx.SaveChanges();
+            }
         }
     }
 }

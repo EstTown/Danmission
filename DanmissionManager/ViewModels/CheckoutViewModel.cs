@@ -114,7 +114,7 @@ namespace DanmissionManager.ViewModels
         {
             //Do transaction
             Transaction transaction = new Transaction(this.ProductsInBasket.ToList());
-            transaction.ExecuteTransaction(transaction);
+            transaction.ExecuteTransaction();
 
             //Move products to soldproducts
             List<SoldProduct> soldList = new List<SoldProduct>();

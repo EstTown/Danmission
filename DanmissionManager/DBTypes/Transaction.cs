@@ -22,6 +22,13 @@ namespace DanmissionManager
             this.sum = productlist.Sum(x => x.price);
             this.date = DateTime.Now;
         }
+
+        public Transaction(List<Product> productlist, DateTime date)
+        {
+            this.ProductsInTransaction = productlist;
+            this.sum = productlist.Sum(x => x.price);
+            this.date = date;
+        }
         public int id { get; set; }
         [Column(TypeName = "timestamp")]
         public DateTime? date { get; set; }
@@ -29,14 +36,14 @@ namespace DanmissionManager
 
         [NotMapped]
         private readonly List<Product> ProductsInTransaction;
-        public void ExecuteTransaction(Transaction transaction)
+        public void ExecuteTransaction()
         {
             try
             {
                 using (var ctx = new ServerContext())
                 {
                     //Commit transaction
-                    ctx.Transaction.Add(transaction);
+                    ctx.Transaction.Add(this);
                     ctx.SaveChanges();
                 }
             }
