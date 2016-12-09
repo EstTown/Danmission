@@ -1,3 +1,6 @@
+using System.Linq;
+using System.Windows;
+
 namespace DanmissionManager
 {
     using System;
@@ -9,11 +12,39 @@ namespace DanmissionManager
     [Table("data.transactions")]
     public partial class Transaction
     {
+        public Transaction()
+        {
+            
+        }
+        public Transaction(List<Product> productlist)
+        {
+            this.ProductsInTransaction = productlist;
+            this.sum = productlist.Sum(x => x.price);
+            this.date = DateTime.Now;
+        }
         public int id { get; set; }
-
         [Column(TypeName = "timestamp")]
         public DateTime? date { get; set; }
-
         public double sum { get; set; }
+
+        [NotMapped]
+        private readonly List<Product> ProductsInTransaction;
+        public void ExecuteTransaction(Transaction transaction)
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    //Commit transaction
+                    ctx.Transaction.Add(transaction);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+        }
+
     }
 }

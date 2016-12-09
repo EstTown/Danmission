@@ -9,6 +9,10 @@ namespace DanmissionManager
     [Table("data.standardprices")]
     public partial class Standardprice 
     {
+        public Standardprice()
+        {
+            
+        }
         public int id { get; set; }
 
         [Required]

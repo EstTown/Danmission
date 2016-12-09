@@ -26,13 +26,13 @@ namespace DanmissionManager.Simulator
             for (int i = 0; i < this.NumberOfTransactions; i++)
             {
                 TimeSpan timespan = new TimeSpan(this.Days * 7 - (rdn.Next(this.Days * 7)), rdn.Next(0, 12), rdn.Next(0, 59));
-                Transaction transaction = new Transaction();
 
+                int sum;
                 for (int j = 0; j < rdn.Next(1,5); j++)
                 {
-                    //made the int to make sure no duplicates get used
+                    //declared next to make sure no duplicates get used
                     int next = rdn.Next(AllProducts.Count - 1);
-                    transaction.sum += AllProducts[next].price;
+                    //sum += AllProducts[next].price;
 
                     if (AllProducts[next].isUnique == true)
                     {
@@ -49,8 +49,12 @@ namespace DanmissionManager.Simulator
                     
                     //should do something about the products that are contained within the transaction
                 }
-                transaction.date = DateTime.Now.Subtract(timespan);
-                list.Add(transaction);
+                //transaction.date = DateTime.Now.Subtract(timespan);
+
+
+
+                //Transaction transaction = new Transaction();
+                //list.Add(transaction);
             }
 
 

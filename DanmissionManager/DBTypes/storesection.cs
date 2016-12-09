@@ -9,6 +9,10 @@ namespace DanmissionManager
     [Table("data.storesection")]
     public partial class Storesection
     {
+        public Storesection()
+        {
+            
+        }
         public int id { get; set; }
 
         public double? space { get; set; }

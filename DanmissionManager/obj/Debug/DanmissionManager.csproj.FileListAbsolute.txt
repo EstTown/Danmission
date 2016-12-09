@@ -343,7 +343,6 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ro\Xceed.Wp
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\MainWindow.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\addProductPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\categoriesPage.g.cs
@@ -384,3 +383,4 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionM
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

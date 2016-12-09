@@ -11,6 +11,10 @@ namespace DanmissionManager
     [Table("data.products")]
     public partial class Product
     {
+        public Product()
+        {
+            
+        }
         public int id { get; set; }
 
         [Required]

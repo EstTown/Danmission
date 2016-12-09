@@ -9,6 +9,10 @@ namespace DanmissionManager
     [Table("data.voucher")]
     public partial class Voucher
     {
+        public Voucher()
+        {
+            
+        }
         public int id { get; set; }
 
         [Column(TypeName = "timestamp")]
