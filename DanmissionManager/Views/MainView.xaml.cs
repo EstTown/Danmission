@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 using DanmissionManager.Pages;
+using DanmissionManager.ViewModels;
 
 namespace DanmissionManager.Views
 {
@@ -34,37 +35,51 @@ namespace DanmissionManager.Views
 
         private void btn_addProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new addProductPage();
+            var newpage = new addProductPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_findProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new findProductPage();
+            var newpage = new findProductPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_removeProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new checkoutPage();
+            var newpage = new checkoutPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_inventoryOverview_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new inventoryOverviewPage();
+            var newpage = new inventoryOverviewPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_categories_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new categoriesPage();
+            var newpage = new categoriesPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_statistics_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new statisticsPage();
+            var newpage = new statisticsPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new settingsPage();
+            var newpage = new settingsPage();
+            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            Main.Content = newpage;
         }
 
         //Functionallity for fullscreen-toggle
@@ -96,6 +111,5 @@ namespace DanmissionManager.Views
                 ResizeMode = ResizeMode.CanResize;
             }
         }
-
     }
 }

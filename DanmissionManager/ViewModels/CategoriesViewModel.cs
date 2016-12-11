@@ -39,7 +39,8 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Fejl");
+                // REF TO DYNAMIC RESOURCE HERE?
             }
             ShownCategories = AllCategories;
             ShownSubCategories = new ObservableCollection<Standardprice>();

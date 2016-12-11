@@ -81,21 +81,5 @@ namespace DanmissionManager.ViewModels
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(langDict);
         }
-
-        //private void SetLanguageDictionary(int value)
-        //{
-        //    // First, make it work. Then, make it look up information dynamically on different computers. Find program path and then work in that way?
-
-        //    ResourceDictionary languageDictionary = new ResourceDictionary();
-
-        //    switch (value)
-        //    {
-        //        case 1: languageDictionary.Source = new Uri(@"C:\Users\Jonathan\Google Drive\University\Projects\P - 3\Programming\Danmission\DanmissionManager\Resources\StringResources.DK.xaml", UriKind.Relative);
-        //            break;
-        //        case 2: languageDictionary.Source = new Uri(@"C:\Users\Jonathan\Google Drive\University\Projects\P - 3\Programming\Danmission\DanmissionManager\Resources\StringResources.EN-GB.xaml", UriKind.Relative);
-        //            break;
-        //        default: throw new ArgumentException();
-        //    }
-        //}
     }
 }
