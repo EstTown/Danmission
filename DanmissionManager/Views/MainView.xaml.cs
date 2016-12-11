@@ -22,63 +22,73 @@ namespace DanmissionManager.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(BaseViewModel.Popups standardPopupService)
         {
             InitializeComponent();
+
+            _standardPopupService = standardPopupService;
             this._Fullscreen = false;
-            Main.Content = new logoPage();
+
+            OpenLogoPage();
 
             ConsoleManager.Show();
         }
 
+        private BaseViewModel.Popups _standardPopupService;
         private bool _Fullscreen { get; set; }
+
+
+        private void OpenLogoPage()
+        {
+            Main.Content = new logoPage();
+        }
 
         private void btn_addProduct_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new addProductPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new CreateProductViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_findProduct_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new findProductPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new FindProductViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_removeProduct_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new checkoutPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new CheckoutViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_inventoryOverview_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new inventoryOverviewPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new InventoryOverviewViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_categories_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new categoriesPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new CategoriesViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_statistics_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new statisticsPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new StatisticsViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new settingsPage();
-            ((BaseViewModel)newpage.DataContext).PopupService = ((BaseViewModel)this.DataContext).PopupService;
+            newpage.DataContext = new SettingsViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 

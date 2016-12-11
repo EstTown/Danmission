@@ -23,8 +23,9 @@ namespace DanmissionManager
             var confirm = (Func<string, string, bool>)((msg, capt) =>
                 MessageBox.Show(msg, capt, MessageBoxButton.YesNo) == MessageBoxResult.Yes);
 
-            Views.MainView view = new Views.MainView();
-            ((BaseViewModel)view.DataContext).PopupService = new BaseViewModel.Popups(popup, confirm);
+            var popupService = new BaseViewModel.Popups(popup, confirm);
+            Views.MainView view = new Views.MainView(popupService);
+            view.DataContext = new MainViewModel(popupService);
             view.Show();
         }
     }

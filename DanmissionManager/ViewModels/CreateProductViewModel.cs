@@ -17,7 +17,7 @@ namespace DanmissionManager.ViewModels
 {
     class CreateProductViewModel : BaseViewModel
     {
-        public CreateProductViewModel()
+        public CreateProductViewModel(Popups popupService) : base(popupService)
         {
             this.Product = new Product() {isUnique = true, price = 0.0};
             

@@ -15,7 +15,7 @@ namespace DanmissionManager.ViewModels
 {
     class FindProductViewModel : BaseViewModel
     {
-        public FindProductViewModel()
+        public FindProductViewModel(Popups popupService) : base(popupService)
         {
             this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);

@@ -11,7 +11,7 @@ namespace DanmissionManager.ViewModels
 {
     class SettingsViewModel : BaseViewModel
     {
-        public SettingsViewModel()
+        public SettingsViewModel(Popups popupService) : base(popupService)
         {
             SetupLanguages();
             SelectLanguage();

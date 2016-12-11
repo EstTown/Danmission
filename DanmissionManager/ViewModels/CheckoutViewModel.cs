@@ -13,7 +13,7 @@ namespace DanmissionManager.ViewModels
 {
     class CheckoutViewModel : BaseViewModel
     {
-        public CheckoutViewModel()
+        public CheckoutViewModel(Popups popupService) : base(popupService)
         {
             this.SearchParameter = string.Empty;
             this.CommandGetProductByID = new RelayCommand2(CommandGetProductByIDFromDatabase);

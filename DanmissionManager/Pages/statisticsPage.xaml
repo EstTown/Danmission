@@ -11,9 +11,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="statisticsPage">
-    <Page.DataContext>
-        <local:StatisticsViewModel/>
-    </Page.DataContext>
 
     <Grid>
         <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="{DynamicResource statistics}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
