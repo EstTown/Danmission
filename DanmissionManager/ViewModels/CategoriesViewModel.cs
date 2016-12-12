@@ -17,17 +17,25 @@ namespace DanmissionManager.ViewModels
             this.CreatedCategory = new Category();
             this.CreatedStandardprice = new Standardprice();
             
-            this.CommandGetCategories = new RelayCommand2(GetCategoriesFromDatabase);
+            this.CommandGetCategories = new RelayCommand2(FetchCategories);
             this.CommandAddCategory = new RelayCommand2(AddCategory);
             this.CommandAddSubCategory = new RelayCommand2(AddSubCategory);
             this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
             this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
 
-            GetCategoriesFromDatabase();
+            FetchCategories();
         }
 
         public RelayCommand2 CommandGetCategories { get; set; }
-        public void GetCategoriesFromDatabase()
+        public void FetchCategories()
+        {
+            GetCategoriesFromDatabase();
+            SortCategoriesAlphabetically();
+            ShownCategories = AllCategories;
+            ShownSubCategories = new ObservableCollection<Standardprice>();
+        }
+
+        private void GetCategoriesFromDatabase()
         {
             try
             {
@@ -42,8 +50,11 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Fejl");
                 // REF TO DYNAMIC RESOURCE HERE?
             }
-            ShownCategories = AllCategories;
-            ShownSubCategories = new ObservableCollection<Standardprice>();
+        }
+
+        private void SortCategoriesAlphabetically()
+        {
+            AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(cat => cat.FullName));
         }
 
         public RelayCommand2 CommandAddCategory { get; set; }
@@ -232,6 +243,7 @@ namespace DanmissionManager.ViewModels
         {
             List<Standardprice> list = new List<Standardprice>();
             list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
+            list = new List<Standardprice>(list.OrderBy(Standardprice => Standardprice.name));
             
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.ShownSubCategories = collection;
