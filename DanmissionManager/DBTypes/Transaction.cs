@@ -52,6 +52,5 @@ namespace DanmissionManager
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
         }
-
     }
 }

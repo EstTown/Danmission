@@ -17,6 +17,7 @@ namespace DanmissionManager
 
         [Required]
         [StringLength(45)]
+
         public string name { get; set; }
 
         [NotMapped]
