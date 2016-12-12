@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DanmissionManager.Models
 {
-    public class DatabaseSearcher : DatabaseConnector
+    public class DatabaseSearcher
     {
         public List<Product> FindProducts(Expression<Func<Product, bool>> predicate)
         {

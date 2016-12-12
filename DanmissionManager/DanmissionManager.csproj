@@ -125,7 +125,6 @@
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
     <Compile Include="Generator\Generator.cs" />
-    <Compile Include="Models\DatabaseConnector.cs" />
     <Compile Include="Models\DatabaseSearcher.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
       <DependentUpon>addProductPage.xaml</DependentUpon>

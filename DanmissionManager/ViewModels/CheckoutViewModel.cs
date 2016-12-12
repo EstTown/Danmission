@@ -84,16 +84,17 @@ namespace DanmissionManager.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Produktet kunne ikke findes!", "Error!");
+                        MessageBox.Show(Application.Current.FindResource("CPProductCouldNotBeFound").ToString(), Application.Current.FindResource("Error").ToString());
                         this.SearchParameter = string.Empty;
                     }
                 }
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
         public RelayCommand2 CommandAddToBasket { get; set; }
         public void CommandAddSelectedToBasket()
         {
@@ -141,7 +142,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         public void RemoveProductsInBasketFromDatabase(List<Product> productlist)
@@ -178,7 +179,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         private void notifyUserAboutCompletedPurchase(int transid, double sum)
