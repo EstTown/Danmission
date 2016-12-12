@@ -31,7 +31,7 @@ namespace DanmissionManager.ViewModels
             this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
             this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
         }
-
+        
         private DatabaseSearcher _databaseSearcher;
         private DateTime _currentDate;
         private TimeSpan _allowedAge;
