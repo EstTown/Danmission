@@ -99,7 +99,6 @@ namespace DanmissionManager.TestViewModels
             }
             set
             {
-                _name = value;
                 OnPropertyChanged("ButtonText");
                 if (IsNamevalid(value) && _name!= value)
                 {
