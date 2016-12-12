@@ -32,5 +32,8 @@
     <Setting Name="GUICOLOR" Type="System.String" Scope="User">
       <Value Profile="(Default)">#FF37BA5D</Value>
     </Setting>
+    <Setting Name="DAYSTOEXPIRATION" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

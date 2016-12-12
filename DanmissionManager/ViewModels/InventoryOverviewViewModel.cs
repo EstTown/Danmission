@@ -20,7 +20,7 @@ namespace DanmissionManager.ViewModels
         {
             _databaseSearcher = new DatabaseSearcher();
             _currentDate = DateTime.Now;
-            _allowedAge = TimeSpan.FromDays(1);
+            _allowedAge = TimeSpan.FromDays(Properties.Settings.Default.DAYSTOEXPIRATION);
 
             Products = new ObservableCollection<Product>(FindAllProducts());
             SplitProducts(Products);
@@ -31,7 +31,7 @@ namespace DanmissionManager.ViewModels
             this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
             this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
         }
-
+        
         private DatabaseSearcher _databaseSearcher;
         private DateTime _currentDate;
         private TimeSpan _allowedAge;
@@ -84,13 +84,10 @@ namespace DanmissionManager.ViewModels
             get { return _searchParameter; }
             set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
-        // Rename to SortedProducts ?
 
         public RelayCommand2 CommandFindUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindNonUniqueProducts { get; private set; }
         public RelayCommand2 CommandFindExpiredProducts { get; private set; }
-
-        // Just remove FindTransactions and FindSoldProducts and bind the properties directly to the hidden/shown tables
 
         private void SortBySearchParameter(int searchParameter)
         {
@@ -106,7 +103,16 @@ namespace DanmissionManager.ViewModels
 
         public List<Product> FindAllProducts()
         {
-            return _databaseSearcher.FindProducts(x => true);
+            var products = new List<Product>();
+            try
+            {
+                products = _databaseSearcher.FindProducts(x => true);
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+            return products;
         }
 
         private void SplitProducts(ObservableCollection<Product> productList)
@@ -130,13 +136,30 @@ namespace DanmissionManager.ViewModels
 
         private List<SoldProduct> FindAllSoldProducts()
         {
-            return _databaseSearcher.FindSoldProducts(x => true);
+            var soldProducts = new List<SoldProduct>();
+            try
+            {
+                soldProducts = _databaseSearcher.FindSoldProducts(x => true);
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+            return soldProducts;
         }
 
         private List<Transaction> FindAllTransactions()
         {
-            return _databaseSearcher.FindTransactions(x => true);
+            var transactions = new List<Transaction>();
+            try
+            {
+                transactions = _databaseSearcher.FindTransactions(x => true);
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+            return transactions;
         }
-
     }
 }

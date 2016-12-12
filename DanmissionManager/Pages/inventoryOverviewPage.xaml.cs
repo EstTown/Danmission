@@ -52,6 +52,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Collapsed;
             TransActions.Visibility = Visibility.Visible;
             SoldProducts.Visibility = Visibility.Collapsed;
+
         }
 
         private void SoldProducts_Click(object sender, RoutedEventArgs e)

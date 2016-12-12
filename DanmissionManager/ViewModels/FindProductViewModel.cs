@@ -89,7 +89,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         public RelayCommand2 CommandRemoveSelectedProduct { get; set; }
@@ -107,7 +107,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
             //also remove product from current observablecollection
             this.Products.Remove(SelectedProduct);
@@ -147,7 +147,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         public byte[] ImageToByteArray(System.Drawing.Image imageIn)
