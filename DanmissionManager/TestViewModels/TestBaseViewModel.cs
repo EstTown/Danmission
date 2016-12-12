@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+    public class TestBaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         #region implementation of INotifyPropertyChanged
 
@@ -20,10 +20,11 @@ namespace DanmissionManager.TestViewModels
         }
         #endregion
 
-        #region Implementation of INotifyDataErrorInfo + more
+        #region Implementation of INotifyDataErrorInfo
 
         //contains all errors, for a given property, where the property is the key accessor
         private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
+
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         public IEnumerable GetErrors(string propertyName)
         {
@@ -38,9 +39,9 @@ namespace DanmissionManager.TestViewModels
             get { return _errors.Count > 0; }
         }
 
-        //error message defined as constant string
-        private const string NAME_ERROR = "THIS SHOULD NOT BE NAME";
-        private const string NAME_WARNING = "CAREFUL WITH DAT NAME THO";
+        //error message defined as a constant
+        private const string NAME_ERROR = "";
+        private const string NAME_WARNING = "";
 
         //basically need a bunch of methods, that validate a certain property each.
         //for example a method that validates a name property
@@ -73,6 +74,7 @@ namespace DanmissionManager.TestViewModels
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+        //add error to dictionary, with propertyname as key
         public void AddError(string propertyName, string error, bool isWarning)
         {
             if (!_errors.ContainsKey(propertyName))
@@ -92,6 +94,7 @@ namespace DanmissionManager.TestViewModels
                 }
             }
         }
+        //removes an error from the dictionary
         public void RemoveError(string propertyName, string error)
         {
             if (_errors.ContainsKey(propertyName) && _errors[propertyName].Contains(error))

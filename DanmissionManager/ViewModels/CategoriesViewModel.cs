@@ -11,23 +11,31 @@ namespace DanmissionManager.ViewModels
 {
     class CategoriesViewModel : BaseViewModel
     {
-        public CategoriesViewModel()
+        public CategoriesViewModel(Popups popupService) : base(popupService)
         {
             //instantiate member variables
             this.CreatedCategory = new Category();
             this.CreatedStandardprice = new Standardprice();
             
-            this.CommandGetCategories = new RelayCommand2(GetCategoriesFromDatabase);
+            this.CommandGetCategories = new RelayCommand2(FetchCategories);
             this.CommandAddCategory = new RelayCommand2(AddCategory);
             this.CommandAddSubCategory = new RelayCommand2(AddSubCategory);
             this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
             this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
 
-            GetCategoriesFromDatabase();
+            FetchCategories();
         }
 
         public RelayCommand2 CommandGetCategories { get; set; }
-        public void GetCategoriesFromDatabase()
+        public void FetchCategories()
+        {
+            GetCategoriesFromDatabase();
+            SortCategoriesAlphabetically();
+            ShownCategories = AllCategories;
+            ShownSubCategories = new ObservableCollection<Standardprice>();
+        }
+
+        private void GetCategoriesFromDatabase()
         {
             try
             {
@@ -39,22 +47,32 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
-            ShownCategories = AllCategories;
-            ShownSubCategories = new ObservableCollection<Standardprice>();
+        }
+
+        private void SortCategoriesAlphabetically()
+        {
+            AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(cat => cat.FullName));
         }
 
         public RelayCommand2 CommandAddCategory { get; set; }
         public void AddCategory()
         {
-            using (var ctx = new ServerContext())
+            try
             {
-                ctx.Category.Add(this.CreatedCategory);
-                ctx.SaveChanges();
+                using (var ctx = new ServerContext())
+                {
+                    ctx.Category.Add(this.CreatedCategory);
+                    ctx.SaveChanges();
+                }
+                AllCategories.Add(CreatedCategory);
+                this.CreatedCategory = new Category();
             }
-            AllCategories.Add(CreatedCategory);
-            this.CreatedCategory = new Category();
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
         }
 
         public RelayCommand2 CommandAddSubCategory { get; set; }
@@ -64,61 +82,90 @@ namespace DanmissionManager.ViewModels
             //this.CreatedStandardprice.CorrespondingCategoryString = SelectedNewCategory.name;
             this.CreatedStandardprice.Parent_id = SelectedCategory.id;
             this.CreatedStandardprice.CorrespondingCategoryString = SelectedCategory.name;
-            using (var ctx = new ServerContext())
+
+            try
             {
-                ctx.Standardprices.Add(this.CreatedStandardprice);
-                ctx.SaveChanges();
+                using (var ctx = new ServerContext())
+                {
+                    ctx.Standardprices.Add(this.CreatedStandardprice);
+                    ctx.SaveChanges();
+                }
+                this.AllSubCategories.Add(CreatedStandardprice);
+                this.ShownSubCategories.Add(CreatedStandardprice);
+                this.CreatedStandardprice = new Standardprice();
             }
-            this.AllSubCategories.Add(CreatedStandardprice);
-            this.ShownSubCategories.Add(CreatedStandardprice);
-            this.CreatedStandardprice = new Standardprice();
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
         }
 
         public RelayCommand2 CommandRemoveCategory { get; set; }
         private void RemoveCategory()
         {
-            using (var ctx = new ServerContext())
+            try
             {
-                List<Category> categoryList = ctx.Category.Where(x => x.id.CompareTo(SelectedCategory.id) == 0).ToList();
-                Category category = categoryList.First();
+                using (var ctx = new ServerContext())
+                {
+                    List<Category> categoryList = ctx.Category.Where(x => x.id.CompareTo(SelectedCategory.id) == 0).ToList();
+                    Category category = categoryList.First();
 
-                ctx.Category.Remove(category);
-                ctx.SaveChanges();
-                RemoveChildCategories();
+                    ctx.Category.Remove(category);
+                    ctx.SaveChanges();
+                    RemoveChildCategories();
+                }
+                this.AllCategories.Remove(this.SelectedCategory);
+                this.ShownSubCategories = new ObservableCollection<Standardprice>();
             }
-            this.AllCategories.Remove(this.SelectedCategory);
-            this.ShownSubCategories = new ObservableCollection<Standardprice>();
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
         }
         private void RemoveChildCategories()
         {
-            using (var ctx = new ServerContext())
+            try
             {
-                List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.Parent_id.CompareTo(SelectedCategory.id) == 0).ToList();
-
-                //kill the child categories
-                foreach (Standardprice subcategory in subCategoryList)
+                using (var ctx = new ServerContext())
                 {
-                    Standardprice tmp = new Standardprice();
-                    tmp = subcategory;
-                    ctx.Standardprices.Remove(tmp);
-                    ctx.SaveChanges();
+                    List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.Parent_id.CompareTo(SelectedCategory.id) == 0).ToList();
+
+                    //kill the child categories
+                    foreach (Standardprice subcategory in subCategoryList)
+                    {
+                        Standardprice tmp = new Standardprice();
+                        tmp = subcategory;
+                        ctx.Standardprices.Remove(tmp);
+                        ctx.SaveChanges();
+                    }
                 }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
 
         public RelayCommand2 CommandRemoveSubCategory { get; set; }
         private void RemoveSubCategory()
         {
-            using (var ctx = new ServerContext())
+            try
             {
-                List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.id.CompareTo(SelectedSubCategory.id) == 0).ToList();
-                Standardprice subCategory = subCategoryList.First();
-                
-                ctx.Standardprices.Remove(subCategory);
-                ctx.SaveChanges();
+                using (var ctx = new ServerContext())
+                {
+                    List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.id.CompareTo(SelectedSubCategory.id) == 0).ToList();
+                    Standardprice subCategory = subCategoryList.First();
+
+                    ctx.Standardprices.Remove(subCategory);
+                    ctx.SaveChanges();
+                }
+                this.AllSubCategories.Remove(this.SelectedSubCategory);
+                this.ShownSubCategories.Remove(this.SelectedSubCategory);
             }
-            this.AllSubCategories.Remove(this.SelectedSubCategory);
-            this.ShownSubCategories.Remove(this.SelectedSubCategory);
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
         }
 
         private ObservableCollection<Standardprice> _shownSubCategories;
@@ -231,6 +278,7 @@ namespace DanmissionManager.ViewModels
         {
             List<Standardprice> list = new List<Standardprice>();
             list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
+            list = new List<Standardprice>(list.OrderBy(Standardprice => Standardprice.name));
             
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.ShownSubCategories = collection;

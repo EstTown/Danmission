@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 using DanmissionManager.Pages;
+using DanmissionManager.ViewModels;
 
 namespace DanmissionManager.Views
 {
@@ -21,50 +22,74 @@ namespace DanmissionManager.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(BaseViewModel.Popups standardPopupService)
         {
             InitializeComponent();
+
+            _standardPopupService = standardPopupService;
             this._Fullscreen = false;
-            Main.Content = new logoPage();
+
+            OpenLogoPage();
 
             ConsoleManager.Show();
         }
 
+        private BaseViewModel.Popups _standardPopupService;
         private bool _Fullscreen { get; set; }
+
+
+        private void OpenLogoPage()
+        {
+            Main.Content = new logoPage();
+        }
 
         private void btn_addProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new addProductPage();
+            var newpage = new addProductPage();
+            newpage.DataContext = new CreateProductViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_findProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new findProductPage();
+            var newpage = new findProductPage();
+            newpage.DataContext = new FindProductViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_removeProduct_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new checkoutPage();
+            var newpage = new checkoutPage();
+            newpage.DataContext = new CheckoutViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_inventoryOverview_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new inventoryOverviewPage();
+            var newpage = new inventoryOverviewPage();
+            newpage.DataContext = new InventoryOverviewViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_categories_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new categoriesPage();
+            var newpage = new categoriesPage();
+            newpage.DataContext = new CategoriesViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_statistics_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new statisticsPage();
+            var newpage = new statisticsPage();
+            newpage.DataContext = new StatisticsViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         private void btn_settings_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new settingsPage();
+            var newpage = new settingsPage();
+            newpage.DataContext = new SettingsViewModel(_standardPopupService);
+            Main.Content = newpage;
         }
 
         //Functionallity for fullscreen-toggle
@@ -96,6 +121,5 @@ namespace DanmissionManager.Views
                 ResizeMode = ResizeMode.CanResize;
             }
         }
-
     }
 }

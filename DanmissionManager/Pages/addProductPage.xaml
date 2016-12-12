@@ -9,11 +9,19 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="addProductPage">
-    <Page.DataContext>
-        <local:CreateProductViewModel/>
-    </Page.DataContext>
+    
     <Page.Resources>
         <converter:BoolInverter x:Key="oppositeConverter"/>
+
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -30,10 +38,10 @@
             <GroupBox x:Name="groupBox1" Header="Produkt info" Margin="10,0,10.333,0" VerticalAlignment="Top" Height="236">
                 <Grid>
                     <Label x:Name="label_name" Content="{DynamicResource RPProductName}" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox" Text="{Binding Product.name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="25" Margin="133,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+                    <TextBox x:Name="textBox" Text="{Binding ProductName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"  Height="25" Margin="133,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
 
                     <Label x:Name="label_description" Content="{DynamicResource RPDescription}" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_Copy" Height="25" Margin="133,50,10,0" TextWrapping="Wrap" Text="{Binding Product.desc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxDescription" Height="25" Margin="133,50,10,0" TextWrapping="Wrap" Text="{Binding ProductDesc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnNotifyDataErrors=true}" VerticalAlignment="Top"/>
 
                     <Label x:Name="label_choosecategory" Content="{DynamicResource RPCategory}" Margin="17,88,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="92"/>
                     <ComboBox x:Name="comboBox_category" ItemsSource="{Binding Path = Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="133,92,10,0" VerticalAlignment="Top"/>
@@ -65,10 +73,6 @@
                 </TextBox.RenderTransform>
             </TextBox>
 -->
-
-
-
-
             <GroupBox x:Name="groupBox" Header="Produkt type" Margin="10,245,10.333,0" VerticalAlignment="Top" Height="120">
                 <Grid Margin="0,0,-2,-13.667">
                     <Label x:Name="label_expire" Content="Udløber om (uger):" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
@@ -78,16 +82,7 @@
                     <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="130,10,0,0" Width="169" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top"/>
                 </Grid>
             </GroupBox>
-
-
-
         </Grid>
         <Button x:Name="btn_addProduct" Content="{DynamicResource RPAddProduct}" Command="{Binding Path = CommandAddProduct}" FontSize="30" Margin="0,0,10,10" HorizontalAlignment="Right" Width="252" Height="124" VerticalAlignment="Bottom"/>
-
-
-
-
-
-
     </Grid>
 </Page>

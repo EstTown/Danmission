@@ -9,6 +9,11 @@ namespace DanmissionManager
     [Table("data.subcategories")]
     public partial class SubCategory
     {
+        public SubCategory()
+        {
+            
+        }
+
         [Key]
         public int idsubcategories { get; set; }
 

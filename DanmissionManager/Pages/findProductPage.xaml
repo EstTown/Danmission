@@ -11,9 +11,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="findProductPage">
-    <Page.DataContext>
-        <local:FindProductViewModel/>
-    </Page.DataContext>
+
     <Page.Resources>
         <converter:BoolInverter x:Key="oppositeConverter"/>
     </Page.Resources>

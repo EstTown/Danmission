@@ -9,6 +9,10 @@ namespace DanmissionManager
     [Table("data.categories")]
     public partial class Category
     {
+        public Category()
+        {
+            
+        }
         public int id { get; set; }
 
         [Required]

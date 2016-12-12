@@ -11,6 +11,18 @@ namespace DanmissionManager
     [Table("data.products")]
     public partial class Product
     {
+        public Product()
+        {
+            
+        }
+        public Product(string name, int id, bool isUnique, string desc)
+        {
+            this.date = DateTime.Now;
+            this.name = name;
+            this.category = id;
+            this.isUnique = isUnique;
+            this.desc = desc;
+        }
         public int id { get; set; }
 
         [Required]

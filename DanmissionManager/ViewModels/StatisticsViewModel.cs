@@ -15,7 +15,7 @@ namespace DanmissionManager.ViewModels
 {
     class StatisticsViewModel : BaseViewModel
     {
-        public StatisticsViewModel()
+        public StatisticsViewModel(Popups popupService) : base(popupService)
         {
             /*Combobox*/
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
@@ -24,12 +24,30 @@ namespace DanmissionManager.ViewModels
             RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
 
+
+            TimeSpan timespan = new TimeSpan(30, 0, 0, 0);
+
+            this.dateFrom = DateTime.Now - timespan;
+            this.dateTo = DateTime.Now;
+
             //get all categories and soldproducts
-            using(var ctx = new ServerContext())
+            getDatabaseData();
+        }
+
+        private void getDatabaseData()
+        {
+            try
             {
-                this.AllCategories = new List<Category>(ctx.Category.ToList());
-                this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
-                this.AllProducts = new List<Product>(ctx.Products.ToList());
+                using (var ctx = new ServerContext())
+                {
+                    this.AllCategories = new List<Category>(ctx.Category.ToList());
+                    this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+                    this.AllProducts = new List<Product>(ctx.Products.ToList());
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
 

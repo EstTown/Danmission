@@ -17,7 +17,7 @@ using DanmissionManager.Simulator;
 
 namespace DanmissionManager.TestViewModels
 {
-    class TemplateViewModel : TestBaseViewModel
+    public class TemplateViewModel : TestBaseViewModel
     {
         public TemplateViewModel()
         {
@@ -34,6 +34,11 @@ namespace DanmissionManager.TestViewModels
             this.Product = product;
             
         }
+
+        public bool CanExecuteUpdateProduct()
+        {
+            return !HasErrors;
+        }
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
         {
@@ -47,15 +52,43 @@ namespace DanmissionManager.TestViewModels
                 OnPropertyChanged("Products");
             }
         }
-        public RelayCommand2 UpdateCurrentProduct { get; set; }
+
+        private RelayCommand2 _updateCurrentProduct;
+        public RelayCommand2 UpdateCurrentProduct
+        {
+            get{return _updateCurrentProduct;}
+            set
+            {
+            _updateCurrentProduct = value;
+            OnPropertyChanged("UpdateCurrentProduct");
+            }
+        }
         private void UpdateProduct()
         {
-            ProductGenerator prodgen = new ProductGenerator(100, 100);
-            List<Product> list = new List<Product>(prodgen.GenerateProducts());
+            
+            ProductGenerator productGenerator = new ProductGenerator(100, 100);
+            productGenerator.SaveProducts(productGenerator.GenerateProducts());
+            Console.WriteLine("Generated Products");
+
+            Console.ReadKey();
+            TransactionGenerator transactionGenerator = new TransactionGenerator(20, 10);
+            transactionGenerator.GenerateTransactions();
+            Console.WriteLine("Generated transaction and moved products");
+
+
+            Console.ReadKey();
+            //delete everything
+            productGenerator.RemoveProducts(28);
+            transactionGenerator.RemoveTransaction(62);
+            transactionGenerator.RemoveSoldProducts(99);
+            /*
+            List<Product> list = new List<Product>(productGenerator.GenerateProducts());
             foreach (Product product in list)
             {
                 Console.WriteLine(product.name+"           "+product.date+"         "+product.expiredate);
             }
+            */
+
         }
         private string _name;
         public string Name
@@ -66,7 +99,6 @@ namespace DanmissionManager.TestViewModels
             }
             set
             {
-                _name = value;
                 OnPropertyChanged("ButtonText");
                 if (IsNamevalid(value) && _name!= value)
                 {
