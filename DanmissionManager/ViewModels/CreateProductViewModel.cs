@@ -43,7 +43,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         private Standardprice _selectedSubCategory;
@@ -133,7 +133,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (System.Data.DataException)
             {
-                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
         
@@ -177,7 +177,7 @@ namespace DanmissionManager.ViewModels
             if (dlg.ShowDialog() == true)
             {
                 var uri = new Uri(dlg.FileName);
-                //Resizes image, due to performance concerns
+                // Resizes image, due to performance concerns
                 Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
             }
         }

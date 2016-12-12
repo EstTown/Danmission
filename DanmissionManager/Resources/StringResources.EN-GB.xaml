@@ -12,6 +12,8 @@
     <system:String x:Key="categories">Categories</system:String>
     <system:String x:Key="statistics">Statistics</system:String>
     <system:String x:Key="options">Options</system:String>
+    <system:String x:Key="CouldNotConnectToDatabase">Could not connect to the database. Check the database configuration and internet access.</system:String>
+    <system:String x:Key="Error">Error</system:String>
 
     <!-- Default Page -->
     <system:String x:Key="fullScreenView">Full Screen View (F11)</system:String>
@@ -40,6 +42,8 @@
     <system:String x:Key="FPSave">Save</system:String>
     
     <!-- Checkout Product Page -->
+    <system:String x:Key="CPProductCouldNotBeFound">The product could not be found.</system:String>
+
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unique Products</system:String>
     <system:String x:Key="IONotUnique">Not Unique Products</system:String>
@@ -50,7 +54,6 @@
     <system:String x:Key="IODateSold">Date Sold</system:String>
     <system:String x:Key="IOTransID">Transaction ID</system:String>
     <system:String x:Key="IOTransDate">Transaction Date</system:String>
-
 
     <!-- Categories Page -->
     <system:String x:Key="CCategories">Categories</system:String>
@@ -88,5 +91,7 @@
     <system:String x:Key="OPassword">Password</system:String>
     <system:String x:Key="OScheme">Scheme</system:String>
     <system:String x:Key="OSaveChanges">Save Changes</system:String>
+    <system:String x:Key="OCouldNotFindLanguage">Choosen language does not fit available language resources.</system:String>
+    <system:String x:Key="OProductExpirationTime1">Days until products expire:</system:String>
 
 </ResourceDictionary>

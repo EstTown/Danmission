@@ -31,11 +31,23 @@ namespace DanmissionManager.ViewModels
             this.dateTo = DateTime.Now;
 
             //get all categories and soldproducts
-            using(var ctx = new ServerContext())
+            getDatabaseData();
+        }
+
+        private void getDatabaseData()
+        {
+            try
             {
-                this.AllCategories = new List<Category>(ctx.Category.ToList());
-                this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
-                this.AllProducts = new List<Product>(ctx.Products.ToList());
+                using (var ctx = new ServerContext())
+                {
+                    this.AllCategories = new List<Category>(ctx.Category.ToList());
+                    this.AllSoldProducts = new List<SoldProduct>(ctx.Soldproducts.ToList());
+                    this.AllProducts = new List<Product>(ctx.Products.ToList());
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
 

@@ -12,6 +12,8 @@
     <system:String x:Key="categories">Kategorier</system:String>
     <system:String x:Key="statistics">Statistik</system:String>
     <system:String x:Key="options">Indstillinger</system:String>
+    <system:String x:Key="CouldNotConnectToDatabase">Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.</system:String>
+    <system:String x:Key="Error">Fejl</system:String>
 
     <!-- Default Page -->
     <system:String x:Key="fullScreenView">Fuldskærmsvisning (F11)</system:String>
@@ -40,6 +42,8 @@
     <system:String x:Key="FPSave">Gem</system:String>
 
     <!-- Checkout Product Page -->
+    <system:String x:Key="CPProductCouldNotBeFound">Produktet kunne ikke findes.</system:String>
+
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unikke Produkter</system:String>
     <system:String x:Key="IONotUnique">Ikke-unikke Produkter</system:String>
@@ -87,5 +91,7 @@
     <system:String x:Key="OPassword">Password</system:String>
     <system:String x:Key="OScheme">Schema</system:String>
     <system:String x:Key="OSaveChanges">Gem ændringer</system:String>
-    
+    <system:String x:Key="OCouldNotFindLanguage">Det valgte sprog findes ikke som resource.</system:String>
+    <system:String x:Key="OProductExpirationTime1">Dage før produkter udløber:</system:String>
+ 
 </ResourceDictionary>

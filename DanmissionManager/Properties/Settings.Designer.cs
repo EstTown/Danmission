@@ -142,5 +142,17 @@ namespace DanmissionManager.Properties {
                 this["GUICOLOR"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DAYSTOEXPIRATION {
+            get {
+                return ((int)(this["DAYSTOEXPIRATION"]));
+            }
+            set {
+                this["DAYSTOEXPIRATION"] = value;
+            }
+        }
     }
 }

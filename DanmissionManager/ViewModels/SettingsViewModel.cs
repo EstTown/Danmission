@@ -15,6 +15,7 @@ namespace DanmissionManager.ViewModels
         {
             SetupLanguages();
             SelectLanguage();
+            DaysToProductExpiration = Properties.Settings.Default.DAYSTOEXPIRATION;
         }
 
         private void SelectLanguage()
@@ -26,6 +27,7 @@ namespace DanmissionManager.ViewModels
             }
             catch (Exception)
             {
+                // Anything goes wrong, we just choose the first as the default language
                 SelectedItem = Languages.FirstOrDefault();
             }
         }
@@ -61,25 +63,44 @@ namespace DanmissionManager.ViewModels
 
         public void setProgramLanguage(string LanguageName)
         {
-            string langDictPath;
-
-            switch (LanguageName)
+            try
             {
-                case "Dansk":
-                    langDictPath = "/Resources/StringResources.DK.xaml";
-                    break;
-                case "English":
-                    langDictPath = "/Resources/StringResources.en-GB.xaml";
-                    break;
+                string langDictPath;
 
-                default:
-                    throw new ArgumentException("Choosen language does not fit available language choices");
+                switch (LanguageName)
+                {
+                    case "Dansk":
+                        langDictPath = "/Resources/StringResources.DK.xaml";
+                        break;
+                    case "English":
+                        langDictPath = "/Resources/StringResources.en-GB.xaml";
+                        break;
+
+                    default:
+                        throw new ArgumentException("Choosen language does not fit available language choices");
+                }
+
+                Uri langDictUri = new Uri(langDictPath, UriKind.Relative);
+                ResourceDictionary langDict = Application.LoadComponent(langDictUri) as ResourceDictionary;
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(langDict);
             }
+            catch (ArgumentException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("OCouldNotFindLanguage").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+        }
 
-            Uri langDictUri = new Uri(langDictPath, UriKind.Relative);
-            ResourceDictionary langDict = Application.LoadComponent(langDictUri) as ResourceDictionary;
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(langDict);
+        private int _daysToProductExpiration;
+        public int DaysToProductExpiration
+        {
+            get { return _daysToProductExpiration; }
+            set { _daysToProductExpiration = value; SaveDaysInSettings(value); }
+        }
+
+        private void SaveDaysInSettings(int days)
+        {
+            Properties.Settings.Default.DAYSTOEXPIRATION = days;
         }
     }
 }
