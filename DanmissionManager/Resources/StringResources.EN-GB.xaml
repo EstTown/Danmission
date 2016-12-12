@@ -79,7 +79,10 @@
     <system:String x:Key="SExportTo">Export to:</system:String>
     <system:String x:Key="SPDF">PDF</system:String>
     <system:String x:Key="SExcel">Excel</system:String>
-    
+    <system:String x:Key="SRevenuePerCategory">Revenue per category</system:String>
+    <system:String x:Key="SProductsSoldPerCategory">Products sold per category</system:String>
+    <system:String x:Key="SProductsPerCategory">Products per category</system:String>
+
     <!-- Options Page -->
     <system:String x:Key="OLanguage">Language</system:String>
     <system:String x:Key="OColorScheme">Color Scheme</system:String>

@@ -24,7 +24,6 @@ namespace DanmissionManager.ViewModels
             RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
 
-
             TimeSpan timespan = new TimeSpan(30, 0, 0, 0);
 
             this.dateFrom = DateTime.Now - timespan;
@@ -32,6 +31,9 @@ namespace DanmissionManager.ViewModels
 
             //get all categories and soldproducts
             getDatabaseData();
+
+            this.SelectedChart = Statistics.First();
+            ChangeChart();
         }
 
         private void getDatabaseData()
@@ -89,21 +91,24 @@ namespace DanmissionManager.ViewModels
         }
         private void ChangeChart()
         {
-            switch (this.SelectedChart)
+            if (this.SelectedChart == Application.Current.FindResource("SRevenuePerCategory").ToString())
             {
-                case "Solgt for per kategori":
-                    ShowChartSales();
-                    break;
-                case "Produkter solgt per kategori":
-                    ShowChartItems();
-                    break;
-                case "Produkter per kategori":
-                    ShowChartInventory();
-                    break;
-                default:
-                    break;
+                ShowChartSales();
+            }
+            else if(this.SelectedChart == Application.Current.FindResource("SProductsSoldPerCategory").ToString())
+            {
+                ShowChartItems();
+            }
+            else if (this.SelectedChart == Application.Current.FindResource("SProductsPerCategory").ToString())
+            {
+                ShowChartInventory();
+            }
+            else
+            {
+                throw new ArgumentException("Selected chart sorting method does not exist in resource");
             }
         }
+
         private ObservableCollection<string> _statistics;
         public ObservableCollection<string> Statistics
         {
@@ -200,9 +205,9 @@ namespace DanmissionManager.ViewModels
         {
             List<string> data = new List<string>();
 
-            data.Add("Solgt for per kategori");
-            data.Add("Produkter solgt per kategori");
-            data.Add("Produkter per kategori");
+            data.Add(Application.Current.FindResource("SRevenuePerCategory").ToString());
+            data.Add(Application.Current.FindResource("SProductsSoldPerCategory").ToString());
+            data.Add(Application.Current.FindResource("SProductsPerCategory").ToString());
 
             return data;
         }
