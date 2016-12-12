@@ -20,7 +20,7 @@ namespace DanmissionManager.ViewModels
         {
             _databaseSearcher = new DatabaseSearcher();
             _currentDate = DateTime.Now;
-            _allowedAge = TimeSpan.FromDays(1);
+            _allowedAge = TimeSpan.FromDays(Properties.Settings.Default.DAYSTOEXPIRATION);
 
             Products = new ObservableCollection<Product>(FindAllProducts());
             SplitProducts(Products);

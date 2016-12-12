@@ -92,5 +92,6 @@
     <system:String x:Key="OScheme">Schema</system:String>
     <system:String x:Key="OSaveChanges">Gem ændringer</system:String>
     <system:String x:Key="OCouldNotFindLanguage">Det valgte sprog findes ikke som resource.</system:String>
-
+    <system:String x:Key="OProductExpirationTime1">Dage før produkter udløber:</system:String>
+ 
 </ResourceDictionary>

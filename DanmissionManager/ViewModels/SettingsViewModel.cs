@@ -15,6 +15,7 @@ namespace DanmissionManager.ViewModels
         {
             SetupLanguages();
             SelectLanguage();
+            DaysToProductExpiration = Properties.Settings.Default.DAYSTOEXPIRATION;
         }
 
         private void SelectLanguage()
@@ -88,6 +89,18 @@ namespace DanmissionManager.ViewModels
             {
                 PopupService.PopupMessage(Application.Current.FindResource("OCouldNotFindLanguage").ToString(), Application.Current.FindResource("Error").ToString());
             }
+        }
+
+        private int _daysToProductExpiration;
+        public int DaysToProductExpiration
+        {
+            get { return _daysToProductExpiration; }
+            set { _daysToProductExpiration = value; SaveDaysInSettings(value); }
+        }
+
+        private void SaveDaysInSettings(int days)
+        {
+            Properties.Settings.Default.DAYSTOEXPIRATION = days;
         }
     }
 }
