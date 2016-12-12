@@ -141,5 +141,10 @@ namespace DanmissionManager.ViewModels
         {
             PopupService = new Popups((x, y) => { }, (x, y) => true);
         }
+
+        public BaseViewModel(Popups popupService)
+        {
+            PopupService = popupService;
+        }
     }
 }

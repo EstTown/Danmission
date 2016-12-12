@@ -7,9 +7,6 @@
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
         Title="{DynamicResource windowTitle}" Height="650" Width="985" MinWidth="960" MinHeight="650" Background="WhiteSmoke" KeyDown="Window_KeyDown">
-    <Window.DataContext>
-        <local:MainViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
         <!--

@@ -15,7 +15,7 @@ namespace DanmissionManager.ViewModels
 {
     class StatisticsViewModel : BaseViewModel
     {
-        public StatisticsViewModel()
+        public StatisticsViewModel(Popups popupService) : base(popupService)
         {
             /*Combobox*/
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());

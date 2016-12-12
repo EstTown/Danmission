@@ -11,7 +11,7 @@ namespace DanmissionManager.ViewModels
     class MainViewModel : BaseViewModel
     {
 
-        public MainViewModel()
+        public MainViewModel(Popups popupService) : base(popupService)
         {
             ConsoleManager.Show();
             LoadSettings();
@@ -19,7 +19,7 @@ namespace DanmissionManager.ViewModels
 
         private void LoadSettings()
         {
-            new SettingsViewModel();
+            new SettingsViewModel(PopupService);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DanmissionManager.ViewModels
 {
     class CategoriesViewModel : BaseViewModel
     {
-        public CategoriesViewModel()
+        public CategoriesViewModel(Popups popupService) : base(popupService)
         {
             //instantiate member variables
             this.CreatedCategory = new Category();

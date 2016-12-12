@@ -9,9 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="addProductPage">
-    <Page.DataContext>
-        <local:CreateProductViewModel/>
-    </Page.DataContext>
+    
     <Page.Resources>
         <converter:BoolInverter x:Key="oppositeConverter"/>
 

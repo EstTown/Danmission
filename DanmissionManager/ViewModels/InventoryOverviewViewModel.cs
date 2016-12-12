@@ -16,7 +16,7 @@ namespace DanmissionManager.ViewModels
 
     public class InventoryOverviewViewModel : BaseViewModel
     {
-        public InventoryOverviewViewModel()
+        public InventoryOverviewViewModel(Popups popupService) : base(popupService)
         {
             _databaseSearcher = new DatabaseSearcher();
             _currentDate = DateTime.Now;
