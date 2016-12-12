@@ -24,6 +24,8 @@ namespace DanmissionManager.ViewModels
             this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
             this.CommandGetImage = new RelayCommand2(GetImage);
 
+            this.ProductName = "";
+            this.ProductDesc = "";
             //get all categories and subcategories from database
             GetFromDatabase();
         }
@@ -72,22 +74,32 @@ namespace DanmissionManager.ViewModels
             get { return _categories; }
             set{_categories = value; OnPropertyChanged("Categories");}
         }
-        private string _productName;
-        public string ProductName
-        {
-            get {return _productName;}
-            set {_productName = value; OnPropertyChanged("ProductName");}
-        }
+        
         private Product _product;
         public Product Product
         {
             get {return _product;}
             set {_product = value; OnPropertyChanged("Product");}
         }
+
+        //properties to bind to from the view, which all will a IsValid method
+        private string _productName;
+        public string ProductName
+        {
+            get { return _productName; }
+            set{_productName = value; OnPropertyChanged("ProductName");}
+        }
+        private string _productDesc;
+        public string ProductDesc
+        {
+            get { return _productDesc; }
+            set{_productDesc = value; OnPropertyChanged("ProductDesc");}
+        }
+
         public RelayCommand2 CommandAddProduct { get; set; }
         public void AddProduct()
         {
-            Product product = new Product(this.Product.name, this.SelectedSubCategory.id, this.Product.isUnique, this.Product.desc);
+            Product product = new Product(this.ProductName, this.SelectedSubCategory.id, this.Product.isUnique, this.ProductDesc);
             
             if (product.isUnique == false)
             {
@@ -124,10 +136,12 @@ namespace DanmissionManager.ViewModels
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
         }
+        
         public bool CanExecuteAddProduct()
         {
-            return false;
+            return HasErrors;
         }
+        
         private int _weeks;
         public int Weeks
         {
