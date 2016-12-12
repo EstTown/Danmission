@@ -7,9 +7,6 @@
         xmlns:local="clr-namespace:DanmissionManager.ViewModels"
         mc:Ignorable="d"
         Title="{DynamicResource CAddNewCategory}" Height="150" ResizeMode="NoResize" Width="300">
-    <Window.DataContext>
-        <local:CategoriesViewModel/>
-    </Window.DataContext>
 
     <Grid>
         <Button x:Name="button" Content="{DynamicResource CApplyNewCategory}" Command="{Binding Path = CommandAddCategory}" Margin="0,0,9,7" Click="button_Click" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
