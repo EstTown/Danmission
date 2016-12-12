@@ -172,7 +172,7 @@ namespace DanmissionManager.ViewModels
                 int numberOfProducts = 0;
                 foreach (Product product in AllProducts)
                 {
-                    if(category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
+                    if(category.id == product.category /*&& product.date >= dateFrom && product.date <= dateTo*/)
                     {
                         numberOfProducts++;
                     }
