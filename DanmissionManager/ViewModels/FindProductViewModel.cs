@@ -72,19 +72,28 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
-                    List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
-                    Product product = productlist.First();
-                    product.category = SelectedProduct.category;
-                    product.desc = SelectedProduct.desc;
-                    product.price = SelectedProduct.price;
-                    product.name = this.SelectedProduct.name;
-                    if (Image != null)
+                    if (this.SelectedProduct != null)
                     {
-                        product.image = ImageToByteArray(Image);
+                        List<Product> productlist =
+                            ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                        Product product = productlist.First();
+                        product.category = SelectedProduct.category;
+                        product.desc = SelectedProduct.desc;
+                        product.price = SelectedProduct.price;
+                        product.name = this.SelectedProduct.name;
+                        if (Image != null)
+                        {
+                            product.image = ImageToByteArray(Image);
+                        }
+                        product.quantity = SelectedProduct.quantity;
+                        ctx.SaveChanges();
+                        PopupService.PopupMessage("Dine ændringer er blevet gemt", "Ændringer");
                     }
-                    product.quantity = SelectedProduct.quantity;
-                    ctx.SaveChanges();
-                    MessageBox.Show("Dine ændringer er blevet gemt.","Tillykke");
+                    else
+                    {
+                        PopupService.PopupMessage("Kunne ikke gemme dine ændringer", "Ændringer");
+                    }
+                    
                 }
             }
             catch (System.Data.DataException)
@@ -99,10 +108,19 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
-                    List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
-                    Product product = productlist.First();
-                    ctx.Products.Remove(product);
-                    ctx.SaveChanges();
+                    if (this.SelectedProduct != null)
+                    {
+                        List<Product> productlist =
+                            ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                        Product product = productlist.First();
+                        ctx.Products.Remove(product);
+                        ctx.SaveChanges();
+                        PopupService.PopupMessage("Produkt er blevet fjernet fra systemet", "Fjern produkt");
+                    }
+                    else
+                    {
+                        PopupService.PopupMessage("Intet produkt er markeret", "Fjern produkt");
+                    }
                 }
             }
             catch (System.Data.DataException)
@@ -141,7 +159,7 @@ namespace DanmissionManager.ViewModels
 
                     if (this.Products.Count == 0)
                     {
-                        MessageBox.Show("Din søgning gav ingen resultater.","Desværre");
+                        PopupService.PopupMessage("Din søgning gav ingen resultater.", "Resultater");
                     }
                 }
             }

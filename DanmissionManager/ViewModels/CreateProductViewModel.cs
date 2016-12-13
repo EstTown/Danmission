@@ -12,6 +12,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using DanmissionManager.Converters;
+using DanmissionManager.Simulator;
 
 namespace DanmissionManager.ViewModels
 {
@@ -19,6 +20,7 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel(Popups popupService) : base(popupService)
         {
+
             this.Product = new Product() {isUnique = true, price = 0.0};
             
             this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
@@ -82,18 +84,24 @@ namespace DanmissionManager.ViewModels
             set {_product = value; OnPropertyChanged("Product");}
         }
 
-        //properties to bind to from the view, which all will a IsValid method
+        //properties to bind to from the view, which all will have an IsValid method
         private string _productName;
         public string ProductName
         {
             get { return _productName; }
-            set{_productName = value; OnPropertyChanged("ProductName");}
+            set{_productName = value; OnPropertyChanged("ProductName");
+                
+            }
         }
         private string _productDesc;
         public string ProductDesc
         {
             get { return _productDesc; }
-            set{_productDesc = value; OnPropertyChanged("ProductDesc");}
+            set
+            {
+                _productDesc = value; OnPropertyChanged("ProductDesc");
+                
+            }
         }
 
         public RelayCommand2 CommandAddProduct { get; set; }
@@ -139,7 +147,7 @@ namespace DanmissionManager.ViewModels
         
         public bool CanExecuteAddProduct()
         {
-            return HasErrors;
+            return true;
         }
         
         private int _weeks;

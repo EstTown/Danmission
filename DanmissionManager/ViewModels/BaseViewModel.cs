@@ -48,7 +48,7 @@ namespace DanmissionManager.ViewModels
         {
             bool isValid = true;
 
-            if (value.Contains(""))
+            if (value.Length > 10)
             {
                 AddError("ProductName", PRODUCTNAME_ERROR, false);
                 isValid = false;
@@ -73,7 +73,7 @@ namespace DanmissionManager.ViewModels
         {
             bool isValid = true;
 
-            if (value.Contains(""))
+            if (value.Length > 10)
             {
                 AddError("ProductDesc", PRODUCTDESC_ERROR, false);
                 isValid = false;
@@ -105,9 +105,10 @@ namespace DanmissionManager.ViewModels
                 else
                 {
                     _errors[propertyName].Insert(0, error);
-                    RaiseErrorsChanged(propertyName);
+                    
                 }
             }
+            RaiseErrorsChanged(propertyName);
         }
         //removes an error from the dictionary
         public void RemoveError(string propertyName, string error)
@@ -118,9 +119,10 @@ namespace DanmissionManager.ViewModels
                 if (_errors[propertyName].Count == 0)
                 {
                     _errors.Remove(propertyName);
-                    RaiseErrorsChanged(propertyName);
+                    
                 }
             }
+            RaiseErrorsChanged(propertyName);
         }
         #endregion
 

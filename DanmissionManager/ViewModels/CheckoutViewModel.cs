@@ -21,6 +21,7 @@ namespace DanmissionManager.ViewModels
             this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
             this.CommandComplete = new RelayCommand2(CommandCompletePurchase);
 
+
             ProductsInBasket = new ObservableCollection<Product>();
         }
         private string _searchParameter;
