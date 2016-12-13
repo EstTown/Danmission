@@ -23,7 +23,7 @@ namespace DanmissionManager.ViewModels
 
             this.Product = new Product() {isUnique = true, price = 0.0};
             
-            this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
+            this.CommandAddProduct = new RelayCommand2(AddProduct);
             this.CommandGetImage = new RelayCommand2(GetImage);
 
             this.ProductName = "";
