@@ -128,7 +128,10 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
             //also remove product from current observablecollection
-            this.Products.Remove(SelectedProduct);
+            if (this.SelectedProduct != null)
+            {
+                this.Products.Remove(SelectedProduct);
+            }
         }
         //property that will contain the command/method and executes it
         //does not need a backing field

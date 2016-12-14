@@ -20,7 +20,6 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel(Popups popupService) : base(popupService)
         {
-
             this.Product = new Product() {isUnique = true, price = 0.0};
             
             this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
@@ -31,65 +30,52 @@ namespace DanmissionManager.ViewModels
             //get all categories and subcategories from database
             GetFromDatabase();
         }
-        public void GetFromDatabase()
-        {
-            try
-            {
-                using (var ctx = new ServerContext())
-                {
-                    ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
-                    this.Categories = categories;
-                    ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
-                    this.AllSubCategories = allsubcategories;
-                }
-            }
-            catch (System.Data.DataException)
-            {
-                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
-            }
-        }
+
+        #region Properties
+
         private Standardprice _selectedSubCategory;
         public Standardprice SelectedSubCategory
         {
             get { return _selectedSubCategory; }
-            set {_selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory");}
+            set { _selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory"); }
         }
         private Category _selectedCategory;
         public Category SelectedCategory
         {
             get { return _selectedCategory; }
-            set {_selectedCategory = value; OnPropertyChanged("SelectedCategory");
+            set
+            {
+                _selectedCategory = value; OnPropertyChanged("SelectedCategory");
                 //run method that changes subcategories collection, based on selectedcategory
-                ChangeCollection();}
+                ChangeCollection();
+            }
         }
         private ObservableCollection<Standardprice> AllSubCategories { get; set; }
-
         private ObservableCollection<Standardprice> _subCategories;
         public ObservableCollection<Standardprice> SubCategories
         {
-            get { return _subCategories;}
-            set {_subCategories = value; OnPropertyChanged("SubCategories");}
+            get { return _subCategories; }
+            set { _subCategories = value; OnPropertyChanged("SubCategories"); }
         }
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
         {
             get { return _categories; }
-            set{_categories = value; OnPropertyChanged("Categories");}
+            set { _categories = value; OnPropertyChanged("Categories"); }
         }
-        
+
         private Product _product;
         public Product Product
         {
-            get {return _product;}
-            set {_product = value; OnPropertyChanged("Product");}
+            get { return _product; }
+            set { _product = value; OnPropertyChanged("Product"); }
         }
 
-        //properties to bind to from the view, which all will have an IsValid method
         private string _productName;
         public string ProductName
         {
             get { return _productName; }
-            set{_productName = value; OnPropertyChanged("ProductName");}
+            set { _productName = value; OnPropertyChanged("ProductName"); }
         }
         private string _productDesc;
         public string ProductDesc
@@ -100,8 +86,36 @@ namespace DanmissionManager.ViewModels
                 _productDesc = value; OnPropertyChanged("ProductDesc");
             }
         }
+        private int _weeks;
+        public int Weeks
+        {
+            get { return _weeks; }
+            set { _weeks = value; OnPropertyChanged("Weeks"); }
+        }
+        private int _amountOfProducts;
+        public int AmountOfProducts
+        {
+            get { return _amountOfProducts; }
+            set { _amountOfProducts = value; OnPropertyChanged("AmountOfProducts"); }
+        }
+        private BitmapImage _image;
+        public BitmapImage Image
+        {
+            get { return _image; }
+            set { _image = value; OnPropertyChanged("Image"); }
+        }
+
+        #endregion
+
+        #region Command properties
 
         public RelayCommand2 CommandAddProduct { get; set; }
+        public RelayCommand2 CommandGetImage { get; set; }
+
+        #endregion
+
+        #region Methods
+
         public void AddProduct()
         {
             Product product = new Product(this.ProductName, this.SelectedSubCategory.Parent_id, this.Product.isUnique, this.ProductDesc);
@@ -123,7 +137,7 @@ namespace DanmissionManager.ViewModels
             {
                 product.expiredate = null;
             }
-            
+
             if (Image != null)
             {
                 product.image = this.imageToByteArray(Image);
@@ -150,23 +164,26 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        
+        public void GetFromDatabase()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    ObservableCollection<Category> categories = new ObservableCollection<Category>(ctx.Category.ToList());
+                    this.Categories = categories;
+                    ObservableCollection<Standardprice> allsubcategories = new ObservableCollection<Standardprice>(ctx.Standardprices.ToList());
+                    this.AllSubCategories = allsubcategories;
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+        }
         public bool CanExecuteAddProduct()
         {
             return true;
-        }
-        
-        private int _weeks;
-        public int Weeks
-        {
-            get { return _weeks; }
-            set {_weeks = value; OnPropertyChanged("Weeks");}
-        }
-        private int _amountOfProducts;
-        public int AmountOfProducts
-        {
-            get { return _amountOfProducts; }
-            set {_amountOfProducts = value; OnPropertyChanged("AmountOfProducts");}
         }
         private void ChangeCollection()
         {
@@ -174,13 +191,6 @@ namespace DanmissionManager.ViewModels
             list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
             this.SubCategories = new ObservableCollection<Standardprice>(list);
         }
-        public BitmapImage Image
-        {
-            get { return _image; }
-            set {_image = value; OnPropertyChanged("Image");}
-        }
-        private BitmapImage _image { get; set; }
-        public RelayCommand2 CommandGetImage { get; set; }
         public void GetImage()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -223,5 +233,7 @@ namespace DanmissionManager.ViewModels
             }
             return data;
         }
+
+        #endregion
     }
 }

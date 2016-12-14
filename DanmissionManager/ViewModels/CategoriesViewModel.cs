@@ -76,8 +76,6 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
-            //this.CreatedStandardprice.Parent_id = SelectedNewCategory.id;
-            //this.CreatedStandardprice.CorrespondingCategoryString = SelectedNewCategory.name;
             this.CreatedStandardprice.Parent_id = SelectedCategory.id;
             this.CreatedStandardprice.CorrespondingCategoryString = SelectedCategory.name;
 
@@ -127,8 +125,6 @@ namespace DanmissionManager.ViewModels
                 using (var ctx = new ServerContext())
                 {
                     List<Standardprice> subCategoryList = ctx.Standardprices.Where(x => x.Parent_id.CompareTo(SelectedCategory.id) == 0).ToList();
-
-                    //kill the child categories
                     foreach (Standardprice subcategory in subCategoryList)
                     {
                         Standardprice tmp = new Standardprice();
@@ -211,32 +207,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("ShownCategories");
             }
         }
-
-        //private string _subCategorySearchParameter = string.Empty;
-        //public string SubCategorySearchParameter
-        //{
-        //    get { return _subCategorySearchParameter; }
-        //    set { _subCategorySearchParameter = value; UpdateShownSubCategories(SubCategorySearchParameter); OnPropertyChanged("SubCategorySearchParameter"); }
-        //}
-
-        //private string _categorySearchParameter = string.Empty;
-        //public string CategorySearchParameter
-        //{
-        //    get { return _categorySearchParameter; }
-        //    set { _categorySearchParameter = value; UpdateShownCategories(CategorySearchParameter); OnPropertyChanged("CategorySearchParameter"); }
-        //}
-
-        //private void UpdateShownSubCategories(string subCategorySearchParameter)
-        //{
-        //    ShownSubCategories = new ObservableCollection<Standardprice>(AllSubCategories.Where(x => x.name.Contains(subCategorySearchParameter)));
-        //}
-
-        //private void UpdateShownCategories(string categorySearchParameter)
-        //{
-        //    ShownCategories = new ObservableCollection<Category>(AllCategories.Where(x => x.name.Contains(categorySearchParameter)));
-        //}
-
-        //properties for containing the newly created category and subcategory
         private Category _createdCategory;
         public Category CreatedCategory
         {
@@ -257,9 +227,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("CreatedStandardPrice");
             }
         }
-        //there are two properties, because it is possible to select a category from multiple sources
-        //maybe both those selection should change the same property, but that can be changed later if that makes more
-        //sense
 
         private Category _selectedCategory;
         public Category SelectedCategory
@@ -281,19 +248,6 @@ namespace DanmissionManager.ViewModels
             ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
             this.ShownSubCategories = collection;
         }
-
-        //private Category _selectedNewCategory;
-        //public Category SelectedNewCategory
-        //{
-        //    get { return _selectedNewCategory; }
-        //    set
-        //    {
-        //        _selectedNewCategory = value;
-        //        OnPropertyChanged("SelectedNewCategory");
-        //    }
-        //}
-
-        //property for selected sub category item
         private Standardprice _selectedSubCategory;
         public Standardprice SelectedSubCategory
         {
