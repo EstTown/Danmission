@@ -58,13 +58,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("SelectedAmount");
             }
         }
-
-        private double _price;
-        public double Price { get { return _price; } set { _price = value; OnPropertyChanged("Price");
-            this.Product.price = value;
-            
-        } }
-
         private int _quantity;
         public int Quantity { get { return _quantity; } set { _quantity = value; OnPropertyChanged("Quantity"); } }
         private string _categoryName;
