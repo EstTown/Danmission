@@ -30,11 +30,55 @@ namespace DanmissionManager.ViewModels
             this.CommandFindUniqueProducts = new RelayCommand2(() => SortBySearchParameter(1));
             this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
             this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
+            this.CommandRemoveExpiredProduct = new RelayCommand2(CommandRemoveSelectedExpiredProduct);
         }
-        
+
         private DatabaseSearcher _databaseSearcher;
         private DateTime _currentDate;
         private TimeSpan _allowedAge;
+
+        //===========================================================================//
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+            }
+        }
+
+        public RelayCommand2 CommandRemoveExpiredProduct { get; set; }
+        public void CommandRemoveSelectedExpiredProduct()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    if (this.SelectedProduct != null)
+                    {
+                        List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                        Product product = productlist.First();
+                        ctx.Products.Remove(product);
+                        ctx.SaveChanges();
+                        PopupService.PopupMessage("Produkt er blevet fjernet fra systemet", "Fjern produkt");
+                    }
+                    else
+                    {
+                        PopupService.PopupMessage("Intet produkt er markeret", "Fjern produkt");
+                    }
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+            //also remove product from current observablecollection
+            this.ExpiredProducts.Remove(SelectedProduct);
+        }
+
+        //===========================================================================//
 
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
@@ -121,8 +165,6 @@ namespace DanmissionManager.ViewModels
             NonUniqueProducts = new ObservableCollection<Product>(productList.Where(x => !x.isUnique));
             ExpiredProducts = new ObservableCollection<Product>(productList.Where(expiredProductsPredicate));
         }
-
-        
 
         private bool expiredProductsPredicate(Product product)
         {
