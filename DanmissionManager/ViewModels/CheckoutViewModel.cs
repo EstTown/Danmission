@@ -163,7 +163,7 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandAddToBasket { get; set; }
         public void CommandAddSelectedToBasket()
         {
-            if (Product != null && this.Quantity >= Convert.ToInt32(this.SelectedAmount) || this.Quantity > 0)
+            if (Product != null && this.Quantity >= Convert.ToInt32(this.SelectedAmount) && (this.Quantity - Convert.ToInt32(this.SelectedAmount)) >= 0)
             {
                 List<Product> productList = new List<Product>();
 
@@ -185,7 +185,7 @@ namespace DanmissionManager.ViewModels
             }
             else
             {
-                PopupService.PopupMessage("Ikke flere produkter tilbage", "Produkter");
+                PopupService.PopupMessage("Du forsøger at tilføje flere produkter end der findes.", "Produkter");
             }
         }
         public RelayCommand2 CommandClearBasket { get; set; }
