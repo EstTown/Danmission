@@ -8,8 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="categoriesPage">
-    
-    <Grid Height="600" VerticalAlignment="Top">
+
+    <Grid Margin="0,0,0.333,0">
 
         <Popup Margin="10,10,0,13" Name="Popup1" HorizontalAlignment="Left"   
     VerticalAlignment="Top" Width="194" Height="200" />
