@@ -58,13 +58,6 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("SelectedAmount");
             }
         }
-
-        private double _price;
-        public double Price { get { return _price; } set { _price = value; OnPropertyChanged("Price");
-            this.Product.price = value;
-            
-        } }
-
         private int _quantity;
         public int Quantity { get { return _quantity; } set { _quantity = value; OnPropertyChanged("Quantity"); } }
         private string _categoryName;
@@ -114,7 +107,6 @@ namespace DanmissionManager.ViewModels
                 {
                     this.Quantity = Convert.ToInt32(value.quantity);
                 }
-                this.Price = value.price;
             }
         }
         public RelayCommand2 CommandGetProductByID { get; set; }
@@ -139,7 +131,9 @@ namespace DanmissionManager.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(Application.Current.FindResource("CPProductCouldNotBeFound").ToString(), Application.Current.FindResource("Error").ToString());
+                        PopupService.PopupMessage(
+                            Application.Current.FindResource("CPProductCouldNotBeFound").ToString(),
+                            Application.Current.FindResource("Error").ToString());
                         this.SearchParameter = string.Empty;
                     }
                 }
@@ -197,26 +191,31 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandComplete { get; set; }
         public void CommandCompletePurchase()
         {
-
             //Do transaction
-            Transaction transaction = new Transaction(this.ProductsInBasket.ToList());
-            transaction.ExecuteTransaction();
-
-            //Move products to soldproducts
-            List<SoldProduct> soldList = new List<SoldProduct>();
-            foreach (List<Product> x in this.ProductsInBasket.ToList())
+            if (ProductsInBasket.Count > 0)
             {
-                foreach (Product product in x)
-                {
-                    SoldProduct soldproduct = new SoldProduct(product);
-                    soldproduct.transactionid = transaction.id;
-                    soldList.Add(soldproduct);
-                }   
-            }
+                Transaction transaction = new Transaction(this.ProductsInBasket.ToList());
+                transaction.ExecuteTransaction();
 
-            AddSoldProductsToDatabase(soldList);
-            RemoveProductsInBasketFromDatabase(ProductsInBasket.ToList());
-            notifyUserAboutCompletedPurchase(transaction.id, transaction.sum);
+                //Move products to soldproducts
+                List<SoldProduct> soldList = new List<SoldProduct>();
+                foreach (List<Product> x in this.ProductsInBasket.ToList())
+                {
+                    foreach (Product product in x)
+                    {
+                        SoldProduct soldproduct = new SoldProduct(product);
+                        soldproduct.transactionid = transaction.id;
+                        soldList.Add(soldproduct);
+                    }
+                }
+                AddSoldProductsToDatabase(soldList);
+                RemoveProductsInBasketFromDatabase(ProductsInBasket.ToList());
+                notifyUserAboutCompletedPurchase(transaction.id, transaction.sum);
+            }
+            else
+            {
+                PopupService.PopupMessage("Der er ikke blevet tilføjet nogen produkter til kurven.", "Ingen produkter");
+            }
         }
         public void AddSoldProductsToDatabase(List<SoldProduct> soldproducts)
         {

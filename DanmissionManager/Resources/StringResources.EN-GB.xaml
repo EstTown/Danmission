@@ -35,6 +35,7 @@
     <system:String x:Key="FPName">Name</system:String>
     <system:String x:Key="FPCategory">Category</system:String>
     <system:String x:Key="FPPrice">Price</system:String>
+    <system:String x:Key="FPQuantity">Quantity</system:String>
     <system:String x:Key="FPProductInfo">Product Information</system:String>
     <system:String x:Key="FPAddedDate">Added Date</system:String>
     <system:String x:Key="FPDescription">Description</system:String>
