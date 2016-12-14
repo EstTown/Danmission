@@ -24,7 +24,8 @@ namespace DanmissionManager.ViewModels
             
             GetCategoriesFromDatabase();
             
-            ProductsInBasket = new ObservableCollection<Product>();
+            ProductsInBasket = new ObservableCollection<List<Product>>();
+            this._selectedAmount = 1;
         }
         private string _searchParameter;
         public string SearchParameter
@@ -44,6 +45,17 @@ namespace DanmissionManager.ViewModels
             {
                 _totalPrice = Convert.ToDouble(value);
                 OnPropertyChanged("TotalPrice");
+            }
+        }
+
+        private int _selectedAmount;
+        public string SelectedAmount
+        {
+            get { return _selectedAmount.ToString(); }
+            set
+            {
+                _selectedAmount = Convert.ToInt32(value);
+                OnPropertyChanged("SelectedAmount");
             }
         }
 
@@ -76,8 +88,8 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        private ObservableCollection<Product> _productsInBasket;
-        public ObservableCollection<Product> ProductsInBasket
+        private ObservableCollection<List<Product>> _productsInBasket;
+        public ObservableCollection<List<Product>> ProductsInBasket
         {
             get { return _productsInBasket; }
             set
@@ -151,14 +163,25 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandAddToBasket { get; set; }
         public void CommandAddSelectedToBasket()
         {
-            if (Product != null && this.Quantity > 0)
+            if (Product != null && this.Quantity >= Convert.ToInt32(this.SelectedAmount) || this.Quantity > 0)
             {
-                Product product = new Product();
-                product = this.Product.ShallowCopy();
-                ProductsInBasket.Add(product);
-                this.TotalPrice = ProductsInBasket.Sum(x => x.price).ToString();
-                this.Quantity--;
+                List<Product> productList = new List<Product>();
 
+                for (int i = 0; i < Convert.ToInt32(SelectedAmount); i++)
+                {
+                    Product product = new Product();
+                    product = this.Product.ShallowCopy();
+                    productList.Add(product);
+
+                    this.TotalPrice = (Convert.ToDouble(this.TotalPrice) + product.price).ToString();
+                }
+
+                ProductsInBasket.Add(productList);
+                //this.TotalPrice = ProductsInBasket.Sum(x => x.price).ToString();
+                this.Quantity -= Convert.ToInt32(this.SelectedAmount);
+
+                //Reset this textbox
+                this.SelectedAmount = 1.ToString();
             }
             else
             {
@@ -174,18 +197,23 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandComplete { get; set; }
         public void CommandCompletePurchase()
         {
+
             //Do transaction
             Transaction transaction = new Transaction(this.ProductsInBasket.ToList());
             transaction.ExecuteTransaction();
 
             //Move products to soldproducts
             List<SoldProduct> soldList = new List<SoldProduct>();
-            foreach (Product product in ProductsInBasket)
+            foreach (List<Product> x in this.ProductsInBasket.ToList())
             {
-                SoldProduct soldproduct = new SoldProduct(product);
-                soldproduct.transactionid = transaction.id;
-                soldList.Add(soldproduct);
+                foreach (Product product in x)
+                {
+                    SoldProduct soldproduct = new SoldProduct(product);
+                    soldproduct.transactionid = transaction.id;
+                    soldList.Add(soldproduct);
+                }   
             }
+
             AddSoldProductsToDatabase(soldList);
             RemoveProductsInBasketFromDatabase(ProductsInBasket.ToList());
             notifyUserAboutCompletedPurchase(transaction.id, transaction.sum);
@@ -206,33 +234,37 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        public void RemoveProductsInBasketFromDatabase(List<Product> productlist)
+        public void RemoveProductsInBasketFromDatabase(List<List<Product>> productlist)
         {
             try
             {
                 using (var ctx = new ServerContext())
                 {
                     //Remove from inventory
-                    foreach (Product x in ProductsInBasket)
+                    foreach (List<Product> k in productlist)
                     {
-                        foreach (Product y in ctx.Products.ToList())
+                        foreach (Product x in k)
                         {
-                            if (x.id == y.id)
+                            foreach (Product y in ctx.Products.ToList())
                             {
-                                if (x.isUnique == true)
+                                if (x.id == y.id)
                                 {
-                                    ctx.Products.Remove(y);
-                                }
-                                else if (y.quantity <= 1)
-                                {
-                                    ctx.Products.Remove(y);
-                                }
-                                else
-                                {
-                                    y.quantity--;
+                                    if (x.isUnique == true)
+                                    {
+                                        ctx.Products.Remove(y);
+                                    }
+                                    else if (y.quantity <= 1)
+                                    {
+                                        ctx.Products.Remove(y);
+                                    }
+                                    else
+                                    {
+                                        y.quantity--;
+                                    }
                                 }
                             }
                         }
+                        
                     }
                     ctx.SaveChanges();
                     CommandClearAllProductsFromBasket();
@@ -256,5 +288,6 @@ namespace DanmissionManager.ViewModels
             image.EndInit();
             return image;
         }
+
     }
 }

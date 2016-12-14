@@ -40,6 +40,7 @@
     <system:String x:Key="FPDescription">Description</system:String>
     <system:String x:Key="FPRemoveProduct">Remove Product</system:String>
     <system:String x:Key="FPSave">Save</system:String>
+    <system:String x:Key="FPAmount">Amount</system:String>
     
     <!-- Checkout Product Page -->
     <system:String x:Key="CPProductCouldNotBeFound">The product could not be found.</system:String>

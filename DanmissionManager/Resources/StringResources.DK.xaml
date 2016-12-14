@@ -40,9 +40,11 @@
     <system:String x:Key="FPDescription">Beskrivelse</system:String>
     <system:String x:Key="FPRemoveProduct">Fjern Produkt</system:String>
     <system:String x:Key="FPSave">Gem</system:String>
-
+    <system:String x:Key="FPAmount">Antal</system:String>
+    
     <!-- Checkout Product Page -->
     <system:String x:Key="CPProductCouldNotBeFound">Produktet kunne ikke findes.</system:String>
+    
 
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unikke Produkter</system:String>
