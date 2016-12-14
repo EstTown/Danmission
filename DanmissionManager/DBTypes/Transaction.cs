@@ -28,7 +28,7 @@ namespace DanmissionManager
             foreach (List<Product> x in productlist)
             {
                 this.ProductsInTransaction = x;
-                this.sum = x.Sum(k => k.price);
+                this.sum += x.Sum(k => k.price);
                 this.date = DateTime.Now;
             }
         }
