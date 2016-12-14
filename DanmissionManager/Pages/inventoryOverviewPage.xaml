@@ -90,6 +90,7 @@
                     <GridViewColumn Header="{DynamicResource FPName}" Width="150" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="{DynamicResource FPCategory}" Width="150" DisplayMemberBinding="{Binding category}" />
                     <GridViewColumn Header="{DynamicResource FPPrice}" Width="50" DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="{DynamicResource FPQuantity}" Width="150" DisplayMemberBinding="{Binding quantity}" />
                     <GridViewColumn Header="{DynamicResource FPAddedDate}" Width="150" DisplayMemberBinding="{Binding date}" />
                 </GridView>
             </ListView.View>

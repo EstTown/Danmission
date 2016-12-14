@@ -35,6 +35,7 @@
     <system:String x:Key="FPName">Navn</system:String>
     <system:String x:Key="FPCategory">Kategori</system:String>
     <system:String x:Key="FPPrice">Pris</system:String>
+    <system:String x:Key="FPQuantity">Antal tilbage</system:String>
     <system:String x:Key="FPProductInfo">Produktinformation</system:String>
     <system:String x:Key="FPAddedDate">Dato Tilføjet</system:String>
     <system:String x:Key="FPDescription">Beskrivelse</system:String>

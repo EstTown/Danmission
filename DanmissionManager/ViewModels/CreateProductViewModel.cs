@@ -89,9 +89,7 @@ namespace DanmissionManager.ViewModels
         public string ProductName
         {
             get { return _productName; }
-            set{_productName = value; OnPropertyChanged("ProductName");
-                
-            }
+            set{_productName = value; OnPropertyChanged("ProductName");}
         }
         private string _productDesc;
         public string ProductDesc
@@ -100,7 +98,6 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _productDesc = value; OnPropertyChanged("ProductDesc");
-                
             }
         }
 
@@ -108,14 +105,23 @@ namespace DanmissionManager.ViewModels
         public void AddProduct()
         {
             Product product = new Product(this.ProductName, this.SelectedSubCategory.Parent_id, this.Product.isUnique, this.ProductDesc);
-            
+
             if (product.isUnique == false)
             {
                 product.quantity = this.AmountOfProducts;
             }
             else
             {
+                product.quantity = 1;
+            }
+
+            if (this.Weeks > 0)
+            {
                 product.expiredate = product.date.Value.AddDays(this.Weeks * 7);
+            }
+            else
+            {
+                product.expiredate = null;
             }
             
             if (Image != null)

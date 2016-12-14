@@ -46,13 +46,7 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
-
-        private double _price;
-        public double Price { get { return _price; } set { _price = value; OnPropertyChanged("Price");
-            this.Product.price = value;
-            
-        } }
-
+        
         private int _quantity;
         public int Quantity { get { return _quantity; } set { _quantity = value; OnPropertyChanged("Quantity"); } }
         private string _categoryName;
@@ -102,7 +96,6 @@ namespace DanmissionManager.ViewModels
                 {
                     this.Quantity = Convert.ToInt32(value.quantity);
                 }
-                this.Price = value.price;
             }
         }
         public RelayCommand2 CommandGetProductByID { get; set; }
@@ -127,7 +120,9 @@ namespace DanmissionManager.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(Application.Current.FindResource("CPProductCouldNotBeFound").ToString(), Application.Current.FindResource("Error").ToString());
+                        PopupService.PopupMessage(
+                            Application.Current.FindResource("CPProductCouldNotBeFound").ToString(),
+                            Application.Current.FindResource("Error").ToString());
                         this.SearchParameter = string.Empty;
                     }
                 }

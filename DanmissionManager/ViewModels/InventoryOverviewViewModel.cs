@@ -126,7 +126,7 @@ namespace DanmissionManager.ViewModels
 
         private bool expiredProductsPredicate(Product product)
         {
-            return ProductAge(product) > _allowedAge;
+            return ProductAge(product) > _allowedAge && product.expiredate != null;
         }
 
         private TimeSpan ProductAge(Product product)
