@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +21,9 @@ namespace DanmissionManager.ViewModels
             this.CommandAddToBasket = new RelayCommand2(CommandAddSelectedToBasket);
             this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
             this.CommandComplete = new RelayCommand2(CommandCompletePurchase);
-
-
+            
+            GetCategoriesFromDatabase();
+            
             ProductsInBasket = new ObservableCollection<Product>();
         }
         private string _searchParameter;
@@ -44,6 +46,36 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
+
+        private double _price;
+        public double Price { get { return _price; } set { _price = value; OnPropertyChanged("Price");
+            this.Product.price = value;
+            
+        } }
+
+        private int _quantity;
+        public int Quantity { get { return _quantity; } set { _quantity = value; OnPropertyChanged("Quantity"); } }
+        private string _categoryName;
+        public string CategoryName
+        {
+            get { return _categoryName; }
+            set { _categoryName = value; OnPropertyChanged("CategoryName"); }
+        }
+        private List<Category> _allCategories;
+        private void GetCategoriesFromDatabase()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    this._allCategories = new List<Category>(ctx.Category.ToList());
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+        }
         private ObservableCollection<Product> _productsInBasket;
         public ObservableCollection<Product> ProductsInBasket
         {
@@ -62,6 +94,15 @@ namespace DanmissionManager.ViewModels
             {
                 _product = value;
                 OnPropertyChanged("Product");
+                if (this.Product.isUnique)
+                {
+                    this.Quantity = 1;
+                }
+                else
+                {
+                    this.Quantity = Convert.ToInt32(value.quantity);
+                }
+                this.Price = value.price;
             }
         }
         public RelayCommand2 CommandGetProductByID { get; set; }
@@ -82,6 +123,7 @@ namespace DanmissionManager.ViewModels
                         }
 
                         this.Product = tmp;
+                        this.CategoryName = AssignCorrespondingCategory();
                     }
                     else
                     {
@@ -96,13 +138,31 @@ namespace DanmissionManager.ViewModels
             }
         }
 
+        private string AssignCorrespondingCategory()
+        {
+            Category correctCategory = new Category();
+            correctCategory = _allCategories.Where(x => x.id == this.Product.category).FirstOrDefault();
+            if (correctCategory != null)
+            {
+                return correctCategory.name;
+            }
+            return this.Product.category.ToString();
+        }
         public RelayCommand2 CommandAddToBasket { get; set; }
         public void CommandAddSelectedToBasket()
         {
-            if (Product != null)
+            if (Product != null && this.Quantity > 0)
             {
-                ProductsInBasket.Add(Product);
+                Product product = new Product();
+                product = this.Product.ShallowCopy();
+                ProductsInBasket.Add(product);
                 this.TotalPrice = ProductsInBasket.Sum(x => x.price).ToString();
+                this.Quantity--;
+
+            }
+            else
+            {
+                PopupService.PopupMessage("Ikke flere produkter tilbage", "Produkter");
             }
         }
         public RelayCommand2 CommandClearBasket { get; set; }

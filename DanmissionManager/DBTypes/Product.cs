@@ -50,5 +50,11 @@ namespace DanmissionManager
 
         [NotMapped]
         public BitmapImage productImage { get; set; }
+
+
+        public Product ShallowCopy()
+        {
+            return (Product)this.MemberwiseClone();
+        }
     }
 }

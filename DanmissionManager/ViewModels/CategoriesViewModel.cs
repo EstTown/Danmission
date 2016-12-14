@@ -34,7 +34,6 @@ namespace DanmissionManager.ViewModels
             ShownCategories = AllCategories;
             ShownSubCategories = new ObservableCollection<Standardprice>();
         }
-
         private void GetCategoriesFromDatabase()
         {
             try
@@ -50,7 +49,6 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-
         private void SortCategoriesAlphabetically()
         {
             AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(cat => cat.FullName));

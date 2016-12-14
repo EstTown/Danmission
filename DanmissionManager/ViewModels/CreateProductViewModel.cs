@@ -23,7 +23,7 @@ namespace DanmissionManager.ViewModels
 
             this.Product = new Product() {isUnique = true, price = 0.0};
             
-            this.CommandAddProduct = new RelayCommand2(AddProduct);
+            this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
             this.CommandGetImage = new RelayCommand2(GetImage);
 
             this.ProductName = "";
@@ -107,7 +107,7 @@ namespace DanmissionManager.ViewModels
         public RelayCommand2 CommandAddProduct { get; set; }
         public void AddProduct()
         {
-            Product product = new Product(this.ProductName, this.SelectedSubCategory.id, this.Product.isUnique, this.ProductDesc);
+            Product product = new Product(this.ProductName, this.SelectedSubCategory.Parent_id, this.Product.isUnique, this.ProductDesc);
             
             if (product.isUnique == false)
             {

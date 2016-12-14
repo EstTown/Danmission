@@ -126,6 +126,7 @@ namespace DanmissionManager.ViewModels
         }
         #endregion
 
+        #region Popup properties and methods
         public struct Popups
         {
             public Action<string, string> PopupMessage;
@@ -139,11 +140,11 @@ namespace DanmissionManager.ViewModels
         
         public Popups PopupService { get; set; }
 
+        #endregion 
         public BaseViewModel()
         {
             PopupService = new Popups((x, y) => { }, (x, y) => true);
         }
-
         public BaseViewModel(Popups popupService)
         {
             PopupService = popupService;
