@@ -24,6 +24,7 @@ namespace DanmissionManager.Pages
         public inventoryOverviewPage()
         {
             InitializeComponent();
+            button_removeExpiredProduct.Visibility = Visibility.Hidden;
         }
 
         private void UniqueProducts_Click(object sender, RoutedEventArgs e)
@@ -31,6 +32,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Visible;
             TransActions.Visibility = Visibility.Collapsed;
             SoldProducts.Visibility = Visibility.Collapsed;
+            button_removeExpiredProduct.Visibility = Visibility.Hidden;
         }
 
         private void NotUniqueProducts_Click(object sender, RoutedEventArgs e)
@@ -38,6 +40,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Visible;
             TransActions.Visibility = Visibility.Collapsed;
             SoldProducts.Visibility = Visibility.Collapsed;
+            button_removeExpiredProduct.Visibility = Visibility.Hidden;
         }
 
         private void ExpiredProducts_Click(object sender, RoutedEventArgs e)
@@ -45,6 +48,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Visible;
             TransActions.Visibility = Visibility.Collapsed;
             SoldProducts.Visibility = Visibility.Collapsed;
+            button_removeExpiredProduct.Visibility = Visibility.Visible;
         }
 
         private void Transactions_Click(object sender, RoutedEventArgs e)
@@ -52,7 +56,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Collapsed;
             TransActions.Visibility = Visibility.Visible;
             SoldProducts.Visibility = Visibility.Collapsed;
-
+            button_removeExpiredProduct.Visibility = Visibility.Hidden;
         }
 
         private void SoldProducts_Click(object sender, RoutedEventArgs e)
@@ -60,6 +64,7 @@ namespace DanmissionManager.Pages
             lvProducts.Visibility = Visibility.Collapsed;
             TransActions.Visibility = Visibility.Collapsed;
             SoldProducts.Visibility = Visibility.Visible;
+            button_removeExpiredProduct.Visibility = Visibility.Hidden;
         }
 
     }

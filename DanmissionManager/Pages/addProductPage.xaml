@@ -29,7 +29,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,55,10,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image x:Name="image" Source="{Binding Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="250" Height="250"/>
         </Border>
-        <Button x:Name="btn_ChooseImage" Command="{Binding Path = CommandGetImage}" Content="Vælg billede" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="btn_ChooseImage" Command="{Binding Path = CommandGetImage}" Content="{DynamicResource RPChooseImage}" Margin="0,312,10,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource registerProduct}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
 
@@ -75,10 +75,10 @@
 -->
             <GroupBox x:Name="groupBox" Header="Produkt type" Margin="10,245,10.333,0" VerticalAlignment="Top" Height="120">
                 <Grid Margin="0,0,-2,-13.667">
-                    <Label x:Name="label_expire" Content="Udløber om (uger):" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_expire" HorizontalAlignment="Left" IsEnabled="True" Margin="130,63,0,0" TextWrapping="Wrap" Text="{Binding Weeks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="169" Height="23" VerticalAlignment="Top"/>
+                    <Label x:Name="label_expire" Content="{DynamicResource RPExpiresIn}" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_expire" HorizontalAlignment="Left" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" Margin="130,63,0,0" TextWrapping="Wrap" Text="{Binding Weeks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="169" Height="23" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_AmountOfProducts" Text="{Binding AmountOfProducts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsChecked,  Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="130,35,0,0" TextWrapping="Wrap" Width="169" Height="23" VerticalAlignment="Top"/>
-                    <Label x:Name="label_amount" IsEnabled="{Binding IsChecked,  Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" Content="Antal:" HorizontalAlignment="Left" Margin="13,31,0,0" Width="106" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_amount" IsEnabled="{Binding IsChecked, Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" Content="{DynamicResource RPNumberOfProducts}" HorizontalAlignment="Left" Margin="13,31,0,0" Width="106" Height="26" VerticalAlignment="Top"/>
                     <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="130,10,0,0" Width="169" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top"/>
                 </Grid>
             </GroupBox>

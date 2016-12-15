@@ -60,7 +60,7 @@
 
 
 
-             <ListView Margin="10,120,12,15" Name="TransActions" ItemsSource="{Binding Path=Transactions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Margin="10,120,12.333,35" Name="TransActions" ItemsSource="{Binding Path=Transactions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
@@ -70,7 +70,7 @@
             </ListView.View>
         </ListView>
 
-             <ListView Margin="10,120,12,15" Name="SoldProducts" ItemsSource="{Binding Path=SoldProducts, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView Margin="10,120,12.333,35" Name="SoldProducts" ItemsSource="{Binding Path=SoldProducts, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
@@ -78,12 +78,12 @@
                     <GridViewColumn Header="{DynamicResource FPName}" Width="150" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="{DynamicResource FPPrice }" Width="150" DisplayMemberBinding="{Binding price}" />
                     <GridViewColumn Header="{DynamicResource IODateSold }" Width="150" DisplayMemberBinding="{Binding date}" />
-       
+
                 </GridView>
             </ListView.View>
-        </ListView> 
+        </ListView>
 
-        <ListView Margin="10,120,12,15" Name="lvProducts" ItemsSource="{Binding Path=SearchParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Margin="10,120,12.333,35" Name="lvProducts" SelectedItem="{Binding SelectedProduct, Mode=OneWayToSource}" ItemsSource="{Binding Path=SearchParameter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{DynamicResource FPID}" Width="50" DisplayMemberBinding="{Binding id}" />
@@ -95,5 +95,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="button_removeExpiredProduct" Content="Remove product" Command="{Binding Path=CommandRemoveExpiredProduct}" Margin="0,0,12.333,10" HorizontalAlignment="Right" Width="106" Height="20" VerticalAlignment="Bottom">
+        </Button>
+
+
     </Grid>
 </Page>

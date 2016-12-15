@@ -4,7 +4,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Overall -->
-    <system:String x:Key="windowTitle">NameOfProgram</system:String>
+    <system:String x:Key="windowTitle">Danmission Manager</system:String>
     <system:String x:Key="registerProduct">Register Product</system:String>
     <system:String x:Key="findProduct">Find Product</system:String>
     <system:String x:Key="checkoutProduct">Checkout</system:String>
@@ -28,6 +28,9 @@
     <system:String x:Key="RPUniqueProduct">The product is unique</system:String>
     <system:String x:Key="RPSelectPicture">Select Picture</system:String>
     <system:String x:Key="RPAddProduct">Add Product</system:String>
+    <system:String x:Key="RPChooseImage">Choose image...</system:String>
+    <system:String x:Key="RPNumberOfProducts">Quantity</system:String>
+    <system:String x:Key="RPExpiresIn">Expires in (weeks)</system:String>
 
     <!-- Find Product Page -->
     <system:String x:Key="FPSearch">Search</system:String>
@@ -37,7 +40,7 @@
     <system:String x:Key="FPPrice">Price</system:String>
     <system:String x:Key="FPQuantity">Quantity</system:String>
     <system:String x:Key="FPProductInfo">Product Information</system:String>
-    <system:String x:Key="FPAddedDate">Added Date</system:String>
+    <system:String x:Key="FPAddedDate">Added date</system:String>
     <system:String x:Key="FPDescription">Description</system:String>
     <system:String x:Key="FPRemoveProduct">Remove Product</system:String>
     <system:String x:Key="FPSave">Save</system:String>
@@ -46,6 +49,13 @@
     <!-- Checkout Product Page -->
     <system:String x:Key="CPProductCouldNotBeFound">The product could not be found.</system:String>
 
+    <!-- Checkout Page -->
+    <system:String x:Key="COAdd">Add</system:String>
+    <system:String x:Key="CONumber">Quantity</system:String>
+    <system:String x:Key="COClearBasket">Clear basket</system:String>
+    <system:String x:Key="COComplete">Complete</system:String>
+    <system:String x:Key="COLeft">Remaining</system:String>
+    
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unique Products</system:String>
     <system:String x:Key="IONotUnique">Not Unique Products</system:String>
@@ -55,7 +65,7 @@
     <system:String x:Key="IOSum">Amount</system:String>
     <system:String x:Key="IODateSold">Date Sold</system:String>
     <system:String x:Key="IOTransID">Transaction ID</system:String>
-    <system:String x:Key="IOTransDate">Transaction Date</system:String>
+    <system:String x:Key="IOTransDate">Transaction date</system:String>
 
     <!-- Categories Page -->
     <system:String x:Key="CCategories">Categories</system:String>

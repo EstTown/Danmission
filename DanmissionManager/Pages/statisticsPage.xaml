@@ -11,10 +11,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="865"
       Title="statisticsPage">
-    
+
     <Grid>
         <Label x:Name="label_title" Background="{Binding GUICOLOR, Source={x:Static properties:Settings.Default}}" FontSize="30" Content="{DynamicResource statistics}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
-        <chartingToolkit:Chart  x:Name="PieChart" Title="" LegendTitle="Kategorier" FontSize="18" BorderThickness="0" Margin="110,95,0,10" HorizontalAlignment="Left" Width="700">
+        <chartingToolkit:Chart  x:Name="PieChart" Title="" LegendTitle="Kategorier" FontSize="18" BorderThickness="0" Margin="10,95,10.333,10">
             <chartingToolkit:Chart.PlotAreaStyle>
                 <Style TargetType="{x:Type Grid}">
                     <Setter Property="Background" Value="#f5f5f5" />
@@ -24,13 +24,13 @@
             IndependentValuePath="Key" ItemsSource="{Binding PieChart, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             IsSelectionEnabled="True" Margin="10,10,10,9.5" />
         </chartingToolkit:Chart>
-        <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedChart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="120,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="24"/>
-        <Label x:Name="statLabel"  Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="34,64,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedChart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="24"/>
+        <Label x:Name="statLabel"  Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top"/>
         <Custom:DatePicker x:Name="datePickerFrom" SelectedDate="{Binding dateFrom}" HorizontalAlignment="Left" Margin="386,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
-        <Custom:DatePicker x:Name="datePickerTo" SelectedDate="{Binding dateTo}" HorizontalAlignment="Left" Margin="550,66,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="325,64,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="492,64,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" Margin="680,66,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="120"/>
+        <Custom:DatePicker x:Name="datePickerTo" SelectedDate="{Binding dateTo}" HorizontalAlignment="Left" Margin="577,66,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="316,64,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="519,64,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" Margin="0,66,31.333,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="100"/>
         <!--<Button x:Name="button" Content="Button" Command="{Binding Path = command}" HorizontalAlignment="Left" Margin="259,133,0,0" VerticalAlignment="Top" Width="75"/>
         -->
     </Grid>
