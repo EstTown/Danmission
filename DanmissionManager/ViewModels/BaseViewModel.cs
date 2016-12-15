@@ -73,7 +73,7 @@ namespace DanmissionManager.ViewModels
         {
             bool isValid = true;
 
-            if (value.Length > 10)
+            if (value == "")
             {
                 AddError("ProductDesc", PRODUCTDESC_ERROR, false);
                 isValid = false;
