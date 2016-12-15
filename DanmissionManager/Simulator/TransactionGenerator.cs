@@ -24,67 +24,41 @@ namespace DanmissionManager.Simulator
         private List<Product> AllProducts { get; set; }
         private int NumberOfTransactions;
         private int Days;
+
         public void GenerateTransactions()
         {
-            List<Transaction> list = new List<Transaction>();
-
-            Random rdn = new Random();
+            List<Transaction> listOfTransactions = new List<Transaction>();
 
             for (int i = 0; i < this.NumberOfTransactions; i++)
             {
-                List<Product> listPerTransaction = new List<Product>();
-                List<SoldProduct> listofSoldProducts = new List<SoldProduct>();
-                TimeSpan timespan = new TimeSpan(this.Days * 7 - (rdn.Next(this.Days * 7)), rdn.Next(0, 12), rdn.Next(0, 59));
-
-                using (var ctx = new ServerContext())
-                {
-                    //puts random products in a "basket", also random amount of products
-                    for (int j = 0; j < rdn.Next(1, 5); j++)
-                    {
-                        //declared next to make sure no duplicates get used
-                        int next = rdn.Next(this.AllProducts.Count);
-
-                        listPerTransaction.Add(this.AllProducts[next]);
-
-                        if (this.AllProducts[next].isUnique == true)
-                        {
-                            this.AllProducts.Remove(this.AllProducts[next]);
-                            ctx.Products.Remove(AllProducts[next]);
-                        }
-                        else if (AllProducts[next].quantity <= 1)
-                        {
-                            this.AllProducts.Remove(this.AllProducts[next]);
-                            ctx.Products.Remove(AllProducts[next]);
-                        }
-                        else
-                        {
-                            this.AllProducts[next].quantity--;
-                            ctx.Products.Find(AllProducts[next]).quantity--;
-                        }
-                        ctx.SaveChanges();
-                    }
-                }
-
-                Transaction transaction = new Transaction(listPerTransaction, DateTime.Now.Subtract(timespan));
-                transaction.ExecuteTransaction();
-
-                for (int j = 0; j < listPerTransaction.Count; j++)
-                {
-                    SoldProduct soldproduct = new SoldProduct(listPerTransaction[j]);
-                    soldproduct.transactionid = transaction.id;
-                    listofSoldProducts.Add(soldproduct);
-                }
-                AddSoldProductsToDatabase(listofSoldProducts);
+                Transaction transaction = new Transaction(GetRandomSubsetOfProducts());
+                listOfTransactions.Add(transaction);
             }
+            
+
         }
 
+        public List<Product> GetRandomSubsetOfProducts()
+        {
+            Random rdn = new Random();
+            List<Product> productList = new List<Product>();
+            
+
+            for (int i = 0; i < rdn.Next(1, 7); i++)
+            {
+                int next = rdn.Next(this.AllProducts.Count);
+                productList.Add(this.AllProducts[next]);
+                ChangeProduct(this.AllProducts[next]);
+            }
+
+            return productList;
+        } 
         public void AddSoldProductsToDatabase(List<SoldProduct> soldproducts)
         {
             try
             {
                 using (var ctx = new ServerContext())
                 {
-                    //save all products as products sold.
                     ctx.Soldproducts.AddRange(soldproducts);
                     ctx.SaveChanges();
                 }
@@ -93,6 +67,49 @@ namespace DanmissionManager.Simulator
             {
                 MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
             }
+        }
+
+        public void AddTransactionsToDatabase(List<Transaction> listOfTransactions)
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    ctx.Transaction.AddRange(listOfTransactions);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+        }
+
+        public SoldProduct ChangeProduct(Product product)
+        {
+            SoldProduct soldProduct = new SoldProduct(product);
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    if (product.quantity > 1)
+                    {
+                        product.quantity--;
+                        ctx.SaveChanges();
+                    }
+                    else
+                    {
+                        ctx.Products.Remove(product);
+                        ctx.SaveChanges();
+                    }
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                MessageBox.Show("Kunne ikke oprette forbindelse til databasen. Tjek din konfiguration og internet adgang.", "Error!");
+            }
+            return soldProduct;
+
         }
         public void RemoveTransaction(int id)
         {
@@ -113,5 +130,6 @@ namespace DanmissionManager.Simulator
                 ctx.SaveChanges();
             }
         }
+        
     }
 }
