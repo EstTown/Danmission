@@ -25,10 +25,10 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Button x:Name="button_complete" Content="Gennemfør" Command="{Binding Path=CommandComplete}" Margin="182,0,10.333,9.333" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_complete" Content="{DynamicResource COComplete}" Command="{Binding Path=CommandComplete}" Margin="182,0,10.333,9.333" Height="20" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_price" Content="Total: " Margin="10,0,250.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_totalprice" Content="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10.333,163.333" Width="auto" Height="26" VerticalAlignment="Bottom"/>
-                <Button x:Name="button_clear" Content="Clear basket" Command="{Binding Path=CommandClearBasket}" Margin="10,0,202.333,9.333" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_clear" Content="{DynamicResource COClearBasket}" Command="{Binding Path=CommandClearBasket}" Margin="10,0,202.333,9.333" Height="20" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox_searchForId" Header="Søg efter ID" Margin="10,55,328,0" VerticalAlignment="Top" Height="112">
@@ -67,12 +67,12 @@
                 <Label x:Name="label_SelectedCategory" Content="{DynamicResource FPCategory}" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="95"/>
                 <TextBox x:Name="textBox_SelectedCategory" IsEnabled="false" TextWrapping="NoWrap" Text="{Binding CategoryName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="95,84,0,0" Height="auto" VerticalAlignment="Top"/>
 
-                <Button x:Name="btn_AddToBasket" Content="Tilføj" Command="{Binding Path=CommandAddToBasket}" Margin="0,0,-189,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="btn_AddToBasket" Content="{DynamicResource COAdd}" Command="{Binding Path=CommandAddToBasket}" Margin="0,0,-189,10" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
 
-                <Label x:Name="label_quantity" Content="Antal Tilbage" HorizontalContentAlignment="Left" Width="95" Margin="0,111,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left"></Label>
+                <Label x:Name="label_quantity" Content="{DynamicResource COLeft}" HorizontalContentAlignment="Left" Width="95" Margin="0,111,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left"></Label>
                 <TextBox x:Name="textbox_quantity" IsEnabled="False" Height="23" Margin="95,111,-0.267,0" TextWrapping="Wrap" Text="{Binding Quantity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
                 <TextBox x:Name="textbox_AmountToBasket" Margin="95,352,134,0" TextWrapping="Wrap" Text="{Binding SelectedAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" VerticalAlignment="Top"/>
-                <Label x:Name="label_AmountToBasket" Content="Antal" HorizontalContentAlignment="Left" Width="95" Margin="0,349,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left"/>
+                <Label x:Name="label_AmountToBasket" Content="{DynamicResource CONumber}" HorizontalContentAlignment="Left" Width="95" Margin="0,349,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left"/>
 
 
 

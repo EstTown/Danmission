@@ -28,6 +28,9 @@
     <system:String x:Key="RPUniqueProduct">Produktet er unikt</system:String>
     <system:String x:Key="RPSelectPicture">Vælg billede</system:String>
     <system:String x:Key="RPAddProduct">Tilføj Produkt</system:String>
+    <system:String x:Key="RPChooseImage">Vælg billede...</system:String>
+    <system:String x:Key="RPNumberOfProducts">Mængde</system:String>
+    <system:String x:Key="RPExpiresIn">Udløber om (uger)</system:String>
 
     <!-- Find Product Page -->
     <system:String x:Key="FPSearch">Søg</system:String>
@@ -45,7 +48,13 @@
     
     <!-- Checkout Product Page -->
     <system:String x:Key="CPProductCouldNotBeFound">Produktet kunne ikke findes.</system:String>
-    
+
+    <!-- Checkout Page -->
+    <system:String x:Key="COAdd">Tilføj</system:String>
+    <system:String x:Key="CONumber">Antal</system:String>
+    <system:String x:Key="COClearBasket">Ryd kurv</system:String>
+    <system:String x:Key="COComplete">Fuldfør</system:String>
+    <system:String x:Key="COLeft">Antal tilbage</system:String>
 
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unikke Produkter</system:String>
