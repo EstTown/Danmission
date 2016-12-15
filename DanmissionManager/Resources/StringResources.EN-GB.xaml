@@ -4,7 +4,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Overall -->
-    <system:String x:Key="windowTitle">NameOfProgram</system:String>
+    <system:String x:Key="windowTitle">Danmission Manager</system:String>
     <system:String x:Key="registerProduct">Register Product</system:String>
     <system:String x:Key="findProduct">Find Product</system:String>
     <system:String x:Key="checkoutProduct">Checkout</system:String>
