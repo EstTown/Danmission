@@ -27,7 +27,7 @@
                 </ListView>
                 <Button x:Name="button_complete" Content="{DynamicResource COComplete}" Command="{Binding Path=CommandComplete}" Margin="182,0,10.333,9.333" Height="20" VerticalAlignment="Bottom"/>
                 <Label x:Name="label_price" Content="Total: " Margin="10,0,250.333,163.667" Width="auto" Height="26" VerticalAlignment="Bottom"/>
-                <Label x:Name="label_totalprice" Content="{Binding TotalPrice, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10.333,163.333" Width="auto" Height="26" VerticalAlignment="Bottom"/>
+                <Label x:Name="label_totalprice" Content="{Binding TotalPrice, StringFormat= '\{0\} (Kr.)', UpdateSourceTrigger=PropertyChanged }" Margin="56,0,10.333,163.333" Width="auto" Height="26" VerticalAlignment="Bottom"/>
                 <Button x:Name="button_clear" Content="{DynamicResource COClearBasket}" Command="{Binding Path=CommandClearBasket}" Margin="10,0,202.333,9.333" Height="20" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>
