@@ -85,6 +85,18 @@ namespace DanmissionManager.ViewModels
             }
         }
 
+        private double _selectedProductPrice;
+        public double SelectedProductPrice
+        {
+            get { return _selectedProductPrice; }
+            set
+            {
+                _selectedProductPrice = value;
+                OnPropertyChanged("SelectedProductPrice");
+                IsPriceValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
+            }
+        }
+
 
         public RelayCommand2 CommandSaveChanges { get; set; }
         //method that saves changes to selectedproduct
