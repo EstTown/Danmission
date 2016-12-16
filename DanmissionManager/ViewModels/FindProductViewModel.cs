@@ -19,7 +19,7 @@ namespace DanmissionManager.ViewModels
         {
             this.SearchParameter = string.Empty;
             this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
-            this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct);
+            this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct, CanExecuteSaveChanges);
             this.CommandRemoveSelectedProduct = new RelayCommand2(RemoveSelectedProduct);
 
             //Command for getting image from user, via dialog
@@ -27,6 +27,12 @@ namespace DanmissionManager.ViewModels
             this.CommandGetImage = commandGetImage;
             SelectedProduct = null;
         }
+
+        public bool CanExecuteSaveChanges()
+        {
+            return !HasErrors;
+        }
+
         private string _searchParameter;
         public string SearchParameter
         {
@@ -58,12 +64,40 @@ namespace DanmissionManager.ViewModels
                 _selectedProduct = value;
                 if (SelectedProduct != null)
                 {
+                    this.SelectedProductName = value.name;
                     this.Image = SelectedProduct.productImage;
                 }
                 OnPropertyChanged("SelectedProduct");
+                
                 //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
             }
         }
+
+        private string _selectedProductName;
+        public string SelectedProductName
+        {
+            get { return _selectedProductName; }
+            set
+            {
+                _selectedProductName = value;
+                OnPropertyChanged("SelectedProductName");
+                IsProductNameValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
+            }
+        }
+
+        private double _selectedProductPrice;
+        public double SelectedProductPrice
+        {
+            get { return _selectedProductPrice; }
+            set
+            {
+                _selectedProductPrice = value;
+                OnPropertyChanged("SelectedProductPrice");
+                IsPriceValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
+            }
+        }
+
+
         public RelayCommand2 CommandSaveChanges { get; set; }
         //method that saves changes to selectedproduct
         private void SaveChangesToSelectedProduct()

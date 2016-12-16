@@ -58,7 +58,7 @@
     
     <!-- Inventory Overview Page -->
     <system:String x:Key="IOUnique">Unique Products</system:String>
-    <system:String x:Key="IONotUnique">Not Unique Products</system:String>
+    <system:String x:Key="IONotUnique">Non-Unique Products</system:String>
     <system:String x:Key="IOExpired">Expired Products</system:String>
     <system:String x:Key="IOTransactions">Transactions</system:String>
     <system:String x:Key="IOSold">Sold Products</system:String>
