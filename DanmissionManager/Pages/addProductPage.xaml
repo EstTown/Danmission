@@ -47,12 +47,12 @@
                     <ComboBox x:Name="comboBox_category" ItemsSource="{Binding Path = Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="133,92,10,0" VerticalAlignment="Top"/>
 
                     <Label x:Name="label_price" Content="{DynamicResource RPSetPrice}" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TextBox_setPrice" Text="{Binding Product.price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="113" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="TextBox_setPrice" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" HorizontalContentAlignment="Left" Margin="133,168,0,0" Height="25" Width="113" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
                     <TextBlock x:Name="textBlockChooseSubCategory" HorizontalAlignment="Left" Margin="22,131,0,0" TextWrapping="Wrap" Text="{DynamicResource RPSubcategory}" VerticalAlignment="Top" Width="111" Height="23"/>
                     <ComboBox x:Name="comboBox1SubCategory" ItemsSource="{Binding Path = SubCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" DisplayMemberPath="name" SelectedItem="{Binding SelectedSubCategory, Mode=TwoWay}" Margin="133,132,10,0" VerticalAlignment="Top"/>
                     <Label x:Name="label" Content="{DynamicResource RPStandardPrice}" Margin="297,168,154,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="typiskPris" Height="25" Margin="402,168,10,0" TextWrapping="Wrap" Text="{Binding SelectedSubCategory.standardprice, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+                    <TextBox x:Name="typiskPris" IsEnabled="False" Height="25" Margin="402,168,10,0" TextWrapping="Wrap" Text="{Binding SelectedSubCategory.standardprice, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
 
                 </Grid>
             </GroupBox>
@@ -75,11 +75,11 @@
 -->
             <GroupBox x:Name="groupBox" Header="Produkt type" Margin="10,245,10.333,0" VerticalAlignment="Top" Height="120">
                 <Grid Margin="0,0,-2,-13.667">
-                    <Label x:Name="label_expire" Content="{DynamicResource RPExpiresIn}" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_expire" HorizontalAlignment="Left" IsEnabled="{Binding IsChecked, ElementName=checkBox_isUnique, Mode=OneWay}" Margin="130,63,0,0" TextWrapping="Wrap" Text="{Binding Weeks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="169" Height="23" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_AmountOfProducts" Text="{Binding AmountOfProducts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsChecked,  Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="130,35,0,0" TextWrapping="Wrap" Width="169" Height="23" VerticalAlignment="Top"/>
+                    <Label x:Name="label_expire" Content="{DynamicResource RPExpiresIn}" IsEnabled="True" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_expire" HorizontalAlignment="Left" IsEnabled="True" Margin="130,63,0,0" TextWrapping="Wrap" Text="{Binding Weeks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=true}" Width="169" Height="23" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_AmountOfProducts" Text="{Binding AmountOfProducts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding IsChecked,  Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" HorizontalAlignment="Left" Margin="130,35,0,0" TextWrapping="Wrap" Width="169" Height="23" VerticalAlignment="Top"/>
                     <Label x:Name="label_amount" IsEnabled="{Binding IsChecked, Converter={StaticResource oppositeConverter}, ElementName=checkBox_isUnique, Mode=OneWay}" Content="{DynamicResource RPNumberOfProducts}" HorizontalAlignment="Left" Margin="13,31,0,0" Width="106" Height="26" VerticalAlignment="Top"/>
-                    <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding Product.isUnique, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="130,10,0,0" Width="169" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="checkBox_isUnique" IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="{DynamicResource RPUniqueProduct}" Margin="130,10,0,0" Width="169" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top"/>
                 </Grid>
             </GroupBox>
         </Grid>
