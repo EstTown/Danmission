@@ -115,8 +115,12 @@ namespace DanmissionManager.ViewModels
             var errorsSubCategoryName = GetErrors(nameof(this.SubCategoryName));
             var errorsPrice = GetErrors(nameof(this.Price));
 
+            if (this.SelectedCategory != null && errorsSubCategoryName != null && errorsPrice != null)
+            {
+                return false;
+            }
 
-            return !(this.SelectedCategory != null && errorsSubCategoryName != null && errorsPrice != null);
+            return true;
         }
 
         private string _categoryName;
