@@ -76,7 +76,13 @@ namespace DanmissionManager.ViewModels
 
         public bool CanAddCategory()
         {
-            return !HasErrors;
+            var errorsCategoryName = GetErrors(nameof(this.CategoryName));
+
+            if (errorsCategoryName != null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public RelayCommand2 CommandAddSubCategory { get; set; }
@@ -106,7 +112,11 @@ namespace DanmissionManager.ViewModels
 
         public bool CanAddSubCategory()
         {
-            return (!HasErrors && this.SelectedCategory != null);
+            var errorsSubCategoryName = GetErrors(nameof(this.SubCategoryName));
+            var errorsPrice = GetErrors(nameof(this.Price));
+
+
+            return !(this.SelectedCategory != null && errorsSubCategoryName != null && errorsPrice != null);
         }
 
         private string _categoryName;
