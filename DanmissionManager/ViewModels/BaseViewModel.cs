@@ -39,8 +39,6 @@ namespace DanmissionManager.ViewModels
 
         //error message defined as a constant
         private const string PRODUCTNAME_ERROR = "Dette felt må ikke være tomt.";
-        private const string PRODUCTNAME_WARNING = "Navnet er meget langt. Overvej et alternativt navn.";
-        private const string PRODUCTDESC_ERROR = "Beskrivelse må ikke være tomt";
 
         //basically need a bunch of methods, that validate a certain property each.
         //for example a method that validates a name property
@@ -48,7 +46,7 @@ namespace DanmissionManager.ViewModels
         {
             bool isValid = true;
 
-            if (value.Length > 10)
+            if (value == "")
             {
                 AddError("ProductName", PRODUCTNAME_ERROR, false);
                 isValid = false;
@@ -57,33 +55,10 @@ namespace DanmissionManager.ViewModels
             {
                 RemoveError("ProductName", PRODUCTNAME_ERROR);
             }
-
-            if (value.Length > 20)
-            {
-                AddError("ProductName", PRODUCTNAME_WARNING, true);
-            }
-            else
-            {
-                RemoveError("ProductName", PRODUCTNAME_WARNING);
-            }
             return isValid;
         }
 
-        public bool IsProductDescValid(string value)
-        {
-            bool isValid = true;
-
-            if (value == "")
-            {
-                AddError("ProductDesc", PRODUCTDESC_ERROR, false);
-                isValid = false;
-            }
-            else
-            {
-                RemoveError("ProductDesc", PRODUCTDESC_ERROR);
-            }
-            return isValid;
-        }
+        
         //method for raising new event
         public void RaiseErrorsChanged(string propertyName)
         {
