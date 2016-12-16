@@ -64,7 +64,7 @@ namespace DanmissionManager.ViewModels
                 _selectedProduct = value;
                 if (SelectedProduct != null)
                 {
-                    this.SelectedProductName = value.name;
+                    this.ProductName = value.name;
                     this.Image = SelectedProduct.productImage;
                 }
                 OnPropertyChanged("SelectedProduct");
@@ -73,14 +73,14 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private string _selectedProductName;
-        public string SelectedProductName
+        private string _productName;
+        public string ProductName
         {
-            get { return _selectedProductName; }
+            get { return _productName; }
             set
             {
-                _selectedProductName = value;
-                OnPropertyChanged("SelectedProductName");
+                _productName = value;
+                OnPropertyChanged("ProductName");
                 IsProductNameValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
             }
         }
