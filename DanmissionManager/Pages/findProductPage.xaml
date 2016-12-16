@@ -82,7 +82,7 @@
             -->
         </TextBox>
         <Label x:Name="label_title" Background="{Binding Source={x:Static properties:Settings.Default}, Path=GUICOLOR}" FontSize="30" Content="{DynamicResource findProduct}" VerticalAlignment="Top" Padding="10, 0, 0 ,0"  Height="50" Foreground="White"/>
-        <Button x:Name="btn_ChooseImage" Command="{Binding CommandGetImage}" Content="Vælg billede" Margin="0,306,39,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="btn_ChooseImage" Command="{Binding CommandGetImage}" Content="{DynamicResource RPChooseImage}" Margin="0,306,39,0" HorizontalAlignment="Right" Width="252" Height="20" VerticalAlignment="Top"/>
 
 
     </Grid>
