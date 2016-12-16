@@ -23,10 +23,6 @@ namespace DanmissionManager.ViewModels
             this.Product = new Product();
             this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
             this.CommandGetImage = new RelayCommand2(GetImage);
-
-            
-            //this.ProductName = "";
-            //this.ProductDesc = "";
             
             //get all categories and subcategories from database
             GetFromDatabase();
@@ -77,7 +73,7 @@ namespace DanmissionManager.ViewModels
         {
             get { return _productName; }
             set { _productName = value; OnPropertyChanged("ProductName");
-                IsProductNameValid(value); CommandAddProduct.RaiseCanExecuteChanged();
+                IsNameValid(value, nameof(this.ProductName)); CommandAddProduct.RaiseCanExecuteChanged();
             }
         }
         private string _productDesc;
@@ -131,7 +127,7 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _price = value; OnPropertyChanged("Price");
-                IsPriceValid(value); CommandAddProduct.RaiseCanExecuteChanged();
+                IsPriceValid(value, nameof(this.Price)); CommandAddProduct.RaiseCanExecuteChanged();
             }
         }
 

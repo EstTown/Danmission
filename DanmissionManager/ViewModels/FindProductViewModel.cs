@@ -68,9 +68,7 @@ namespace DanmissionManager.ViewModels
                     this.Image = SelectedProduct.productImage;
                 }
                 OnPropertyChanged("SelectedProduct");
-                
-                //CommandSelectProduct.RaiseCanExecuteChanged(); //not used right now
-            }
+                }
         }
 
         private string _productName;
@@ -81,7 +79,7 @@ namespace DanmissionManager.ViewModels
             {
                 _productName = value;
                 OnPropertyChanged("ProductName");
-                IsProductNameValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
+                IsNameValid(value, nameof(this.ProductName)); CommandSaveChanges.RaiseCanExecuteChanged();
             }
         }
 
@@ -93,7 +91,7 @@ namespace DanmissionManager.ViewModels
             {
                 _selectedProductPrice = value;
                 OnPropertyChanged("SelectedProductPrice");
-                IsPriceValid(value); CommandSaveChanges.RaiseCanExecuteChanged();
+                IsPriceValid(value, nameof(this.SelectedProductPrice)); CommandSaveChanges.RaiseCanExecuteChanged();
             }
         }
 

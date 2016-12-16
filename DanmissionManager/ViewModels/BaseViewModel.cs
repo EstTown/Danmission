@@ -38,25 +38,25 @@ namespace DanmissionManager.ViewModels
         }
 
         //error message defined as a constant
-        private const string PRODUCTNAME_ERROR = "Dette felt må ikke være tomt.";
+        private const string NAME_ERROR = "Dette felt må ikke være tomt.";
         private const string AMOUNTOFPRODUCTS_ERROR = "Angiv mindst 2 - Eller sæt produktet til at være unikt.";
         private const string WEEKS_ERROR = "Skal være et posivitivt tal.";
         private const string PRICE_ERROR = "Pris skal være et positivt tal.";
 
         //basically need a bunch of methods, that validate a certain property each.
         //for example a method that validates a name property
-        public bool IsProductNameValid(string value)
+        public bool IsNameValid(string value, string propertyName)
         {
             bool isValid = true;
 
             if (value == "")
             {
-                AddError("ProductName", PRODUCTNAME_ERROR, false);
+                AddError(propertyName, NAME_ERROR, false);
                 isValid = false;
             }
             else
             {
-                RemoveError("ProductName", PRODUCTNAME_ERROR);
+                RemoveError(propertyName, NAME_ERROR);
             }
             return isValid;
         }
@@ -91,17 +91,17 @@ namespace DanmissionManager.ViewModels
             return isValid;
         }
 
-        public bool IsPriceValid(double value)
+        public bool IsPriceValid(double value, string propertyName)
         {
             bool isValid = true;
             if (value < 0.0)
             {
-                AddError("Price", PRICE_ERROR, false);
+                AddError(propertyName, PRICE_ERROR, false);
                 isValid = false;
             }
             else
             {
-                RemoveError("Price", PRICE_ERROR);
+                RemoveError(propertyName, PRICE_ERROR);
             }
             return isValid;
         }

@@ -106,7 +106,7 @@ namespace DanmissionManager.ViewModels
 
         public bool CanAddSubCategory()
         {
-            return !HasErrors;
+            return (!HasErrors && this.SelectedCategory != null);
         }
 
         private string _categoryName;
@@ -121,17 +121,16 @@ namespace DanmissionManager.ViewModels
             {
                 _categoryName = value;
                 OnPropertyChanged("CategoryName");
-                IsProductNameValid(value); CommandAddCategory.RaiseCanExecuteChanged();
+                IsNameValid(value, nameof(this.CategoryName)); CommandAddCategory.RaiseCanExecuteChanged();
             }
         }
 
         private string _subCategoryName;
         public string SubCategoryName { get { return _subCategoryName;} set { _subCategoryName = value; OnPropertyChanged("SubCategoryName");
-            IsProductNameValid(value); CommandAddSubCategory.RaiseCanExecuteChanged();
+            IsNameValid(value, nameof(this.SubCategoryName)); CommandAddSubCategory.RaiseCanExecuteChanged();
         } }
 
         private double _price;
-
         public double Price
         {
             get
@@ -141,7 +140,7 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _price = value; OnPropertyChanged("Price");
-                IsPriceValid(value); CommandAddSubCategory.RaiseCanExecuteChanged();
+                IsPriceValid(value, nameof(this.Price)); CommandAddSubCategory.RaiseCanExecuteChanged();
             }
         }
 

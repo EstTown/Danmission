@@ -379,7 +379,6 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionM
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.exe
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.pdb
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\checkoutPage.g.cs
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.g.cs
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.g.cs

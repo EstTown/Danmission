@@ -38,7 +38,7 @@
             <GroupBox x:Name="groupBox1" Header="Produkt info" Margin="10,0,10.333,0" VerticalAlignment="Top" Height="236">
                 <Grid>
                     <Label x:Name="label_name" Content="{DynamicResource RPProductName}" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox" Text="{Binding ProductName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Margin="133,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+                    <TextBox x:Name="textBox" Text="{Binding ProductName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Margin="133,14,10,0" TextWrapping="NoWrap" VerticalAlignment="Top" />
 
                     <Label x:Name="label_description" Content="{DynamicResource RPDescription}" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxDescription" Height="25" Margin="133,50,10,0" TextWrapping="Wrap" Text="{Binding ProductDesc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnNotifyDataErrors=true}" VerticalAlignment="Top"/>
@@ -56,23 +56,6 @@
 
                 </Grid>
             </GroupBox>
-            <!--
-            <TextBox x:Name="txtbox_price" 
-                 Text="{Binding Path=SelectedSubCategory.standardprice, Mode=TwoWay}"
-                 TextWrapping="Wrap"
-                 Height="25"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Right" Margin="0,171,295,340" Width="169" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
--->
             <GroupBox x:Name="groupBox" Header="Produkt type" Margin="10,245,10.333,0" VerticalAlignment="Top" Height="120">
                 <Grid Margin="0,0,-2,-13.667">
                     <Label x:Name="label_expire" Content="{DynamicResource RPExpiresIn}" IsEnabled="True" HorizontalAlignment="Left" Margin="13,59,0,0" Width="111" RenderTransformOrigin="0.364,0.68" Height="26" VerticalAlignment="Top"/>
