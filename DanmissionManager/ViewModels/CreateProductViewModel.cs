@@ -20,14 +20,13 @@ namespace DanmissionManager.ViewModels
     {
         public CreateProductViewModel(Popups popupService) : base(popupService)
         {
-            this.Product = new Product() {isUnique = true, price = 0.0};
-            
+            this.Product = new Product();
             this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
             this.CommandGetImage = new RelayCommand2(GetImage);
 
             
             //this.ProductName = "";
-            this.ProductDesc = "";
+            //this.ProductDesc = "";
             
             //get all categories and subcategories from database
             GetFromDatabase();
@@ -78,7 +77,7 @@ namespace DanmissionManager.ViewModels
         {
             get { return _productName; }
             set { _productName = value; OnPropertyChanged("ProductName");
-                //IsProductNameValid(nameof(this.ProductName)); CommandAddProduct.RaiseCanExecuteChanged();
+                IsProductNameValid(value); CommandAddProduct.RaiseCanExecuteChanged();
             }
         }
         private string _productDesc;
@@ -88,21 +87,54 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _productDesc = value; OnPropertyChanged("ProductDesc");
-                IsProductDescValid(value); CommandAddProduct.RaiseCanExecuteChanged();
             }
         }
         private int _weeks;
         public int Weeks
         {
             get { return _weeks; }
-            set { _weeks = value; OnPropertyChanged("Weeks"); }
+            set
+            {
+                _weeks = value; OnPropertyChanged("Weeks");
+                IsWeeksValid(value); CommandAddProduct.RaiseCanExecuteChanged();
+            }
         }
-        private int _amountOfProducts;
-        public int AmountOfProducts
+        private int? _amountOfProducts;
+        public int? AmountOfProducts
         {
             get { return _amountOfProducts; }
-            set { _amountOfProducts = value; OnPropertyChanged("AmountOfProducts"); }
+            set
+            {
+                _amountOfProducts = value; OnPropertyChanged("AmountOfProducts");
+                IsAmountOfProductsValid(value); CommandAddProduct.RaiseCanExecuteChanged();
+            }
         }
+        
+        private bool _isChecked;
+        public bool IsChecked
+        {
+            get
+            {
+                return _isChecked;
+            }
+            set {_isChecked = value; this.AmountOfProducts = null;}
+        }
+
+        private double _price;
+
+        public double Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                _price = value; OnPropertyChanged("Price");
+                IsPriceValid(value); CommandAddProduct.RaiseCanExecuteChanged();
+            }
+        }
+
         private BitmapImage _image;
         public BitmapImage Image
         {
@@ -123,7 +155,7 @@ namespace DanmissionManager.ViewModels
 
         public void AddProduct()
         {
-            Product product = new Product(this.ProductName, this.SelectedSubCategory.Parent_id, this.Product.isUnique, this.ProductDesc);
+            Product product = new Product(this.ProductName, this.SelectedSubCategory.Parent_id, this.IsChecked, this.ProductDesc);
 
             if (product.isUnique == false)
             {
@@ -147,13 +179,13 @@ namespace DanmissionManager.ViewModels
             {
                 product.image = this.imageToByteArray(Image);
             }
-            if (this.Product.price.Equals(0.0) == true)
+            if (this.Price.Equals(0.0) == true)
             {
                 product.price = this.SelectedSubCategory.standardprice;
             }
             else
             {
-                product.price = this.Product.price;
+                product.price = this.Price;
             }
             try
             {
