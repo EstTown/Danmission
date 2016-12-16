@@ -10,7 +10,7 @@
 
     <Grid>
         <Button x:Name="button" Content="{DynamicResource CApplyNewCategory}" Command="{Binding Path = CommandAddCategory}" Margin="0,0,9,7" Click="button_Click" HorizontalAlignment="Right" Width="100" Height="20" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBox" Height="23" Margin="133,26,9,0" TextWrapping="Wrap" Text="{Binding CreatedCategory.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" Height="23" Margin="133,26,9,0" TextWrapping="Wrap" Text="{Binding CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="{DynamicResource CNewCategoryName}" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="118"/>
         <Button x:Name="button1" Content="{DynamicResource CAbortAddNewCategory}" HorizontalAlignment="Left" Margin="10,0,0,7" Width="100" Click="button1_Click" Height="20" VerticalAlignment="Bottom"/>
 

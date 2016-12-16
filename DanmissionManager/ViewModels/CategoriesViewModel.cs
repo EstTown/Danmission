@@ -18,8 +18,8 @@ namespace DanmissionManager.ViewModels
             this.CreatedStandardprice = new Standardprice();
             
             this.CommandGetCategories = new RelayCommand2(FetchCategories);
-            this.CommandAddCategory = new RelayCommand2(AddCategory);
-            this.CommandAddSubCategory = new RelayCommand2(AddSubCategory);
+            this.CommandAddCategory = new RelayCommand2(AddCategory, CanAddCategory);
+            this.CommandAddSubCategory = new RelayCommand2(AddSubCategory, CanAddSubCategory);
             this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
             this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
 
@@ -61,6 +61,7 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
+                    this.CreatedCategory.name = this.CategoryName;
                     ctx.Category.Add(this.CreatedCategory);
                     ctx.SaveChanges();
                 }
@@ -73,6 +74,11 @@ namespace DanmissionManager.ViewModels
             }
         }
 
+        public bool CanAddCategory()
+        {
+            return !HasErrors;
+        }
+
         public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
@@ -83,6 +89,8 @@ namespace DanmissionManager.ViewModels
             {
                 using (var ctx = new ServerContext())
                 {
+                    this.CreatedStandardprice.name = this.SubCategoryName;
+                    this.CreatedStandardprice.standardprice = this.Price;
                     ctx.Standardprices.Add(this.CreatedStandardprice);
                     ctx.SaveChanges();
                 }
@@ -93,6 +101,47 @@ namespace DanmissionManager.ViewModels
             catch (System.Data.DataException)
             {
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+        }
+
+        public bool CanAddSubCategory()
+        {
+            return !HasErrors;
+        }
+
+        private string _categoryName;
+
+        public string CategoryName
+        {
+            get
+            {
+                return _categoryName;
+            }
+            set
+            {
+                _categoryName = value;
+                OnPropertyChanged("CategoryName");
+                IsProductNameValid(value); CommandAddCategory.RaiseCanExecuteChanged();
+            }
+        }
+
+        private string _subCategoryName;
+        public string SubCategoryName { get { return _subCategoryName;} set { _subCategoryName = value; OnPropertyChanged("SubCategoryName");
+            IsProductNameValid(value); CommandAddSubCategory.RaiseCanExecuteChanged();
+        } }
+
+        private double _price;
+
+        public double Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                _price = value; OnPropertyChanged("Price");
+                IsPriceValid(value); CommandAddSubCategory.RaiseCanExecuteChanged();
             }
         }
 
@@ -108,7 +157,7 @@ namespace DanmissionManager.ViewModels
 
                     ctx.Category.Remove(category);
                     ctx.SaveChanges();
-                    RemoveChildCategories();
+                    RemoveSubCategories();
                 }
                 this.AllCategories.Remove(this.SelectedCategory);
                 this.ShownSubCategories = new ObservableCollection<Standardprice>();
@@ -118,7 +167,7 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        private void RemoveChildCategories()
+        private void RemoveSubCategories()
         {
             try
             {
