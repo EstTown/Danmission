@@ -26,7 +26,7 @@ namespace DanmissionManager.ViewModels
             this.CommandGetImage = new RelayCommand2(GetImage);
 
             
-            //this.ProductName = "";
+            this.ProductName = "";
             this.ProductDesc = "";
             
             //get all categories and subcategories from database
@@ -88,7 +88,6 @@ namespace DanmissionManager.ViewModels
             set
             {
                 _productDesc = value; OnPropertyChanged("ProductDesc");
-                IsProductDescValid(value); CommandAddProduct.RaiseCanExecuteChanged();
             }
         }
         private int _weeks;

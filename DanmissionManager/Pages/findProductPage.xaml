@@ -41,7 +41,7 @@
         <GroupBox x:Name="groupBox_productInfo" Header="{DynamicResource FPProductInfo}" Margin="0,331,10,10" HorizontalAlignment="Right" Width="313">
             <Grid>
                 <Label x:Name="label_SelectedName" Content="{DynamicResource FPName}" Margin="10,2,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedName" TextWrapping="NoWrap" Text="{Binding SelectedProduct.name, Mode=TwoWay}" Margin="0,6,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedName" TextWrapping="NoWrap" Text="{Binding SelectedProductName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
 
                 <Label x:Name="label_SelectedPrice" Content="{DynamicResource FPPrice}" Margin="10,28,0,0" HorizontalAlignment="Left" Width="auto" Height="26" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBox_SelectedPrice" TextWrapping="NoWrap" Text="{Binding SelectedProduct.price, Mode=TwoWay}" Margin="0,32,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
