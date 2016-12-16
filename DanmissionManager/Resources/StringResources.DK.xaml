@@ -29,7 +29,7 @@
     <system:String x:Key="RPSelectPicture">Vælg billede</system:String>
     <system:String x:Key="RPAddProduct">Tilføj Produkt</system:String>
     <system:String x:Key="RPChooseImage">Vælg billede...</system:String>
-    <system:String x:Key="RPNumberOfProducts">Mængde</system:String>
+    <system:String x:Key="RPNumberOfProducts">Antal</system:String>
     <system:String x:Key="RPExpiresIn">Udløber om (uger)</system:String>
 
     <!-- Find Product Page -->
