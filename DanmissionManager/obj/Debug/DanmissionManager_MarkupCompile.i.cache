@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\App.xaml
 16-803264962
 
-57-864505710
+561973256616
 38-1815586174
 MainWindow.xaml;Pages\addProductPage.xaml;Pages\categoriesPage.xaml;Pages\findProductPage.xaml;Pages\inventoryOverviewPage.xaml;Pages\logoPage.xaml;Pages\checkoutPage.xaml;Pages\settingsPage.xaml;Pages\statisticsPage.xaml;Resources\StringResources.DK.xaml;Resources\StringResources.en-GB.xaml;Views\AddCategoryWindow.xaml;Views\AddSubCategoryWindow.xaml;Views\CreateProductView.xaml;Views\MainView.xaml;Views\TemplateView2.xaml;
 
-True
+False
 

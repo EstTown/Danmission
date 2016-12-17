@@ -110,7 +110,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommand2.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="Converters\BitmapResizer.cs" />
