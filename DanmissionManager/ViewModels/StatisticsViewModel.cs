@@ -21,7 +21,7 @@ namespace DanmissionManager.ViewModels
             ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
             this.Statistics = statistics;
 
-            RelayCommand2 commandDisplayChart = new RelayCommand2(ChangeChart);
+            RelayCommand commandDisplayChart = new RelayCommand(ChangeChart);
             this.CommandDisplayChart = commandDisplayChart;
 
             TimeSpan timespan = new TimeSpan(30, 0, 0, 0);
@@ -200,7 +200,7 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        public RelayCommand2 CommandDisplayChart { get; set; }
+        public RelayCommand CommandDisplayChart { get; set; }
         private List<string> statCombobox()
         {
             List<string> data = new List<string>();

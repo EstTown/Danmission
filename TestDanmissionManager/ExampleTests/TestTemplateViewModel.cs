@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DanmissionManager;
 using DanmissionManager.Models;
-using DanmissionManager.TestViewModels;
 using NUnit.Framework;
 
 namespace TestDanmissionManager.ExampleTests

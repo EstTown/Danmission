@@ -350,9 +350,7 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\setti
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\statisticsPage.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.g.cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\CreateProductView.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\MainView.g.cs
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\App.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager_MarkupCompile.cache
@@ -371,9 +369,7 @@ C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\S
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Resources\StringResources.en-GB.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.baml
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\CreateProductView.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\MainView.baml
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.baml
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.g.resources
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.Properties.Resources.resources
 C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csproj.GenerateResource.Cache
@@ -394,4 +390,3 @@ C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\check
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.baml
-C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

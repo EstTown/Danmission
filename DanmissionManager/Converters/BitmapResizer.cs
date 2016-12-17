@@ -45,8 +45,6 @@ namespace DanmissionManager.Converters
 
         private static Bitmap BitmapImageToBitmap(BitmapImage bitmapImage)
         {
-            // BitmapImage bitmapImage = new BitmapImage(new Uri("../Images/test.png", UriKind.Relative));
-
             using (MemoryStream outStream = new MemoryStream())
             {
                 BitmapEncoder enc = new BmpBitmapEncoder();
@@ -57,7 +55,5 @@ namespace DanmissionManager.Converters
                 return new Bitmap(bitmap);
             }
         }
-
-
     }
 }

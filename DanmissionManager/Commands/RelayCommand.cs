@@ -7,17 +7,17 @@ using System.Windows.Input;
 
 namespace DanmissionManager.Commands
 {
-    public class RelayCommand2 : ICommand
+    public class RelayCommand : ICommand
     {
         Action _TargetExecuteMethod;
         Func<bool> _TargetCanExecuteMethod;
 
-        public RelayCommand2(Action executeMethod)
+        public RelayCommand(Action executeMethod)
         {
             _TargetExecuteMethod = executeMethod;
         }
 
-        public RelayCommand2(Action executeMethod, Func<bool> canExecuteMethod)
+        public RelayCommand(Action executeMethod, Func<bool> canExecuteMethod)
         {
             _TargetExecuteMethod = executeMethod;
             _TargetCanExecuteMethod = canExecuteMethod;

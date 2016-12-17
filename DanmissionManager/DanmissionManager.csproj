@@ -110,7 +110,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\RelayCommand2.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="Converters\BitmapResizer.cs" />
     <Compile Include="Converters\BoolInverter.cs" />
@@ -123,7 +123,6 @@
     <Compile Include="DBTypes\ServerContext.cs" />
     <Compile Include="DBTypes\Standardprice.cs" />
     <Compile Include="DBTypes\Transaction.cs" />
-    <Compile Include="Generator\Generator.cs" />
     <Compile Include="Models\DatabaseSearcher.cs" />
     <Compile Include="Pages\addProductPage.xaml.cs">
       <DependentUpon>addProductPage.xaml</DependentUpon>
@@ -162,8 +161,6 @@
     <Compile Include="Simulator\Simulator.cs" />
     <Compile Include="Simulator\TransactionGenerator.cs" />
     <Compile Include="Simulator\VoucherGenerator.cs" />
-    <Compile Include="TestViewModels\TemplateViewModel.cs" />
-    <Compile Include="TestViewModels\TestBaseViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
@@ -179,14 +176,8 @@
     <Compile Include="Views\AddSubCategoryWindow.xaml.cs">
       <DependentUpon>AddSubCategoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateProductView.xaml.cs">
-      <DependentUpon>CreateProductView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TemplateView2.xaml.cs">
-      <DependentUpon>TemplateView2.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -248,15 +239,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateProductView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TemplateView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

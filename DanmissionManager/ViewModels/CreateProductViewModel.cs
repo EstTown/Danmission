@@ -21,8 +21,8 @@ namespace DanmissionManager.ViewModels
         public CreateProductViewModel(Popups popupService) : base(popupService)
         {
             this.Product = new Product();
-            this.CommandAddProduct = new RelayCommand2(AddProduct, CanExecuteAddProduct);
-            this.CommandGetImage = new RelayCommand2(GetImage);
+            this.CommandAddProduct = new RelayCommand(AddProduct, CanExecuteAddProduct);
+            this.CommandGetImage = new RelayCommand(GetImage);
             
             //get all categories and subcategories from database
             GetFromDatabase();
@@ -36,18 +36,18 @@ namespace DanmissionManager.ViewModels
             get { return _selectedSubCategory; }
             set { _selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory"); }
         }
+
         private Category _selectedCategory;
         public Category SelectedCategory
         {
             get { return _selectedCategory; }
-            set
-            {
-                _selectedCategory = value; OnPropertyChanged("SelectedCategory");
-                //run method that changes subcategories collection, based on selectedcategory
-                ChangeCollection();
-            }
+            set { _selectedCategory = value; OnPropertyChanged("SelectedCategory");
+                //method that changes subcategories collection, based on selectedcategory
+                ChangeCollection(); }
         }
+
         private ObservableCollection<Standardprice> AllSubCategories { get; set; }
+
         private ObservableCollection<Standardprice> _subCategories;
         public ObservableCollection<Standardprice> SubCategories
         {
@@ -73,62 +73,45 @@ namespace DanmissionManager.ViewModels
         {
             get { return _productName; }
             set { _productName = value; OnPropertyChanged("ProductName");
-                IsNameValid(value, nameof(this.ProductName)); CommandAddProduct.RaiseCanExecuteChanged();
-            }
+                IsNameValid(value, nameof(this.ProductName)); CommandAddProduct.RaiseCanExecuteChanged(); }
         }
+
         private string _productDesc;
         public string ProductDesc
         {
             get { return _productDesc; }
-            set
-            {
-                _productDesc = value; OnPropertyChanged("ProductDesc");
-            }
+            set { _productDesc = value; OnPropertyChanged("ProductDesc"); }
         }
+
         private int _weeks;
         public int Weeks
         {
             get { return _weeks; }
-            set
-            {
-                _weeks = value; OnPropertyChanged("Weeks");
-                IsWeeksValid(value); CommandAddProduct.RaiseCanExecuteChanged();
-            }
+            set { _weeks = value; OnPropertyChanged("Weeks"); IsWeeksValid(value);
+                CommandAddProduct.RaiseCanExecuteChanged(); }
         }
+
         private int? _amountOfProducts;
         public int? AmountOfProducts
         {
             get { return _amountOfProducts; }
-            set
-            {
-                _amountOfProducts = value; OnPropertyChanged("AmountOfProducts");
-                IsAmountOfProductsValid(value); CommandAddProduct.RaiseCanExecuteChanged();
-            }
+            set { _amountOfProducts = value; OnPropertyChanged("AmountOfProducts");
+                IsAmountOfProductsValid(value); CommandAddProduct.RaiseCanExecuteChanged(); }
         }
         
         private bool _isChecked;
         public bool IsChecked
         {
-            get
-            {
-                return _isChecked;
-            }
-            set {_isChecked = value; this.AmountOfProducts = null;}
+            get { return _isChecked; }
+            set { _isChecked = value; this.AmountOfProducts = null; }
         }
 
         private double _price;
-
         public double Price
         {
-            get
-            {
-                return _price;
-            }
-            set
-            {
-                _price = value; OnPropertyChanged("Price");
-                IsPriceValid(value, nameof(this.Price)); CommandAddProduct.RaiseCanExecuteChanged();
-            }
+            get { return _price; }
+            set { _price = value; OnPropertyChanged("Price");
+                IsPriceValid(value, nameof(this.Price)); CommandAddProduct.RaiseCanExecuteChanged(); }
         }
 
         private BitmapImage _image;
@@ -142,12 +125,19 @@ namespace DanmissionManager.ViewModels
 
         #region Command properties
 
-        public RelayCommand2 CommandAddProduct { get; set; }
-        public RelayCommand2 CommandGetImage { get; set; }
+        public RelayCommand CommandAddProduct { get; set; }
+        public RelayCommand CommandGetImage { get; set; }
 
         #endregion
 
         #region Methods
+        
+        private void ChangeCollection()
+        {
+            List<Standardprice> list = new List<Standardprice>();
+            list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
+            this.SubCategories = new ObservableCollection<Standardprice>(list);
+        }
 
         public void AddProduct()
         {
@@ -218,12 +208,6 @@ namespace DanmissionManager.ViewModels
         {
             return !HasErrors;
         }
-        private void ChangeCollection()
-        {
-            List<Standardprice> list = new List<Standardprice>();
-            list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
-            this.SubCategories = new ObservableCollection<Standardprice>(list);
-        }
         public void GetImage()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -236,21 +220,6 @@ namespace DanmissionManager.ViewModels
                 var uri = new Uri(dlg.FileName);
                 // Resizes image, due to performance concerns
                 Image = BitmapResizer.Scaler(new BitmapImage(uri), 500, 500);
-            }
-        }
-        BitmapImage BitmapToImageSource(Bitmap bitmap)
-        {
-            using (MemoryStream memory = new MemoryStream())
-            {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                memory.Position = 0;
-                BitmapImage bitmapimage = new BitmapImage();
-                bitmapimage.BeginInit();
-                bitmapimage.StreamSource = memory;
-                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapimage.EndInit();
-
-                return bitmapimage;
             }
         }
 

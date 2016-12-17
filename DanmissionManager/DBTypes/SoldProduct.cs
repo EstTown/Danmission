@@ -43,8 +43,5 @@ namespace DanmissionManager
         public byte[] image { get; set; }
         public int transactionid { get; set; }
         public int previousid { get; set; }
-
-
-        
     }
 }

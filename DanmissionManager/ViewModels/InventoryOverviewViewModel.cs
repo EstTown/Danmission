@@ -27,10 +27,10 @@ namespace DanmissionManager.ViewModels
             Transactions = new ObservableCollection<Transaction>(FindAllTransactions());
             SoldProducts = new ObservableCollection<SoldProduct>(FindAllSoldProducts());
 
-            this.CommandFindUniqueProducts = new RelayCommand2(() => SortBySearchParameter(1));
-            this.CommandFindNonUniqueProducts = new RelayCommand2(() => SortBySearchParameter(2));
-            this.CommandFindExpiredProducts = new RelayCommand2(() => SortBySearchParameter(3));
-            this.CommandRemoveExpiredProduct = new RelayCommand2(CommandRemoveSelectedExpiredProduct);
+            this.CommandFindUniqueProducts = new RelayCommand(() => SortBySearchParameter(1));
+            this.CommandFindNonUniqueProducts = new RelayCommand(() => SortBySearchParameter(2));
+            this.CommandFindExpiredProducts = new RelayCommand(() => SortBySearchParameter(3));
+            this.CommandRemoveExpiredProduct = new RelayCommand(CommandRemoveSelectedExpiredProduct);
         }
 
         private DatabaseSearcher _databaseSearcher;
@@ -49,7 +49,7 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        public RelayCommand2 CommandRemoveExpiredProduct { get; set; }
+        public RelayCommand CommandRemoveExpiredProduct { get; set; }
         public void CommandRemoveSelectedExpiredProduct()
         {
             try
@@ -129,9 +129,9 @@ namespace DanmissionManager.ViewModels
             set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
 
-        public RelayCommand2 CommandFindUniqueProducts { get; private set; }
-        public RelayCommand2 CommandFindNonUniqueProducts { get; private set; }
-        public RelayCommand2 CommandFindExpiredProducts { get; private set; }
+        public RelayCommand CommandFindUniqueProducts { get; private set; }
+        public RelayCommand CommandFindNonUniqueProducts { get; private set; }
+        public RelayCommand CommandFindExpiredProducts { get; private set; }
 
         private void SortBySearchParameter(int searchParameter)
         {

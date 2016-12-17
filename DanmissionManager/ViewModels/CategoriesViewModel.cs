@@ -17,23 +17,120 @@ namespace DanmissionManager.ViewModels
             this.CreatedCategory = new Category();
             this.CreatedStandardprice = new Standardprice();
             
-            this.CommandGetCategories = new RelayCommand2(FetchCategories);
-            this.CommandAddCategory = new RelayCommand2(AddCategory, CanAddCategory);
-            this.CommandAddSubCategory = new RelayCommand2(AddSubCategory, CanAddSubCategory);
-            this.CommandRemoveCategory = new RelayCommand2(RemoveCategory);
-            this.CommandRemoveSubCategory = new RelayCommand2(RemoveSubCategory);
+            this.CommandGetCategories = new RelayCommand(FetchCategories);
+            this.CommandAddCategory = new RelayCommand(AddCategory, CanAddCategory);
+            this.CommandAddSubCategory = new RelayCommand(AddSubCategory, CanAddSubCategory);
+            this.CommandRemoveCategory = new RelayCommand(RemoveCategory);
+            this.CommandRemoveSubCategory = new RelayCommand(RemoveSubCategory);
 
             FetchCategories();
         }
 
-        public RelayCommand2 CommandGetCategories { get; set; }
-        public void FetchCategories()
+        #region Properties
+
+        private string _categoryName;
+        public string CategoryName
+        {
+            get { return _categoryName; }
+            set{_categoryName = value; OnPropertyChanged("CategoryName");
+             IsNameValid(value, nameof(this.CategoryName)); CommandAddCategory.RaiseCanExecuteChanged();}
+        }
+
+        private string _subCategoryName;
+        public string SubCategoryName
+        {
+            get { return _subCategoryName; }
+            set{_subCategoryName = value; OnPropertyChanged("SubCategoryName");
+                IsNameValid(value, nameof(this.SubCategoryName)); CommandAddSubCategory.RaiseCanExecuteChanged();}
+        }
+
+        private double _price;
+        public double Price
+        {
+            get { return _price; }
+            set{_price = value; OnPropertyChanged("Price");
+                IsPriceValid(value, nameof(this.Price)); CommandAddSubCategory.RaiseCanExecuteChanged();}
+        }
+
+        private ObservableCollection<Standardprice> _shownSubCategories;
+        public ObservableCollection<Standardprice> ShownSubCategories
+        {
+            get { return _shownSubCategories; }
+            set { _shownSubCategories = value; OnPropertyChanged("ShownSubCategories"); }
+        }
+
+        private ObservableCollection<Standardprice> _allSubCategories;
+        public ObservableCollection<Standardprice> AllSubCategories
+        {
+            get { return _allSubCategories; }
+            set { _allSubCategories = value; OnPropertyChanged("AllSubCategories"); }
+        }
+
+        private ObservableCollection<Category> _allCategories;
+        public ObservableCollection<Category> AllCategories
+        {
+            get { return _allCategories; }
+            set { _allCategories = value; OnPropertyChanged("AllCategories"); }
+        }
+
+        private ObservableCollection<Category> _shownCategories;
+        public ObservableCollection<Category> ShownCategories
+        {
+            get { return _shownCategories; }
+            set { _shownCategories = value; OnPropertyChanged("ShownCategories"); }
+        }
+
+        private Category _createdCategory;
+        public Category CreatedCategory
+        {
+            get { return _createdCategory; }
+            set { _createdCategory = value; OnPropertyChanged("CreatedCategory"); }
+        }
+
+        private Standardprice _createdStandardprice;
+        public Standardprice CreatedStandardprice
+        {
+            get { return _createdStandardprice; }
+            set { _createdStandardprice = value; OnPropertyChanged("CreatedStandardPrice"); }
+        }
+
+        private Category _selectedCategory;
+        public Category SelectedCategory
+        {
+            get { return _selectedCategory; }
+            set { _selectedCategory = value; OnPropertyChanged("SelectedCategory");
+                ChangeCollection(); }
+        }
+
+        private Standardprice _selectedSubCategory;
+        public Standardprice SelectedSubCategory
+        {
+            get { return _selectedSubCategory; }
+            set { _selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory"); }
+        }
+
+        #endregion
+
+        #region CommandProperties
+
+        public RelayCommand CommandGetCategories { get; set; }
+        public RelayCommand CommandAddCategory { get; set; }
+        public RelayCommand CommandAddSubCategory { get; set; }
+        public RelayCommand CommandRemoveCategory { get; set; }
+        public RelayCommand CommandRemoveSubCategory { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private void FetchCategories()
         {
             GetCategoriesFromDatabase();
             SortCategoriesAlphabetically();
             ShownCategories = AllCategories;
             ShownSubCategories = new ObservableCollection<Standardprice>();
         }
+
         private void GetCategoriesFromDatabase()
         {
             try
@@ -49,12 +146,22 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
         private void SortCategoriesAlphabetically()
         {
             AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(cat => cat.FullName));
         }
 
-        public RelayCommand2 CommandAddCategory { get; set; }
+        private void ChangeCollection()
+        {
+            List<Standardprice> list = new List<Standardprice>();
+            list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
+            list = new List<Standardprice>(list.OrderBy(Standardprice => Standardprice.name));
+
+            ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
+            this.ShownSubCategories = collection;
+        }
+
         public void AddCategory()
         {
             try
@@ -85,7 +192,6 @@ namespace DanmissionManager.ViewModels
             return true;
         }
 
-        public RelayCommand2 CommandAddSubCategory { get; set; }
         public void AddSubCategory()
         {
             this.CreatedStandardprice.Parent_id = SelectedCategory.id;
@@ -123,42 +229,6 @@ namespace DanmissionManager.ViewModels
             return true;
         }
 
-        private string _categoryName;
-
-        public string CategoryName
-        {
-            get
-            {
-                return _categoryName;
-            }
-            set
-            {
-                _categoryName = value;
-                OnPropertyChanged("CategoryName");
-                IsNameValid(value, nameof(this.CategoryName)); CommandAddCategory.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _subCategoryName;
-        public string SubCategoryName { get { return _subCategoryName;} set { _subCategoryName = value; OnPropertyChanged("SubCategoryName");
-            IsNameValid(value, nameof(this.SubCategoryName)); CommandAddSubCategory.RaiseCanExecuteChanged();
-        } }
-
-        private double _price;
-        public double Price
-        {
-            get
-            {
-                return _price;
-            }
-            set
-            {
-                _price = value; OnPropertyChanged("Price");
-                IsPriceValid(value, nameof(this.Price)); CommandAddSubCategory.RaiseCanExecuteChanged();
-            }
-        }
-
-        public RelayCommand2 CommandRemoveCategory { get; set; }
         private void RemoveCategory()
         {
             try
@@ -180,6 +250,8 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
+        //help method for RemoveCategory
         private void RemoveSubCategories()
         {
             try
@@ -202,7 +274,6 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        public RelayCommand2 CommandRemoveSubCategory { get; set; }
         private void RemoveSubCategory()
         {
             try
@@ -224,104 +295,6 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private ObservableCollection<Standardprice> _shownSubCategories;
-        public ObservableCollection<Standardprice> ShownSubCategories
-        {
-            get { return _shownSubCategories; }
-            set
-            {
-                _shownSubCategories = value;
-                OnPropertyChanged("ShownSubCategories");
-            }
-        }
-
-        private ObservableCollection<Standardprice> _allSubCategories;
-        public ObservableCollection<Standardprice> AllSubCategories
-        {
-            get
-            {
-                return _allSubCategories;
-            }
-            set
-            {
-                _allSubCategories = value;
-                OnPropertyChanged("AllSubCategories");
-            }
-        }
-        private ObservableCollection<Category> _allCategories;
-        public ObservableCollection<Category> AllCategories
-        {
-            get { return _allCategories; }
-            set
-            {
-                _allCategories = value;
-                OnPropertyChanged("AllCategories");
-            }
-        }
-
-        private ObservableCollection<Category> _shownCategories;
-        public ObservableCollection<Category> ShownCategories
-        {
-            get { return _shownCategories; }
-            set
-            {
-                _shownCategories = value;
-                OnPropertyChanged("ShownCategories");
-            }
-        }
-        private Category _createdCategory;
-        public Category CreatedCategory
-        {
-            get { return _createdCategory; }
-            set
-            {
-                _createdCategory = value;
-                OnPropertyChanged("CreatedCategory");
-            }
-        }
-        private Standardprice _createdStandardprice;
-        public Standardprice CreatedStandardprice
-        {
-            get { return _createdStandardprice; }
-            set
-            {
-                _createdStandardprice = value;
-                OnPropertyChanged("CreatedStandardPrice");
-            }
-        }
-
-        private Category _selectedCategory;
-        public Category SelectedCategory
-        {
-            get { return _selectedCategory; }
-            set
-            {
-                _selectedCategory = value;
-                OnPropertyChanged("SelectedCategory");
-                ChangeCollection();
-            }
-        }
-        private void ChangeCollection()
-        {
-            List<Standardprice> list = new List<Standardprice>();
-            list = this.AllSubCategories.Where(x => this.SelectedCategory.id == x.Parent_id).ToList();
-            list = new List<Standardprice>(list.OrderBy(Standardprice => Standardprice.name));
-            
-            ObservableCollection<Standardprice> collection = new ObservableCollection<Standardprice>(list);
-            this.ShownSubCategories = collection;
-        }
-        private Standardprice _selectedSubCategory;
-        public Standardprice SelectedSubCategory
-        {
-            get
-            {
-                return _selectedSubCategory;
-            }
-            set
-            {
-                _selectedSubCategory = value;
-                OnPropertyChanged("SelectedSubCategory");
-            }
-        }
+        #endregion
     }
 }

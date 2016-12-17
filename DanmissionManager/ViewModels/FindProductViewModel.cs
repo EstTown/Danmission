@@ -18,86 +18,77 @@ namespace DanmissionManager.ViewModels
         public FindProductViewModel(Popups popupService) : base(popupService)
         {
             this.SearchParameter = string.Empty;
-            this.CommandGetProducts = new RelayCommand2(GetProductsFromDatabase);
-            this.CommandSaveChanges = new RelayCommand2(SaveChangesToSelectedProduct, CanExecuteSaveChanges);
-            this.CommandRemoveSelectedProduct = new RelayCommand2(RemoveSelectedProduct);
+            this.CommandGetProducts = new RelayCommand(GetProductsFromDatabase);
+            this.CommandSaveChanges = new RelayCommand(SaveChangesToSelectedProduct, CanExecuteSaveChanges);
+            this.CommandRemoveSelectedProduct = new RelayCommand(RemoveSelectedProduct);
 
             //Command for getting image from user, via dialog
-            RelayCommand2 commandGetImage = new RelayCommand2(GetImage);
-            this.CommandGetImage = commandGetImage;
+            this.CommandGetImage = new RelayCommand(GetImage);
             SelectedProduct = null;
         }
 
-        public bool CanExecuteSaveChanges()
-        {
-            return !HasErrors;
-        }
+        #region Properties
 
         private string _searchParameter;
         public string SearchParameter
         {
             get { return _searchParameter; }
-            set
-            {
-                _searchParameter = value;
-                OnPropertyChanged("SearchParameter");
-            }
+            set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
+
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
         {
             get { return _products; }
-            set
-            {
-                _products = value;
-                OnPropertyChanged("Products");
-            }
+            set { _products = value; OnPropertyChanged("Products"); }
         }
-        //property that handles what happens when a product from the list gets selected,
-        //after which addional information will be shown
+
         private Product _selectedProduct;
         public Product SelectedProduct
         {
-            get { return _selectedProduct;}
-            set
-            {
-                _selectedProduct = value;
+            get { return _selectedProduct; }
+            set { _selectedProduct = value; OnPropertyChanged("SelectedProduct");
                 if (SelectedProduct != null)
                 {
                     this.ProductName = value.name;
                     this.Image = SelectedProduct.productImage;
                 }
-                OnPropertyChanged("SelectedProduct");
-                }
+            }
         }
 
         private string _productName;
         public string ProductName
         {
             get { return _productName; }
-            set
-            {
-                _productName = value;
-                OnPropertyChanged("ProductName");
-                IsNameValid(value, nameof(this.ProductName)); CommandSaveChanges.RaiseCanExecuteChanged();
-            }
+            set { _productName = value; OnPropertyChanged("ProductName");
+                IsNameValid(value, nameof(this.ProductName)); CommandSaveChanges.RaiseCanExecuteChanged(); }
         }
 
         private double _selectedProductPrice;
         public double SelectedProductPrice
         {
             get { return _selectedProductPrice; }
-            set
-            {
-                _selectedProductPrice = value;
-                OnPropertyChanged("SelectedProductPrice");
-                IsPriceValid(value, nameof(this.SelectedProductPrice)); CommandSaveChanges.RaiseCanExecuteChanged();
-            }
+            set { _selectedProductPrice = value; OnPropertyChanged("SelectedProductPrice");
+                IsPriceValid(value, nameof(this.SelectedProductPrice)); CommandSaveChanges.RaiseCanExecuteChanged(); }
         }
 
+        private BitmapImage _image { get; set; }
 
-        public RelayCommand2 CommandSaveChanges { get; set; }
-        //method that saves changes to selectedproduct
+
+
+        #endregion
+
+        #region CommandProperties
+
+        public RelayCommand CommandGetImage { get; set; }
+        public RelayCommand CommandSaveChanges { get; set; }
+        public RelayCommand CommandRemoveSelectedProduct { get; set; }
+        public RelayCommand CommandGetProducts { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void SaveChangesToSelectedProduct()
         {
             try
@@ -125,7 +116,7 @@ namespace DanmissionManager.ViewModels
                     {
                         PopupService.PopupMessage("Kunne ikke gemme dine ændringer", "Ændringer");
                     }
-                    
+
                 }
             }
             catch (System.Data.DataException)
@@ -133,7 +124,12 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        public RelayCommand2 CommandRemoveSelectedProduct { get; set; }
+
+        public bool CanExecuteSaveChanges()
+        {
+            return !HasErrors;
+        }
+
         public void RemoveSelectedProduct()
         {
             try
@@ -165,20 +161,14 @@ namespace DanmissionManager.ViewModels
                 this.Products.Remove(SelectedProduct);
             }
         }
-        //property that will contain the command/method and executes it
-        //does not need a backing field
-        public RelayCommand2 CommandGetProducts { get; set; }
-        //method get products
+
         public void GetProductsFromDatabase()
         {
             try
             {
                 using (var ctx = new ServerContext())
                 {
-                    //List<Product> list = ctx.Products.Where(x => x.name.ToLower().CompareTo(SearchParameter.ToLower()) == 0).ToList();
-
-                    //This is more dyniamic, although it runs smoothly, the initial query seems to lag, causing a small stutter
-                    //This takes into account: name, id and price, but delivers awful search results...
+                    //This takes into account: name, id and price
                     List<Product> list = ctx.Products.Where(x => x.name.ToLower().Contains(SearchParameter.ToLower()) ||
                         (x.id.ToString()).Contains(SearchParameter.ToLower()) ||
                         (x.price.ToString()).Contains(SearchParameter.ToLower())).ToList();
@@ -203,13 +193,15 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
         public byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
         }
-        public BitmapImage ImageFromBuffer(Byte[] bytes)
+
+        private BitmapImage ImageFromBuffer(Byte[] bytes)
         {
             MemoryStream stream = new MemoryStream(bytes);
             BitmapImage image = new BitmapImage();
@@ -218,7 +210,8 @@ namespace DanmissionManager.ViewModels
             image.EndInit();
             return image;
         }
-        public BitmapImage Image
+
+        private BitmapImage Image
         {
             get { return _image; }
             set
@@ -227,9 +220,8 @@ namespace DanmissionManager.ViewModels
                 OnPropertyChanged("Image");
             }
         }
-        private BitmapImage _image { get; set; }
-        public RelayCommand2 CommandGetImage { get; set; }
-        public void GetImage()
+
+        private void GetImage()
         {
             if (SelectedProduct != null)
             {
@@ -246,7 +238,8 @@ namespace DanmissionManager.ViewModels
                 }
             }
         }
-        public byte[] ImageToByteArray(BitmapImage bitmapImage)
+
+        private byte[] ImageToByteArray(BitmapImage bitmapImage)
         {
             byte[] data;
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
@@ -258,6 +251,8 @@ namespace DanmissionManager.ViewModels
             }
             return data;
         }
+
+        #endregion    
     }
 }
 

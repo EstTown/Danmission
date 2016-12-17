@@ -17,56 +17,116 @@ namespace DanmissionManager.ViewModels
         public CheckoutViewModel(Popups popupService) : base(popupService)
         {
             this.SearchParameter = string.Empty;
-            this.CommandGetProductByID = new RelayCommand2(CommandGetProductByIDFromDatabase);
-            this.CommandAddToBasket = new RelayCommand2(CommandAddSelectedToBasket);
-            this.CommandClearBasket = new RelayCommand2(CommandClearAllProductsFromBasket);
-            this.CommandComplete = new RelayCommand2(CommandCompletePurchase);
+            this.CommandGetProductByID = new RelayCommand(GetProductByIdFromDatabase);
+            this.CommandAddSelectedToBasket = new RelayCommand(AddSelectedToBasket);
+            this.CommandClearBasket = new RelayCommand(ClearAllProductsFromBasket);
+            this.CommandCompletePurchase = new RelayCommand(CompletePurchase);
             
             GetCategoriesFromDatabase();
             
             ProductsInBasket = new ObservableCollection<List<Product>>();
             this._selectedAmount = 1;
         }
+
+        #region Properties
+
         private string _searchParameter;
         public string SearchParameter
         {
             get { return _searchParameter; }
-            set
-            {
-                _searchParameter = value;
-                OnPropertyChanged("SearchParameter");
-            }
+            set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
         private double _totalPrice;
         public string TotalPrice
         {
             get { return _totalPrice.ToString(); }
-            set
-            {
-                _totalPrice = Convert.ToDouble(value);
-                OnPropertyChanged("TotalPrice");
-            }
+            set { _totalPrice = Convert.ToDouble(value); OnPropertyChanged("TotalPrice"); }
         }
 
         private int _selectedAmount;
         public string SelectedAmount
         {
             get { return _selectedAmount.ToString(); }
-            set
-            {
-                _selectedAmount = Convert.ToInt32(value);
-                OnPropertyChanged("SelectedAmount");
-            }
+            set { _selectedAmount = Convert.ToInt32(value); OnPropertyChanged("SelectedAmount"); }
         }
+
         private int _quantity;
-        public int Quantity { get { return _quantity; } set { _quantity = value; OnPropertyChanged("Quantity"); } }
+        public int Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; OnPropertyChanged("Quantity"); }
+        }
+
         private string _categoryName;
         public string CategoryName
         {
             get { return _categoryName; }
             set { _categoryName = value; OnPropertyChanged("CategoryName"); }
         }
+
         private List<Category> _allCategories;
+
+        private ObservableCollection<List<Product>> _productsInBasket;
+        public ObservableCollection<List<Product>> ProductsInBasket
+        {
+            get { return _productsInBasket; }
+            set { _productsInBasket = value; OnPropertyChanged("ProductInBasket"); }
+        }
+        private Product _product;
+        public Product Product
+        {
+            get { return _product; }
+            set { _product = value; OnPropertyChanged("Product");
+                if (this.Product.isUnique)
+                {
+                    this.Quantity = 1;
+                }
+                else
+                {
+                    this.Quantity = Convert.ToInt32(value.quantity);
+                }
+            }
+        }
+
+        #endregion
+
+        #region CommandProperties
+
+        public RelayCommand CommandGetProductByID { get; set; }
+        public RelayCommand CommandAddSelectedToBasket { get; set; }
+        public RelayCommand CommandClearBasket { get; set; }
+        public RelayCommand CommandCompletePurchase { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private string AssignCorrespondingCategory()
+        {
+            Category correctCategory = new Category();
+            correctCategory = _allCategories.Where(x => x.id == this.Product.category).FirstOrDefault();
+            if (correctCategory != null)
+            {
+                return correctCategory.name;
+            }
+            return this.Product.category.ToString();
+        }
+        
+        private void notifyUserAboutCompletedPurchase(int transid, double sum)
+        {
+            PopupService.PopupMessage("Transaktion ID: " + transid + "\nSum: " + sum, "Transaktion gennemført");
+        }
+
+        public BitmapImage ImageFromBuffer(Byte[] bytes)
+        {
+            MemoryStream stream = new MemoryStream(bytes);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
+            return image;
+        }
+
         private void GetCategoriesFromDatabase()
         {
             try
@@ -81,37 +141,8 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        private ObservableCollection<List<Product>> _productsInBasket;
-        public ObservableCollection<List<Product>> ProductsInBasket
-        {
-            get { return _productsInBasket; }
-            set
-            {
-                _productsInBasket = value;
-                OnPropertyChanged("ProductInBasket");
-            }
-        }
-        private Product _product;
-        public Product Product
-        {
-            get { return _product; }
-            set
-            {
-                _product = value;
-                OnPropertyChanged("Product");
-                if (this.Product.isUnique)
-                {
-                    this.Quantity = 1;
-                }
-                else
-                {
-                    this.Quantity = Convert.ToInt32(value.quantity);
-                }
-            }
-        }
-        public RelayCommand2 CommandGetProductByID { get; set; }
-        //method get products
-        public void CommandGetProductByIDFromDatabase()
+
+        public void GetProductByIdFromDatabase()
         {
             try
             {
@@ -144,18 +175,7 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private string AssignCorrespondingCategory()
-        {
-            Category correctCategory = new Category();
-            correctCategory = _allCategories.Where(x => x.id == this.Product.category).FirstOrDefault();
-            if (correctCategory != null)
-            {
-                return correctCategory.name;
-            }
-            return this.Product.category.ToString();
-        }
-        public RelayCommand2 CommandAddToBasket { get; set; }
-        public void CommandAddSelectedToBasket()
+        public void AddSelectedToBasket()
         {
             if (Product != null && this.Quantity >= Convert.ToInt32(this.SelectedAmount) && (this.Quantity - Convert.ToInt32(this.SelectedAmount)) >= 0)
             {
@@ -182,14 +202,14 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage("Du forsøger at tilføje flere produkter end der findes.", "Produkter");
             }
         }
-        public RelayCommand2 CommandClearBasket { get; set; }
-        public void CommandClearAllProductsFromBasket()
+
+        public void ClearAllProductsFromBasket()
         {
             ProductsInBasket.Clear();
             this.TotalPrice = "0";
         }
-        public RelayCommand2 CommandComplete { get; set; }
-        public void CommandCompletePurchase()
+
+        public void CompletePurchase()
         {
             //Do transaction
             if (ProductsInBasket.Count > 0)
@@ -217,6 +237,7 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage("Der er ikke blevet tilføjet nogen produkter til kurven.", "Ingen produkter");
             }
         }
+
         public void AddSoldProductsToDatabase(List<SoldProduct> soldproducts)
         {
             try
@@ -233,6 +254,7 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
         public void RemoveProductsInBasketFromDatabase(List<List<Product>> productlist)
         {
             try
@@ -263,10 +285,10 @@ namespace DanmissionManager.ViewModels
                                 }
                             }
                         }
-                        
+
                     }
                     ctx.SaveChanges();
-                    CommandClearAllProductsFromBasket();
+                    ClearAllProductsFromBasket();
                 }
             }
             catch (System.Data.DataException)
@@ -274,19 +296,7 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        private void notifyUserAboutCompletedPurchase(int transid, double sum)
-        {
-            MessageBox.Show("Tranaction ID: " + transid + "\nSum: " + sum ,"Purchase completed");
-        }
-        public BitmapImage ImageFromBuffer(Byte[] bytes)
-        {
-            MemoryStream stream = new MemoryStream(bytes);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
-        }
 
+        #endregion
     }
 }
