@@ -390,3 +390,4 @@ C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Pages\check
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddCategoryWindow.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\AddSubCategoryWindow.baml
 C:\Users\esttown\Source\Repos\Danmission\DanmissionManager\obj\Debug\Views\TemplateView2.baml
+C:\Users\Dascham\Source\Repos\Danmission\DanmissionManager\obj\Debug\DanmissionManager.csprojResolveAssemblyReference.cache

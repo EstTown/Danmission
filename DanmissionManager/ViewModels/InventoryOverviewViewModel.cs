@@ -30,55 +30,21 @@ namespace DanmissionManager.ViewModels
             this.CommandFindUniqueProducts = new RelayCommand(() => SortBySearchParameter(1));
             this.CommandFindNonUniqueProducts = new RelayCommand(() => SortBySearchParameter(2));
             this.CommandFindExpiredProducts = new RelayCommand(() => SortBySearchParameter(3));
-            this.CommandRemoveExpiredProduct = new RelayCommand(CommandRemoveSelectedExpiredProduct);
+            this.CommandRemoveExpiredProduct = new RelayCommand(RemoveSelectedEXpiredProduct);
         }
 
         private DatabaseSearcher _databaseSearcher;
         private DateTime _currentDate;
         private TimeSpan _allowedAge;
 
-        //===========================================================================//
+        #region Properties
+
         private Product _selectedProduct;
         public Product SelectedProduct
         {
             get { return _selectedProduct; }
-            set
-            {
-                _selectedProduct = value;
-                OnPropertyChanged("SelectedProduct");
-            }
+            set { _selectedProduct = value; OnPropertyChanged("SelectedProduct"); }
         }
-
-        public RelayCommand CommandRemoveExpiredProduct { get; set; }
-        public void CommandRemoveSelectedExpiredProduct()
-        {
-            try
-            {
-                using (var ctx = new ServerContext())
-                {
-                    if (this.SelectedProduct != null)
-                    {
-                        List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
-                        Product product = productlist.First();
-                        ctx.Products.Remove(product);
-                        ctx.SaveChanges();
-                        PopupService.PopupMessage("Produkt er blevet fjernet fra systemet", "Fjern produkt");
-                    }
-                    else
-                    {
-                        PopupService.PopupMessage("Intet produkt er markeret", "Fjern produkt");
-                    }
-                }
-            }
-            catch (System.Data.DataException)
-            {
-                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
-            }
-            //also remove product from current observablecollection
-            this.ExpiredProducts.Remove(SelectedProduct);
-        }
-
-        //===========================================================================//
 
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
@@ -129,9 +95,18 @@ namespace DanmissionManager.ViewModels
             set { _searchParameter = value; OnPropertyChanged("SearchParameter"); }
         }
 
-        public RelayCommand CommandFindUniqueProducts { get; private set; }
-        public RelayCommand CommandFindNonUniqueProducts { get; private set; }
-        public RelayCommand CommandFindExpiredProducts { get; private set; }
+        #endregion
+
+        #region CommandProperties
+
+        public RelayCommand CommandFindUniqueProducts { get; }
+        public RelayCommand CommandFindNonUniqueProducts { get; }
+        public RelayCommand CommandFindExpiredProducts { get; }
+        public RelayCommand CommandRemoveExpiredProduct { get; }
+
+        #endregion
+
+        #region Methods
 
         private void SortBySearchParameter(int searchParameter)
         {
@@ -203,5 +178,33 @@ namespace DanmissionManager.ViewModels
             }
             return transactions;
         }
+        public void RemoveSelectedEXpiredProduct()
+        {
+            try
+            {
+                using (var ctx = new ServerContext())
+                {
+                    if (this.SelectedProduct != null)
+                    {
+                        List<Product> productlist = ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
+                        Product product = productlist.First();
+                        ctx.Products.Remove(product);
+                        ctx.SaveChanges();
+                        PopupService.PopupMessage("Produkt er blevet fjernet fra systemet", "Fjern produkt");
+                    }
+                    else
+                    {
+                        PopupService.PopupMessage("Intet produkt er markeret", "Fjern produkt");
+                    }
+                }
+            }
+            catch (System.Data.DataException)
+            {
+                PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
+            }
+            this.ExpiredProducts.Remove(SelectedProduct);
+        }
+
+        #endregion
     }
 }

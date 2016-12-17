@@ -92,10 +92,10 @@ namespace DanmissionManager.ViewModels
 
         #region CommandProperties
 
-        public RelayCommand CommandGetProductByID { get; set; }
-        public RelayCommand CommandAddSelectedToBasket { get; set; }
-        public RelayCommand CommandClearBasket { get; set; }
-        public RelayCommand CommandCompletePurchase { get; set; }
+        public RelayCommand CommandGetProductByID { get; }
+        public RelayCommand CommandAddSelectedToBasket { get; }
+        public RelayCommand CommandClearBasket { get; }
+        public RelayCommand CommandCompletePurchase { get; }
 
         #endregion
 

@@ -18,6 +18,33 @@ namespace DanmissionManager.ViewModels
             DaysToProductExpiration = Properties.Settings.Default.DAYSTOEXPIRATION;
         }
 
+        #region Properties
+
+        private ObservableCollection<string> _languages;
+        public ObservableCollection<string> Languages
+        {
+            get { return _languages; }
+            set { _languages = value; OnPropertyChanged("Language"); }
+        }
+
+        private static string _selectedItem = string.Empty;
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set { setProgramLanguage(value); _selectedItem = value; SaveLanguageInSettings(value); OnPropertyChanged("SelectedItem"); }
+        }
+        
+        private int _daysToProductExpiration;
+        public int DaysToProductExpiration
+        {
+            get { return _daysToProductExpiration; }
+            set { _daysToProductExpiration = value; SaveDaysInSettings(value); }
+        }
+
+        #endregion
+
+        #region Methods
+
         private void SelectLanguage()
         {
             try
@@ -40,20 +67,6 @@ namespace DanmissionManager.ViewModels
                 "English"
             };
             _languages = new ObservableCollection<string>(languages);
-        }
-
-        private ObservableCollection<string> _languages;
-        public ObservableCollection<string> Languages
-        {
-            get { return _languages; }
-            set { _languages = value; OnPropertyChanged("Language"); }
-        }
-
-        private static string _selectedItem = string.Empty;
-        public string SelectedItem
-        {
-            get { return _selectedItem; }
-            set { setProgramLanguage(value); _selectedItem = value; SaveLanguageInSettings(value); OnPropertyChanged("SelectedItem"); }
         }
 
         private void SaveLanguageInSettings(string language)
@@ -91,16 +104,11 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private int _daysToProductExpiration;
-        public int DaysToProductExpiration
-        {
-            get { return _daysToProductExpiration; }
-            set { _daysToProductExpiration = value; SaveDaysInSettings(value); }
-        }
-
         private void SaveDaysInSettings(int days)
         {
             Properties.Settings.Default.DAYSTOEXPIRATION = days;
         }
+
+        #endregion
     }
 }

@@ -80,10 +80,10 @@ namespace DanmissionManager.ViewModels
 
         #region CommandProperties
 
-        public RelayCommand CommandGetImage { get; set; }
-        public RelayCommand CommandSaveChanges { get; set; }
-        public RelayCommand CommandRemoveSelectedProduct { get; set; }
-        public RelayCommand CommandGetProducts { get; set; }
+        public RelayCommand CommandGetImage { get; }
+        public RelayCommand CommandSaveChanges { get; }
+        public RelayCommand CommandRemoveSelectedProduct { get; }
+        public RelayCommand CommandGetProducts { get; }
 
         #endregion
 

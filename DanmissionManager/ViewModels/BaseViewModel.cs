@@ -11,6 +11,15 @@ namespace DanmissionManager.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
+        public BaseViewModel()
+        {
+            PopupService = new Popups((x, y) => { }, (x, y) => true);
+        }
+        public BaseViewModel(Popups popupService)
+        {
+            PopupService = popupService;
+        }
+
         #region Implementation of INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -18,6 +27,7 @@ namespace DanmissionManager.ViewModels
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
         #region Implementation of INotifyDataErrorInfo
 
         //contains all errors, for a given property, where the property is the key accessor
@@ -106,7 +116,6 @@ namespace DanmissionManager.ViewModels
             return isValid;
         }
 
-        //method for raising new event
         public void RaiseErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
@@ -132,7 +141,7 @@ namespace DanmissionManager.ViewModels
             }
             RaiseErrorsChanged(propertyName);
         }
-        //removes an error from the dictionary
+
         public void RemoveError(string propertyName, string error)
         {
             if (_errors.ContainsKey(propertyName) && _errors[propertyName].Contains(error))
@@ -146,9 +155,11 @@ namespace DanmissionManager.ViewModels
             }
             RaiseErrorsChanged(propertyName);
         }
+
         #endregion
 
         #region Popup properties and methods
+
         public struct Popups
         {
             public Action<string, string> PopupMessage;
@@ -162,14 +173,6 @@ namespace DanmissionManager.ViewModels
         
         public Popups PopupService { get; set; }
 
-        #endregion 
-        public BaseViewModel()
-        {
-            PopupService = new Popups((x, y) => { }, (x, y) => true);
-        }
-        public BaseViewModel(Popups popupService)
-        {
-            PopupService = popupService;
-        }
+        #endregion     
     }
 }

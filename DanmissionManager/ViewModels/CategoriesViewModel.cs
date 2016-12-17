@@ -113,11 +113,11 @@ namespace DanmissionManager.ViewModels
 
         #region CommandProperties
 
-        public RelayCommand CommandGetCategories { get; set; }
-        public RelayCommand CommandAddCategory { get; set; }
-        public RelayCommand CommandAddSubCategory { get; set; }
-        public RelayCommand CommandRemoveCategory { get; set; }
-        public RelayCommand CommandRemoveSubCategory { get; set; }
+        public RelayCommand CommandGetCategories { get; }
+        public RelayCommand CommandAddCategory { get; }
+        public RelayCommand CommandAddSubCategory { get; }
+        public RelayCommand CommandRemoveCategory { get; }
+        public RelayCommand CommandRemoveSubCategory { get; }
 
         #endregion
 

@@ -164,7 +164,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
-    <Compile Include="ViewModels\CreateProductViewModel.cs" />
+    <Compile Include="ViewModels\AddProductViewModel.cs" />
     <Compile Include="ViewModels\FindProductViewModel.cs" />
     <Compile Include="ViewModels\InventoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

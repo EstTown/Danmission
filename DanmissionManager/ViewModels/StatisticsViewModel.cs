@@ -17,26 +17,78 @@ namespace DanmissionManager.ViewModels
     {
         public StatisticsViewModel(Popups popupService) : base(popupService)
         {
-            /*Combobox*/
-            ObservableCollection<string> statistics = new ObservableCollection<string>(statCombobox());
-            this.Statistics = statistics;
-
-            RelayCommand commandDisplayChart = new RelayCommand(ChangeChart);
-            this.CommandDisplayChart = commandDisplayChart;
-
+            this.Statistics = new ObservableCollection<string>(StatCombobox());
+            this.CommandDisplayChart = new RelayCommand(ChangeChart);
+            
             TimeSpan timespan = new TimeSpan(30, 0, 0, 0);
-
-            this.dateFrom = DateTime.Now - timespan;
-            this.dateTo = DateTime.Now;
+            this.DateFrom = DateTime.Now - timespan;
+            this.DateTo = DateTime.Now;
 
             //get all categories and soldproducts
-            getDatabaseData();
+            GetDatabaseData();
 
             this.SelectedChart = Statistics.First();
             ChangeChart();
         }
 
-        private void getDatabaseData()
+        #region Properties
+        
+        private ObservableCollection<string> _statistics;
+        public ObservableCollection<string> Statistics
+        {
+            get { return _statistics; }
+            set { _statistics = value; OnPropertyChanged("Statistics"); }
+        }
+        
+        public List<SoldProduct> AllSoldProducts { get; set; }
+        public List<Product> AllProducts { get; set; }
+
+        private List<Category> _allCategories;
+        public List<Category> AllCategories
+        {
+            get { return _allCategories; }
+            set { _allCategories = value; OnPropertyChanged("Allcategories"); }
+        }
+
+        private List<KeyValuePair<string, int>> _pieChart;
+        public List<KeyValuePair<string, int>> PieChart
+        {
+            get { return _pieChart; }
+            set { _pieChart = value; OnPropertyChanged("PieChart"); }
+        }
+
+        private string _selectedChart;
+        public string SelectedChart
+        {
+            get { return _selectedChart; }
+            set { _selectedChart = value; OnPropertyChanged("SelectedChart"); }
+        }
+
+        private DateTime _dateFrom;
+        public DateTime DateFrom
+        {
+            get { return _dateFrom; }
+            set { _dateFrom = value; OnPropertyChanged("DateFrom"); }
+        }
+
+        private DateTime _dateTo;
+        public DateTime DateTo
+        {
+            get { return _dateTo; }
+            set { _dateTo = value; OnPropertyChanged("DateTo"); }
+        }
+        
+        #endregion
+        
+        #region CommandProperties
+
+        public RelayCommand CommandDisplayChart { get; }
+
+        #endregion
+
+        #region Methods
+
+        private void GetDatabaseData()
         {
             try
             {
@@ -53,19 +105,6 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        public List<SoldProduct> AllSoldProducts { get; set; }
-        public List<Product> AllProducts { get; set; }
-
-        private List<Category> _allCategories;
-        public List<Category> AllCategories
-        {
-            get { return _allCategories; }
-            set
-            {
-                _allCategories = value;
-                OnPropertyChanged("Allcategories");
-            }
-        }
         private void CalculateSum()
         {
 
@@ -79,16 +118,7 @@ namespace DanmissionManager.ViewModels
                 this.AllCategories[i].Sum = list.Sum(y => (int) y.price);
             }
         }
-        private string _selectedChart;
-        public string SelectedChart
-        {
-            get { return _selectedChart; }
-            set
-            {
-                _selectedChart = value;
-                OnPropertyChanged("SelectedChart");
-            }
-        }
+        
         private void ChangeChart()
         {
             if (this.SelectedChart == Application.Current.FindResource("SRevenuePerCategory").ToString())
@@ -109,16 +139,6 @@ namespace DanmissionManager.ViewModels
             }
         }
 
-        private ObservableCollection<string> _statistics;
-        public ObservableCollection<string> Statistics
-        {
-            get { return _statistics; }
-            set
-            {
-                _statistics = value;
-                OnPropertyChanged("Statistics");
-            }
-        }
         private void ShowChartSales()
         {
             CalculateSum();
@@ -128,7 +148,7 @@ namespace DanmissionManager.ViewModels
                 int amountPerCategory = 0;
                 foreach(SoldProduct product in AllSoldProducts)
                 {
-                    if(product.date >= dateFrom && product.date <= dateTo && category.id == product.category)
+                    if(product.date >= DateFrom && product.date <= DateTo && category.id == product.category)
                     {
                         amountPerCategory += (int)product.price;
                     }
@@ -150,7 +170,7 @@ namespace DanmissionManager.ViewModels
                 int numberOfProducts = 0;
                 foreach (SoldProduct product in AllSoldProducts)
                 {
-                    if (category.id == product.category && product.date >= dateFrom && product.date <= dateTo)
+                    if (category.id == product.category && product.date >= DateFrom && product.date <= DateTo)
                     {
                         numberOfProducts++;
                     }
@@ -182,26 +202,10 @@ namespace DanmissionManager.ViewModels
                     inventoryValue.Add(new KeyValuePair<string, int>(category.name, numberOfProducts));
                 }
             }
-
             PieChart = inventoryValue;
         }
-
-        private List<KeyValuePair<string, int>> _pieChart;
-        public List<KeyValuePair<string, int>> PieChart
-        {
-            get
-            {
-                return _pieChart;
-            }
-            set
-            {
-                _pieChart = value;
-                OnPropertyChanged("PieChart");
-            }
-        }
-
-        public RelayCommand CommandDisplayChart { get; set; }
-        private List<string> statCombobox()
+        
+        private List<string> StatCombobox()
         {
             List<string> data = new List<string>();
 
@@ -211,33 +215,6 @@ namespace DanmissionManager.ViewModels
 
             return data;
         }
-
-        private DateTime _dateFrom;
-        public DateTime dateFrom
-        {
-            get
-            {
-                return _dateFrom;
-            }
-            set
-            {
-                _dateFrom = value;
-                OnPropertyChanged("dateFrom");
-            }
-        }
-
-        private DateTime _dateTo;
-        public DateTime dateTo
-        {
-            get
-            {
-                return _dateTo;
-            }
-            set
-            {
-                _dateTo = value;
-                OnPropertyChanged("dateTo");
-            }
-        }
+        #endregion
     }
 }

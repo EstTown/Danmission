@@ -46,7 +46,7 @@ namespace DanmissionManager.Views
         private void btn_addProduct_Click(object sender, RoutedEventArgs e)
         {
             var newpage = new addProductPage();
-            newpage.DataContext = new CreateProductViewModel(_standardPopupService);
+            newpage.DataContext = new AddProductViewModel(_standardPopupService);
             Main.Content = newpage;
         }
 
