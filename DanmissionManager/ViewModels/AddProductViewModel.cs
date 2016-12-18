@@ -34,7 +34,8 @@ namespace DanmissionManager.ViewModels
         public Standardprice SelectedSubCategory
         {
             get { return _selectedSubCategory; }
-            set { _selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory"); }
+            set { _selectedSubCategory = value; OnPropertyChanged("SelectedSubCategory");
+                this.CommandAddProduct.RaiseCanExecuteChanged(); }
         }
 
         private Category _selectedCategory;
@@ -42,6 +43,7 @@ namespace DanmissionManager.ViewModels
         {
             get { return _selectedCategory; }
             set { _selectedCategory = value; OnPropertyChanged("SelectedCategory");
+                this.CommandAddProduct.RaiseCanExecuteChanged();
                 //method that changes subcategories collection, based on selectedcategory
                 ChangeCollection(); }
         }
@@ -96,7 +98,7 @@ namespace DanmissionManager.ViewModels
         {
             get { return _amountOfProducts; }
             set { _amountOfProducts = value; OnPropertyChanged("AmountOfProducts");
-                IsAmountOfProductsValid(value); CommandAddProduct.RaiseCanExecuteChanged(); }
+                IsAmountOfProductsValid(value, nameof(this.AmountOfProducts)); CommandAddProduct.RaiseCanExecuteChanged(); }
         }
         
         private bool _isChecked;
@@ -187,6 +189,12 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
+
+        public bool CanExecuteAddProduct()
+        {
+            return (!HasErrors && this.SelectedCategory != null &&this.SelectedSubCategory != null);
+        }
+
         public void GetFromDatabase()
         {
             try
@@ -204,10 +212,7 @@ namespace DanmissionManager.ViewModels
                 PopupService.PopupMessage(Application.Current.FindResource("CouldNotConnectToDatabase").ToString(), Application.Current.FindResource("Error").ToString());
             }
         }
-        public bool CanExecuteAddProduct()
-        {
-            return !HasErrors;
-        }
+
         public void GetImage()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();

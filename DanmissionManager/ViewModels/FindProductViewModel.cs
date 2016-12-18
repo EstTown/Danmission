@@ -52,6 +52,16 @@ namespace DanmissionManager.ViewModels
                 {
                     this.ProductName = value.name;
                     this.Image = SelectedProduct.productImage;
+                    this.SelectedProductPrice = value.price;
+                    this.Description = value.desc;
+                    if (value.isUnique == true)
+                    {
+                        this.Quantity = 1;
+                    }
+                    else
+                    {
+                        this.Quantity = value.quantity;
+                    }
                 }
             }
         }
@@ -72,10 +82,27 @@ namespace DanmissionManager.ViewModels
                 IsPriceValid(value, nameof(this.SelectedProductPrice)); CommandSaveChanges.RaiseCanExecuteChanged(); }
         }
 
+        private int? _quantity;
+        public int? Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; OnPropertyChanged(nameof(this.Quantity));
+                if (!this.SelectedProduct.isUnique)
+                {
+                    IsAmountOfProductsValid(value, nameof(this.Quantity));
+                }
+                this.CommandSaveChanges.RaiseCanExecuteChanged(); }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; OnPropertyChanged(nameof(this.Description));}
+        }
+        
         private BitmapImage _image { get; set; }
-
-
-
+        
         #endregion
 
         #region CommandProperties
@@ -100,15 +127,15 @@ namespace DanmissionManager.ViewModels
                         List<Product> productlist =
                             ctx.Products.Where(x => x.id.CompareTo(SelectedProduct.id) == 0).ToList();
                         Product product = productlist.First();
-                        product.category = SelectedProduct.category;
-                        product.desc = SelectedProduct.desc;
-                        product.price = SelectedProduct.price;
-                        product.name = this.SelectedProduct.name;
+                        product.category = this.SelectedProduct.category;
+                        product.desc = this.Description;
+                        product.price = this.SelectedProductPrice;
+                        product.name = this.ProductName;
                         if (Image != null)
                         {
                             product.image = ImageToByteArray(Image);
                         }
-                        product.quantity = SelectedProduct.quantity;
+                        product.quantity = this.Quantity;
                         ctx.SaveChanges();
                         PopupService.PopupMessage("Dine ændringer er blevet gemt", "Ændringer");
                     }

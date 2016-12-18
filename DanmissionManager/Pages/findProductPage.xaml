@@ -50,7 +50,7 @@
                 <TextBox x:Name="textBox_SelectedDateAdded" TextWrapping="NoWrap" Text="{Binding SelectedProduct.date}" Margin="0,58,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top" IsEnabled="false"/>
 
                 <Label x:Name="label_SelectedDescription" Content="{DynamicResource FPDescription}" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding SelectedProduct.desc, Mode=TwoWay}" Margin="0,142,0.667,43" HorizontalAlignment="Right" Width="200"/>
+                <TextBox x:Name="textBox_SelectedDescription" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Margin="0,142,0.667,43" HorizontalAlignment="Right" Width="200"/>
 
                 <Label x:Name="label_SelectedCategory" Width="auto" Content="{DynamicResource FPCategory}" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBox_SelectedCategory" IsEnabled="False" TextWrapping="NoWrap" Text="{Binding SelectedProduct.category, Mode=TwoWay}" Margin="0,84,0,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
@@ -59,7 +59,7 @@
                 <Button x:Name="btn_SelectedSave_Copy" Content="{DynamicResource FPRemoveProduct}" Command ="{Binding Path=CommandRemoveSelectedProduct}" Margin="10,0,0,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
 
                 <Label x:Name="label_SelectedQuantity" IsEnabled="{Binding SelectedProduct.isUnique, Converter={StaticResource oppositeConverter}, Mode=OneWay}" Width="auto" Content="Antal tilbage" HorizontalAlignment="Left" Margin="11,108,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="textBox_SelectedQuantity" IsEnabled="{Binding SelectedProduct.isUnique, Converter={StaticResource oppositeConverter}, Mode=OneWay}" TextWrapping="NoWrap" Text="{Binding SelectedProduct.quantity, Mode=TwoWay}" Margin="0,112,0.333,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
+                <TextBox x:Name="textBox_SelectedQuantity" IsEnabled="{Binding SelectedProduct.isUnique, Converter={StaticResource oppositeConverter}, Mode=OneWay}" TextWrapping="NoWrap" Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Margin="0,112,0.333,0" HorizontalAlignment="Right" Width="200" Height="auto" VerticalAlignment="Top"/>
 
             </Grid>
         </GroupBox>
