@@ -74,7 +74,7 @@ namespace DanmissionManager.ViewModels
         public bool IsAmountOfProductsValid(int? value, string propertyName)
         {
             bool isValid = true;
-            if (value < 2)
+            if (value == null)
             {
                 AddError(propertyName, AMOUNTOFPRODUCTS_ERROR, false);
                 isValid = false;
@@ -82,6 +82,7 @@ namespace DanmissionManager.ViewModels
             else
             {
                 RemoveError(propertyName, AMOUNTOFPRODUCTS_ERROR);
+                isValid = true;
             }
             return isValid;
         }
