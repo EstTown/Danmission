@@ -23,7 +23,7 @@ namespace DanmissionManager.ViewModels
             this.Product = new Product();
             this.CommandAddProduct = new RelayCommand(AddProduct, CanExecuteAddProduct);
             this.CommandGetImage = new RelayCommand(GetImage);
-            this.AmountOfProducts = 1;
+            this.AmountOfProducts = 2;
 
             //get all categories and subcategories from database
             GetFromDatabase();
@@ -109,7 +109,7 @@ namespace DanmissionManager.ViewModels
             set { _isChecked = value;
                     if (value == true)
                     {
-                        this.AmountOfProducts = 1;
+                        this.AmountOfProducts = 2;
                     }
                 CommandAddProduct.RaiseCanExecuteChanged();
                 }
