@@ -26,8 +26,8 @@
         </chartingToolkit:Chart>
         <ComboBox x:Name="statComboBox" ItemsSource="{Binding Path = Statistics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedChart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="100,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="24"/>
         <Label x:Name="statLabel"  Content="{DynamicResource SStatisticsType}" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top"/>
-        <Custom:DatePicker x:Name="datePickerFrom" SelectedDate="{Binding dateFrom}" HorizontalAlignment="Left" Margin="386,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
-        <Custom:DatePicker x:Name="datePickerTo" SelectedDate="{Binding dateTo}" HorizontalAlignment="Left" Margin="577,66,0,0" VerticalAlignment="Top"/>
+        <Custom:DatePicker x:Name="datePickerFrom" SelectedDate="{Binding DateFrom}" HorizontalAlignment="Left" Margin="386,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.259,0.354"/>
+        <Custom:DatePicker x:Name="datePickerTo" SelectedDate="{Binding DateTo}" HorizontalAlignment="Left" Margin="577,66,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateFrom" Content="{DynamicResource SDateFrom}" HorizontalAlignment="Left" Margin="316,64,0,0" VerticalAlignment="Top"/>
         <Label x:Name="dateTo" Content="{DynamicResource SDateTo}" HorizontalAlignment="Left" Margin="519,64,0,0" VerticalAlignment="Top"/>
         <Button x:Name="generateStatsButton" Content="{DynamicResource SViewStatistics}" Command="{Binding Path = CommandDisplayChart}" Margin="0,66,31.333,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Right" Width="100"/>
