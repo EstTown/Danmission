@@ -108,5 +108,7 @@
     <system:String x:Key="OSaveChanges">Save Changes</system:String>
     <system:String x:Key="OCouldNotFindLanguage">Choosen language does not fit available language resources.</system:String>
     <system:String x:Key="OProductExpirationTime1">Days until products expire:</system:String>
+    <system:String x:Key="OSaveChangesSuccessText">Your changes have been saved.</system:String>
+    <system:String x:Key="OSaveChangesSuccessTitle">Saved!</system:String>
 
 </ResourceDictionary>

@@ -30,9 +30,8 @@ namespace DanmissionManager.Pages
         {
             Properties.Settings.Default.Save();
 
-            Console.WriteLine("before: " + ConfigurationManager.ConnectionStrings["ServerContext"].ConnectionString);
+            //Console.WriteLine("before: " + ConfigurationManager.ConnectionStrings["ServerContext"].ConnectionString);
             //Save new connection data
-
 
             string updatedConnection = "server=" + Properties.Settings.Default.IP1 + "." + Properties.Settings.Default.IP2 + "." + Properties.Settings.Default.IP3 + "." + Properties.Settings.Default.IP4+";user id=" + Properties.Settings.Default.USER + ";password=" + Properties.Settings.Default.PASSWORD + ";persistsecurityinfo=True;database ="+ Properties.Settings.Default.SCHEMA;
 
@@ -42,10 +41,11 @@ namespace DanmissionManager.Pages
             config.Save();
             ConfigurationManager.RefreshSection("connectionStrings");
 
-            Console.WriteLine("after: " + ConfigurationManager.ConnectionStrings["ServerContext"].ConnectionString);
+            //Console.WriteLine("after: " + ConfigurationManager.ConnectionStrings["ServerContext"].ConnectionString);
 
             //Console.WriteLine(updatedConnection);
-            MessageBox.Show("Dine ændringer er blevet gemt.", "Gemt!");
+            MessageBox.Show(Application.Current.FindResource("OSaveChangesSuccessText").ToString(), Application.Current.FindResource("OSaveChangesSuccessTitle").ToString());
+            // This should utilize the PopupService in ViewModel
         }
 
         private void btn_reset_Click(object sender, RoutedEventArgs e)

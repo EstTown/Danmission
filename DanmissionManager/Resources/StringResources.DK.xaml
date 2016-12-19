@@ -108,5 +108,7 @@
     <system:String x:Key="OSaveChanges">Gem ændringer</system:String>
     <system:String x:Key="OCouldNotFindLanguage">Det valgte sprog findes ikke som resource.</system:String>
     <system:String x:Key="OProductExpirationTime1">Dage før produkter udløber:</system:String>
- 
+    <system:String x:Key="OSaveChangesSuccessText">Dine ændringer er blevet gemt.</system:String>
+    <system:String x:Key="OSaveChangesSuccessTitle">Gemt!</system:String>
+
 </ResourceDictionary>
