@@ -30,14 +30,11 @@ namespace DanmissionManager.Views
             this._Fullscreen = false;
 
             OpenLogoPage();
-
-            ConsoleManager.Show();
         }
 
         private BaseViewModel.Popups _standardPopupService;
         private bool _Fullscreen { get; set; }
-
-
+        
         private void OpenLogoPage()
         {
             Main.Content = new logoPage();

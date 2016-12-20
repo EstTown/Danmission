@@ -13,7 +13,6 @@ namespace DanmissionManager.ViewModels
 
         public MainViewModel(Popups popupService) : base(popupService)
         {
-            ConsoleManager.Show();
             LoadSettings();
         }
 

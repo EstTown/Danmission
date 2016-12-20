@@ -4,10 +4,6 @@
              xmlns:local="clr-namespace:DanmissionManager"
              Startup="OnStartup">
              
-    
-            <!--StartupUri="Views\TemplateView2.xaml"> -->
-             
-
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
