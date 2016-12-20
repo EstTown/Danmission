@@ -12,7 +12,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using DanmissionManager.Converters;
-using DanmissionManager.Simulator;
 
 namespace DanmissionManager.ViewModels
 {

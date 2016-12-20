@@ -152,14 +152,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Simulator\Interfaces\IProductGenerator.cs" />
-    <Compile Include="Simulator\Interfaces\ISimulator.cs" />
-    <Compile Include="Simulator\Interfaces\ITransactionGenerator.cs" />
-    <Compile Include="Simulator\Interfaces\IVoucherGenerator.cs" />
-    <Compile Include="Simulator\ProductGenerator.cs" />
-    <Compile Include="Simulator\Simulator.cs" />
-    <Compile Include="Simulator\TransactionGenerator.cs" />
-    <Compile Include="Simulator\VoucherGenerator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
