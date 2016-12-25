@@ -1,3 +1,7 @@
 # Danmission
 
-lol
+## About:
+gg
+
+## How to use:
+gg
